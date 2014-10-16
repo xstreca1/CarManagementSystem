@@ -16,35 +16,36 @@ import javax.persistence.Id;
  * @author jrumanov
  */
 @Entity
-public class Person implements Serializable {
+public class ServiceCheck implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private String id;
+    private int id;
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (id != null ? id.hashCode() : 0);
+        hash += (int) id;
         return hash;
     }
 
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Person)) {
+        if (!(object instanceof Lease)) {
             return false;
         }
-        Person other = (Person) object;
-        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
+        ServiceCheck other = (ServiceCheck) object;
+        if (this.id != other.id) {
             return false;
         }
         return true;
@@ -52,7 +53,7 @@ public class Person implements Serializable {
 
     @Override
     public String toString() {
-        return "cz.muni.fi.pa165.carmanagementsystem.Person[ id=" + id + " ]";
+        return "cz.muni.fi.pa165.carmanagementsystem.ServiceCheck[ id=" + id + " ]";
     }
-    
+
 }

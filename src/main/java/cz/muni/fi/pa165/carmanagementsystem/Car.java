@@ -16,7 +16,7 @@ import javax.persistence.Id;
  * @author jrumanov
  */
 @Entity
-public class Person implements Serializable {
+public class Car implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -40,10 +40,10 @@ public class Person implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Person)) {
+        if (!(object instanceof Car)) {
             return false;
         }
-        Person other = (Person) object;
+        Car other = (Car) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -52,7 +52,7 @@ public class Person implements Serializable {
 
     @Override
     public String toString() {
-        return "cz.muni.fi.pa165.carmanagementsystem.Person[ id=" + id + " ]";
+        return "cz.muni.fi.pa165.carmanagementsystem.Car[ id=" + id + " ]";
     }
     
 }
