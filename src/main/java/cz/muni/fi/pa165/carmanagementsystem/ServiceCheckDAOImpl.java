@@ -7,7 +7,7 @@ package cz.muni.fi.pa165.carmanagementsystem;
 
 /**
  *
- * @author Martin
+ * @author Martin Strecansky
  */
 public class ServiceCheckDAOImpl implements ServiceCheckDAO {
     
