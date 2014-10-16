@@ -6,6 +6,7 @@
 package cz.muni.fi.pa165.carmanagementsystem;
 
 import java.io.Serializable;
+import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -20,7 +21,76 @@ public class Lease implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
+    private int leaseId;
+    private int carMileage;
+    private Date dateOfLease;
+    private Date dateOfReturn;
+    private String vehicleRegPlate;
+    private Boolean isClosed;
+    
+    private Car car;
+    private Person person;
+    
+    private enum ReturnedStatus{OK, BROKEN};//TODO
+    private enum TravelReason{PERSONAL, WORK};
+
+    /**
+     * @return the leaseId
+     */
+    public int getLeaseId() {
+        return leaseId;
+    }
+
+    /**
+     * @return the carMileage
+     */
+    public int getCarMileage() {
+        return carMileage;
+    }
+
+    /**
+     * @return the dateOfLease
+     */
+    public Date getDateOfLease() {
+        return dateOfLease;
+    }
+
+    /**
+     * @return the dateOfReturn
+     */
+    public Date getDateOfReturn() {
+        return dateOfReturn;
+    }
+
+    /**
+     * @return the vehicleRegPlate
+     */
+    public String getVehicleRegPlate() {
+        return vehicleRegPlate;
+    }
+
+    /**
+     * @return the isClosed
+     */
+    public Boolean getIsClosed() {
+        return isClosed;
+    }
+
+    /**
+     * @return the car
+     */
+    public Car getCar() {
+        return car;
+    }
+
+    /**
+     * @return the person
+     */
+    public Person getPerson() {
+        return person;
+    }
+    
+       
 
     public int getId() {
         return id;
