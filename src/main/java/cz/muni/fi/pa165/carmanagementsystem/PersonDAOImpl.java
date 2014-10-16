@@ -37,17 +37,44 @@ public class PersonDAOImpl implements PersonDAO {
 
     @Override
     public Person getPersonByID(String personID) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        String sql = "SELECT * FROM Person person WHERE personID='" + personID + "'";
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("carManagementSystem-unit");
+        EntityManager em = emf.createEntityManager();
+
+        em.getTransaction().begin();
+        Person person = em.createQuery(sql, Person.class).getSingleResult();
+        em.getTransaction().commit();
+        em.close();
+
+        return person;
     }
 
     @Override
     public List<Person> getPeopleByName(String name) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        String sql = "SELECT * FROM person WHERE name='" + name + "'";
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("carManagementSystem-unit");
+        EntityManager em = emf.createEntityManager();
+
+        em.getTransaction().begin();
+        List<Person> people = em.createQuery(sql, Person.class).getResultList();
+        em.getTransaction().commit();
+        em.close();
+
+        return people;
     }
 
     @Override
     public List<Person> getAllPeople() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        String sql = "SELECT * FROM person";
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("carManagementSystem-unit");
+        EntityManager em = emf.createEntityManager();
+
+        em.getTransaction().begin();
+        List<Person> people = em.createQuery(sql, Person.class).getResultList();
+        em.getTransaction().commit();
+        em.close();
+
+        return people;
     }
 
 }
