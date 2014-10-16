@@ -7,7 +7,7 @@ package cz.muni.fi.pa165.carmanagementsystem;
 
 /**
  *
- * @author jrumanov
+ * @author Martin
  */
 public interface ServiceCheckDAO {
     

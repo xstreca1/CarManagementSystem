@@ -13,7 +13,7 @@ import javax.persistence.Id;
 
 /**
  *
- * @author jrumanov
+ * @author Martin
  */
 @Entity
 public class ServiceCheck implements Serializable {
