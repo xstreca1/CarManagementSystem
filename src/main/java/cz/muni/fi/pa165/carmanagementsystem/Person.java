@@ -5,10 +5,15 @@ package cz.muni.fi.pa165.carmanagementsystem;
 
 import java.io.Serializable;
 import java.util.Date;
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 /**
  *
@@ -17,16 +22,7 @@ import javax.persistence.Id;
 @Entity
 public class Person implements Serializable {
 
-    //-----------------attributes------------------------
-    
-    private static final long serialVersionUID = 1L;
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private String id;
-
-    private String name;
-
+    //--------------------enums--------------------------
     private enum EmploymentStatus {
 
         CEO,
@@ -37,23 +33,45 @@ public class Person implements Serializable {
         JOZO
     }
 
-    private Date dateOfBirth;
-    private String position;
-
     private enum Sex {
 
         FEMALE,
         MALE,
         OTHER
     }
+
+    //-----------------attributes------------------------
+    private static final long serialVersionUID = 1L;
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private String id;
+
+    @Column(nullable = false)
+    private String name;
+
+    @Enumerated(EnumType.STRING)
+    private EmploymentStatus employmentStatus;
+
+    @Temporal(TemporalType.DATE)
+    private Date dateOfBirth;
+
+    @Column(nullable = false)
+    private String position;
+
+    @Enumerated(EnumType.STRING)
+    private Sex sex;
+
+    @Column(nullable = false)
     private String address;
-    
+
+    @Column(nullable = false)
     private String nationality;
-    
+
+    @Column(nullable = false)
     private int salary;
 
     //------------getters and setters--------------------
-    
     public String getId() {
         return id;
     }
@@ -109,9 +127,8 @@ public class Person implements Serializable {
     public void setSalary(int salary) {
         this.salary = salary;
     }
-    
-    //----------------constructors-----------------------
 
+    //----------------constructors-----------------------
     public Person() {
     }
 
