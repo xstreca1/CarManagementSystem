@@ -4,6 +4,9 @@
 package cz.muni.fi.pa165.carmanagementsystem;
 
 import java.util.List;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 
 /**
  *
@@ -12,8 +15,14 @@ import java.util.List;
 public class PersonDAOImpl implements PersonDAO {
 
     @Override
-    public void createPerson() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void createPerson(Person person) {
+        //create emf and em in every method because of transactions
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("carManagementSystem-unit");
+        EntityManager em = emf.createEntityManager();
+        em.getTransaction().begin();
+        em.persist(person);
+        em.getTransaction().commit();
+        em.close();
     }
 
     @Override
