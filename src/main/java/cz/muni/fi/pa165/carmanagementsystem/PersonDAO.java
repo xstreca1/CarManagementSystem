@@ -1,14 +1,25 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Data access object interface for entity Person.
  */
 package cz.muni.fi.pa165.carmanagementsystem;
 
+import java.util.List;
+
 /**
  *
- * @author jrumanov
+ * @author Jakub Rumanovsky
  */
 public interface PersonDAO {
-    
+
+    void createPerson();
+
+    void updatePerson();
+
+    void deletePerson();
+
+    Person getPersonByID(String personID);
+
+    List<Person> getPeopleByName(String name);
+
+    List<Person> getAllPeople();
 }
