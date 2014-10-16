@@ -13,7 +13,7 @@ import javax.persistence.Id;
 
 /**
  *
- * @author jrumanov
+ * @author Petr Potucek
  */
 @Entity
 public class Lease implements Serializable {
