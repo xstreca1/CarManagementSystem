@@ -33,12 +33,7 @@ public class ServiceCheck implements Serializable {
     private int scID;
 
     @Enumerated(EnumType.STRING)
-    private checkName name;
-
-    private enum checkName {
-
-        EMISSION, TECHNICAL, OVERALL
-    }
+    private ServiceCheckName name;
 
     @Column(nullable = false)
     private int serviceInterval;
@@ -57,11 +52,11 @@ public class ServiceCheck implements Serializable {
         return scID;
     }
 
-    public checkName getName() {
+    public ServiceCheckName getName() {
         return name;
     }
 
-    public void setName(checkName name) {
+    public void setName(ServiceCheckName name) {
         this.name = name;
     }
 
