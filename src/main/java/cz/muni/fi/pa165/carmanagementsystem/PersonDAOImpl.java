@@ -15,7 +15,7 @@ import javax.persistence.Persistence;
 public class PersonDAOImpl implements PersonDAO {
 
     @Override
-    public void createPerson(Person person) {
+    public void insertPerson(Person person) {
         //create emf and em in every method because of transactions
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("carManagementSystem-unit");
         EntityManager em = emf.createEntityManager();
@@ -26,13 +26,21 @@ public class PersonDAOImpl implements PersonDAO {
     }
 
     @Override
-    public void updatePerson() {
+    public void updatePerson(Person person) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public void deletePerson() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void deletePerson(String personID) {
+         String sql = "DELETE * FROM Person person WHERE person.personID=:personID";//'" + personID + "'";
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("carManagementSystem-unit");
+        EntityManager em = emf.createEntityManager();
+
+        em.getTransaction().begin();
+        em.createQuery(sql).executeUpdate();
+        em.getTransaction().commit();
+        em.close();
+        //stackoverflow.com/questions/2848164/jpa-entitymanager-remove-operation-is-not-performant
     }
 
     @Override
@@ -42,7 +50,7 @@ public class PersonDAOImpl implements PersonDAO {
         EntityManager em = emf.createEntityManager();
 
         em.getTransaction().begin();
-        Person person = em.createQuery(sql, Person.class).getSingleResult();
+        Person person = em.createQuery(sql, Person.class).getResultList().get(0);
         em.getTransaction().commit();
         em.close();
 

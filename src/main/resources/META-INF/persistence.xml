@@ -9,6 +9,7 @@
             <property name="hibernate.dialect" value="org.hibernate.dialect.DerbyDialect" />
             <property name="hibernate.hbm2ddl.auto" value="create-drop" />
             <property name="hibernate.format_sql" value="false" />
+            <!-- add property for in-memory db-->
         </properties>
     </persistence-unit>
 </persistence>
