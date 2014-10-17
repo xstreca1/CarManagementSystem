@@ -5,10 +5,18 @@
  */
 package cz.muni.fi.pa165.carmanagementsystem;
 
+import java.util.List;
+
 /**
  *
  * @author Martin Strecansky
  */
 public interface ServiceCheckDAO {
+    
+    public void insertServiceCheck();
+    public void updateServiceCheck(int scID);
+    public void deleteServiceCheck(int scID);
+    public int getDaysToNext(int scID);
+    public List getServiceChecksForCar(Car car);    
     
 }

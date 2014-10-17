@@ -6,10 +6,17 @@
 package cz.muni.fi.pa165.carmanagementsystem;
 
 import java.io.Serializable;
+import java.util.Date;
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 /**
  *
@@ -19,22 +26,86 @@ import javax.persistence.Id;
 public class ServiceCheck implements Serializable {
 
     private static final long serialVersionUID = 1L;
+
+// attributes and enums
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
+    private int scID;
 
-    public int getId() {
-        return id;
+    @Enumerated(EnumType.STRING)
+    private checkName name;
+
+    private enum checkName {
+
+        EMISSION, TECHNICAL, OVERALL
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    @Column(nullable = false)
+    private int serviceInterval;
+
+    @Temporal(TemporalType.DATE)
+    private Date lastCheck;
+
+    @Column(nullable = false)
+    private String description;
+
+    @ManyToOne
+    private Car car;
+
+    // getters and setters
+    public int getScID() {
+        return scID;
     }
 
+    public checkName getName() {
+        return name;
+    }
+
+    public void setName(checkName name) {
+        this.name = name;
+    }
+
+    public int getServiceInterval() {
+        return serviceInterval;
+    }
+
+    public void setServiceInterval(int serviceInterval) {
+        this.serviceInterval = serviceInterval;
+    }
+
+    public Date getLastCheck() {
+        return lastCheck;
+    }
+
+    public void setLastCheck(Date lastCheck) {
+        this.lastCheck = lastCheck;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public Car getCar() {
+        return car;
+    }
+
+    public void setCar(Car car) {
+        this.car = car;
+    }
+
+    // constructor
+    public ServiceCheck() {
+    }
+
+    // methods    
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (int) id;
+        hash += (int) scID;
         return hash;
     }
 
@@ -45,15 +116,12 @@ public class ServiceCheck implements Serializable {
             return false;
         }
         ServiceCheck other = (ServiceCheck) object;
-        if (this.id != other.id) {
-            return false;
-        }
-        return true;
+        return this.scID == other.scID;
     }
 
     @Override
     public String toString() {
-        return "cz.muni.fi.pa165.carmanagementsystem.ServiceCheck[ id=" + id + " ]";
+        return "cz.muni.fi.pa165.carmanagementsystem.ServiceCheck[ id=" + scID + " ]";
     }
 
 }
