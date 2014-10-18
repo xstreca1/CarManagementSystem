@@ -6,56 +6,95 @@
 package cz.muni.fi.pa165.carmanagementsystem;
 
 import java.io.Serializable;
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 /**
  *
- * @author jrumanov
+ * @author Jozef Puchly
  */
 @Entity
 public class Car implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private String id;
+    private String CarID;
+    
+    @Column(nullable = false)
     private String vehicleRegPlate;
+    
+    @Column(nullable = false)
     private int yearOfManufacture;
+    
+    @Column(nullable = false)
     private int mileage;
+    
+    @Column(nullable = false)
     private String brand;
+    
+    @Column(nullable = false)
     private String typeName;
-    private enum color {
+    
+    @Enumerated(EnumType.STRING)
+    private Color color;
+    
+    public enum Color {
         BLACK,
         WHITE,
         BLUE,
         GREEN
     };
-    private enum bodyStyle{
+    
+    @Enumerated(EnumType.STRING)
+    private bodyStyle bodystyle;
+    
+    public enum bodyStyle{
         SEDAN,
         HATCHBACK,
         CABRIOLET,
         SUV
         
     };
+    
+    @Column(nullable = false)
     private int enginePower;
+    
+    @Column(nullable = false)
     private float gasConsumption;
+    
+    @Column(nullable = false)
     private boolean transmission;
-    private enum category {
+    
+    @Enumerated(EnumType.STRING)
+    private Category category;
+    
+    public enum Category {
         A,
         B,
         C,
         D
     };
+    
+    @Column(nullable = false)
     private String VIN;
-    private enum emissionStandard {
+    
+    @Enumerated(EnumType.STRING)
+    private emissionStandard emissionstandard;
+    
+    public enum emissionStandard {
         EU3,
         EU4,
         EU5,
         EU6
         
     };
+    
+    @Column(nullable = false)
     private int numberOfSeats;
 
     public String getVehicleRegPlate() {
@@ -157,14 +196,18 @@ public class Car implements Serializable {
     private boolean availibility;
 
     public String getId() {
-        return id;
+        return CarID;
     }
+    
+    public Car() {
+        
+    };
 
 
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (id != null ? id.hashCode() : 0);
+        hash += (CarID != null ? CarID.hashCode() : 0);
         return hash;
     }
 
@@ -175,7 +218,7 @@ public class Car implements Serializable {
             return false;
         }
         Car other = (Car) object;
-        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
+        if ((this.CarID == null && other.CarID != null) || (this.CarID != null && !this.CarID.equals(other.CarID))) {
             return false;
         }
         return true;
@@ -183,7 +226,7 @@ public class Car implements Serializable {
 
     @Override
     public String toString() {
-        return "cz.muni.fi.pa165.carmanagementsystem.Car[ id=" + id + " ]";
+        return "cz.muni.fi.pa165.carmanagementsystem.Car[ id=" + CarID + " ]";
     }
     
 }
