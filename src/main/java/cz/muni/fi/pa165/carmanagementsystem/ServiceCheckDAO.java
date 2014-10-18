@@ -16,19 +16,20 @@ public interface ServiceCheckDAO {
     /**
      * Method used to insert instance of ServiceCheck class to database
      *
-     * @param seviceCheck
+     * @param seviceCheck - instance of class ServiceCheck
      */
     public void createServiceCheck(ServiceCheck seviceCheck);
 
     /**
      * Method used to get the instance of ServiceCheck class from database
-     * according to its ID, update this instance and save this updated
-     * serviceCheck to database
+     * according to its ID, update attributes of this instance using attributes
+     * of new instance of ServiceCheck which is another parameter of this
+     * method. Then save this updated serviceCheck to database
      *
-     * @param seviceCheck
-     * @param scID, 
+     * @param seviceCheck - new values
+     * @param scID - ID of serviceCheck to be updated with new values
      */
-    public void updateServiceCheck(ServiceCheck serviceCheck, Integer scID);
+    public void updateServiceCheck(ServiceCheck serviceCheck, int scID);
 
     /**
      * Method used to delete instance of ServiceCheck class from database
@@ -36,7 +37,7 @@ public interface ServiceCheckDAO {
      *
      * @param seviceCheck
      */
-    public void deleteServiceCheck(Integer scID);
+    public void deleteServiceCheck(int scID);
 
     /**
      * Method used to get number of days remaining to next service check
@@ -45,7 +46,7 @@ public interface ServiceCheckDAO {
      * @param scID
      * @return number of days
      */
-    public int getDaysToNext(Integer scID);
+    public int getDaysToNext(int scID);
 
     /**
      * Method used to get all service checks assigned to some car

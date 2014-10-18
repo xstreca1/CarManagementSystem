@@ -7,7 +7,7 @@ package cz.muni.fi.pa165.carmanagementsystem;
 
 /**
  *
- * @author Mato
+ * @author Martin Strecansky
  */
 public enum ServiceCheckName {
     EMISSION, TECHNICAL, OVERALL

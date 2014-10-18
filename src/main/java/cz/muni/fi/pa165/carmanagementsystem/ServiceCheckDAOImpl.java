@@ -25,6 +25,7 @@ public class ServiceCheckDAOImpl implements ServiceCheckDAO {
         // start in memory database
         new AnnotationConfigApplicationContext(DaoContext.class);
 
+        // create new EntityManager and save instance of ServiceCheck to database
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("createSC-unit");
         EntityManager em = emf.createEntityManager();
         em.getTransaction().begin();
@@ -34,79 +35,91 @@ public class ServiceCheckDAOImpl implements ServiceCheckDAO {
 
     }
 
-    public void updateServiceCheck(ServiceCheck serviceCheck, Integer scID) {
-        if ((scID == null) || (serviceCheck == null)) {
-            throw new NullPointerException();
-        }
+    public void updateServiceCheck(ServiceCheck serviceCheck, int scID) {
         // start in memory database
         new AnnotationConfigApplicationContext(DaoContext.class);
 
+        // create new EntityManager
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("updateSC-unit");
         EntityManager em = emf.createEntityManager();
         em.getTransaction().begin();
 
+        // get instance of ServiceCheck according to its ID. Save this instance to variable "update"
         String query = "SELECT * FROM ServiceCheck serviceCheck WHERE scID='" + scID + "'";
         ServiceCheck update = em.createQuery(query, ServiceCheck.class).getSingleResult();
+
+        // get new values of attributes
         ServiceCheckName newName = serviceCheck.getName();
         int newServiceInterval = serviceCheck.getServiceInterval();
         Date newLastCheck = serviceCheck.getLastCheck();
         String newDescription = serviceCheck.getDescription();
         Car newCar = serviceCheck.getCar();
 
+        // replace actual values with new values
         update.setName(newName);
         update.setServiceInterval(newServiceInterval);
         update.setLastCheck(newLastCheck);
         update.setDescription(newDescription);
         update.setCar(newCar);
 
+        // save updated serviceCheck to database
         em.persist(update);
         em.getTransaction().commit();
         em.close();
 
     }
 
-    public void deleteServiceCheck(Integer scID) {
-        if (scID == null) {
-            throw new NullPointerException();
-        }
+    public void deleteServiceCheck(int scID) {
         // start in memory database
         new AnnotationConfigApplicationContext(DaoContext.class);
+
+        // create new EntityManager
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("deleteSC-unit");
         EntityManager em = emf.createEntityManager();
         em.getTransaction().begin();
 
+        // delete serviceCheck from database according to its ID
         String query = "DELETE * FROM ServiceCheck WHERE scID='" + scID + "'";
         em.createQuery(query).executeUpdate();
         em.getTransaction().commit();
         em.close();
     }
 
-    public int getDaysToNext(Integer scID) {
-        if (scID == null) {
-            throw new NullPointerException();
-        }
+    public int getDaysToNext(int scID) {
         // start in memory database
         new AnnotationConfigApplicationContext(DaoContext.class);
 
+        // create new EntityManager
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("getDaysToSC-unit");
         EntityManager em = emf.createEntityManager();
         em.getTransaction().begin();
 
+        // get serviceCheck from database according to its ID
         String query = "SELECT * FROM ServiceCheck serviceCheck WHERE scID='" + scID + "'";
         ServiceCheck serviceCheck = em.createQuery(query, ServiceCheck.class).getSingleResult();
+
+        // get date of last performance of this serviceCheck
         Date lastCheck = serviceCheck.getLastCheck();
+
+        // get interval of this serviceCheck
         int interval = serviceCheck.getServiceInterval();
 
+        // end transaction and close EntityManager
         em.getTransaction().commit();
         em.close();
 
+        // create instance of Calenar and set date to date of last performance of this serviceCheck
         Calendar nextControl = Calendar.getInstance();
         nextControl.setTime(lastCheck);
+
+        // add number of months to date of last performance according to inetrval of this check, to find out, when the next check should be performed
         nextControl.add(Calendar.MONTH, interval);
 
+        // get current date
         Calendar now = Calendar.getInstance();
         now.getTime();
 
+        // find out number of days between current date and date of next performance and return result 
         int days = nextControl.get(Calendar.DATE) - now.get(Calendar.DATE);
         return days;
 
@@ -115,14 +128,18 @@ public class ServiceCheckDAOImpl implements ServiceCheckDAO {
     @Override
     public List getServiceChecksForCar(Car car) {
 
+        // create new EntityManager
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("getSCforCar-unit");
         EntityManager em = emf.createEntityManager();
-        String query = "SELECT * FROM ServiceCheck WHERE car='" + car + "'";
 
+        // get information about serviceCheck from database according to car (car is able to have more chcecks assigned). Save them to List.
+        String query = "SELECT * FROM ServiceCheck WHERE car='" + car + "'";
         List<ServiceCheck> serviceChecks = em.createQuery(query).getResultList();
 
+        // cloese EntityManager
+        em.getTransaction().commit();
         em.close();
-        
+
         return serviceChecks;
 
     }
