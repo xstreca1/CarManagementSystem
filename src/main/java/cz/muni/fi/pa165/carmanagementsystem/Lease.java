@@ -96,9 +96,6 @@ public class Lease implements Serializable {
         return id;
     }
 
-    public void setId(int id) {
-        this.id = id;
-    }
 
     @Override
     public int hashCode() {
