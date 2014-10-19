@@ -108,10 +108,10 @@ public class Car implements Serializable {
 
     //--------------relationships------------------------
     
-    @OneToMany
+    @OneToMany(mappedBy = "car")
     private Lease lease;
     
-    @OneToMany
+    @OneToMany(mappedBy = "car")
     private ServiceCheck serviceCheck;
     
     //------------getters and setters--------------------
