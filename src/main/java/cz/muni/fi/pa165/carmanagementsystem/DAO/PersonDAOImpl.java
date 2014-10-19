@@ -17,41 +17,76 @@ public class PersonDAOImpl implements PersonDAO {
 
     @Override
     public void insertPerson(Person person) {
-        //create emf and em in every method because of transactions
+
+        //create Entity Manager
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("carManagementSystem-unit");
         EntityManager em = emf.createEntityManager();
+
+        //begin of a transaction
         em.getTransaction().begin();
+
+        //actual query
         em.persist(person);
+
+        //commiting changes and closing entity manager
         em.getTransaction().commit();
         em.close();
     }
 
     @Override
-    public void updatePerson(Person person) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void updatePerson(Person person, String personID) {
+
+        //create Entity Manager
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("carManagementSystem-unit");
+        EntityManager em = emf.createEntityManager();
+
+        //begin of a transaction
+        em.getTransaction().begin();
+
+        //actual query
+        String sql = "UPDATE Person p SET a WHERE p.personID= :persID";
+        em.createQuery(sql).setParameter("persID", personID).executeUpdate();
+
+        //commiting changes and closing entity manager
+        em.getTransaction().commit();
+        em.close();
     }
 
     @Override
     public void deletePerson(String personID) {
-         String sql = "DELETE * FROM Person person WHERE person.personID=:personID";//'" + personID + "'";
+
+        //create Entity Manager
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("carManagementSystem-unit");
         EntityManager em = emf.createEntityManager();
 
+        //begin of a transaction
         em.getTransaction().begin();
+
+        //actual query
+        String sql = "DELETE * FROM Person person WHERE person.personID=:personID";
         em.createQuery(sql).executeUpdate();
+
+        //commiting changes and closing entity manager
         em.getTransaction().commit();
         em.close();
-        //stackoverflow.com/questions/2848164/jpa-entitymanager-remove-operation-is-not-performant
     }
 
     @Override
     public Person getPersonByID(String personID) {
-        String sql = "SELECT * FROM Person person WHERE personID='" + personID + "'";
+
+        //create Entity Manager
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("carManagementSystem-unit");
         EntityManager em = emf.createEntityManager();
 
+        //begin of a transaction
         em.getTransaction().begin();
-        Person person = em.createQuery(sql, Person.class).getResultList().get(0);
+
+        //actual query
+        String sql = "SELECT p FROM Person p WHERE p.personID= :persID";
+        Person person = em.createQuery(sql, Person.class)
+                .setParameter("persID", personID).getResultList().get(0);
+
+        //commiting changes and closing entity manager
         em.getTransaction().commit();
         em.close();
 
@@ -60,12 +95,21 @@ public class PersonDAOImpl implements PersonDAO {
 
     @Override
     public List<Person> getPeopleByName(String name) {
-        String sql = "SELECT * FROM person WHERE name='" + name + "'";
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("carManagementSystem-unit");
+
+        //create emf and em in every method because of transactions
+        EntityManagerFactory emf
+                = Persistence.createEntityManagerFactory("carManagementSystem-unit");
         EntityManager em = emf.createEntityManager();
 
+        //begin of a transaction
         em.getTransaction().begin();
-        List<Person> people = em.createQuery(sql, Person.class).getResultList();
+
+        //actual query
+        String sql = "SELECT p FROM Person p WHERE p.name= :persName";
+        List<Person> people = em.createQuery(sql, Person.class).
+                setParameter("persName", name).getResultList();
+
+        //commiting changes and closing entity manager
         em.getTransaction().commit();
         em.close();
 
@@ -74,16 +118,23 @@ public class PersonDAOImpl implements PersonDAO {
 
     @Override
     public List<Person> getAllPeople() {
-        String sql = "SELECT * FROM person";
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("carManagementSystem-unit");
+
+        //create emf and em in every method because of transactions
+        EntityManagerFactory emf
+                = Persistence.createEntityManagerFactory("carManagementSystem-unit");
         EntityManager em = emf.createEntityManager();
 
+        //begin of a transaction
         em.getTransaction().begin();
+
+        //actual query
+        String sql = "SELECT p FROM Person p";
         List<Person> people = em.createQuery(sql, Person.class).getResultList();
+
+        //commiting changes and closing entity manager
         em.getTransaction().commit();
         em.close();
 
         return people;
     }
-
 }

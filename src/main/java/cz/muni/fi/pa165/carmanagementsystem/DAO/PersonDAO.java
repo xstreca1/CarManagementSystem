@@ -25,7 +25,7 @@ public interface PersonDAO {
      *
      * @param person person, who needs to be updated
      */
-    void updatePerson(Person person);
+    void updatePerson(Person person, String personID);
 
     /**
      * delete Person using his/her ID as a parameter you cannot delete person,
