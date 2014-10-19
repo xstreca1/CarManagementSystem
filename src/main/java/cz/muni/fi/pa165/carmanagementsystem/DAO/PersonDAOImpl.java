@@ -34,7 +34,7 @@ public class PersonDAOImpl implements PersonDAO {
     }
 
     @Override
-    public void updatePerson(Person person, String personID) {
+    public void updatePerson(Person updatedPerson, String personID) {
 
         //create Entity Manager
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("carManagementSystem-unit");
@@ -43,6 +43,7 @@ public class PersonDAOImpl implements PersonDAO {
         //begin of a transaction
         em.getTransaction().begin();
 
+        
         //actual query
         String sql = "UPDATE Person p SET a WHERE p.personID= :persID";
         em.createQuery(sql).setParameter("persID", personID).executeUpdate();
@@ -62,9 +63,11 @@ public class PersonDAOImpl implements PersonDAO {
         //begin of a transaction
         em.getTransaction().begin();
 
-        //actual query
-        String sql = "DELETE * FROM Person person WHERE person.personID=:personID";
-        em.createQuery(sql).executeUpdate();
+        //person is retrieved
+        Person person = getPersonByID(personID);
+        
+        //person is removed from Database (TODO - cascading delete?)
+        em.remove(person);
 
         //commiting changes and closing entity manager
         em.getTransaction().commit();
