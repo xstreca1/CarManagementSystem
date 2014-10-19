@@ -126,14 +126,40 @@ public class PersonDAOImplTest {
         p1.setName("JOHN");
         p2.setName("JOHN");
         p3.setName("JOHN");
+        //create several persons with other name
+        Person p4 = new Person();
+        p4.setName("X");
+        Person p5 = new Person();
+        p5.setName("Y");
         // create dao
         PersonDAOImpl dao = new PersonDAOImpl();
         // persist persons
         dao.insertPerson(p1);
         dao.insertPerson(p2);
         dao.insertPerson(p3);
-        // get persons by ID, they should be equal
+        // get persons by ID
         List <Person> list = dao.getPeopleByName("JOHN");
+        // list should not be empty
+        assertNotNull(list);
+        // list should contain exactly 3 persons
+        int persons = list.size();
+        assertEquals(persons, 3);
+    }
+    
+    @Test
+    public void testGetAllPeople(){
+        // create several persons
+        Person p1 = new Person();
+        Person p2 = new Person();
+        Person p3 = new Person();
+        // create dao
+        PersonDAOImpl dao = new PersonDAOImpl();
+        // persist persons
+        dao.insertPerson(p1);
+        dao.insertPerson(p2);
+        dao.insertPerson(p3);
+        // get persons 
+        List <Person> list = dao.getAllPeople();
         // list should not be empty
         assertNotNull(list);
         // list should contain exactly 3 persons
