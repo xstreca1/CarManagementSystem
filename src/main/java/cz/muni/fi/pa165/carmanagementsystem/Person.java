@@ -6,6 +6,7 @@ package cz.muni.fi.pa165.carmanagementsystem;
 import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Column;
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -64,7 +65,7 @@ public class Person implements Serializable {
     @Enumerated(EnumType.STRING)
     private Sex sex;
 
-    @Column(nullable = false)
+    @Embedded
     private String address;
 
     @Column(nullable = false)
@@ -74,15 +75,13 @@ public class Person implements Serializable {
     private int salary;
 
     //--------------relationships------------------------
-    
     @OneToMany(mappedBy = "person")
     private Lease lease;
-    
+
     //------------getters and setters--------------------
     public String getId() {
         return id;
     }
-
 
     public String getName() {
         return name;
@@ -130,6 +129,30 @@ public class Person implements Serializable {
 
     public void setSalary(int salary) {
         this.salary = salary;
+    }
+
+    public EmploymentStatus getEmploymentStatus() {
+        return employmentStatus;
+    }
+
+    public void setEmploymentStatus(EmploymentStatus employmentStatus) {
+        this.employmentStatus = employmentStatus;
+    }
+
+    public Sex getSex() {
+        return sex;
+    }
+
+    public void setSex(Sex sex) {
+        this.sex = sex;
+    }
+
+    public Lease getLease() {
+        return lease;
+    }
+
+    public void setLease(Lease lease) {
+        this.lease = lease;
     }
 
     //----------------constructors-----------------------
