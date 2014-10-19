@@ -13,6 +13,8 @@ import javax.persistence.Persistence;
 import org.junit.After;
 import org.junit.AfterClass;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
 import static org.junit.Assert.fail;
 import org.junit.Before;
 import org.junit.BeforeClass;
@@ -51,6 +53,8 @@ public class PersonDAOImplTest {
         dao.insertPerson(person);
         // get this person from database
         Person person1 = dao.getPersonByID(person.getId());
+        // person1 should be not null
+        assertNotNull(person1);
         // person and person1 should be the same
         assertEquals(person, person1);
         
@@ -71,6 +75,22 @@ public class PersonDAOImplTest {
         dao.updatePerson(person1, person.getId());
         // name of person should be JOHNY now
         assertEquals(person.getName(), "JOHNY");        
+        
+    }
+    
+    @Test
+    public void testDeletePerson(){
+        // create correct person
+        Person person = new Person();
+        // create new PersonDAO
+        PersonDAOImpl dao = new PersonDAOImpl();
+        // persist this person
+        dao.insertPerson(person);
+        // delete this person
+        dao.deletePerson(person.getId());
+        // person shoul be deleted
+        assertNull(person);
+        
         
     }
 }
