@@ -7,10 +7,16 @@ package cz.muni.fi.pa165.carmanagementsystem;
 
 import java.io.Serializable;
 import java.util.Date;
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 /**
  *
@@ -18,22 +24,52 @@ import javax.persistence.Id;
  */
 @Entity
 public class Lease implements Serializable {
+
+    //--------------------enums-------------------------- 
+    private enum ReturnedStatus {
+
+        OK, BROKEN
+    };//TODO
+
+    private enum TravelReason {
+
+        PERSONAL, WORK
+    };
+
+    //-----------------attributes------------------------
+    
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int leaseId;
-    private int carMileage;
-    private Date dateOfLease;
-    private Date dateOfReturn;
-    private String vehicleRegPlate;
-    private Boolean isClosed;
-    
-    private Car car;
-    private Person person;
-    
-    private enum ReturnedStatus{OK, BROKEN};//TODO
-    private enum TravelReason{PERSONAL, WORK};
 
+    @Column(nullable = false)
+    private int carMileage;
+
+    @Temporal(TemporalType.DATE)
+    private Date dateOfLease;
+
+    @Temporal(TemporalType.DATE)
+    private Date dateOfReturn;
+
+    @Column(nullable = false)
+    private Boolean isClosed;
+
+    @Enumerated(EnumType.STRING)
+    private ReturnedStatus returnedStatus;
+
+    @Enumerated(EnumType.STRING)
+    private TravelReason travelReason;
+
+    //--------------relationships------------------------
+    
+    @ManyToOne
+    private Car car;
+
+    @ManyToOne
+    private Person person;
+
+     //------------getters and setters--------------------
     /**
      * @return the leaseId
      */
@@ -63,13 +99,6 @@ public class Lease implements Serializable {
     }
 
     /**
-     * @return the vehicleRegPlate
-     */
-    public String getVehicleRegPlate() {
-        return vehicleRegPlate;
-    }
-
-    /**
      * @return the isClosed
      */
     public Boolean getIsClosed() {
@@ -89,18 +118,53 @@ public class Lease implements Serializable {
     public Person getPerson() {
         return person;
     }
-    
-       
 
     public int getId() {
-        return id;
+        return leaseId;
     }
 
+    public void setCarMileage(int carMileage) {
+        this.carMileage = carMileage;
+    }
 
+    public void setDateOfLease(Date dateOfLease) {
+        this.dateOfLease = dateOfLease;
+    }
+
+    public void setDateOfReturn(Date dateOfReturn) {
+        this.dateOfReturn = dateOfReturn;
+    }
+
+    public void setIsClosed(Boolean isClosed) {
+        this.isClosed = isClosed;
+    }
+
+    public void setReturnedStatus(ReturnedStatus returnedStatus) {
+        this.returnedStatus = returnedStatus;
+    }
+
+    public void setTravelReason(TravelReason travelReason) {
+        this.travelReason = travelReason;
+    }
+
+    public void setCar(Car car) {
+        this.car = car;
+    }
+
+    public void setPerson(Person person) {
+        this.person = person;
+    }
+    
+    //----------------constructors-----------------------
+
+    public Lease() {
+    }
+    
+    //-------------mandatory methods---------------------
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (int) id;
+        hash += (int) leaseId;
         return hash;
     }
 
@@ -111,7 +175,7 @@ public class Lease implements Serializable {
             return false;
         }
         Lease other = (Lease) object;
-        if (this.id != other.id) {
+        if (this.leaseId != other.leaseId) {
             return false;
         }
         return true;
@@ -119,7 +183,7 @@ public class Lease implements Serializable {
 
     @Override
     public String toString() {
-        return "cz.muni.fi.pa165.carmanagementsystem.Lease[ id=" + id + " ]";
+        return "cz.muni.fi.pa165.carmanagementsystem.Lease[ id=" + leaseId + " ]";
     }
-    
+
 }

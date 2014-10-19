@@ -13,6 +13,7 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 /**
  *
@@ -20,83 +21,101 @@ import javax.persistence.Id;
  */
 @Entity
 public class Car implements Serializable {
-    private static final long serialVersionUID = 1L;
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private String CarID;
-    
-    @Column(nullable = false)
-    private String vehicleRegPlate;
-    
-    @Column(nullable = false)
-    private int yearOfManufacture;
-    
-    @Column(nullable = false)
-    private int mileage;
-    
-    @Column(nullable = false)
-    private String brand;
-    
-    @Column(nullable = false)
-    private String typeName;
-    
-    @Enumerated(EnumType.STRING)
-    private Color color;
-    
+
+    //--------------------enums--------------------------
     public enum Color {
+
         BLACK,
         WHITE,
         BLUE,
         GREEN
     };
-    
-    @Enumerated(EnumType.STRING)
-    private bodyStyle bodystyle;
-    
-    public enum bodyStyle{
+
+    public enum bodyStyle {
+
         SEDAN,
         HATCHBACK,
         CABRIOLET,
         SUV
-        
+
     };
-    
-    @Column(nullable = false)
-    private int enginePower;
-    
-    @Column(nullable = false)
-    private float gasConsumption;
-    
-    @Column(nullable = false)
-    private boolean transmission;
-    
-    @Enumerated(EnumType.STRING)
-    private Category category;
-    
+
     public enum Category {
+
         A,
         B,
         C,
         D
     };
-    
-    @Column(nullable = false)
-    private String VIN;
-    
-    @Enumerated(EnumType.STRING)
-    private emissionStandard emissionstandard;
-    
+
     public enum emissionStandard {
+
         EU3,
         EU4,
         EU5,
         EU6
-        
+
     };
     
+    //-----------------attributes------------------------
+    
+    private static final long serialVersionUID = 1L;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private String CarID;
+
+    @Column(nullable = false)
+    private String vehicleRegPlate;
+
+    @Column(nullable = false)
+    private int yearOfManufacture;
+
+    @Column(nullable = false)
+    private int mileage;
+
+    @Column(nullable = false)
+    private String brand;
+
+    @Column(nullable = false)
+    private String typeName;
+
+    @Enumerated(EnumType.STRING)
+    private Color color;
+
+    @Enumerated(EnumType.STRING)
+    private bodyStyle bodystyle;
+
+    @Column(nullable = false)
+    private int enginePower;
+
+    @Column(nullable = false)
+    private float gasConsumption;
+
+    @Column(nullable = false)
+    private boolean transmission;
+
+    @Enumerated(EnumType.STRING)
+    private Category category;
+
+    @Column(nullable = false)
+    private String VIN;
+
+    @Enumerated(EnumType.STRING)
+    private emissionStandard emissionstandard;
+
     @Column(nullable = false)
     private int numberOfSeats;
 
+    //--------------relationships------------------------
+    
+    @OneToMany
+    private Lease lease;
+    
+    @OneToMany
+    private ServiceCheck serviceCheck;
+    
+    //------------getters and setters--------------------
+    
     public String getVehicleRegPlate() {
         return vehicleRegPlate;
     }
@@ -198,10 +217,15 @@ public class Car implements Serializable {
     public String getId() {
         return CarID;
     }
+
+    
+    //----------------------constructors---------------------
     
     public Car() {
-        
-    };
+
+    }
+
+    //-------------mandatory methods---------------------
 
 
     @Override
@@ -228,5 +252,5 @@ public class Car implements Serializable {
     public String toString() {
         return "cz.muni.fi.pa165.carmanagementsystem.Car[ id=" + CarID + " ]";
     }
-    
+
 }

@@ -12,6 +12,7 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -71,6 +72,11 @@ public class Person implements Serializable {
     @Column(nullable = false)
     private int salary;
 
+    //--------------relationships------------------------
+    
+    @OneToMany
+    private Lease lease;
+    
     //------------getters and setters--------------------
     public String getId() {
         return id;
@@ -129,7 +135,7 @@ public class Person implements Serializable {
     public Person() {
     }
 
-    //-------------obligatory methods--------------------
+    //-------------mandatory methods---------------------
     @Override
     public int hashCode() {
         int hash = 0;
