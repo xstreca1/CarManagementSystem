@@ -93,4 +93,26 @@ public class PersonDAOImplTest {
         
         
     }
+    @Test
+    public void testGetPersonByID(){
+        // create several persons
+        Person p1 = new Person();
+        Person p2 = new Person();
+        Person p3 = new Person();
+        // create dao
+        PersonDAOImpl dao = new PersonDAOImpl();
+        // persist persons
+        dao.insertPerson(p1);
+        dao.insertPerson(p2);
+        dao.insertPerson(p3);
+        // get persons by ID, they should be equal
+        Person p1ByID = dao.getPersonByID(p1.getId());
+        assertEquals(p1, p1ByID);
+        Person p2ByID = dao.getPersonByID(p2.getId());
+        assertEquals(p1, p1ByID);
+        Person p3ByID = dao.getPersonByID(p3.getId());
+        assertEquals(p1, p1ByID);
+        
+        
+    }
 }
