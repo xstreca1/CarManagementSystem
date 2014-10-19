@@ -39,7 +39,7 @@ public class ServiceCheckDAOImpl implements ServiceCheckDAO {
         em.getTransaction().begin();
 
         // get instance of ServiceCheck according to its ID. Save this instance to variable "update"
-        String query = "SELECT * FROM ServiceCheck serviceCheck WHERE scID='" + scID + "'";
+        String query = "SELECT serviceCheck FROM ServiceCheck serviceCheck WHERE scID='" + scID + "'";
         ServiceCheck update = em.createQuery(query, ServiceCheck.class).getSingleResult();
 
         // get new values of attributes
@@ -70,7 +70,7 @@ public class ServiceCheckDAOImpl implements ServiceCheckDAO {
         em.getTransaction().begin();
 
         // delete serviceCheck from database according to its ID
-        String query = "DELETE * FROM ServiceCheck WHERE scID='" + scID + "'";
+        String query = "DELETE serviceCheck FROM ServiceCheck serviceCheck WHERE scID='" + scID + "'";
         em.createQuery(query).executeUpdate();
         em.getTransaction().commit();
         em.close();
@@ -83,7 +83,7 @@ public class ServiceCheckDAOImpl implements ServiceCheckDAO {
         em.getTransaction().begin();
 
         // get serviceCheck from database according to its ID
-        String query = "SELECT * FROM ServiceCheck serviceCheck WHERE scID='" + scID + "'";
+        String query = "SELECT serviceCheck FROM ServiceCheck serviceCheck WHERE scID='" + scID + "'";
         ServiceCheck serviceCheck = em.createQuery(query, ServiceCheck.class).getSingleResult();
 
         // get date of last performance of this serviceCheck
@@ -121,7 +121,7 @@ public class ServiceCheckDAOImpl implements ServiceCheckDAO {
         EntityManager em = emf.createEntityManager();
 
         // get information about serviceCheck from database according to car (car is able to have more chcecks assigned). Save them to List.
-        String query = "SELECT * FROM ServiceCheck WHERE car='" + car + "'";
+        String query = "SELECT serviceCheck FROM ServiceCheck serviceCheck WHERE car='" + car + "'";
         List<ServiceCheck> serviceChecks = em.createQuery(query).getResultList();
 
         // cloese EntityManager
