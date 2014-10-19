@@ -7,6 +7,7 @@ package cz.muni.fi.pa165.carmanagementsystem.DAO;
 
 import cz.muni.fi.pa165.carmanagementsystem.Entities.Car;
 import cz.muni.fi.pa165.carmanagementsystem.Entities.ServiceCheck;
+import cz.muni.fi.pa165.carmanagementsystem.Entities.ServiceCheck.ServiceCheckName;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
