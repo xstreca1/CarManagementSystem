@@ -10,7 +10,6 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 /**
  *
  * @author Jozef Puchly
@@ -19,9 +18,7 @@ public class CarDAOImpl implements CarDAO {
 
     @Override
     public void createCar(Car car) {
-         // start in memory database
-        new AnnotationConfigApplicationContext(DaoContext.class);
-
+     
         // create new EntityManager and save instance of Car to database
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("createCar-unit");
         EntityManager em = emf.createEntityManager();
@@ -33,11 +30,9 @@ public class CarDAOImpl implements CarDAO {
 
     @Override
     public void updateCar(Car car, String vehicleRegPlate) {
-        // start in memory database
-        new AnnotationConfigApplicationContext(DaoContext.class);
 
         // create new EntityManager
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("updateSC-unit");
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("updateCar-unit");
         EntityManager em = emf.createEntityManager();
         em.getTransaction().begin();
 
@@ -61,27 +56,84 @@ public class CarDAOImpl implements CarDAO {
 
     @Override
     public void deleteCar(String vehicleRegPlate) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        // create new EntityManager
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("deleteCar-unit");
+        EntityManager em = emf.createEntityManager();
+        em.getTransaction().begin();
+
+        // delete serviceCheck from database according to its ID
+        String query = "DELETE * FROM Car WHERE vehicleRegPlate='" + vehicleRegPlate + "'";
+        em.createQuery(query).executeUpdate();
+        em.getTransaction().commit();
+        em.close();
     }
 
     @Override
     public List listAllAvailableCars() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        // create new EntityManager
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("getAllCars-unit");
+        EntityManager em = emf.createEntityManager();
+
+        // get all cars that are available. save them to list
+        String query = "SELECT * FROM Car where isAvailibility=true";
+        List<Car> cars = em.createQuery(query).getResultList();
+
+        // cloese EntityManager
+        em.getTransaction().commit();
+        em.close();
+
+        return cars;
     }
 
     @Override
     public List getCarByCategory(int category) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        // create new EntityManager
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("getCarByCategory-unit");
+        EntityManager em = emf.createEntityManager();
+
+        // get all cars that have the chosen category. save them to list
+        String query = "SELECT * FROM Car where category='" + category + "'";
+        List<Car> cars = em.createQuery(query).getResultList();
+
+        // cloese EntityManager
+        em.getTransaction().commit();
+        em.close();
+
+        return cars;
     }
 
     @Override
     public List getCarBySeats(int seats) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        // create new EntityManager
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("getCarBySeats-unit");
+        EntityManager em = emf.createEntityManager();
+
+        // get all cars that have the chosen number of seats. save them to list
+        String query = "SELECT * FROM Car where numberOfSeats='" + seats + "'";
+        List<Car> cars = em.createQuery(query).getResultList();
+
+        // cloese EntityManager
+        em.getTransaction().commit();
+        em.close();
+
+        return cars;
     }
 
     @Override
     public List getCarByBodyStyle(Car.bodyStyle bs) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        // create new EntityManager
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("getAllCars-unit");
+        EntityManager em = emf.createEntityManager();
+
+        // get all cars that have the chosen body style. save them to list
+        String query = "SELECT * FROM Car where bodyStyle='" + bs + "'";
+        List<Car> cars = em.createQuery(query).getResultList();
+
+        // cloese EntityManager
+        em.getTransaction().commit();
+        em.close();
+
+        return cars;
     }
     
 }
