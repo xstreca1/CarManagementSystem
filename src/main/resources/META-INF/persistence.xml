@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <persistence version="1.0" xmlns="http://java.sun.com/xml/ns/persistence">
   <persistence-unit name="myUnit" transaction-type="carManagementSystem-unit">
-    <class>cz.muni.fi.pa165.carmanagementsystem.Address</class>
+    <class>cz.muni.fi.pa165.carmanagementsystem.Entities.Address</class>
     <properties>
       <property name="hibernate.connection.url" value="jdbc:derby:memory:testdb"/>
       <property name="hibernate.connection.driver_class" value="org.apache.derby.jdbc.EmbeddedDriver"/>

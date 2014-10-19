@@ -1,7 +1,7 @@
 /*
  * Person entity class
  */
-package cz.muni.fi.pa165.carmanagementsystem;
+package cz.muni.fi.pa165.carmanagementsystem.Entities;
 
 import java.io.Serializable;
 import java.util.Date;

@@ -1,8 +1,9 @@
 /*
  * Data access object interface for entity Person.
  */
-package cz.muni.fi.pa165.carmanagementsystem;
+package cz.muni.fi.pa165.carmanagementsystem.DAO;
 
+import cz.muni.fi.pa165.carmanagementsystem.Entities.Person;
 import java.util.List;
 
 /**
