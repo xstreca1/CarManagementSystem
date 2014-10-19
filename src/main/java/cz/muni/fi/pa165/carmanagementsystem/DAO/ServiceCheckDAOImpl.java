@@ -15,8 +15,6 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-
 /**
  *
  * @author Martin Strecansky
@@ -24,9 +22,6 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 public class ServiceCheckDAOImpl implements ServiceCheckDAO {
 
     public void createServiceCheck(ServiceCheck serviceCheck) {
-        // start in memory database
-        new AnnotationConfigApplicationContext(DaoContext.class);
-
         // create new EntityManager and save instance of ServiceCheck to database
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("carManagementSystem-unit");
         EntityManager em = emf.createEntityManager();
@@ -38,9 +33,6 @@ public class ServiceCheckDAOImpl implements ServiceCheckDAO {
     }
 
     public void updateServiceCheck(ServiceCheck serviceCheck, int scID) {
-        // start in memory database
-        new AnnotationConfigApplicationContext(DaoContext.class);
-
         // create new EntityManager
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("carManagementSystem-unit");
         EntityManager em = emf.createEntityManager();
@@ -72,9 +64,6 @@ public class ServiceCheckDAOImpl implements ServiceCheckDAO {
     }
 
     public void deleteServiceCheck(int scID) {
-        // start in memory database
-        new AnnotationConfigApplicationContext(DaoContext.class);
-
         // create new EntityManager
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("carManagementSystem-unit");
         EntityManager em = emf.createEntityManager();
@@ -88,9 +77,6 @@ public class ServiceCheckDAOImpl implements ServiceCheckDAO {
     }
 
     public int getDaysToNext(int scID) {
-        // start in memory database
-        new AnnotationConfigApplicationContext(DaoContext.class);
-
         // create new EntityManager
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("carManagementSystem-unit");
         EntityManager em = emf.createEntityManager();
