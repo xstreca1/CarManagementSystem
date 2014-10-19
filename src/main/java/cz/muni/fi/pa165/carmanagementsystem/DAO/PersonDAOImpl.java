@@ -3,7 +3,12 @@
  */
 package cz.muni.fi.pa165.carmanagementsystem.DAO;
 
+import cz.muni.fi.pa165.carmanagementsystem.Entities.Address;
+import cz.muni.fi.pa165.carmanagementsystem.Entities.Lease;
 import cz.muni.fi.pa165.carmanagementsystem.Entities.Person;
+import cz.muni.fi.pa165.carmanagementsystem.Entities.Person.EmploymentStatus;
+import cz.muni.fi.pa165.carmanagementsystem.Entities.Person.Sex;
+import java.util.Date;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -43,10 +48,32 @@ public class PersonDAOImpl implements PersonDAO {
         //begin of a transaction
         em.getTransaction().begin();
 
+        //get all updatable attributes from the updated person entity instance
+        //lease and sex could not be updated
+        Address address = updatedPerson.getAddress();
+        Date dateOfBirth = updatedPerson.getDateOfBirth();
+        EmploymentStatus empStat = updatedPerson.getEmploymentStatus();
+        String name = updatedPerson.getName();
+        String nationality = updatedPerson.getNationality();
+        String position = updatedPerson.getPosition();
+        int salary = updatedPerson.getSalary();
         
         //actual query
-        String sql = "UPDATE Person p SET a WHERE p.personID= :persID";
-        em.createQuery(sql).setParameter("persID", personID).executeUpdate();
+        String sql = "UPDATE Person p SET p.address = :addr, "
+                + "p.dateOfBirth = :birth, p.employmentStatus = :empStat,"
+                + "p.name = :name, p.nationality = :nationality,"
+                + "p.position = :position, p.salary = :salary"
+                + "WHERE p.personID= :persID";
+        
+        em.createQuery(sql).setParameter("addr", address)
+                .setParameter("birth", dateOfBirth)
+                .setParameter("empStat", empStat)
+                .setParameter("name", name)
+                .setParameter("nationality", nationality)
+                .setParameter("position", position)
+                .setParameter("salary", salary)
+                .setParameter("persID", personID)
+                .executeUpdate();
 
         //commiting changes and closing entity manager
         em.getTransaction().commit();

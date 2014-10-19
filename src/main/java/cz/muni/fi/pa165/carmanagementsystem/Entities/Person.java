@@ -26,7 +26,7 @@ import javax.persistence.TemporalType;
 public class Person implements Serializable {
 
     //--------------------enums--------------------------
-    private enum EmploymentStatus {
+    public enum EmploymentStatus {
 
         CEO,
         MANAGER,
@@ -36,7 +36,7 @@ public class Person implements Serializable {
         JOZO
     }
 
-    private enum Sex {
+    public enum Sex {
 
         FEMALE,
         MALE,
@@ -66,7 +66,7 @@ public class Person implements Serializable {
     private Sex sex;
 
     @Embedded
-    private String address;
+    private Address address;
 
     @Column(nullable = false)
     private String nationality;
@@ -107,11 +107,11 @@ public class Person implements Serializable {
         this.position = position;
     }
 
-    public String getAddress() {
+    public Address getAddress() {
         return address;
     }
 
-    public void setAddress(String address) {
+    public void setAddress(Address address) {
         this.address = address;
     }
 
