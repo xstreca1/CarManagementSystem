@@ -99,6 +99,8 @@ public class PersonDAOImpl implements PersonDAO {
         //commiting changes and closing entity manager
         em.getTransaction().commit();
         em.close();
+        
+        //can also be done by em.executeQuery(DELETE_QUERY).executeUpdate();
     }
 
     @Override
