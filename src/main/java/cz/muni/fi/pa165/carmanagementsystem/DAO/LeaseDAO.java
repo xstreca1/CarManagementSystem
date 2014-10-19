@@ -7,7 +7,7 @@ package cz.muni.fi.pa165.carmanagementsystem.DAO;
 
 /**
  *
- * @author jrumanov
+ * @author Petr Potucek
  */
 public interface LeaseDAO {
     

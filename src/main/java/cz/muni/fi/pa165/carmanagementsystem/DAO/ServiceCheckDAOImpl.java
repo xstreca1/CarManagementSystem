@@ -28,7 +28,7 @@ public class ServiceCheckDAOImpl implements ServiceCheckDAO {
         new AnnotationConfigApplicationContext(DaoContext.class);
 
         // create new EntityManager and save instance of ServiceCheck to database
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("createSC-unit");
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("carManagementSystem-unit");
         EntityManager em = emf.createEntityManager();
         em.getTransaction().begin();
         em.persist(serviceCheck);
@@ -42,7 +42,7 @@ public class ServiceCheckDAOImpl implements ServiceCheckDAO {
         new AnnotationConfigApplicationContext(DaoContext.class);
 
         // create new EntityManager
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("updateSC-unit");
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("carManagementSystem-unit");
         EntityManager em = emf.createEntityManager();
         em.getTransaction().begin();
 
@@ -76,7 +76,7 @@ public class ServiceCheckDAOImpl implements ServiceCheckDAO {
         new AnnotationConfigApplicationContext(DaoContext.class);
 
         // create new EntityManager
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("deleteSC-unit");
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("carManagementSystem-unit");
         EntityManager em = emf.createEntityManager();
         em.getTransaction().begin();
 
@@ -92,7 +92,7 @@ public class ServiceCheckDAOImpl implements ServiceCheckDAO {
         new AnnotationConfigApplicationContext(DaoContext.class);
 
         // create new EntityManager
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("getDaysToSC-unit");
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("carManagementSystem-unit");
         EntityManager em = emf.createEntityManager();
         em.getTransaction().begin();
 
@@ -131,7 +131,7 @@ public class ServiceCheckDAOImpl implements ServiceCheckDAO {
     public List getServiceChecksForCar(Car car) {
 
         // create new EntityManager
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("getSCforCar-unit");
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("carManagementSystem-unit");
         EntityManager em = emf.createEntityManager();
 
         // get information about serviceCheck from database according to car (car is able to have more chcecks assigned). Save them to List.
