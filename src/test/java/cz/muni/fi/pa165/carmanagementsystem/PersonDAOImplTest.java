@@ -29,6 +29,9 @@ public class PersonDAOImplTest {
     
     @Before
     public void setUp() {
+       
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("carManagementSystem-unit");
+        EntityManager em = emf.createEntityManager();
         
     }
     
