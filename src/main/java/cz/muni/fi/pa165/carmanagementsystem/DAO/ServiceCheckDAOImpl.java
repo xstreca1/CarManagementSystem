@@ -21,6 +21,7 @@ import javax.persistence.Persistence;
  */
 public class ServiceCheckDAOImpl implements ServiceCheckDAO {
 
+    @Override
     public void createServiceCheck(ServiceCheck serviceCheck) {
         // create new EntityManager and save instance of ServiceCheck to database
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("carManagementSystem-unit");
@@ -32,15 +33,17 @@ public class ServiceCheckDAOImpl implements ServiceCheckDAO {
 
     }
 
-    public void updateServiceCheck(ServiceCheck serviceCheck, int scID) {
+    @Override
+    public void updateServiceCheck(ServiceCheck serviceCheck, Integer scID) {
+        if (serviceCheck == null || scID == null)
         // create new EntityManager
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("carManagementSystem-unit");
         EntityManager em = emf.createEntityManager();
         em.getTransaction().begin();
 
         // get instance of ServiceCheck according to its ID. Save this instance to variable "update"
-        String query = "SELECT serviceCheck FROM ServiceCheck serviceCheck WHERE scID='" + scID + "'";
-        ServiceCheck update = em.createQuery(query, ServiceCheck.class).getSingleResult();
+        String query = "SELECT s FROM ServiceCheck s WHERE s.scID = :ID";;
+        ServiceCheck update = em.createQuery(query, ServiceCheck.class).setParameter("ID",scID).getSingleResult();
 
         // get new values of attributes
         ServiceCheckName newName = serviceCheck.getName();
@@ -63,6 +66,7 @@ public class ServiceCheckDAOImpl implements ServiceCheckDAO {
 
     }
 
+    @Override
     public void deleteServiceCheck(int scID) {
         // create new EntityManager
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("carManagementSystem-unit");
@@ -76,6 +80,7 @@ public class ServiceCheckDAOImpl implements ServiceCheckDAO {
         em.close();
     }
 
+    @Override
     public int getDaysToNext(int scID) {
         // create new EntityManager
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("carManagementSystem-unit");
