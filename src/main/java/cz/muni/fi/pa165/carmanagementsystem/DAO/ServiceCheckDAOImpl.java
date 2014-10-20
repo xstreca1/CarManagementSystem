@@ -23,6 +23,10 @@ public class ServiceCheckDAOImpl implements ServiceCheckDAO {
 
     @Override
     public void createServiceCheck(ServiceCheck serviceCheck) {
+        // testing method parameters
+        if (serviceCheck == null) {
+            throw new IllegalArgumentException("serviceCheck is null");
+        }
         // create new EntityManager and save instance of ServiceCheck to database
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("carManagementSystem-unit");
         EntityManager em = emf.createEntityManager();
@@ -35,7 +39,13 @@ public class ServiceCheckDAOImpl implements ServiceCheckDAO {
 
     @Override
     public void updateServiceCheck(ServiceCheck serviceCheck, Integer scID) {
-        if (serviceCheck == null || scID == null)
+        // testing method parameters
+        if (serviceCheck == null) {
+            throw new IllegalArgumentException("serviceCheck is null");
+        }
+        if (scID == null) {
+            throw new IllegalArgumentException("service check ID is null");
+        }
         // create new EntityManager
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("carManagementSystem-unit");
         EntityManager em = emf.createEntityManager();
@@ -43,7 +53,7 @@ public class ServiceCheckDAOImpl implements ServiceCheckDAO {
 
         // get instance of ServiceCheck according to its ID. Save this instance to variable "update"
         String query = "SELECT s FROM ServiceCheck s WHERE s.scID = :ID";;
-        ServiceCheck update = em.createQuery(query, ServiceCheck.class).setParameter("ID",scID).getSingleResult();
+        ServiceCheck update = em.createQuery(query, ServiceCheck.class).setParameter("ID", scID).getSingleResult();
 
         // get new values of attributes
         ServiceCheckName newName = serviceCheck.getName();
@@ -67,7 +77,11 @@ public class ServiceCheckDAOImpl implements ServiceCheckDAO {
     }
 
     @Override
-    public void deleteServiceCheck(int scID) {
+    public void deleteServiceCheck(Integer scID) {
+        // testing method parameters
+        if (scID == null) {
+            throw new IllegalArgumentException("service check ID is null");
+        }
         // create new EntityManager
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("carManagementSystem-unit");
         EntityManager em = emf.createEntityManager();
@@ -75,13 +89,17 @@ public class ServiceCheckDAOImpl implements ServiceCheckDAO {
 
         // delete serviceCheck from database according to its ID
         String query = "DELETE s FROM ServiceCheck s WHERE s.scID = :ID";
-        em.createQuery(query,ServiceCheck.class).setParameter("ID",scID).executeUpdate();
+        em.createQuery(query, ServiceCheck.class).setParameter("ID", scID).executeUpdate();
         em.getTransaction().commit();
         em.close();
     }
 
     @Override
-    public int getDaysToNext(int scID) {
+    public int getDaysToNext(Integer scID) {
+        // testing method parameters
+        if (scID == null) {
+            throw new IllegalArgumentException("service check ID is null");
+        }
         // create new EntityManager
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("carManagementSystem-unit");
         EntityManager em = emf.createEntityManager();
@@ -89,7 +107,7 @@ public class ServiceCheckDAOImpl implements ServiceCheckDAO {
 
         // get serviceCheck from database according to its ID
         String query = "SELECT s FROM ServiceCheck s WHERE s.scID = :ID";
-        ServiceCheck serviceCheck = em.createQuery(query, ServiceCheck.class).setParameter("ID",scID).getSingleResult();
+        ServiceCheck serviceCheck = em.createQuery(query, ServiceCheck.class).setParameter("ID", scID).getSingleResult();
 
         // get date of last performance of this serviceCheck
         Date lastCheck = serviceCheck.getLastCheck();
@@ -120,7 +138,10 @@ public class ServiceCheckDAOImpl implements ServiceCheckDAO {
 
     @Override
     public List getServiceChecksForCar(Car car) {
-
+        // testing method parameters
+        if (car == null) {
+            throw new IllegalArgumentException("car is null");
+        }
         // create new EntityManager
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("carManagementSystem-unit");
         EntityManager em = emf.createEntityManager();
