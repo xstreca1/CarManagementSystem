@@ -3,17 +3,17 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package cz.muni.fi.pa165.carmanagementsystem;
+package cz.muni.fi.pa165.carmanagementsystem.DAO;
 
-import java.text.SimpleDateFormat;
+import cz.muni.fi.pa165.carmanagementsystem.Entities.Car;
+import cz.muni.fi.pa165.carmanagementsystem.Entities.ServiceCheck;
+import cz.muni.fi.pa165.carmanagementsystem.Entities.ServiceCheck.ServiceCheckName;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
-
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 /**
  *
@@ -22,11 +22,8 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 public class ServiceCheckDAOImpl implements ServiceCheckDAO {
 
     public void createServiceCheck(ServiceCheck serviceCheck) {
-        // start in memory database
-        new AnnotationConfigApplicationContext(DaoContext.class);
-
         // create new EntityManager and save instance of ServiceCheck to database
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("createSC-unit");
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("carManagementSystem-unit");
         EntityManager em = emf.createEntityManager();
         em.getTransaction().begin();
         em.persist(serviceCheck);
@@ -36,16 +33,13 @@ public class ServiceCheckDAOImpl implements ServiceCheckDAO {
     }
 
     public void updateServiceCheck(ServiceCheck serviceCheck, int scID) {
-        // start in memory database
-        new AnnotationConfigApplicationContext(DaoContext.class);
-
         // create new EntityManager
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("updateSC-unit");
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("carManagementSystem-unit");
         EntityManager em = emf.createEntityManager();
         em.getTransaction().begin();
 
         // get instance of ServiceCheck according to its ID. Save this instance to variable "update"
-        String query = "SELECT * FROM ServiceCheck serviceCheck WHERE scID='" + scID + "'";
+        String query = "SELECT serviceCheck FROM ServiceCheck serviceCheck WHERE scID='" + scID + "'";
         ServiceCheck update = em.createQuery(query, ServiceCheck.class).getSingleResult();
 
         // get new values of attributes
@@ -70,32 +64,26 @@ public class ServiceCheckDAOImpl implements ServiceCheckDAO {
     }
 
     public void deleteServiceCheck(int scID) {
-        // start in memory database
-        new AnnotationConfigApplicationContext(DaoContext.class);
-
         // create new EntityManager
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("deleteSC-unit");
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("carManagementSystem-unit");
         EntityManager em = emf.createEntityManager();
         em.getTransaction().begin();
 
         // delete serviceCheck from database according to its ID
-        String query = "DELETE * FROM ServiceCheck WHERE scID='" + scID + "'";
+        String query = "DELETE serviceCheck FROM ServiceCheck serviceCheck WHERE scID='" + scID + "'";
         em.createQuery(query).executeUpdate();
         em.getTransaction().commit();
         em.close();
     }
 
     public int getDaysToNext(int scID) {
-        // start in memory database
-        new AnnotationConfigApplicationContext(DaoContext.class);
-
         // create new EntityManager
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("getDaysToSC-unit");
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("carManagementSystem-unit");
         EntityManager em = emf.createEntityManager();
         em.getTransaction().begin();
 
         // get serviceCheck from database according to its ID
-        String query = "SELECT * FROM ServiceCheck serviceCheck WHERE scID='" + scID + "'";
+        String query = "SELECT serviceCheck FROM ServiceCheck serviceCheck WHERE scID='" + scID + "'";
         ServiceCheck serviceCheck = em.createQuery(query, ServiceCheck.class).getSingleResult();
 
         // get date of last performance of this serviceCheck
@@ -129,11 +117,11 @@ public class ServiceCheckDAOImpl implements ServiceCheckDAO {
     public List getServiceChecksForCar(Car car) {
 
         // create new EntityManager
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("getSCforCar-unit");
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("carManagementSystem-unit");
         EntityManager em = emf.createEntityManager();
 
         // get information about serviceCheck from database according to car (car is able to have more chcecks assigned). Save them to List.
-        String query = "SELECT * FROM ServiceCheck WHERE car='" + car + "'";
+        String query = "SELECT serviceCheck FROM ServiceCheck serviceCheck WHERE car='" + car + "'";
         List<ServiceCheck> serviceChecks = em.createQuery(query).getResultList();
 
         // cloese EntityManager

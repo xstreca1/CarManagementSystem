@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package cz.muni.fi.pa165.carmanagementsystem;
+package cz.muni.fi.pa165.carmanagementsystem.Entities;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -25,9 +25,17 @@ import javax.persistence.TemporalType;
 @Entity
 public class ServiceCheck implements Serializable {
 
-    private static final long serialVersionUID = 1L;
+    //--------------------enums--------------------------
+    public enum ServiceCheckName {
 
-// attributes and enums
+        EMISSION, 
+        TECHNICAL, 
+        OVERALL
+    }
+
+    //-----------------attributes------------------------
+    
+    private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int scID;
@@ -44,10 +52,11 @@ public class ServiceCheck implements Serializable {
     @Column(nullable = false)
     private String description;
 
+    //--------------relationships------------------------
     @ManyToOne
     private Car car;
 
-    // getters and setters
+    //------------getters and setters--------------------
     public int getScID() {
         return scID;
     }
@@ -92,11 +101,11 @@ public class ServiceCheck implements Serializable {
         this.car = car;
     }
 
-    // constructor
+    //----------------constructors-----------------------
     public ServiceCheck() {
     }
 
-    // methods    
+    //-------------mandatory methods---------------------  
     @Override
     public int hashCode() {
         int hash = 0;

@@ -1,17 +1,20 @@
 /*
  * Person entity class
  */
-package cz.muni.fi.pa165.carmanagementsystem;
+package cz.muni.fi.pa165.carmanagementsystem.Entities;
 
 import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Column;
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -23,7 +26,7 @@ import javax.persistence.TemporalType;
 public class Person implements Serializable {
 
     //--------------------enums--------------------------
-    private enum EmploymentStatus {
+    public enum EmploymentStatus {
 
         CEO,
         MANAGER,
@@ -33,7 +36,7 @@ public class Person implements Serializable {
         JOZO
     }
 
-    private enum Sex {
+    public enum Sex {
 
         FEMALE,
         MALE,
@@ -62,8 +65,8 @@ public class Person implements Serializable {
     @Enumerated(EnumType.STRING)
     private Sex sex;
 
-    @Column(nullable = false)
-    private String address;
+    @Embedded
+    private Address address;
 
     @Column(nullable = false)
     private String nationality;
@@ -71,11 +74,14 @@ public class Person implements Serializable {
     @Column(nullable = false)
     private int salary;
 
+    //--------------relationships------------------------
+    @OneToMany(mappedBy = "person")
+    private Lease lease;
+
     //------------getters and setters--------------------
     public String getId() {
         return id;
     }
-
 
     public String getName() {
         return name;
@@ -101,11 +107,11 @@ public class Person implements Serializable {
         this.position = position;
     }
 
-    public String getAddress() {
+    public Address getAddress() {
         return address;
     }
 
-    public void setAddress(String address) {
+    public void setAddress(Address address) {
         this.address = address;
     }
 
@@ -125,11 +131,35 @@ public class Person implements Serializable {
         this.salary = salary;
     }
 
+    public EmploymentStatus getEmploymentStatus() {
+        return employmentStatus;
+    }
+
+    public void setEmploymentStatus(EmploymentStatus employmentStatus) {
+        this.employmentStatus = employmentStatus;
+    }
+
+    public Sex getSex() {
+        return sex;
+    }
+
+    public void setSex(Sex sex) {
+        this.sex = sex;
+    }
+
+    public Lease getLease() {
+        return lease;
+    }
+
+    public void setLease(Lease lease) {
+        this.lease = lease;
+    }
+
     //----------------constructors-----------------------
     public Person() {
     }
 
-    //-------------obligatory methods--------------------
+    //-------------mandatory methods---------------------
     @Override
     public int hashCode() {
         int hash = 0;
