@@ -54,6 +54,9 @@ public class Lease implements Serializable {
 
     @Column(nullable = false)
     private Boolean isClosed;
+    
+    @Column(nullable = false)
+    private String vehicleRegPlate;
 
     @Enumerated(EnumType.STRING)
     private ReturnedStatus returnedStatus;
@@ -101,6 +104,13 @@ public class Lease implements Serializable {
     /**
      * @return the isClosed
      */
+    public String getVehicleRegPlate() {
+        return vehicleRegPlate;
+    }
+    
+    /**
+     * @return the isClosed
+     */
     public Boolean getIsClosed() {
         return isClosed;
     }
@@ -137,6 +147,10 @@ public class Lease implements Serializable {
 
     public void setIsClosed(Boolean isClosed) {
         this.isClosed = isClosed;
+    }
+    
+    public void setVehicleRegPlate(String vehicleRegPlate) {
+        this.vehicleRegPlate = vehicleRegPlate;
     }
 
     public void setReturnedStatus(ReturnedStatus returnedStatus) {
