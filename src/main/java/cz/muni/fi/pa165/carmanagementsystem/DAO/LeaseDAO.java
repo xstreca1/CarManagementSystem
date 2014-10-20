@@ -8,6 +8,7 @@ import java.util.List;
  * An interface specifiing functionality of lease
  * 
  * @author Petr Potucek
+ * @since       2014-09   
  */
 public interface LeaseDAO {
     /**
