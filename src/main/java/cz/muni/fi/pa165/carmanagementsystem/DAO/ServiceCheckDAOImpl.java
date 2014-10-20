@@ -21,7 +21,12 @@ import javax.persistence.Persistence;
  */
 public class ServiceCheckDAOImpl implements ServiceCheckDAO {
 
+    @Override
     public void createServiceCheck(ServiceCheck serviceCheck) {
+        // testing method parameters
+        if (serviceCheck == null) {
+            throw new IllegalArgumentException("serviceCheck is null");
+        }
         // create new EntityManager and save instance of ServiceCheck to database
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("carManagementSystem-unit");
         EntityManager em = emf.createEntityManager();
@@ -32,15 +37,23 @@ public class ServiceCheckDAOImpl implements ServiceCheckDAO {
 
     }
 
-    public void updateServiceCheck(ServiceCheck serviceCheck, int scID) {
+    @Override
+    public void updateServiceCheck(ServiceCheck serviceCheck, Integer scID) {
+        // testing method parameters
+        if (serviceCheck == null) {
+            throw new IllegalArgumentException("serviceCheck is null");
+        }
+        if (scID == null) {
+            throw new IllegalArgumentException("service check ID is null");
+        }
         // create new EntityManager
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("carManagementSystem-unit");
         EntityManager em = emf.createEntityManager();
         em.getTransaction().begin();
 
         // get instance of ServiceCheck according to its ID. Save this instance to variable "update"
-        String query = "SELECT serviceCheck FROM ServiceCheck serviceCheck WHERE scID='" + scID + "'";
-        ServiceCheck update = em.createQuery(query, ServiceCheck.class).getSingleResult();
+        String query = "SELECT s FROM ServiceCheck s WHERE s.scID = :ID";;
+        ServiceCheck update = em.createQuery(query, ServiceCheck.class).setParameter("ID", scID).getSingleResult();
 
         // get new values of attributes
         ServiceCheckName newName = serviceCheck.getName();
@@ -63,28 +76,38 @@ public class ServiceCheckDAOImpl implements ServiceCheckDAO {
 
     }
 
-    public void deleteServiceCheck(int scID) {
+    @Override
+    public void deleteServiceCheck(Integer scID) {
+        // testing method parameters
+        if (scID == null) {
+            throw new IllegalArgumentException("service check ID is null");
+        }
         // create new EntityManager
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("carManagementSystem-unit");
         EntityManager em = emf.createEntityManager();
         em.getTransaction().begin();
 
         // delete serviceCheck from database according to its ID
-        String query = "DELETE serviceCheck FROM ServiceCheck serviceCheck WHERE scID='" + scID + "'";
-        em.createQuery(query).executeUpdate();
+        String query = "DELETE s FROM ServiceCheck s WHERE s.scID = :ID";
+        em.createQuery(query, ServiceCheck.class).setParameter("ID", scID).executeUpdate();
         em.getTransaction().commit();
         em.close();
     }
 
-    public int getDaysToNext(int scID) {
+    @Override
+    public int getDaysToNext(Integer scID) {
+        // testing method parameters
+        if (scID == null) {
+            throw new IllegalArgumentException("service check ID is null");
+        }
         // create new EntityManager
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("carManagementSystem-unit");
         EntityManager em = emf.createEntityManager();
         em.getTransaction().begin();
 
         // get serviceCheck from database according to its ID
-        String query = "SELECT serviceCheck FROM ServiceCheck serviceCheck WHERE scID='" + scID + "'";
-        ServiceCheck serviceCheck = em.createQuery(query, ServiceCheck.class).getSingleResult();
+        String query = "SELECT s FROM ServiceCheck s WHERE s.scID = :ID";
+        ServiceCheck serviceCheck = em.createQuery(query, ServiceCheck.class).setParameter("ID", scID).getSingleResult();
 
         // get date of last performance of this serviceCheck
         Date lastCheck = serviceCheck.getLastCheck();
@@ -115,14 +138,17 @@ public class ServiceCheckDAOImpl implements ServiceCheckDAO {
 
     @Override
     public List getServiceChecksForCar(Car car) {
-
+        // testing method parameters
+        if (car == null) {
+            throw new IllegalArgumentException("car is null");
+        }
         // create new EntityManager
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("carManagementSystem-unit");
         EntityManager em = emf.createEntityManager();
 
         // get information about serviceCheck from database according to car (car is able to have more chcecks assigned). Save them to List.
-        String query = "SELECT serviceCheck FROM ServiceCheck serviceCheck WHERE car='" + car + "'";
-        List<ServiceCheck> serviceChecks = em.createQuery(query).getResultList();
+        String query = "SELECT s FROM ServiceCheck s WHERE s.car= :scCar";
+        List<ServiceCheck> serviceChecks = em.createQuery(query).setParameter("scCar", car).getResultList();
 
         // cloese EntityManager
         em.getTransaction().commit();
