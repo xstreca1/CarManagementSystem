@@ -70,8 +70,8 @@ public class ServiceCheckDAOImpl implements ServiceCheckDAO {
         em.getTransaction().begin();
 
         // delete serviceCheck from database according to its ID
-        String query = "DELETE serviceCheck FROM ServiceCheck serviceCheck WHERE scID='" + scID + "'";
-        em.createQuery(query).executeUpdate();
+        String query = "DELETE s FROM ServiceCheck s WHERE s.scID = :ID";
+        em.createQuery(query,ServiceCheck.class).setParameter("ID",scID).executeUpdate();
         em.getTransaction().commit();
         em.close();
     }
@@ -83,8 +83,8 @@ public class ServiceCheckDAOImpl implements ServiceCheckDAO {
         em.getTransaction().begin();
 
         // get serviceCheck from database according to its ID
-        String query = "SELECT serviceCheck FROM ServiceCheck serviceCheck WHERE scID='" + scID + "'";
-        ServiceCheck serviceCheck = em.createQuery(query, ServiceCheck.class).getSingleResult();
+        String query = "SELECT s FROM ServiceCheck s WHERE s.scID = :ID";
+        ServiceCheck serviceCheck = em.createQuery(query, ServiceCheck.class).setParameter("ID",scID).getSingleResult();
 
         // get date of last performance of this serviceCheck
         Date lastCheck = serviceCheck.getLastCheck();
@@ -121,8 +121,8 @@ public class ServiceCheckDAOImpl implements ServiceCheckDAO {
         EntityManager em = emf.createEntityManager();
 
         // get information about serviceCheck from database according to car (car is able to have more chcecks assigned). Save them to List.
-        String query = "SELECT serviceCheck FROM ServiceCheck serviceCheck WHERE car='" + car + "'";
-        List<ServiceCheck> serviceChecks = em.createQuery(query).getResultList();
+        String query = "SELECT s FROM ServiceCheck s WHERE s.car= :scCar";
+        List<ServiceCheck> serviceChecks = em.createQuery(query).setParameter("scCar", car).getResultList();
 
         // cloese EntityManager
         em.getTransaction().commit();
