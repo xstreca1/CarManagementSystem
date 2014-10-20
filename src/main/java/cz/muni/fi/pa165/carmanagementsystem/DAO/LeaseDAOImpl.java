@@ -1,13 +1,13 @@
-<<<<<<< HEAD:src/main/java/cz/muni/fi/pa165/carmanagementsystem/LeaseDAOImpl.java
 package cz.muni.fi.pa165.carmanagementsystem.DAO;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
+import cz.muni.fi.pa165.carmanagementsystem.Entities.Car;
+import cz.muni.fi.pa165.carmanagementsystem.Entities.Lease;
+import cz.muni.fi.pa165.carmanagementsystem.Entities.Person;
+import cz.muni.fi.pa165.carmanagementsystem.Entities.ServiceCheck;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 /**
  *
@@ -22,6 +22,7 @@ public class LeaseDAOImpl implements LeaseDAO {
          * 
          * @param lease instance of lease to be stored
          */
+        @Override
         public void createLease(Lease lease){     
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("createSC-unit");
         EntityManager em = emf.createEntityManager();
@@ -39,6 +40,7 @@ public class LeaseDAOImpl implements LeaseDAO {
          * @param lease lease with new data
          * @param leaseId lease to be updated, searched by ID
          */
+        @Override
         public void updateLease(Lease lease, int leaseId){
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("updateSC-unit");
         EntityManager em = emf.createEntityManager();
@@ -120,6 +122,8 @@ public class LeaseDAOImpl implements LeaseDAO {
          * @param until date to which the leases were made
          * @return list of leases
          */
+    
+        @Override
         public List getAllLeases(Date from, Date until){
     
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("getSCforLease-unit");
@@ -136,19 +140,3 @@ public class LeaseDAOImpl implements LeaseDAO {
     }  
     
 }
-=======
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package cz.muni.fi.pa165.carmanagementsystem.DAO;
-
-/**
- *
- * @author Petr Potucek
- */
-public class LeaseDAOImpl implements LeaseDAO {
-    
-}
->>>>>>> origin/master:src/main/java/cz/muni/fi/pa165/carmanagementsystem/DAO/LeaseDAOImpl.java
