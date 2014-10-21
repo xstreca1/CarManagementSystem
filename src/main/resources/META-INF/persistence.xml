@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<persistence version="1.0" xmlns="http://java.sun.com/xml/ns/persistence">
-    <persistence-unit name="carManagementSystem-unit" transaction-type="RESOURCE_LOCAL"> 
-        <provider>org.hibernate.ejb.HibernatePersistence</provider>      
+<persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
+    <persistence-unit name="carManagementSystem-unit" transaction-type="RESOURCE_LOCAL">
+        <provider>org.hibernate.ejb.HibernatePersistence</provider>
+        <exclude-unlisted-classes>false</exclude-unlisted-classes>
         <class>cz.muni.fi.pa165.carmanagementsystem.Entities.Person</class>
         <class>cz.muni.fi.pa165.carmanagementsystem.Entities.Car</class>
         <class>cz.muni.fi.pa165.carmanagementsystem.Entities.ServiceCheck</class>
         <class>cz.muni.fi.pa165.carmanagementsystem.Entities.Lease</class>
         <class>cz.muni.fi.pa165.carmanagementsystem.Entities.Address</class>
         <properties>
-            <property name="hibernate.connection.url" value="jdbc:derby:memory:testdb"/> <!-- property for in-memory db-->
+            <property name="hibernate.connection.url" value="jdbc:derby:memory:testdb"/><!-- property for in-memory db-->
             <property name="hibernate.connection.driver_class" value="org.apache.derby.jdbc.EmbeddedDriver"/>
             <property name="hibernate.cache.provider_class" value="org.hibernate.cache.NoCacheProvider"/>
             <property name="hibernate.dialect" value="org.hibernate.dialect.DerbyDialect"/>
