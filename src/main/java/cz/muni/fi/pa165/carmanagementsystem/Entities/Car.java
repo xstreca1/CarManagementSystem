@@ -6,6 +6,7 @@
 package cz.muni.fi.pa165.carmanagementsystem.Entities;
 
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -109,10 +110,10 @@ public class Car implements Serializable {
     //--------------relationships------------------------
     
     @OneToMany(mappedBy = "car")
-    private Lease lease;
+    private List<Lease> lease;
     
     @OneToMany(mappedBy = "car")
-    private ServiceCheck serviceCheck;
+    private List<ServiceCheck> serviceCheck;
     
     //------------getters and setters--------------------
     

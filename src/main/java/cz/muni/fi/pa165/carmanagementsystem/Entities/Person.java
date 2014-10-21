@@ -5,6 +5,7 @@ package cz.muni.fi.pa165.carmanagementsystem.Entities;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
@@ -76,7 +77,7 @@ public class Person implements Serializable {
 
     //--------------relationships------------------------
     @OneToMany(mappedBy = "person")
-    private Lease lease;
+    private List<Lease> lease;
 
     //------------getters and setters--------------------
     public String getId() {
@@ -147,11 +148,11 @@ public class Person implements Serializable {
         this.sex = sex;
     }
 
-    public Lease getLease() {
+    public List<Lease> getLease() {
         return lease;
     }
 
-    public void setLease(Lease lease) {
+    public void setLease(List<Lease> lease) {
         this.lease = lease;
     }
 

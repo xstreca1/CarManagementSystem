@@ -33,8 +33,13 @@ public class PersonDAOImplTest {
 
     @Before
     public void setUp() {
-
+        Person person = new Person();
         EntityManager em = emf.createEntityManager();
+        
+        em.getTransaction().begin();
+        em.persist(person);
+        em.getTransaction().commit();
+        em.close();
 
     }
 
