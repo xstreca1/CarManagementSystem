@@ -4,10 +4,8 @@
 package cz.muni.fi.pa165.carmanagementsystem.DAO;
 
 import cz.muni.fi.pa165.carmanagementsystem.Entities.Address;
-import cz.muni.fi.pa165.carmanagementsystem.Entities.Lease;
 import cz.muni.fi.pa165.carmanagementsystem.Entities.Person;
 import cz.muni.fi.pa165.carmanagementsystem.Entities.Person.EmploymentStatus;
-import cz.muni.fi.pa165.carmanagementsystem.Entities.Person.Sex;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.EntityManager;

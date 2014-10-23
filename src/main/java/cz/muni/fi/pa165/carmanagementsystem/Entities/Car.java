@@ -68,6 +68,7 @@ public class Car implements Serializable {
     @Column(nullable = false)
     private String vehicleRegPlate;
 
+    //should be year not int
     @Column(nullable = false)
     private int yearOfManufacture;
 
