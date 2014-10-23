@@ -5,6 +5,9 @@
  */
 package cz.muni.fi.pa165.carmanagementsystem;
 
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -17,22 +20,22 @@ import static org.junit.Assert.*;
  * @author jrumanov
  */
 public class CarDAOImplTest {
-    
+
     public CarDAOImplTest() {
     }
-    
-    @BeforeClass
-    public static void setUpClass() {
-    }
-    
-    @AfterClass
-    public static void tearDownClass() {
-    }
-    
+
+    private EntityManagerFactory emf
+            = Persistence.createEntityManagerFactory("carManagementSystem-unit");
+
     @Before
     public void setUp() {
+        EntityManager em = emf.createEntityManager();
+        em.getTransaction().begin();
+        
+        em.getTransaction().commit();
+        em.close();
     }
-    
+
     @After
     public void tearDown() {
     }
@@ -42,5 +45,5 @@ public class CarDAOImplTest {
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
-    
+
 }

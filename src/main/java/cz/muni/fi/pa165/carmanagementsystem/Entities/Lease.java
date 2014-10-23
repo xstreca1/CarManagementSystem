@@ -28,12 +28,12 @@ import javax.persistence.TemporalType;
 public class Lease implements Serializable {
 
     //--------------------enums-------------------------- 
-    private enum ReturnedStatus {
+    public enum ReturnedStatus {
 
         OK, BROKEN
     };
 
-    private enum TravelReason {
+    public enum TravelReason {
 
         PERSONAL, WORK
     };
