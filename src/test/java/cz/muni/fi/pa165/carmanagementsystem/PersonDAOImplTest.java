@@ -28,14 +28,16 @@ import org.junit.Test;
  */
 public class PersonDAOImplTest {
 
-    @PersistenceUnit
-    EntityManagerFactory emf;
+    //@PersistenceUnit
+    //EntityManagerFactory emf;
+    private EntityManagerFactory emf
+            = Persistence.createEntityManagerFactory("carManagementSystem-unit");
 
     @Before
     public void setUp() {
         Person person = new Person();
         EntityManager em = emf.createEntityManager();
-        
+
         em.getTransaction().begin();
         em.persist(person);
         em.getTransaction().commit();

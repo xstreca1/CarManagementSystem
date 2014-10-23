@@ -21,9 +21,9 @@ public class Address implements Serializable {
     //-----------------attributes------------------------
     
     private static final long serialVersionUID = 1L;
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+   // @Id
+   // @GeneratedValue(strategy = GenerationType.AUTO)
+   // private Long id;
 
     private String street;
     private int streetNumber;
@@ -32,9 +32,9 @@ public class Address implements Serializable {
 
     //------------getters and setters--------------------
     
-    public Long getId() {
-        return id;
-    }
+    //public Long getId() {
+    //    return id;
+   // }
 
     public String getStreet() {
         return street;
@@ -75,7 +75,7 @@ public class Address implements Serializable {
     }
     
     //-------------mandatory methods---------------------
-    @Override
+  /*  @Override
     public int hashCode() {
         int hash = 0;
         hash += (id != null ? id.hashCode() : 0);
@@ -95,9 +95,9 @@ public class Address implements Serializable {
         return true;
     }
 
-    @Override
+   /* @Override
     public String toString() {
         return "cz.muni.fi.pa165.carmanagementsystem.Address[ id=" + id + " ]";
-    }
+    }*/
 
 }
