@@ -63,7 +63,7 @@ public class Car implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private String CarID;
+    private Integer CarID;
 
     @Column(nullable = false)
     private String vehicleRegPlate;
@@ -216,7 +216,7 @@ public class Car implements Serializable {
     private float engineDisplacement;
     private boolean availibility;
 
-    public String getId() {
+    public Integer getId() {
         return CarID;
     }
 

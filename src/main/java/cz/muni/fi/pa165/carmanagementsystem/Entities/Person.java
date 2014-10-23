@@ -50,7 +50,7 @@ public class Person implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private String id;
+    private Integer id;
 
     @Column(nullable = false)
     private String name;
@@ -81,7 +81,7 @@ public class Person implements Serializable {
     private List<Lease> lease;
 
     //------------getters and setters--------------------
-    public String getId() {
+    public Integer getId() {
         return id;
     }
 

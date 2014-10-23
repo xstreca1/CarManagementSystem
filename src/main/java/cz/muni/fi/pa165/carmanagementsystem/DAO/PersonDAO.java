@@ -24,8 +24,9 @@ public interface PersonDAO {
      * with the attributes given in Person instance
      *
      * @param person person, who needs to be updated
+     * @param personID
      */
-    void updatePerson(Person person, String personID);
+    void updatePerson(Person person, Integer personID);
 
     /**
      * delete Person using his/her ID as a parameter you cannot delete person,
@@ -33,7 +34,7 @@ public interface PersonDAO {
      *
      * @param personID string ID of a person (f.e. ID "number")
      */
-    void deletePerson(String PersonID);
+    void deletePerson(Integer PersonID);
 
     /**
      * returns person by his/her ID, there is always only one person returned
@@ -41,7 +42,7 @@ public interface PersonDAO {
      * @param personID string ID of a person (f.e. ID "number")
      * @return
      */
-    Person getPersonByID(String personID);
+    Person getPersonByID(Integer personID);
 
     /**
      * returns Person or list of people with a given name there can be more

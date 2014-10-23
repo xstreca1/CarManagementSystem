@@ -37,7 +37,7 @@ public class PersonDAOImpl implements PersonDAO {
     }
 
     @Override
-    public void updatePerson(Person updatedPerson, String personID) {
+    public void updatePerson(Person updatedPerson, Integer personID) {
 
         //create Entity Manager
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("carManagementSystem-unit");
@@ -79,7 +79,7 @@ public class PersonDAOImpl implements PersonDAO {
     }
 
     @Override
-    public void deletePerson(String personID) {
+    public void deletePerson(Integer personID) {
 
         //create Entity Manager
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("carManagementSystem-unit");
@@ -102,7 +102,7 @@ public class PersonDAOImpl implements PersonDAO {
     }
 
     @Override
-    public Person getPersonByID(String personID) {
+    public Person getPersonByID(Integer personID) {
 
         //create Entity Manager
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("carManagementSystem-unit");
