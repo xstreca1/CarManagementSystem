@@ -159,7 +159,7 @@ public class PersonDAOImpl implements PersonDAO {
 
         //actual query
         String sql = "SELECT p FROM Person p";
-        List<Person> people = em.createQuery(sql, Person.class).getResultList();
+        List<Person> people = em.createQuery(sql,Person.class).getResultList();
 
         //commiting changes and closing entity manager
         em.getTransaction().commit();
