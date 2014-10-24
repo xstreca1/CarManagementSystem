@@ -112,9 +112,9 @@ public class PersonDAOImpl implements PersonDAO {
         em.getTransaction().begin();
 
         //actual query
-        String sql = "SELECT p FROM Person p WHERE p.personID= :persID";
+        String sql = "SELECT p FROM Person p WHERE p.id=:persID";
         Person person = em.createQuery(sql, Person.class)
-                .setParameter("persID", personID).getResultList().get(0);
+                .setParameter("persID", personID).getSingleResult();
 
         //commiting changes and closing entity manager
         em.getTransaction().commit();

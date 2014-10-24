@@ -122,7 +122,18 @@ public class PersonDAOImplTest {
         em.close();        
        
     }
+    
+    @Test
+    // test if it is possible to get person from DB using getPersonById()
+    public void testGetPersonById(){
+        // get person using getPersonById method
+        Person pers = dao.getPersonByID(person.getId());
+        // pers should be not null
+        assertNotNull(pers);
+        // person and person1 should be the same
+        assertEquals(person, pers);
 
+    }
     @Test // FAILUJE
     public void testGetAllPeople() {
 
