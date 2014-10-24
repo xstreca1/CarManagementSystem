@@ -61,7 +61,7 @@ public class PersonDAOImpl implements PersonDAO {
                 + "p.dateOfBirth = :birth, p.employmentStatus = :empStat,"
                 + "p.name = :name, p.nationality = :nationality,"
                 + "p.position = :position, p.salary = :salary"
-                + "WHERE p.personID= :persID";
+                + "WHERE p.id= :persID";
         
         em.createQuery(sql).setParameter("addr", address)
                 .setParameter("birth", dateOfBirth)

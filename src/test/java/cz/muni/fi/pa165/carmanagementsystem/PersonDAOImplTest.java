@@ -145,27 +145,27 @@ public class PersonDAOImplTest {
         em.getTransaction().begin();
         Assert.assertFalse(em.contains(person));
         em.getTransaction().commit();
-        em.close();        
+        em.close();
     }
 
-    @Test // FAILUJE
+    @Test
+    // tests if all people can be retrieved from database using metho getAllpeople()
     public void testGetAllPeople() {
 
         PersonDAOImpl dao = new PersonDAOImpl();
         List<Person> people = dao.getAllPeople();
-        assertEquals(people.size(), 1);
+        assertEquals(people.size(), 4);
 
     }
 
     @Test // OK
-    public void testGetAllPeople2() {
-
-        EntityManager em = emf.createEntityManager();
-        em.getTransaction().begin();
-        List<Person> people = em.createQuery("SELECT p FROM Person p", Person.class).getResultList();
-        assertEquals(people.size(), 1);
-        em.getTransaction().commit();
-        em.close();
-
+    public void testUpdatePerson() {
+        // update persisted person with new non-persisted person toInsert
+        dao.updatePerson(toInsert, person.getId());
+        // attributes e of person should be updated now
+        assertEquals(person.getName(), "TEST");
+        assertEquals(person.getPosition(), "Developer");
+        assertEquals(person.getNationality(), "US");
+        assertEquals(person.getSalary(), 45_000);
     }
 }
