@@ -158,7 +158,7 @@ public class PersonDAOImplTest {
 
     }
 
-    @Test // OK
+    @Test
     public void testUpdatePerson() {
         // update persisted person with new non-persisted person toInsert
         dao.updatePerson(toInsert, person.getId());
@@ -167,5 +167,16 @@ public class PersonDAOImplTest {
         assertEquals(person.getPosition(), "Developer");
         assertEquals(person.getNationality(), "US");
         assertEquals(person.getSalary(), 45_000);
+    }
+    @Test
+    public void testGetPeopleByName(){
+        // get people by name
+        List<Person> list = dao.getPeopleByName("JOE");
+        // list should not be empty
+        assertNotNull(list);
+        // list should contain exactly 3 persons
+        int persons = list.size();
+        assertEquals(persons, 3);
+        
     }
 }
