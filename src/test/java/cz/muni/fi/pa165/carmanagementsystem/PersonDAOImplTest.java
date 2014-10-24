@@ -119,13 +119,13 @@ public class PersonDAOImplTest {
         Person pers = em.find(Person.class, toInsert.getId());
         Assert.assertTrue(em.contains(pers));
         em.getTransaction().commit();
-        em.close();        
-       
+        em.close();
+
     }
-    
+
     @Test
     // test if it is possible to get person from DB using getPersonById()
-    public void testGetPersonById(){
+    public void testGetPersonById() {
         // get person using getPersonById method
         Person pers = dao.getPersonByID(person.getId());
         // pers should be not null
@@ -134,6 +134,20 @@ public class PersonDAOImplTest {
         assertEquals(person, pers);
 
     }
+
+    @Test
+    // tests if person can be deleted using method deletePerson()
+    public void testDeletePerson() {
+        // delete person
+        dao.deletePerson(person.getId());
+        // person shoul be deleted
+        EntityManager em = emf.createEntityManager();
+        em.getTransaction().begin();
+        Assert.assertFalse(em.contains(person));
+        em.getTransaction().commit();
+        em.close();        
+    }
+
     @Test // FAILUJE
     public void testGetAllPeople() {
 
