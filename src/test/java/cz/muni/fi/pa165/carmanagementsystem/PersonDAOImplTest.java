@@ -96,7 +96,7 @@ public class PersonDAOImplTest {
 
     }
 
-    @Test
+    @Test // PASS
     // test if entities created in setUp() method are persisted in database
     public void arePersisted() {
 
@@ -108,7 +108,7 @@ public class PersonDAOImplTest {
         em.close();
     }
 
-    @Test
+    @Test // PASS
     // test if it is possible to persist person using method insertPerson()
     public void testInsertPerson() {
         // persist person toInsert
@@ -123,7 +123,7 @@ public class PersonDAOImplTest {
 
     }
 
-    @Test
+    @Test//FAIL
     // test if it is possible to get person from DB using getPersonById()
     public void testGetPersonById() {
         // get person using getPersonById method
@@ -135,7 +135,7 @@ public class PersonDAOImplTest {
 
     }
 
-    @Test
+    @Test//FAIL
     // tests if person can be deleted using method deletePerson()
     public void testDeletePerson() {
         // delete person
@@ -148,7 +148,7 @@ public class PersonDAOImplTest {
         em.close();
     }
 
-    @Test
+    @Test//FAIL
     // tests if all people can be retrieved from database using metho getAllpeople()
     public void testGetAllPeople() {
 
@@ -158,7 +158,7 @@ public class PersonDAOImplTest {
 
     }
 
-    @Test
+    @Test//FAIL
     public void testUpdatePerson() {
         // update persisted person with new non-persisted person toInsert
         dao.updatePerson(toInsert, person.getId());
@@ -168,7 +168,7 @@ public class PersonDAOImplTest {
         assertEquals(person.getNationality(), "US");
         assertEquals(person.getSalary(), 45_000);
     }
-    @Test
+    @Test//FAIL
     public void testGetPeopleByName(){
         // get people by name
         List<Person> list = dao.getPeopleByName("JOE");
