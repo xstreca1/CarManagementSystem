@@ -22,6 +22,10 @@ public class CarDAOImpl implements CarDAO {
         this.emf = emf;
     }
 
+    public EntityManagerFactory getEntityManagerFactory() {
+        return emf;
+    }
+
     @Override
     public void createCar(Car car) {
 

@@ -26,6 +26,10 @@ public class ServiceCheckDAOImpl implements ServiceCheckDAO {
         this.emf = emf;
     }
 
+    public EntityManagerFactory getEntityManagerFactory() {
+        return emf;
+    }
+
     @Override
     public void createServiceCheck(ServiceCheck serviceCheck) {
         // testing method parameters

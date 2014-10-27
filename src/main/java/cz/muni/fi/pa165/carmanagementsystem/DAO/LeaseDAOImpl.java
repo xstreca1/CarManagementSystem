@@ -22,6 +22,10 @@ public class LeaseDAOImpl implements LeaseDAO {
         this.emf = emf;
     }
 
+    public EntityManagerFactory getEntityManagerFactory() {
+        return emf;
+    }
+
     @Override
     public void createLease(Lease lease) {
         EntityManager em = emf.createEntityManager();

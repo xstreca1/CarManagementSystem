@@ -5,14 +5,13 @@
  */
 package cz.muni.fi.pa165.carmanagementsystem;
 
+import cz.muni.fi.pa165.carmanagementsystem.DAO.CarDAOImpl;
 import cz.muni.fi.pa165.carmanagementsystem.Entities.Car;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
@@ -25,12 +24,11 @@ public class CarDAOImplTest {
 
     public CarDAOImplTest() {
     }
+    private EntityManagerFactory emf;
+    private CarDAOImpl carDAO = new CarDAOImpl(Persistence.createEntityManagerFactory("carManagementSystem-unit"));
 
-    private EntityManagerFactory emf
-            = Persistence.createEntityManagerFactory("carManagementSystem-unit");
-
-    @Before
-    public void setUp() {
+    @BeforeClass
+    public void setUpClass() {
         EntityManager em = emf.createEntityManager();
         em.getTransaction().begin();
         
