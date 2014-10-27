@@ -9,18 +9,23 @@ import cz.muni.fi.pa165.carmanagementsystem.Entities.Car;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
+
 /**
  *
  * @author Jozef Puchly
  */
 public class CarDAOImpl implements CarDAO {
 
+    private EntityManagerFactory emf;
+
+    public CarDAOImpl(EntityManagerFactory emf) {
+        this.emf = emf;
+    }
+
     @Override
     public void createCar(Car car) {
-     
+
         // create new EntityManager and save instance of Car to database
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("carManagementSystem-unit");
         EntityManager em = emf.createEntityManager();
         em.getTransaction().begin();
         em.persist(car);
@@ -32,7 +37,6 @@ public class CarDAOImpl implements CarDAO {
     public void updateCar(Car car, String vehicleRegPlate) {
 
         // create new EntityManager
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("carManagementSystem-unit");
         EntityManager em = emf.createEntityManager();
         em.getTransaction().begin();
 
@@ -57,7 +61,6 @@ public class CarDAOImpl implements CarDAO {
     @Override
     public void deleteCar(String vehicleRegPlate) {
         // create new EntityManager
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("carManagementSystem-unit");
         EntityManager em = emf.createEntityManager();
         em.getTransaction().begin();
 
@@ -71,7 +74,6 @@ public class CarDAOImpl implements CarDAO {
     @Override
     public List listAllAvailableCars() {
         // create new EntityManager
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("carManagementSystem-unit");
         EntityManager em = emf.createEntityManager();
 
         // get all cars that are available. save them to list
@@ -88,7 +90,6 @@ public class CarDAOImpl implements CarDAO {
     @Override
     public List getCarByCategory(int category) {
         // create new EntityManager
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("carManagementSystem-unit");
         EntityManager em = emf.createEntityManager();
 
         // get all cars that have the chosen category. save them to list
@@ -105,7 +106,6 @@ public class CarDAOImpl implements CarDAO {
     @Override
     public List getCarBySeats(int seats) {
         // create new EntityManager
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("carManagementSystem-unit");
         EntityManager em = emf.createEntityManager();
 
         // get all cars that have the chosen number of seats. save them to list
@@ -122,7 +122,6 @@ public class CarDAOImpl implements CarDAO {
     @Override
     public List getCarByBodyStyle(Car.bodyStyle bs) {
         // create new EntityManager
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("carManagementSystem-unit");
         EntityManager em = emf.createEntityManager();
 
         // get all cars that have the chosen body style. save them to list
@@ -135,5 +134,5 @@ public class CarDAOImpl implements CarDAO {
 
         return cars;
     }
-    
+
 }

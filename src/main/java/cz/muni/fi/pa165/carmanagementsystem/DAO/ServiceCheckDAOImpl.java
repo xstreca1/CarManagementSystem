@@ -13,13 +13,18 @@ import java.util.Date;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
 
 /**
  *
  * @author Martin Strecansky
  */
 public class ServiceCheckDAOImpl implements ServiceCheckDAO {
+
+    private EntityManagerFactory emf;
+
+    public ServiceCheckDAOImpl(EntityManagerFactory emf) {
+        this.emf = emf;
+    }
 
     @Override
     public void createServiceCheck(ServiceCheck serviceCheck) {
@@ -28,7 +33,6 @@ public class ServiceCheckDAOImpl implements ServiceCheckDAO {
             throw new IllegalArgumentException("serviceCheck is null");
         }
         // create new EntityManager and save instance of ServiceCheck to database
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("carManagementSystem-unit");
         EntityManager em = emf.createEntityManager();
         em.getTransaction().begin();
         em.persist(serviceCheck);
@@ -47,7 +51,6 @@ public class ServiceCheckDAOImpl implements ServiceCheckDAO {
             throw new IllegalArgumentException("service check ID is null");
         }
         // create new EntityManager
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("carManagementSystem-unit");
         EntityManager em = emf.createEntityManager();
         em.getTransaction().begin();
 
@@ -83,7 +86,6 @@ public class ServiceCheckDAOImpl implements ServiceCheckDAO {
             throw new IllegalArgumentException("service check ID is null");
         }
         // create new EntityManager
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("carManagementSystem-unit");
         EntityManager em = emf.createEntityManager();
         em.getTransaction().begin();
 
@@ -101,7 +103,6 @@ public class ServiceCheckDAOImpl implements ServiceCheckDAO {
             throw new IllegalArgumentException("service check ID is null");
         }
         // create new EntityManager
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("carManagementSystem-unit");
         EntityManager em = emf.createEntityManager();
         em.getTransaction().begin();
 
@@ -143,7 +144,6 @@ public class ServiceCheckDAOImpl implements ServiceCheckDAO {
             throw new IllegalArgumentException("car is null");
         }
         // create new EntityManager
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("carManagementSystem-unit");
         EntityManager em = emf.createEntityManager();
 
         // get information about serviceCheck from database according to car (car is able to have more chcecks assigned). Save them to List.
