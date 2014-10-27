@@ -18,11 +18,21 @@ import javax.persistence.Persistence;
  */
 public class PersonDAOImpl implements PersonDAO {
 
+    private static EntityManagerFactory emf;       
+    
+    public PersonDAOImpl(EntityManagerFactory emf){
+        emf = this.emf;
+    }
+    
+    public EntityManagerFactory getEntityManagerFactory(){
+        return emf;
+    }
+    
     @Override
     public void insertPerson(Person person) {
 
         //create Entity Manager
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("carManagementSystem-unit");
+        //EntityManagerFactory emf = Persistence.createEntityManagerFactory("carManagementSystem-unit");
         EntityManager em = emf.createEntityManager();
 
         //begin of a transaction
@@ -40,7 +50,7 @@ public class PersonDAOImpl implements PersonDAO {
     public void updatePerson(Person updatedPerson, Integer personID) {
 
         //create Entity Manager
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("carManagementSystem-unit");
+        //EntityManagerFactory emf = Persistence.createEntityManagerFactory("carManagementSystem-unit");
         EntityManager em = emf.createEntityManager();
 
         //begin of a transaction
@@ -82,7 +92,7 @@ public class PersonDAOImpl implements PersonDAO {
     public void deletePerson(Integer personID) {
 
         //create Entity Manager
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("carManagementSystem-unit");
+        //EntityManagerFactory emf = Persistence.createEntityManagerFactory("carManagementSystem-unit");
         EntityManager em = emf.createEntityManager();
 
         //begin of a transaction
@@ -105,7 +115,7 @@ public class PersonDAOImpl implements PersonDAO {
     public Person getPersonByID(Integer personID) {
 
         //create Entity Manager
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("carManagementSystem-unit");
+        //EntityManagerFactory emf = Persistence.createEntityManagerFactory("carManagementSystem-unit");
         EntityManager em = emf.createEntityManager();
 
         //begin of a transaction
@@ -114,7 +124,7 @@ public class PersonDAOImpl implements PersonDAO {
         //actual query
         String sql = "SELECT p FROM Person p WHERE p.id=:persID";
         Person person = em.createQuery(sql, Person.class)
-                .setParameter("persID", personID).getSingleResult();
+                .setParameter("persID", personID).getResultList().get(0);
 
         //commiting changes and closing entity manager
         em.getTransaction().commit();
@@ -127,8 +137,8 @@ public class PersonDAOImpl implements PersonDAO {
     public List<Person> getPeopleByName(String name) {
 
         //create emf and em in every method because of transactions
-        EntityManagerFactory emf
-                = Persistence.createEntityManagerFactory("carManagementSystem-unit");
+        //EntityManagerFactory emf
+                //= Persistence.createEntityManagerFactory("carManagementSystem-unit");
         EntityManager em = emf.createEntityManager();
 
         //begin of a transaction
@@ -150,8 +160,8 @@ public class PersonDAOImpl implements PersonDAO {
     public List<Person> getAllPeople() {
 
         //create emf and em in every method because of transactions
-        EntityManagerFactory emf
-                = Persistence.createEntityManagerFactory("carManagementSystem-unit");
+        //EntityManagerFactory emf
+                //= Persistence.createEntityManagerFactory("carManagementSystem-unit");
         EntityManager em = emf.createEntityManager();
 
         //begin of a transaction

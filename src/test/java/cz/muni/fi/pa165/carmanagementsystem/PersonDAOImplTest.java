@@ -19,6 +19,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 /**
@@ -27,18 +28,17 @@ import org.junit.Test;
  */
 public class PersonDAOImplTest {
 
-    @PersistenceUnit
-    public EntityManagerFactory emf = Persistence.createEntityManagerFactory("carManagementSystem-unit");
-    private Person person;
-    private Person person2;
-    private Person person3;
-    private Person person4;
-    private Person toInsert;
-    private PersonDAOImpl dao;
+    private static PersonDAOImpl dao = new PersonDAOImpl(Persistence.createEntityManagerFactory("carManagementSystem-unit"));
+    
+    private static Person person;
+    private static Person person2;
+    private static Person person3;
+    private static Person person4;
+    private static Person toInsert;
 
-    @Before
-    public void setUp() {
-        EntityManager em = emf.createEntityManager();
+    @BeforeClass
+    public static void setUpClass() {
+        EntityManager em = dao.getEntityManagerFactory().createEntityManager();
         em.getTransaction().begin();
 
         //create simple person        
@@ -80,7 +80,7 @@ public class PersonDAOImplTest {
         em.close();
 
         //create DAO object
-        dao = new PersonDAOImpl();
+        //dao = new PersonDAOImpl();
         //create person which is not persisted in database to test insertPerson method
         toInsert = new Person();
         toInsert.setName("TEST");
@@ -100,7 +100,7 @@ public class PersonDAOImplTest {
     // test if entities created in setUp() method are persisted in database
     public void arePersisted() {
 
-        EntityManager em = emf.createEntityManager();
+        EntityManager em = dao.getEntityManagerFactory().createEntityManager();
         em.getTransaction().begin();
         List<Person> people = em.createQuery("SELECT p FROM Person p", Person.class).getResultList();
         assertEquals(people.size(), 4);
@@ -114,7 +114,7 @@ public class PersonDAOImplTest {
         // persist person toInsert
         dao.insertPerson(toInsert);
         // find person toInsert in database
-        EntityManager em = emf.createEntityManager();
+        EntityManager em = dao.getEntityManagerFactory().createEntityManager();
         em.getTransaction().begin();
         Person pers = em.find(Person.class, toInsert.getId());
         Assert.assertTrue(em.contains(pers));
@@ -141,7 +141,7 @@ public class PersonDAOImplTest {
         // delete person
         dao.deletePerson(person.getId());
         // person shoul be deleted
-        EntityManager em = emf.createEntityManager();
+        EntityManager em = dao.getEntityManagerFactory().createEntityManager();
         em.getTransaction().begin();
         Assert.assertFalse(em.contains(person));
         em.getTransaction().commit();
@@ -152,7 +152,6 @@ public class PersonDAOImplTest {
     // tests if all people can be retrieved from database using metho getAllpeople()
     public void testGetAllPeople() {
 
-        PersonDAOImpl dao = new PersonDAOImpl();
         List<Person> people = dao.getAllPeople();
         assertEquals(people.size(), 4);
 
