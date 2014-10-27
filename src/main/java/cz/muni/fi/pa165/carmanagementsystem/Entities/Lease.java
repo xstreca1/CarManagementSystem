@@ -10,6 +10,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -25,6 +26,7 @@ import javax.persistence.TemporalType;
  * @since       2014-09         
  */
 @Entity
+@Table(name = "Lease")
 public class Lease implements Serializable {
 
     //--------------------enums-------------------------- 
@@ -45,7 +47,7 @@ public class Lease implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int leaseId;
 
-    @Column(nullable = false)
+    @Column(name = "carMileage",nullable = false)
     private int carMileage;
 
     @Temporal(TemporalType.DATE)
@@ -54,12 +56,9 @@ public class Lease implements Serializable {
     @Temporal(TemporalType.DATE)
     private Date dateOfReturn;
 
-    @Column(nullable = false)
+    @Column(name = "isClosed",nullable = false)
     private Boolean isClosed;
     
-    @Column(nullable = false)
-    private String vehicleRegPlate;
-
     @Enumerated(EnumType.STRING)
     private ReturnedStatus returnedStatus;
 
@@ -101,13 +100,6 @@ public class Lease implements Serializable {
      */
     public Date getDateOfReturn() {
         return dateOfReturn;
-    }
-
-    /**
-     * @return the isClosed
-     */
-    public String getVehicleRegPlate() {
-        return vehicleRegPlate;
     }
     
     /**
@@ -173,15 +165,6 @@ public class Lease implements Serializable {
     public void setIsClosed(Boolean isClosed) {
         this.isClosed = isClosed;
     }
-    
-    /**
-     * sets vehicle registration plate to identifi a car
-     * 
-     * @param vehicleRegPlate registration plate of a car
-     */
-    public void setVehicleRegPlate(String vehicleRegPlate) {
-        this.vehicleRegPlate = vehicleRegPlate;
-    }
 
     /**
      * Sets returned status on lease, means status of a car as broken, ok ..
@@ -229,7 +212,6 @@ public class Lease implements Serializable {
     public int hashCode() {
         return (int)this.leaseId *
                 carMileage *
-                vehicleRegPlate.hashCode() *
                 car.hashCode() *
                 person.hashCode();
     }
@@ -241,7 +223,6 @@ public class Lease implements Serializable {
         
         Lease other = (Lease) object;
         if(this.leaseId != other.leaseId)                       return false;
-        if(! this.vehicleRegPlate.equals(other.vehicleRegPlate))return false;
         if(! this.person.equals(other.person))                  return false;
         if(! this.car.equals(other.car))                        return false;
 
