@@ -28,8 +28,9 @@ import org.junit.Test;
  */
 public class PersonDAOImplTest {
 
-    private static PersonDAOImpl dao = new PersonDAOImpl(Persistence.createEntityManagerFactory("carManagementSystem-unit"));
-    
+    private static PersonDAOImpl dao = 
+            new PersonDAOImpl(Persistence.createEntityManagerFactory("carManagementSystem-unit"));
+
     private static Person person;
     private static Person person2;
     private static Person person3;
@@ -167,8 +168,9 @@ public class PersonDAOImplTest {
         assertEquals(person.getNationality(), "US");
         assertEquals(person.getSalary(), 45_000);
     }
+
     @Test//FAIL
-    public void testGetPeopleByName(){
+    public void testGetPeopleByName() {
         // get people by name
         List<Person> list = dao.getPeopleByName("JOE");
         // list should not be empty
@@ -176,6 +178,6 @@ public class PersonDAOImplTest {
         // list should contain exactly 3 persons
         int persons = list.size();
         assertEquals(persons, 3);
-        
+
     }
 }

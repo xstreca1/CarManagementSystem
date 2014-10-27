@@ -21,7 +21,7 @@ public class PersonDAOImpl implements PersonDAO {
     private static EntityManagerFactory emf;       
     
     public PersonDAOImpl(EntityManagerFactory emf){
-        emf = this.emf;
+        this.emf = emf;
     }
     
     public EntityManagerFactory getEntityManagerFactory(){
