@@ -46,7 +46,6 @@ public class LeaseDAOImpl implements LeaseDAO {
         int carMileage = lease.getCarMileage();
         Date dateOfLease = lease.getDateOfLease();
         Date dateOfReturn = lease.getDateOfReturn();
-        String vehicleRegPlate = lease.getVehicleRegPlate();
         Boolean isClosed = lease.getIsClosed();
         Car car = lease.getCar();
         Person person = lease.getPerson();
@@ -54,7 +53,6 @@ public class LeaseDAOImpl implements LeaseDAO {
         update.setCarMileage(carMileage);
         update.setDateOfLease(dateOfLease);
         update.setDateOfReturn(dateOfReturn);
-        update.setVehicleRegPlate(vehicleRegPlate);
         update.setIsClosed(isClosed);
         update.setCar(car);
         update.setPerson(person);
