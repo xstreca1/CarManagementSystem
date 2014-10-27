@@ -29,9 +29,9 @@ public class CarDAOImplTest {
 
     @BeforeClass
     public void setUpClass() {
-        EntityManager em = emf.createEntityManager();
+        EntityManager em = carDAO.getEntityManagerFactory().createEntityManager();
         em.getTransaction().begin();
-        
+
         Car car1 = new Car();
         car1.setAvailibility(true);
         car1.setBrand("Citroen");
@@ -46,7 +46,7 @@ public class CarDAOImplTest {
         car1.setNumberOfSeats(5);
         car1.setTransmission(true);
         em.persist(car1);
-        
+
         em.getTransaction().commit();
         em.close();
     }
@@ -57,7 +57,7 @@ public class CarDAOImplTest {
 
     @Test
     public void isInDB() {
-        EntityManager em = emf.createEntityManager();
+        EntityManager em = carDAO.getEntityManagerFactory().createEntityManager();
         em.getTransaction().begin();
         List<Car> c = em.createQuery("SELECT c FROM Car c", Car.class).getResultList();
         assertEquals(c.size(), 1);
