@@ -25,6 +25,10 @@ import javax.persistence.TemporalType;
 @Entity
 public class ServiceCheck implements Serializable {
 
+    public void createServiceCheck(ServiceCheck serviceCheck) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
     //--------------------enums--------------------------
     public enum ServiceCheckName {
 
