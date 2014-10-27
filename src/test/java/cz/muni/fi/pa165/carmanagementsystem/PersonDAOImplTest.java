@@ -13,11 +13,13 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.PersistenceUnit;
+import javax.transaction.NotSupportedException;
 import org.junit.After;
 import org.junit.Assert;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
+import static org.junit.Assert.fail;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -112,6 +114,13 @@ public class PersonDAOImplTest {
     @Test // PASS
     // test if it is possible to persist person using method insertPerson()
     public void testInsertPerson() {
+        // try if bad input results in IllegalArgument Exception
+        try{
+        dao.insertPerson(null); 
+        fail("wrong input allowed!");
+        }
+        catch(IllegalArgumentException e){}
+        
         // persist person toInsert
         dao.insertPerson(toInsert);
         // find person toInsert in database
@@ -127,6 +136,13 @@ public class PersonDAOImplTest {
     @Test//FAIL
     // test if it is possible to get person from DB using getPersonById()
     public void testGetPersonById() {
+        // try if bad input results in Exception
+        try{
+        dao.getPersonByID(null); 
+        fail("wrong input allowed!");
+        }        
+        catch(IndexOutOfBoundsException e){}
+        
         // get person using getPersonById method
         Person pers = dao.getPersonByID(person.getId());
         // pers should be not null
@@ -139,6 +155,13 @@ public class PersonDAOImplTest {
     @Test//FAIL
     // tests if person can be deleted using method deletePerson()
     public void testDeletePerson() {
+        // try if bad input results in Exception
+        try{
+        dao.deletePerson(null); 
+        fail("wrong input allowed!");
+        }        
+        catch(IndexOutOfBoundsException e){}
+        
         // delete person
         dao.deletePerson(person.getId());
         // person shoul be deleted
@@ -160,6 +183,22 @@ public class PersonDAOImplTest {
 
     @Test//FAIL
     public void testUpdatePerson() {
+        // try if bad input results in Exception
+        try{
+        dao.updatePerson(null, person.getId()); 
+        fail("wrong input allowed!");
+        }        
+        catch(IllegalArgumentException e){}
+        catch(NullPointerException e){}
+        
+        // try if bad input results in Exception
+        try{
+        dao.updatePerson(toInsert, null); 
+        fail("wrong input allowed!");
+        }        
+        catch(IndexOutOfBoundsException e){}
+        catch(IllegalArgumentException e){}
+        
         // update persisted person with new non-persisted person toInsert
         dao.updatePerson(toInsert, person.getId());
         // attributes e of person should be updated now
@@ -171,6 +210,13 @@ public class PersonDAOImplTest {
 
     @Test//FAIL
     public void testGetPeopleByName() {
+        // try if bad input results in Exception
+        try{
+        dao.getPeopleByName(null); 
+        fail("wrong input allowed!");
+        }        
+        catch(IllegalArgumentException e){}
+        
         // get people by name
         List<Person> list = dao.getPeopleByName("JOE");
         // list should not be empty
@@ -180,4 +226,6 @@ public class PersonDAOImplTest {
         assertEquals(persons, 3);
 
     }
+    
+    
 }
