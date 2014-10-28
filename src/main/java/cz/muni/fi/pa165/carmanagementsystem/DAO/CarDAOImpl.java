@@ -92,7 +92,7 @@ public class CarDAOImpl implements CarDAO {
         em.getTransaction().begin();
 
         // get all cars that are available. save them to list
-        String query = "SELECT c FROM Car c where isAvailibility=true";
+        String query = "SELECT c FROM Car c where availibility=true";
         List<Car> cars = em.createQuery(query,Car.class).getResultList();
 
         // cloese EntityManager

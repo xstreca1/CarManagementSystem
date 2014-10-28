@@ -111,7 +111,6 @@ public class CarDAOImplTest {
     public void testUpdateCar() {
         carDAO.updateCar(carForUpdate, car1.getCarID());
 
-        //Jozo, chyba ti tam getCarByID
         EntityManager em = carDAO.getEntityManagerFactory().createEntityManager();
         em.getTransaction().begin();
         Car updatedCar = em.find(Car.class, car1.getId());
