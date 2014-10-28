@@ -118,6 +118,10 @@ public class Car implements Serializable {
     
     //------------getters and setters--------------------
     
+    public Integer getCarID() {
+        return CarID;
+    }
+
     public String getVehicleRegPlate() {
         return vehicleRegPlate;
     }
