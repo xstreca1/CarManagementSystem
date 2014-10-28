@@ -5,6 +5,7 @@ import cz.muni.fi.pa165.carmanagementsystem.Entities.ServiceCheck;
 import cz.muni.fi.pa165.carmanagementsystem.Entities.ServiceCheck.ServiceCheckName;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 import javax.persistence.PersistenceUnit;
 import org.junit.After;
 import static org.junit.Assert.assertEquals;
@@ -39,7 +40,8 @@ public class ServiceCheckImplTest {
 
         ServiceCheck serviceCheck = new ServiceCheck();
         serviceCheck.setName(ServiceCheckName.TECHNICAL);
-        ServiceCheckDAOImpl dao = new ServiceCheckDAOImpl();
+        ServiceCheckDAOImpl dao 
+                = new ServiceCheckDAOImpl(Persistence.createEntityManagerFactory("carManagementSystem-unit"));
         dao.createServiceCheck(serviceCheck);
         
         ServiceCheck serviceCheck1 = new ServiceCheck();

@@ -1,7 +1,5 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Unit test for Data access object of entity class Car
  */
 package cz.muni.fi.pa165.carmanagementsystem;
 
@@ -111,7 +109,7 @@ public class CarDAOImplTest {
 
     @Test
     public void testUpdateCar() {
-        carDAO.updateCar(carForUpdate, car1.getVehicleRegPlate());
+        carDAO.updateCar(carForUpdate, car1.getCarID());
 
         //Jozo, chyba ti tam getCarByID
         EntityManager em = carDAO.getEntityManagerFactory().createEntityManager();
@@ -126,7 +124,7 @@ public class CarDAOImplTest {
     @Test
     public void testDeleteCar() {
         Integer id = car1.getCarID();
-        carDAO.deleteCar(car1.getVehicleRegPlate());
+        carDAO.deleteCar(car1.getCarID());
         assertNull(carDAO.getCarByID(id));
 
     }
