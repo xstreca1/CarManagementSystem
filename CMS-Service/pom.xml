@@ -3,8 +3,8 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>cz.muni.fi.PA165</groupId>
-        <artifactId>arManagementSystem</artifactId>
-        <version>0.8-SNAPSHOT</version>
+        <artifactId>CarManagementSystem</artifactId>
+        <version>1.0-SNAPSHOT</version>
     </parent>
     <groupId>cz.muni.fi.PA165</groupId>
     <artifactId>CMS-Service</artifactId>
