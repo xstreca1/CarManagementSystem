@@ -14,7 +14,7 @@ import javax.persistence.EntityManagerFactory;
 
 /**
  *
- * @author Jozef Puchly
+ * @author Jozko
  */
 public class CarDAOImpl implements CarDAO {
 
