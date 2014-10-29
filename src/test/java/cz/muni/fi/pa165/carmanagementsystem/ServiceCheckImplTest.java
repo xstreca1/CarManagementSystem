@@ -8,7 +8,10 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.EntityManager;
+
+
 import javax.persistence.Persistence;
+
 import org.junit.After;
 import org.junit.Assert;
 import static org.junit.Assert.assertEquals;
@@ -156,23 +159,6 @@ public class ServiceCheckImplTest {
         catch(IndexOutOfBoundsException e){}
         
 
-        dao.deleteServiceCheck(check1.getScID());
-
-        EntityManager em = dao.getEntityManagerFactory().createEntityManager();
-        em.getTransaction().begin();
-        Assert.assertFalse(em.contains(check1));
-        em.getTransaction().commit();
-        em.close();
-    }
-    
-    @Test
-    public void testGetDaysToNext() {
-        try{
-        dao.getDaysToNext(null); 
-        fail("wrong input allowed!");
-        }        
-        catch(IndexOutOfBoundsException e){}
-        
         Calendar nextControl = Calendar.getInstance();
         nextControl.setTime(date1);
         nextControl.add(Calendar.MONTH, check1.getServiceInterval());

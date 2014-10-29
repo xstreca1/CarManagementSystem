@@ -16,9 +16,9 @@ import java.util.List;
 public interface CarDAO {
     public void createCar(Car car);
     
-    public void updateCar(Car car, String vehicleRegPlate);
+    public void updateCar(Car car, Integer carID);
     
-    public void deleteCar(String vehicleRegPlate);
+    public void deleteCar(Integer carID);
     
     public List listAllAvailableCars();
     
