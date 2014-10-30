@@ -94,14 +94,16 @@ public class PersonDAOImpl implements PersonDAO {
         //EntityManagerFactory emf = Persistence.createEntityManagerFactory("carManagementSystem-unit");
         EntityManager em = emf.createEntityManager();
 
-        //begin of a transaction
-        em.getTransaction().begin();
+       
 
         //person is retrieved
         Person person = getPersonByID(personID);
         
+        //begin of a transaction
+        em.getTransaction().begin();
+        
         //person is removed from Database (TODO - cascading delete?)
-        em.remove(person);
+        em.remove(em.merge(person));
 
         //commiting changes and closing entity manager
         em.getTransaction().commit();
@@ -134,7 +136,10 @@ public class PersonDAOImpl implements PersonDAO {
 
     @Override
     public List<Person> getPeopleByName(String name) {
-
+        // check wrong input
+        if (name == null){
+            throw new IllegalArgumentException("Name can not be null!");
+        }
         //create emf and em in every method because of transactions
         //EntityManagerFactory emf
                 //= Persistence.createEntityManagerFactory("carManagementSystem-unit");
