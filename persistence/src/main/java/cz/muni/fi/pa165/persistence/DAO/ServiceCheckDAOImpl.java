@@ -94,8 +94,9 @@ public class ServiceCheckDAOImpl implements ServiceCheckDAO {
         em.getTransaction().begin();
 
         // delete serviceCheck from database according to its ID
-        String query = "DELETE s FROM ServiceCheck s WHERE s.scID = :ID";
-        em.createQuery(query, ServiceCheck.class).setParameter("ID", scID).executeUpdate();
+        String query = "SELECT s FROM ServiceCheck s WHERE s.scID = :ID";
+        ServiceCheck toDelete = em.createQuery(query, ServiceCheck.class).setParameter("ID", scID).getSingleResult();
+        em.remove(em.merge(toDelete));
         em.getTransaction().commit();
         em.close();
     }
