@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package cz.muni.fi.pa165.carmanagementsystem;
+package cz.muni.fi.pa165.CMSPersistenceLayer;
 
 import cz.muni.fi.pa165.CMSPersistenceLayer.DAO.PersonDAOImpl;
 import cz.muni.fi.pa165.CMSPersistenceLayer.Entities.Address;

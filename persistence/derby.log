@@ -1,0 +1,13 @@
+----------------------------------------------------------------
+Thu Oct 30 10:21:26 CET 2014:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.11.1.1 - (1616546): instance a816c00e-0149-605c-10d6-00000226cad8 
+on database directory memory:/home/jrumanov/NetBeansProjects/CarManagementSystem/persistence/testdb with class loader sun.misc.Launcher$AppClassLoader@9ba0281 
+Loaded from file:/home/jrumanov/.m2/repository/org/apache/derby/derby/10.11.1.1/derby-10.11.1.1.jar
+java.vendor=Oracle Corporation
+java.runtime.version=1.7.0_71-mockbuild_2014_10_15_17_02-b00
+user.dir=/home/jrumanov/NetBeansProjects/CarManagementSystem/persistence
+os.name=Linux
+os.arch=amd64
+os.version=3.16.6-200.fc20.x86_64
+derby.system.home=null
+Database Class Loader started - derby.database.classpath=''

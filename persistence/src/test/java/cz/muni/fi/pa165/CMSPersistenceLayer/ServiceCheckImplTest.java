@@ -1,4 +1,4 @@
-package cz.muni.fi.pa165.carmanagementsystem;
+package cz.muni.fi.pa165.CMSPersistenceLayer;
 
 import cz.muni.fi.pa165.CMSPersistenceLayer.DAO.ServiceCheckDAOImpl;
 import cz.muni.fi.pa165.CMSPersistenceLayer.Entities.Car;

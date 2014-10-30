@@ -10,11 +10,11 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>cz.muni.fi.PA165</groupId>
-    <artifactId>CMSPersistenceLayer</artifactId>
+    <artifactId>persistence</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>jar</packaging>
 
-    <name>CMSPersistenceLayer</name>
+    <name>persistence</name>
 
     <properties>
         <endorsed.dir>${project.build.directory}/endorsed</endorsed.dir>
