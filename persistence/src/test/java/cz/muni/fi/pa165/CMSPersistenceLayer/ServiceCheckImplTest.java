@@ -1,9 +1,9 @@
 package cz.muni.fi.pa165.CMSPersistenceLayer;
 
-import cz.muni.fi.pa165.CMSPersistenceLayer.DAO.ServiceCheckDAOImpl;
-import cz.muni.fi.pa165.CMSPersistenceLayer.Entities.Car;
-import cz.muni.fi.pa165.CMSPersistenceLayer.Entities.ServiceCheck;
-import cz.muni.fi.pa165.CMSPersistenceLayer.Entities.ServiceCheck.ServiceCheckName;
+import cz.muni.fi.pa165.persistence.DAO.ServiceCheckDAOImpl;
+import cz.muni.fi.pa165.persistence.Entities.Car;
+import cz.muni.fi.pa165.persistence.Entities.ServiceCheck;
+import cz.muni.fi.pa165.persistence.Entities.ServiceCheck.ServiceCheckName;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;

@@ -1,11 +1,11 @@
 /*
  * Concrete implementation of data access object for entity Person.
  */
-package cz.muni.fi.pa165.CMSPersistenceLayer.DAO;
+package cz.muni.fi.pa165.persistence.DAO;
 
-import cz.muni.fi.pa165.CMSPersistenceLayer.Entities.Address;
-import cz.muni.fi.pa165.CMSPersistenceLayer.Entities.Person;
-import cz.muni.fi.pa165.CMSPersistenceLayer.Entities.Person.EmploymentStatus;
+import cz.muni.fi.pa165.persistence.Entities.Address;
+import cz.muni.fi.pa165.persistence.Entities.Person;
+import cz.muni.fi.pa165.persistence.Entities.Person.EmploymentStatus;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.EntityManager;
@@ -94,16 +94,14 @@ public class PersonDAOImpl implements PersonDAO {
         //EntityManagerFactory emf = Persistence.createEntityManagerFactory("carManagementSystem-unit");
         EntityManager em = emf.createEntityManager();
 
-       
+        //begin of a transaction
+        em.getTransaction().begin();
 
         //person is retrieved
         Person person = getPersonByID(personID);
         
-        //begin of a transaction
-        em.getTransaction().begin();
-        
         //person is removed from Database (TODO - cascading delete?)
-        em.remove(em.merge(person));
+        em.remove(person);
 
         //commiting changes and closing entity manager
         em.getTransaction().commit();
@@ -136,10 +134,7 @@ public class PersonDAOImpl implements PersonDAO {
 
     @Override
     public List<Person> getPeopleByName(String name) {
-        // check wrong input
-        if (name == null){
-            throw new IllegalArgumentException("Name can not be null!");
-        }
+
         //create emf and em in every method because of transactions
         //EntityManagerFactory emf
                 //= Persistence.createEntityManagerFactory("carManagementSystem-unit");

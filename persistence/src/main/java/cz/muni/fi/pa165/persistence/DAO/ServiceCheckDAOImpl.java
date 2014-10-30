@@ -3,11 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package cz.muni.fi.pa165.CMSPersistenceLayer.DAO;
+package cz.muni.fi.pa165.persistence.DAO;
 
-import cz.muni.fi.pa165.CMSPersistenceLayer.Entities.Car;
-import cz.muni.fi.pa165.CMSPersistenceLayer.Entities.ServiceCheck;
-import cz.muni.fi.pa165.CMSPersistenceLayer.Entities.ServiceCheck.ServiceCheckName;
+import cz.muni.fi.pa165.persistence.Entities.Car;
+import cz.muni.fi.pa165.persistence.Entities.ServiceCheck;
+import cz.muni.fi.pa165.persistence.Entities.ServiceCheck.ServiceCheckName;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -149,7 +149,6 @@ public class ServiceCheckDAOImpl implements ServiceCheckDAO {
         }
         // create new EntityManager
         EntityManager em = emf.createEntityManager();
-        em.getTransaction().begin();
 
         // get information about serviceCheck from database according to car (car is able to have more chcecks assigned). Save them to List.
         String query = "SELECT s FROM ServiceCheck s WHERE s.car= :scCar";

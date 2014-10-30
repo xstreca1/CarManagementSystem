@@ -3,8 +3,8 @@
  */
 package cz.muni.fi.pa165.CMSPersistenceLayer;
 
-import cz.muni.fi.pa165.CMSPersistenceLayer.DAO.CarDAOImpl;
-import cz.muni.fi.pa165.CMSPersistenceLayer.Entities.Car;
+import cz.muni.fi.pa165.persistence.DAO.CarDAOImpl;
+import cz.muni.fi.pa165.persistence.Entities.Car;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;

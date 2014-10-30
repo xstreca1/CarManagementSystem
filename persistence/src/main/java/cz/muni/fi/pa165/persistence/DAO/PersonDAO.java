@@ -1,9 +1,9 @@
 /*
  * Data access object interface for entity Person.
  */
-package cz.muni.fi.pa165.CMSPersistenceLayer.DAO;
+package cz.muni.fi.pa165.persistence.DAO;
 
-import cz.muni.fi.pa165.CMSPersistenceLayer.Entities.Person;
+import cz.muni.fi.pa165.persistence.Entities.Person;
 import java.util.List;
 
 /**

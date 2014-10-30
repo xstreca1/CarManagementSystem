@@ -5,9 +5,9 @@
  */
 package cz.muni.fi.pa165.CMSPersistenceLayer;
 
-import cz.muni.fi.pa165.CMSPersistenceLayer.DAO.PersonDAOImpl;
-import cz.muni.fi.pa165.CMSPersistenceLayer.Entities.Address;
-import cz.muni.fi.pa165.CMSPersistenceLayer.Entities.Person;
+import cz.muni.fi.pa165.persistence.DAO.PersonDAOImpl;
+import cz.muni.fi.pa165.persistence.Entities.Address;
+import cz.muni.fi.pa165.persistence.Entities.Person;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
