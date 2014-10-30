@@ -200,22 +200,23 @@ public class ServiceCheckImplTest {
 
     }
 
-    @Test
+    @Test // PASS
     public void testServiceCheckDelete() {
         try {
             dao.deleteServiceCheck(null);
             fail("wrong input allowed!");
-        } catch (IndexOutOfBoundsException e) {
+        } catch (IllegalArgumentException e) {
         }
+        // delete service check
+        dao.deleteServiceCheck(check1.getScID());
+        // service check should be deleted
+        EntityManager em = dao.getEntityManagerFactory().createEntityManager();
+        em.getTransaction().begin();
+        Assert.assertFalse(em.contains(check1));
+        em.getTransaction().commit();
+        em.close();
 
-        Calendar nextControl = Calendar.getInstance();
-        nextControl.setTime(date1);
-        nextControl.add(Calendar.MONTH, check1.getServiceInterval());
-        Calendar now = Calendar.getInstance();
-        now.getTime();
-        int days = nextControl.get(Calendar.DATE) - now.get(Calendar.DATE);
-        int number = dao.getDaysToNext(check1.getScID());
-        Assert.assertEquals(number, days);
+       
     }
 
     @Test // OK, just testing if list is not empty and if it contains exactly one check
