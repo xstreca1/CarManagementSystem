@@ -101,5 +101,27 @@ public class LeaseDAOImpl implements LeaseDAO {
 
         return leases;
     }
+    
+
+    @Override
+    public Lease getLeaseByID(Integer ID) {
+         //create Entity Manager
+        //EntityManagerFactory emf = Persistence.createEntityManagerFactory("carManagementSystem-unit");
+        EntityManager em = emf.createEntityManager();
+
+        //begin of a transaction
+        em.getTransaction().begin();
+
+        //actual query
+        String sql = "SELECT l FROM Lease l WHERE l.id=:leaseID";
+        Lease lease = em.createQuery(sql, Lease.class)
+                .setParameter("leaseID", ID).getResultList().get(0);
+
+        //commiting changes and closing entity manager
+        em.getTransaction().commit();
+        em.close();
+
+        return lease;
+    }
 
 }
