@@ -8,12 +8,12 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.EntityManager;
-
 import javax.persistence.Persistence;
-
 import org.junit.After;
 import org.junit.Assert;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.fail;
 import org.junit.BeforeClass;
@@ -32,6 +32,7 @@ public class ServiceCheckImplTest {
     private static ServiceCheck check2;
     private static ServiceCheck check3;
     private static ServiceCheck checkInsert;
+    private static ServiceCheck updatedCheck;
     private static Car car1;
     private static Car car2;
     private static Car car3;
@@ -129,6 +130,14 @@ public class ServiceCheckImplTest {
         checkInsert.setDescription("vw");
         checkInsert.setCar(car3);
         checkInsert.setName(ServiceCheckName.OVERALL);
+        
+
+        updatedCheck = new ServiceCheck();
+        updatedCheck.setServiceInterval(40);
+        updatedCheck.setLastCheck(date3);
+        updatedCheck.setDescription("vw");
+        updatedCheck.setCar(car3);
+        updatedCheck.setName(ServiceCheckName.OVERALL);
     }
 
     @After
@@ -182,22 +191,22 @@ public class ServiceCheckImplTest {
         } catch (IndexOutOfBoundsException | IllegalArgumentException e) {
         }
 
-        ServiceCheck updatedCheck = new ServiceCheck();
-
-        updatedCheck.setServiceInterval(40);
-        updatedCheck.setLastCheck(date3);
-        updatedCheck.setDescription("vw");
-        updatedCheck.setCar(car3);
-        updatedCheck.setName(ServiceCheckName.OVERALL);
-
         dao.updateServiceCheck(updatedCheck, check3.getScID());
+        
+        EntityManager em = dao.getEntityManagerFactory().createEntityManager();
+        
+        em.getTransaction().begin();
+        
+        ServiceCheck serviceCheck2 = (ServiceCheck)em.find(ServiceCheck.class ,check3.getScID());
 
-        assertEquals(check3.getServiceInterval(), 40);
-        assertEquals(check3.getLastCheck(), date3);
-        assertEquals(check3.getDescription(), "vw");
-        assertEquals(check3.getCar(), car3);
-        assertEquals(check3.getName(), "OVERALL");
+        assertEquals(serviceCheck2.getServiceInterval(), 40);
+        assertEquals(serviceCheck2.getLastCheck(), updatedCheck.getLastCheck());
+        assertEquals(serviceCheck2.getDescription(), updatedCheck.getDescription());
+        assertEquals(serviceCheck2.getCar(), updatedCheck.getCar());
+        assertEquals(serviceCheck2.getName(), updatedCheck.getName());
 
+        em.getTransaction().commit();
+        em.close();
     }
 
     @Test // PASS
