@@ -62,7 +62,7 @@ public class CarDAOImplTest {
         carForInsert.setNumberOfSeats(2);
         carForInsert.setTransmission(true);
 
-        carForUpdate.setAvailibility(true);
+        carForUpdate.setAvailibility(false);
         carForUpdate.setBrand("Lada");
         carForUpdate.setTypeName("2101");
         carForUpdate.setVIN("SDFGK345NFMN");
@@ -110,11 +110,11 @@ public class CarDAOImplTest {
     @Test
     public void testUpdateCar() {
         carDAO.updateCar(carForUpdate, car1.getCarID());
-
         EntityManager em = carDAO.getEntityManagerFactory().createEntityManager();
         em.getTransaction().begin();
         Car updatedCar = em.find(Car.class, car1.getId());
-        Assert.assertEquals("2101", updatedCar.getTypeName());
+        Assert.assertEquals(carForUpdate.getMileage(), updatedCar.getMileage());
+        Assert.assertEquals(carForUpdate.isAvailibility(), updatedCar.isAvailibility());
         em.getTransaction().commit();
         em.close();
 
