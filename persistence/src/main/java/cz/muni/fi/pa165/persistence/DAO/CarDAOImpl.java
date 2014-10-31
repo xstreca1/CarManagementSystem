@@ -65,14 +65,13 @@ public class CarDAOImpl implements CarDAO {
     }
 
     @Override
-    public void deleteCar(Integer personID) {
+    public void deleteCar(Integer carID) {
         // create new EntityManager
         EntityManager em = emf.createEntityManager();
         
-        em.getTransaction().begin();
-
-        // delete car from DB according to its ID
-        Car car = getCarByID(personID);
+        Car car = em.find(Car.class, carID);
+        
+        em.getTransaction().begin();       
         
         em.remove(car);
         
@@ -90,8 +89,9 @@ public class CarDAOImpl implements CarDAO {
         em.getTransaction().begin();
 
         // get all cars that are available. save them to list
-        String query = "SELECT c FROM Car c where availibility=true";
-        List<Car> cars = em.createQuery(query,Car.class).getResultList();
+        String query = "SELECT c FROM Car c WHERE c.availibility = :available";
+        List<Car> cars = em.createQuery(query,Car.class).
+                setParameter("available", true).getResultList();
 
         // cloese EntityManager
         em.getTransaction().commit();
