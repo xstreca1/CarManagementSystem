@@ -217,11 +217,11 @@ public class ServiceCheckImplTest {
         } catch (IllegalArgumentException e) {
         }
         // delete service check
-        dao.deleteServiceCheck(check1.getScID());
+        dao.deleteServiceCheck(check2.getScID());
         // service check should be deleted
         EntityManager em = dao.getEntityManagerFactory().createEntityManager();
         em.getTransaction().begin();
-        Assert.assertFalse(em.contains(check1));
+        Assert.assertFalse(em.contains(check2));
         em.getTransaction().commit();
         em.close();
 
