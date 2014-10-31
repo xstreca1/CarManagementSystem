@@ -28,6 +28,7 @@ public class CarDAOImplTest {
             = new CarDAOImpl(Persistence.createEntityManagerFactory("carManagementSystem-unit"));
 
     private static Car car1 = new Car();
+    private static Car car2 = new Car();
     private static Car carForInsert = new Car();
     private static Car carForUpdate = new Car();
 
@@ -48,6 +49,19 @@ public class CarDAOImplTest {
         car1.setMileage(55000);
         car1.setNumberOfSeats(5);
         car1.setTransmission(true);
+        
+        car2.setAvailibility(false);
+        car2.setBrand("Citroen");
+        car2.setTypeName("Berlingo");
+        car2.setVIN("AJGSKA1234GF");
+        car2.setVehicleRegPlate("TN-112CA");
+        car2.setYearOfManufacture(1996);
+        car2.setEngineDisplacement((float) 1.4);
+        car2.setEnginePower(66);
+        car2.setGasConsumption((float) 7.3);
+        car2.setMileage(56000);
+        car2.setNumberOfSeats(4);
+        car2.setTransmission(true);
 
         carForInsert.setAvailibility(false);
         carForInsert.setBrand("Porsche");
@@ -76,6 +90,7 @@ public class CarDAOImplTest {
         carForUpdate.setTransmission(true);
 
         em.persist(car1);
+        em.persist(car2);
 
         em.getTransaction().commit();
         em.close();
@@ -90,7 +105,7 @@ public class CarDAOImplTest {
         EntityManager em = carDAO.getEntityManagerFactory().createEntityManager();
         em.getTransaction().begin();
         List<Car> c = em.createQuery("SELECT c FROM Car c", Car.class).getResultList();
-        assertEquals(c.size(), 1);
+        assertEquals(c.size(), 2);
         em.getTransaction().commit();
         em.close();
     }
@@ -122,11 +137,11 @@ public class CarDAOImplTest {
 
     @Test
     public void testDeleteCar() {
-        Integer id = car1.getCarID();
-        carDAO.deleteCar(car1.getCarID());
+        Integer id = car2.getCarID();
+        carDAO.deleteCar(car2.getCarID());
         EntityManager em = carDAO.getEntityManagerFactory().createEntityManager();
         em.getTransaction().begin();
-        Assert.assertFalse(em.contains(car1));
+        Assert.assertFalse(em.contains(car2));
         em.getTransaction().commit();
         em.close();
 
@@ -135,7 +150,7 @@ public class CarDAOImplTest {
     @Test
     public void testListAllAvailableCars() {
         List<Car> cars = carDAO.listAllAvailableCars();
-        assertEquals(1, cars.size());
+        assertEquals(0, cars.size());
     }
 
     @Test
