@@ -42,24 +42,24 @@ public class CarDAOImpl implements CarDAO {
 
        //create Entity Manager
         //EntityManagerFactory emf = Persistence.createEntityManagerFactory("carManagementSystem-unit");
-        EntityManager em = emf.createEntityManager();
-
-        //begin of a transaction
-        em.getTransaction().begin();
+        EntityManager em = emf.createEntityManager();    
 
         //get all updatable attributes from the updated car entity instance
         Integer mileage = car.getMileage();
         Boolean availibility = car.isAvailibility();
         
-        //actual query
-        String sql = "UPDATE Car c SET c.mileage = :mileage, "
-                + "c.availibility = :availibility";
+        //begin of a transaction
+        em.getTransaction().begin(); 
         
-        em.createQuery(sql).setParameter("mileage", mileage)
-                .setParameter("availibility", availibility)
-                .executeUpdate();
+        //find car to be updated in DB
+        Car car1 = (Car)em.find(Car.class ,carID);
+        
+        //change attributes of persisted entity in DB
+        car1.setMileage(mileage);
+        car1.setAvailibility(availibility);
 
         //commiting changes and closing entity manager
+        
         em.getTransaction().commit();
         em.close();
     }
