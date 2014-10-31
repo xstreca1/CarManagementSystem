@@ -84,16 +84,16 @@ public class PersonDAOImpl implements PersonDAO {
 
     @Override
     public void deletePerson(Integer personID) {
-
+        
         //create Entity Manager
         //EntityManagerFactory emf = Persistence.createEntityManagerFactory("carManagementSystem-unit");
         EntityManager em = emf.createEntityManager();
 
+        //person is retrieved
+        Person person = em.find(Person.class, 1);
+        
         //begin of a transaction
         em.getTransaction().begin();
-
-        //person is retrieved
-        Person person = getPersonByID(personID);
         
         //person is removed from Database (TODO - cascading delete?)
         em.remove(person);
