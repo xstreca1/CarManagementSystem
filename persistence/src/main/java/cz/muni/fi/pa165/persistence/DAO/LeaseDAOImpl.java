@@ -75,7 +75,7 @@ public class LeaseDAOImpl implements LeaseDAO {
     }
 
     @Override
-    public List getLeasesByPerson(String personId) {
+    public List getLeasesByPerson(Integer personId) {
 
         EntityManager em = emf.createEntityManager();
 
