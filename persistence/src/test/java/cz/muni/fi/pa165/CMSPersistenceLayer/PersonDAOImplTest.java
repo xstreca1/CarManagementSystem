@@ -7,6 +7,7 @@ package cz.muni.fi.pa165.CMSPersistenceLayer;
 
 import cz.muni.fi.pa165.persistence.DAO.PersonDAOImpl;
 import cz.muni.fi.pa165.persistence.Entities.Address;
+import cz.muni.fi.pa165.persistence.Entities.Car;
 import cz.muni.fi.pa165.persistence.Entities.Person;
 import java.util.List;
 import javax.persistence.EntityManager;
@@ -201,11 +202,17 @@ public class PersonDAOImplTest {
         
         // update persisted person with new non-persisted person toInsert
         dao.updatePerson(toInsert, person.getId());
+        
+        EntityManager em = dao.getEntityManagerFactory().createEntityManager();
+        em.getTransaction().begin();
+        Person updatedPerson = em.find(Person.class, person.getId());
         // attributes e of person should be updated now
-        assertEquals(person.getName(), "TEST");
-        assertEquals(person.getPosition(), "Developer");
-        assertEquals(person.getNationality(), "US");
-        assertEquals(person.getSalary(), 45_000);
+        assertEquals(updatedPerson.getName(), "TEST");
+        assertEquals(updatedPerson.getPosition(), "Developer");
+        assertEquals(updatedPerson.getNationality(), "US");
+        assertEquals(updatedPerson.getSalary(), 45_000);
+        em.getTransaction().commit();
+        em.close();
     }
 
     @Test//FAIL
