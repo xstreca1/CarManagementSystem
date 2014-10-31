@@ -59,8 +59,7 @@ public class ServiceCheckDAOImpl implements ServiceCheckDAO {
         em.getTransaction().begin();
 
         // get instance of ServiceCheck according to its ID. Save this instance to variable "update"
-        String query = "SELECT s FROM ServiceCheck s WHERE s.scID = :ID";;
-        ServiceCheck update = em.createQuery(query, ServiceCheck.class).setParameter("ID", scID).getSingleResult();
+        ServiceCheck serviceCheck2 = (ServiceCheck)em.find(ServiceCheck.class ,scID);
 
         // get new values of attributes
         ServiceCheckName newName = serviceCheck.getName();
@@ -70,14 +69,13 @@ public class ServiceCheckDAOImpl implements ServiceCheckDAO {
         Car newCar = serviceCheck.getCar();
 
         // replace actual values with new values
-        update.setName(newName);
-        update.setServiceInterval(newServiceInterval);
-        update.setLastCheck(newLastCheck);
-        update.setDescription(newDescription);
-        update.setCar(newCar);
+        serviceCheck2.setName(newName);
+        serviceCheck2.setServiceInterval(newServiceInterval);
+        serviceCheck2.setLastCheck(newLastCheck);
+        serviceCheck2.setDescription(newDescription);
+        serviceCheck2.setCar(newCar);
 
         // save updated serviceCheck to database
-        em.persist(update);
         em.getTransaction().commit();
         em.close();
 
