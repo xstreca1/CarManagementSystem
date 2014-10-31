@@ -124,7 +124,11 @@ public class CarDAOImplTest {
     public void testDeleteCar() {
         Integer id = car1.getCarID();
         carDAO.deleteCar(car1.getCarID());
-        assertNull(carDAO.getCarByID(id));
+        EntityManager em = carDAO.getEntityManagerFactory().createEntityManager();
+        em.getTransaction().begin();
+        Assert.assertFalse(em.contains(car1));
+        em.getTransaction().commit();
+        em.close();
 
     }
 
