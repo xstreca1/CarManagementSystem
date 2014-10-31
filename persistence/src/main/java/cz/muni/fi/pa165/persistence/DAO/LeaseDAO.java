@@ -47,7 +47,7 @@ public interface LeaseDAO {
      * @param personId id of person
      * @return list of leases for person
      */
-    public List getLeasesByPerson(String personId);
+    public List getLeasesByPerson(Integer personId);
     
     /**
      * Shows all leases of a certain period
