@@ -4,6 +4,7 @@
 package cz.muni.fi.pa165.persistence.DAO;
 
 import cz.muni.fi.pa165.persistence.Entities.Address;
+import cz.muni.fi.pa165.persistence.Entities.Car;
 import cz.muni.fi.pa165.persistence.Entities.Person;
 import cz.muni.fi.pa165.persistence.Entities.Person.EmploymentStatus;
 import java.util.Date;
@@ -65,22 +66,16 @@ public class PersonDAOImpl implements PersonDAO {
         String position = updatedPerson.getPosition();
         int salary = updatedPerson.getSalary();
         
-        //actual query
-        String sql = "UPDATE Person p SET p.address = :addr, "
-                + "p.dateOfBirth = :birth, p.employmentStatus = :empStat,"
-                + "p.name = :name, p.nationality = :nationality,"
-                + "p.position = :position, p.salary = :salary"
-                + "WHERE p.id= :persID";
+        Person person1 = (Person)em.find(Person.class ,personID);
         
-        em.createQuery(sql).setParameter("addr", address)
-                .setParameter("birth", dateOfBirth)
-                .setParameter("empStat", empStat)
-                .setParameter("name", name)
-                .setParameter("nationality", nationality)
-                .setParameter("position", position)
-                .setParameter("salary", salary)
-                .setParameter("persID", personID)
-                .executeUpdate();
+        //change attributes of persisted entity in DB
+        person1.setAddress(address);
+        person1.setEmploymentStatus(empStat);
+        person1.setName(name);
+        person1.setNationality(nationality);
+        person1.setPosition(position);
+        person1.setSalary(salary);
+
 
         //commiting changes and closing entity manager
         em.getTransaction().commit();
