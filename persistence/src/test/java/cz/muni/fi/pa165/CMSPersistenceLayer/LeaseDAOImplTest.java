@@ -35,12 +35,14 @@ public class LeaseDAOImplTest {
     private static Lease lease;
     private static Lease lease2;
     private static Lease toInsert;
+    private static Lease toUpdate;
     private static Person person;
     private static Date date1 = new Date(1500000);
     private static Date date2 = new Date(1600000);
-    private static Date date3 = new Date(1700000);
-    private static Date date4 = new Date(1800000);
+    private static Date date3 = new Date(1700000000);
+    private static Date date4 = new Date(1800000000);
     private static Car  car1 = new Car();
+    private static Car car2 = new Car();
     
     
     @BeforeClass
@@ -58,10 +60,10 @@ public class LeaseDAOImplTest {
         
         lease2 = new Lease();
         lease2.setCarMileage(car1.getMileage());
-        lease.setDateOfLease(date3);
-        lease.setDateOfReturn(date4);
-        lease.setIsClosed(true);
-        lease.setCar(car1);
+        lease2.setDateOfLease(date3);
+        lease2.setDateOfReturn(date4);
+        lease2.setIsClosed(true);
+        lease2.setCar(car1);
         
         //create car
         car1.setAvailibility(true);
@@ -77,6 +79,19 @@ public class LeaseDAOImplTest {
         car1.setNumberOfSeats(4);
         car1.setTransmission(true);
         
+        car2.setAvailibility(false);
+        car2.setBrand("Citroen");
+        car2.setTypeName("Berlingo");
+        car2.setVIN("AJGSKA1234GF");
+        car2.setVehicleRegPlate("TN-112CA");
+        car2.setYearOfManufacture(1996);
+        car2.setEngineDisplacement((float) 1.4);
+        car2.setEnginePower(66);
+        car2.setGasConsumption((float) 7.3);
+        car2.setMileage(56000);
+        car2.setNumberOfSeats(4);
+        car2.setTransmission(true);
+        
         //create person
         person = new Person();
         person.setName("JOHN");
@@ -89,6 +104,7 @@ public class LeaseDAOImplTest {
         em.persist(lease);
         em.persist(lease2);
         em.persist(car1);
+        em.persist(car2);
         em.persist(person);
         em.getTransaction().commit();
         em.close();
@@ -100,6 +116,13 @@ public class LeaseDAOImplTest {
         toInsert.setDateOfReturn(date4);
         toInsert.setIsClosed(true);
         toInsert.setCar(car1);
+        
+        toUpdate = new Lease();
+        toUpdate.setCarMileage(car2.getMileage());
+        toUpdate.setDateOfLease(date3);
+        toUpdate.setDateOfReturn(date4);
+        toUpdate.setIsClosed(false);
+        toUpdate.setCar(car2);
     }
     
     @AfterClass
@@ -142,25 +165,33 @@ public class LeaseDAOImplTest {
     /**
      * Test of updateLease method, of class LeaseDAOImpl.
      */
-/**    @Test
+    @Test
     public void testUpdateLease() {
-        System.out.println("updateLease");
-        Lease lease = null;
-        int leaseId = 0;
-        LeaseDAOImpl instance = new LeaseDAOImpl();
-        instance.updateLease(lease, leaseId);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        dao.updateLease(toUpdate, lease2.getLeaseId());
+        EntityManager em = dao.getEntityManagerFactory().createEntityManager();
+        em.getTransaction().begin();
+        Lease updatedLease = em.find(Lease.class, lease2.getLeaseId());
+        Assert.assertEquals(updatedLease.getCar(), toUpdate.getCar());
+        Assert.assertEquals(updatedLease.getIsClosed(), toUpdate.getIsClosed());
+        Assert.assertEquals(date3, toUpdate.getDateOfLease());
+        Assert.assertEquals(updatedLease.getDateOfReturn(), toUpdate.getDateOfReturn());
+        Assert.assertEquals(updatedLease.getCarMileage(), toUpdate.getCarMileage());
+        em.getTransaction().commit();
+        em.close();
     }
-*/
+
     /**
      * Test of deleteLease method, of class LeaseDAOImpl.
      */
     @Test
     public void testDeleteLease() {
         Integer id = lease.getLeaseId();
+        EntityManager em = dao.getEntityManagerFactory().createEntityManager();
         dao.deleteLease(lease.getLeaseId());
-        assertNull(dao.getLeaseByID(id));
+        em.getTransaction().begin();
+        Assert.assertFalse(em.contains(lease));
+        em.getTransaction().commit();
+        em.close();
     }
 
     /**
