@@ -38,26 +38,26 @@ public class LeaseDAOImpl implements LeaseDAO {
     @Override
     public void updateLease(Lease lease, int leaseId) {
         EntityManager em = emf.createEntityManager();
-        em.getTransaction().begin();
-
-        String query = "SELECT * FROM Lease WHERE leaseId='" + leaseId + "'";
-        Lease update = em.createQuery(query, Lease.class).getSingleResult();
+        
 
         int carMileage = lease.getCarMileage();
-        Date dateOfLease = lease.getDateOfLease();
-        Date dateOfReturn = lease.getDateOfReturn();
+        Date dateOfLease = new Date (lease.getDateOfLease().getTime());
+        Date dateOfReturn = new Date (lease.getDateOfReturn().getTime());
         Boolean isClosed = lease.getIsClosed();
         Car car = lease.getCar();
         Person person = lease.getPerson();
+        
+        em.getTransaction().begin();
+        
+        Lease lease1 = (Lease)em.find(Lease.class ,leaseId);
 
-        update.setCarMileage(carMileage);
-        update.setDateOfLease(dateOfLease);
-        update.setDateOfReturn(dateOfReturn);
-        update.setIsClosed(isClosed);
-        update.setCar(car);
-        update.setPerson(person);
+        lease1.setCarMileage(carMileage);
+        lease1.setDateOfLease(dateOfLease);
+        lease1.setDateOfReturn(dateOfReturn);
+        lease1.setIsClosed(isClosed);
+        lease1.setCar(car);
+        lease1.setPerson(person);
 
-        em.persist(update);
         em.getTransaction().commit();
         em.close();
     }
@@ -68,8 +68,10 @@ public class LeaseDAOImpl implements LeaseDAO {
         EntityManager em = emf.createEntityManager();
         em.getTransaction().begin();
 
-        String query = "DELETE * FROM Lease WHERE leaseId='" + leaseId + "'";
-        em.createQuery(query).executeUpdate();
+        Lease lease = (Lease)em.find(Lease.class ,leaseId);
+        
+        em.remove(lease);
+        
         em.getTransaction().commit();
         em.close();
     }
@@ -79,7 +81,7 @@ public class LeaseDAOImpl implements LeaseDAO {
 
         EntityManager em = emf.createEntityManager();
 
-        String query = "SELECT * FROM Lease WHERE personId='" + personId + "'";//TODO
+        String query = "SELECT k FROM Lease k WHERE k.personId='" + personId + "'";//TODO
         List<Lease> leases = em.createQuery(query).getResultList();
 
         em.getTransaction().commit();
