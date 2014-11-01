@@ -37,10 +37,10 @@ public class LeaseDAOImplTest {
     private static Lease toInsert;
     private static Lease toUpdate;
     private static Person person;
-    private static Date date1 = new Date(1500000);
-    private static Date date2 = new Date(1600000);
-    private static Date date3 = new Date(1700000000);
-    private static Date date4 = new Date(1800000000);
+    private static Date date1;
+    private static Date date2;
+    private static Date date3;
+    private static Date date4;
     private static Car  car1 = new Car();
     private static Car car2 = new Car();
     
@@ -99,6 +99,11 @@ public class LeaseDAOImplTest {
         person.setPosition("HR");
         person.setNationality("US");
         person.setSalary(25_000);
+        
+        date1 = new Date(2014, 1, 1);
+        date2 = new Date(2014, 1, 2);
+        date3 = new Date(2014, 1, 3);
+        date4 = new Date(2014, 1, 4);
         
         //persist leases
         em.persist(lease);
