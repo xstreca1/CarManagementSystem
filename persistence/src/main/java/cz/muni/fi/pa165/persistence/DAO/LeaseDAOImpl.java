@@ -41,8 +41,8 @@ public class LeaseDAOImpl implements LeaseDAO {
         
 
         int carMileage = lease.getCarMileage();
-        Date dateOfLease = new Date (lease.getDateOfLease().getTime());
-        Date dateOfReturn = new Date (lease.getDateOfReturn().getTime());
+        Date dateOfLease = lease.getDateOfLease();
+        Date dateOfReturn = lease.getDateOfReturn();
         Boolean isClosed = lease.getIsClosed();
         Car car = lease.getCar();
         Person person = lease.getPerson();
@@ -94,9 +94,14 @@ public class LeaseDAOImpl implements LeaseDAO {
     public List getAllLeases(Date from, Date until) {
 
         EntityManager em = emf.createEntityManager();
+        
+        em.getTransaction().begin();
 
-        String query = "SELECT * FROM Lease WHERE date BETWEEN '" + from + " ' AND '" + until + " '";
-        List<Lease> leases = em.createQuery(query).getResultList();
+        String query = "SELECT k FROM Lease k WHERE k.dateOfLease BETWEEN :from AND :until";
+        
+        List<Lease> leases = em.createQuery(query, Lease.class).
+                setParameter("from", from).setParameter("until", until)
+                .getResultList();
 
         em.getTransaction().commit();
         em.close();
