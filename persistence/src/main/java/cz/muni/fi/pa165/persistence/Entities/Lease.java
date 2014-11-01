@@ -92,22 +92,16 @@ public class Lease implements Serializable {
      * @return the dateOfLease
      */
     public Date getDateOfLease() {
-        if(dateOfLease == null) {
-            return null;
-        } else {
-            return new Date(dateOfLease.getTime());
-        }
+        
+        return dateOfLease;
     }
 
     /**
      * @return the dateOfReturn
      */
     public Date getDateOfReturn() {
-        if(dateOfReturn == null) {
-            return null;
-        } else {
-            return new Date(dateOfReturn.getTime());
-        }
+      
+        return dateOfReturn;
     }
     
     /**
@@ -153,11 +147,9 @@ public class Lease implements Serializable {
      * @param dateOfLease date of lease
      */
     public void setDateOfLease(Date dateOfLease) {
-        if(dateOfLease == null) {
-            this.dateOfLease = null;
-        } else {
-            this.dateOfLease = new Date(dateOfLease.getTime());
-        }
+        
+        this.dateOfLease = dateOfLease;
+        
     }
     
     /**
@@ -166,11 +158,8 @@ public class Lease implements Serializable {
      * @param dateOfReturn date of return
      */
     public void setDateOfReturn(Date dateOfReturn) {
-        if(dateOfReturn == null) {
-            this.dateOfReturn = null;
-        } else {
-            this.dateOfReturn = new Date(dateOfReturn.getTime());
-        }
+        
+        this.dateOfReturn = dateOfReturn;
     }
 
     /**
