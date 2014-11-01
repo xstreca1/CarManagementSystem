@@ -39,6 +39,7 @@ public class PersonDAOImplTest {
     private static Person person3;
     private static Person person4;
     private static Person toInsert;
+    private static Person toUpdate;
 
     @BeforeClass
     public static void setUpClass() {
@@ -92,6 +93,13 @@ public class PersonDAOImplTest {
         toInsert.setPosition("Developer");
         toInsert.setNationality("US");
         toInsert.setSalary(45_000);
+        
+        toUpdate = new Person();
+        toUpdate.setName("UPDATE");
+        toUpdate.setAddress(new Address());
+        toUpdate.setPosition("Developer");
+        toUpdate.setNationality("CZ");
+        toUpdate.setSalary(46_000);
 
     }
 
@@ -165,11 +173,11 @@ public class PersonDAOImplTest {
        */
         
         // delete person
-        dao.deletePerson(person.getId());
+        dao.deletePerson(person4.getId());
         // person shoul be deleted
         EntityManager em = dao.getEntityManagerFactory().createEntityManager();
         em.getTransaction().begin();
-        Assert.assertFalse(em.contains(person));
+        Assert.assertFalse(em.contains(person4));
         em.getTransaction().commit();
         em.close();
     }
@@ -187,7 +195,7 @@ public class PersonDAOImplTest {
     public void testUpdatePerson() {
         // try if bad input results in Exception
         try{
-        dao.updatePerson(null, person.getId()); 
+        dao.updatePerson(null, person2.getId()); 
         fail("wrong input allowed!");
         }        
         catch(IllegalArgumentException e){}
@@ -195,23 +203,23 @@ public class PersonDAOImplTest {
         
         // try if bad input results in Exception
         try{
-        dao.updatePerson(toInsert, null); 
+        dao.updatePerson(toUpdate, null); 
         fail("wrong input allowed!");
         }        
         catch(IndexOutOfBoundsException e){}
         catch(IllegalArgumentException e){}
         
         // update persisted person with new non-persisted person toInsert
-        dao.updatePerson(toInsert, person.getId());
+        dao.updatePerson(toUpdate, person2.getId());
         
         EntityManager em = dao.getEntityManagerFactory().createEntityManager();
         em.getTransaction().begin();
-        Person updatedPerson = em.find(Person.class, person.getId());
+        Person updatedPerson = em.find(Person.class, person2.getId());
         // attributes e of person should be updated now
-        assertEquals(updatedPerson.getName(), "TEST");
-        assertEquals(updatedPerson.getPosition(), "Developer");
-        assertEquals(updatedPerson.getNationality(), "US");
-        assertEquals(updatedPerson.getSalary(), 45_000);
+        assertEquals(updatedPerson.getName(), toUpdate.getName());
+        assertEquals(updatedPerson.getPosition(), toUpdate.getPosition());
+        assertEquals(updatedPerson.getNationality(), toUpdate.getNationality());
+        assertEquals(updatedPerson.getSalary(), toUpdate.getSalary());
         em.getTransaction().commit();
         em.close();
     }
