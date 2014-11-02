@@ -16,6 +16,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.fail;
+import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
@@ -40,8 +41,8 @@ public class ServiceCheckImplTest {
     private static Date date2;
     private static Date date3;
 
-    @BeforeClass
-    public static void setUpClass() {
+    @Before
+    public void setUpClass() {
         EntityManager em = dao.getEntityManagerFactory().createEntityManager();
         em.getTransaction().begin();
 
@@ -142,6 +143,11 @@ public class ServiceCheckImplTest {
 
     @After
     public void tearDown() {
+        
+        EntityManager em = dao.getEntityManagerFactory().createEntityManager();
+        em.getTransaction().begin();
+        em.createQuery("DELETE FROM ServiceCheck").executeUpdate();
+        em.getTransaction().commit();
 
     }
 

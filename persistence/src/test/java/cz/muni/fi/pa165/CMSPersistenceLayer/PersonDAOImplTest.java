@@ -41,8 +41,8 @@ public class PersonDAOImplTest {
     private static Person toInsert;
     private static Person toUpdate;
 
-    @BeforeClass
-    public static void setUpClass() {
+    @Before
+    public void setUpClass() {
         EntityManager em = dao.getEntityManagerFactory().createEntityManager();
         em.getTransaction().begin();
 
@@ -105,6 +105,11 @@ public class PersonDAOImplTest {
 
     @After
     public void tearDown() {
+        
+        EntityManager em = dao.getEntityManagerFactory().createEntityManager();
+        em.getTransaction().begin();
+        em.createQuery("DELETE FROM Person").executeUpdate();
+        em.getTransaction().commit();
 
     }
 
