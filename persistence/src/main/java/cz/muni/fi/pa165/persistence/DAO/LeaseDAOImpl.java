@@ -75,14 +75,16 @@ public class LeaseDAOImpl implements LeaseDAO {
         em.getTransaction().commit();
         em.close();
     }
-
+    
     @Override
-    public List getLeasesByPerson(Integer personId) {
+    public List getLeasesByPerson(Person person) {
 
         EntityManager em = emf.createEntityManager();
+        
+        em.getTransaction().begin();
 
-        String query = "SELECT k FROM Lease k WHERE k.personId='" + personId + "'";//TODO
-        List<Lease> leases = em.createQuery(query).getResultList();
+        String query = "SELECT k FROM Lease k WHERE k.person= :person";//TODO
+        List<Lease> leases = em.createQuery(query).setParameter("person", person).getResultList();
 
         em.getTransaction().commit();
         em.close();

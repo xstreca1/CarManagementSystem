@@ -1,6 +1,7 @@
 package cz.muni.fi.pa165.persistence.DAO;
 
 import cz.muni.fi.pa165.persistence.Entities.Lease;
+import cz.muni.fi.pa165.persistence.Entities.Person;
 import java.util.Date;
 import java.util.List;
 
@@ -47,7 +48,7 @@ public interface LeaseDAO {
      * @param personId id of person
      * @return list of leases for person
      */
-    public List getLeasesByPerson(Integer personId);
+    public List getLeasesByPerson(Person person);
     
     /**
      * Shows all leases of a certain period

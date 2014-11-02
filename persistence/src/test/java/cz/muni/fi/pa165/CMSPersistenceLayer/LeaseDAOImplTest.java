@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package cz.muni.fi.pa165.CMSPersistenceLayer;
 
 import cz.muni.fi.pa165.persistence.DAO.LeaseDAOImpl;
@@ -28,9 +27,9 @@ import org.junit.Test;
  * @author jozef.puchly
  */
 public class LeaseDAOImplTest {
-    
-     private static LeaseDAOImpl dao = 
-            new LeaseDAOImpl(Persistence.createEntityManagerFactory("carManagementSystem-unit"));
+
+    private static LeaseDAOImpl dao
+            = new LeaseDAOImpl(Persistence.createEntityManagerFactory("carManagementSystem-unit"));
 
     private static Lease lease;
     private static Lease lease2;
@@ -41,31 +40,21 @@ public class LeaseDAOImplTest {
     private static Date date2;
     private static Date date3;
     private static Date date4;
-    private static Car  car1 = new Car();
-    private static Car car2 = new Car();
-    
-    
+    private static Car car1;
+    private static Car car2;
+
     @Before
     public void setUpClass() {
         EntityManager em = dao.getEntityManagerFactory().createEntityManager();
         em.getTransaction().begin();
 
-        //create lease - two of them       
-        lease = new Lease();
-        lease.setCarMileage(car1.getMileage());
-        lease.setDateOfLease(date1);
-        lease.setDateOfReturn(date2);
-        lease.setIsClosed(true);
-        lease.setCar(car1);
-        
-        lease2 = new Lease();
-        lease2.setCarMileage(car1.getMileage());
-        lease2.setDateOfLease(date3);
-        lease2.setDateOfReturn(date4);
-        lease2.setIsClosed(true);
-        lease2.setCar(car1);
-        
+        date1 = new Date(2014, 1, 1);
+        date2 = new Date(2014, 1, 2);
+        date3 = new Date(2014, 1, 3);
+        date4 = new Date(2014, 1, 4);
+
         //create car
+        car1 = new Car();
         car1.setAvailibility(true);
         car1.setBrand("Aston Martin");
         car1.setTypeName("DB9");
@@ -78,7 +67,8 @@ public class LeaseDAOImplTest {
         car1.setMileage(55000);
         car1.setNumberOfSeats(4);
         car1.setTransmission(true);
-        
+
+        car2 = new Car();
         car2.setAvailibility(false);
         car2.setBrand("Citroen");
         car2.setTypeName("Berlingo");
@@ -92,25 +82,41 @@ public class LeaseDAOImplTest {
         car2.setNumberOfSeats(4);
         car2.setTransmission(true);
         
-        //create person
+        em.persist(car1);
+        em.persist(car2);
+        
+         //create person
         person = new Person();
         person.setName("JOHN");
         person.setAddress(new Address());
         person.setPosition("HR");
         person.setNationality("US");
-        person.setSalary(25_000);
+        person.setSalary(25_000);       
         
-        date1 = new Date(2014, 1, 1);
-        date2 = new Date(2014, 1, 2);
-        date3 = new Date(2014, 1, 3);
-        date4 = new Date(2014, 1, 4);
+        em.persist(person);
+
+        //create lease - two of them       
+        lease = new Lease();
+        lease.setCarMileage(car1.getMileage());
+        lease.setDateOfLease(date1);
+        lease.setDateOfReturn(date2);
+        lease.setIsClosed(true);
+        lease.setCar(car1);
+        lease.setPerson(person);
+
+        lease2 = new Lease();
+        lease2.setCarMileage(car1.getMileage());
+        lease2.setDateOfLease(date3);
+        lease2.setDateOfReturn(date4);
+        lease2.setIsClosed(true);
+        lease2.setCar(car1);
         
         //persist leases
         em.persist(lease);
         em.persist(lease2);
-        em.persist(car1);
-        em.persist(car2);
-        em.persist(person);
+
+       
+        
         em.getTransaction().commit();
         em.close();
 
@@ -121,7 +127,7 @@ public class LeaseDAOImplTest {
         toInsert.setDateOfReturn(date4);
         toInsert.setIsClosed(true);
         toInsert.setCar(car1);
-        
+
         toUpdate = new Lease();
         toUpdate.setCarMileage(car2.getMileage());
         toUpdate.setDateOfLease(date3);
@@ -129,17 +135,16 @@ public class LeaseDAOImplTest {
         toUpdate.setIsClosed(false);
         toUpdate.setCar(car2);
     }
-    
+
     @After
     public void tearDownClass() {
-        
+
         EntityManager em = dao.getEntityManagerFactory().createEntityManager();
         em.getTransaction().begin();
         em.createQuery("DELETE FROM Lease").executeUpdate();
         em.getTransaction().commit();
     }
-    
-    
+
     /**
      * Test of createLease method, of class LeaseDAOImpl.
      */
@@ -164,7 +169,7 @@ public class LeaseDAOImplTest {
         em.getTransaction().commit();
         em.close();
     }
-    
+
     /**
      * Test of updateLease method, of class LeaseDAOImpl.
      */
@@ -202,7 +207,7 @@ public class LeaseDAOImplTest {
      */
     @Test
     public void testGetLeasesByPerson() {
-        List<Lease> leasesByPerson = dao.getLeasesByPerson(person.getId());
+        List<Lease> leasesByPerson = dao.getLeasesByPerson(person);
         assertEquals(1, leasesByPerson.size());
     }
 
@@ -211,8 +216,8 @@ public class LeaseDAOImplTest {
      */
     @Test
     public void testGetAllLeases() {
-       List<Lease> leases = dao.getAllLeases(date1, date4);
-       assertEquals(1, leases.size());
+        List<Lease> leases = dao.getAllLeases(date1, date4);
+        assertEquals(2, leases.size());
     }
-    
+
 }
