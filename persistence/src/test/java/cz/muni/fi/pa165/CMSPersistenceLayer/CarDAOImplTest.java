@@ -24,20 +24,21 @@ public class CarDAOImplTest {
 
     public CarDAOImplTest() {
     }
-    private EntityManagerFactory emf;
+    //private EntityManagerFactory emf;
     private static final CarDAOImpl carDAO
             = new CarDAOImpl(Persistence.createEntityManagerFactory("carManagementSystem-unit"));
 
-    private static Car car1 = new Car();
-    private static Car car2 = new Car();
-    private static Car carForInsert = new Car();
-    private static Car carForUpdate = new Car();
+    private static Car car1;
+    private static Car car2;
+    private static Car carForInsert;
+    private static Car carForUpdate;
 
     @Before
     public void setUpClass() {
         EntityManager em = carDAO.getEntityManagerFactory().createEntityManager();
         em.getTransaction().begin();
 
+        car1 = new Car();
         car1.setAvailibility(true);
         car1.setBrand("Citroen");
         car1.setTypeName("Berlingo");
@@ -50,7 +51,8 @@ public class CarDAOImplTest {
         car1.setMileage(55000);
         car1.setNumberOfSeats(5);
         car1.setTransmission(true);
-        
+
+        car2 = new Car();
         car2.setAvailibility(false);
         car2.setBrand("Citroen");
         car2.setTypeName("Berlingo");
@@ -64,6 +66,13 @@ public class CarDAOImplTest {
         car2.setNumberOfSeats(4);
         car2.setTransmission(true);
 
+        em.persist(car1);
+        em.persist(car2);
+
+        em.getTransaction().commit();
+        em.close();
+
+        carForInsert = new Car();
         carForInsert.setAvailibility(false);
         carForInsert.setBrand("Porsche");
         carForInsert.setTypeName("918");
@@ -77,6 +86,7 @@ public class CarDAOImplTest {
         carForInsert.setNumberOfSeats(2);
         carForInsert.setTransmission(true);
 
+        carForUpdate = new Car();
         carForUpdate.setAvailibility(false);
         carForUpdate.setBrand("Lada");
         carForUpdate.setTypeName("2101");
@@ -89,17 +99,11 @@ public class CarDAOImplTest {
         carForUpdate.setMileage(101200);
         carForUpdate.setNumberOfSeats(5);
         carForUpdate.setTransmission(true);
-
-        em.persist(car1);
-        em.persist(car2);
-
-        em.getTransaction().commit();
-        em.close();
     }
 
     @After
     public void tearDown() {
-        
+
         EntityManager em = carDAO.getEntityManagerFactory().createEntityManager();
         em.getTransaction().begin();
         em.createQuery("DELETE FROM Car").executeUpdate();
@@ -156,7 +160,7 @@ public class CarDAOImplTest {
     @Test
     public void testListAllAvailableCars() {
         List<Car> cars = carDAO.listAllAvailableCars();
-        assertEquals(0, cars.size());
+        assertEquals(1, cars.size());
     }
 
     @Test
