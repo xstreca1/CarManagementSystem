@@ -45,8 +45,8 @@ public class LeaseDAOImplTest {
     private static Car car2 = new Car();
     
     
-    @BeforeClass
-    public static void setUpClass() {
+    @Before
+    public void setUpClass() {
         EntityManager em = dao.getEntityManagerFactory().createEntityManager();
         em.getTransaction().begin();
 
@@ -130,18 +130,16 @@ public class LeaseDAOImplTest {
         toUpdate.setCar(car2);
     }
     
-    @AfterClass
-    public static void tearDownClass() {
-    }
-    
-    @Before
-    public void setUp() {
-    }
-    
     @After
-    public void tearDown() {
+    public void tearDownClass() {
+        
+        EntityManager em = dao.getEntityManagerFactory().createEntityManager();
+        em.getTransaction().begin();
+        em.createQuery("DELETE FROM Lease").executeUpdate();
+        em.getTransaction().commit();
     }
-
+    
+    
     /**
      * Test of createLease method, of class LeaseDAOImpl.
      */

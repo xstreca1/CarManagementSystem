@@ -14,6 +14,7 @@ import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
+import org.junit.Before;
 
 /**
  *
@@ -32,8 +33,8 @@ public class CarDAOImplTest {
     private static Car carForInsert = new Car();
     private static Car carForUpdate = new Car();
 
-    @BeforeClass
-    public static void setUpClass() {
+    @Before
+    public void setUpClass() {
         EntityManager em = carDAO.getEntityManagerFactory().createEntityManager();
         em.getTransaction().begin();
 
@@ -98,6 +99,11 @@ public class CarDAOImplTest {
 
     @After
     public void tearDown() {
+        
+        EntityManager em = carDAO.getEntityManagerFactory().createEntityManager();
+        em.getTransaction().begin();
+        em.createQuery("DELETE FROM Car").executeUpdate();
+        em.getTransaction().commit();
     }
 
     @Test

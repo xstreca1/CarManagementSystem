@@ -1,7 +1,7 @@
 ----------------------------------------------------------------
-Sun Nov 02 13:05:08 CET 2014:
-Booting Derby version The Apache Software Foundation - Apache Derby - 10.11.1.1 - (1616546): instance a816c00e-0149-7065-02f4-000000ab4370 
-on database directory memory:C:\Users\Mato\Documents\NetBeansProjects\CarManagementSystem\CarManagementSystem\persistence\testdb with class loader sun.misc.Launcher$AppClassLoader@1cfb549 
+Sun Nov 02 13:22:08 CET 2014:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.11.1.1 - (1616546): instance a816c00e-0149-7074-928a-000000aa0e80 
+on database directory memory:C:\Users\Mato\Documents\NetBeansProjects\CarManagementSystem\CarManagementSystem\persistence\testdb with class loader sun.misc.Launcher$AppClassLoader@422ede 
 Loaded from file:/C:/Users/Mato/.m2/repository/org/apache/derby/derby/10.11.1.1/derby-10.11.1.1.jar
 java.vendor=Oracle Corporation
 java.runtime.version=1.7.0_25-b16
