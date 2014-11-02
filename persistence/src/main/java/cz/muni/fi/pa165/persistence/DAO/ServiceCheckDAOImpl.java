@@ -148,6 +148,8 @@ public class ServiceCheckDAOImpl implements ServiceCheckDAO {
         }
         // create new EntityManager
         EntityManager em = emf.createEntityManager();
+        
+        em.getTransaction().begin();
 
         // get information about serviceCheck from database according to car (car is able to have more chcecks assigned). Save them to List.
         String query = "SELECT s FROM ServiceCheck s WHERE s.car= :scCar";
