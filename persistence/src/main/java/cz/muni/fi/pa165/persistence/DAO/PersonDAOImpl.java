@@ -90,7 +90,7 @@ public class PersonDAOImpl implements PersonDAO {
         EntityManager em = emf.createEntityManager();
 
         //person is retrieved
-        Person person = em.find(Person.class, 1);
+        Person person = em.find(Person.class, personID);
         
         //begin of a transaction
         em.getTransaction().begin();
@@ -130,6 +130,10 @@ public class PersonDAOImpl implements PersonDAO {
     @Override
     public List<Person> getPeopleByName(String name) {
 
+        if (name == null) {
+            throw new IllegalArgumentException("car name is null");
+        }
+        
         //create emf and em in every method because of transactions
         //EntityManagerFactory emf
                 //= Persistence.createEntityManagerFactory("carManagementSystem-unit");
