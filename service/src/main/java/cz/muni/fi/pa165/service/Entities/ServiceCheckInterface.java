@@ -31,9 +31,9 @@ public interface ServiceCheckInterface {
      * Method, which finds out number of days remaining to next performance of some control
      * 
      * @param check - ServiceCheck for which the number of days to next performance will be calculated
-     * @return number of days - Integer
+     * @return number of days - int
      */
-    Integer getDaysToNextServiceCheck(ServiceCheck check);
+    int getDaysToNextServiceCheck(ServiceCheck check);
     
     /**
      * Method which can edit interval of serviceCheck

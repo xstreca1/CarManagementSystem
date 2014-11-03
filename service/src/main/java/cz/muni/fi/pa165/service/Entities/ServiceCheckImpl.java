@@ -45,6 +45,15 @@ public class ServiceCheckImpl implements ServiceCheckInterface {
        scDAO.createServiceCheck(check);
         
     }
+    
+    public int getDaysToNextServiceCheck(ServiceCheck check){
+    
+        Integer checkID = check.getScID();
+        int daysTonext = scDAO.getDaysToNext(checkID);
+        return daysTonext;
+        
+    }
+    
 
     
 }
