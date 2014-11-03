@@ -40,9 +40,10 @@ public interface ServiceCheckInterface {
      * 
      * @param carList - list of cars for which the service check will be edited
      * @param scName - type of serviceCheck to be edited
+     * @param serviceInterval - new value of service interval
      */
 
-    void setCheckInterval (List<Car> carList, ServiceCheckName scName);
+    void setCheckInterval (List<Car> carList, ServiceCheckName scName, int serviceInterval);
     
     /**
      * Method which finds out all serviceChecks assigned to some car
