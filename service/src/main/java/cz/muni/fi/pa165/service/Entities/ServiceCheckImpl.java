@@ -7,6 +7,7 @@ package cz.muni.fi.pa165.service.Entities;
 import cz.muni.fi.pa165.persistence.DAO.ServiceCheckDAO;
 import cz.muni.fi.pa165.persistence.Entities.Car;
 import cz.muni.fi.pa165.persistence.Entities.ServiceCheck;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -55,6 +56,13 @@ public class ServiceCheckImpl implements ServiceCheckInterface {
     }
     
     public void setCheckInterval (List<Car> carList, ServiceCheck.ServiceCheckName scName){
+        
+        // create new list to store service checks
+        List<ServiceCheck> checks = new ArrayList();
+        
+        for (Car c : carList) {
+			
+		}
     
         
         

@@ -59,5 +59,14 @@ public interface ServiceCheckDAO {
      * @return List of service checks
      */
     public List getServiceChecksForCar(Car car);
+    
+    /**
+     * Get service checks by name
+     * 
+     * @param name
+     * @return list of serviceChecks
+     */
+    
+    List<ServiceCheck> getServiceCheckByName(String name);
 
 }
