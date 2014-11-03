@@ -15,7 +15,7 @@ import org.springframework.stereotype.Service;
 
 /**
  *
- * @author Petr Potucek
+ * @author Martin Strecansky
  */
 @Service
 @Transactional
@@ -49,11 +49,23 @@ public class ServiceCheckImpl implements ServiceCheckInterface {
     public int getDaysToNextServiceCheck(ServiceCheck check){
     
         Integer checkID = check.getScID();
-        int daysTonext = scDAO.getDaysToNext(checkID);
-        return daysTonext;
+        int daysToNext = scDAO.getDaysToNext(checkID);
+        return daysToNext;
         
     }
     
+    public void setCheckInterval (List<Car> carList, ServiceCheck.ServiceCheckName scName){
+    
+        
+        
+    }
+    
+    public List<ServiceCheck> getServiceChecksForCar(Car car){
+    
+        List<ServiceCheck> checks = scDAO.getServiceChecksForCar(car);
+        return checks;
+        
+    }
 
     
 }
