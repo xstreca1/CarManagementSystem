@@ -62,11 +62,11 @@ public class ServiceCheckDAOImpl implements ServiceCheckDAO {
         ServiceCheck serviceCheck2 = (ServiceCheck)em.find(ServiceCheck.class ,scID);
 
         // get new values of attributes
-        ServiceCheckName newName = serviceCheck.getName();
+        ServiceCheckName newName = serviceCheck.getName();//netreba
         int newServiceInterval = serviceCheck.getServiceInterval();
-        Date newLastCheck = serviceCheck.getLastCheck();
+        Date newLastCheck = serviceCheck.getLastCheck(); //nope
         String newDescription = serviceCheck.getDescription();
-        Car newCar = serviceCheck.getCar();
+        Car newCar = serviceCheck.getCar();//no
 
         // replace actual values with new values
         serviceCheck2.setName(newName);

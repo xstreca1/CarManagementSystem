@@ -9,58 +9,49 @@ import javax.activation.DataSource;
 
 /**
  * Interface for the service layer of Service Check
- * 
- * 
- * @author Petr Potucek
+ *
+ *
+ * @author Martin Strecansky
  */
-
 public interface ServiceCheckInterface {
+
     /**
-     * List all service checks for the particular car
+     * Method which creates instance of ServiceCheck to be saved to database.
      * 
-     * @param car car to which the check is assigned 
+     * @param name - name of service check
+     * @param description - service check description
+     * @param car - car to which is this service check assigned
+     * @param serviceInterval - interval in months
+     * 
+     */   
+
+    void createServiceCheck(ServiceCheckName name, String description, Car car, int serviceInterval);
+
+    /**
+     * Method, which finds out number of days remaining to next performance of some control
+     * 
+     * @param check - ServiceCheck for which the number of days to next performance will be calculated
+     * @return number of days - Integer
      */
-    List<ServiceCheck> getChecksForCar(Car car);
+    Integer getDaysToNextServiceCheck(ServiceCheck check);
     
     /**
-     * It creates mew service check with listed parameters
-     * Sets all parameters for the check and by persistence layer it create it 
-     * in the database
+     * Method which can edit interval of serviceCheck
      * 
-     * @param name name of service check
-     * @param description description of the service chcek
-     * @param car car, to which service check is assigned
-     * @param serviceInterval tima from last to the next check
-     * @param lastCheck date of the last check
+     * @param carList - list of cars for which the service check will be edited
+     * @param scName - type of serviceCheck to be edited
      */
-    void createNewCheck(ServiceCheckName name,String description,Car car, int serviceInterval,Date lastCheck);
+
+    void setCheckInterval (List<Car> carList, ServiceCheckName scName);
     
     /**
-     * Updates an existing description
+     * Method which finds out all serviceChecks assigned to some car
      * 
-     * @param scID id of check to be updated
+     * @param car - car for which we want to find out all serviceChecks
+     * @return list of ServiceChecks
      */
-    void setDescription(Integer scID, String description);
+
+    List<ServiceCheck> getServiceChecksForCar(Car car); 
     
-    /**
-     * delete service check by id from the database
-     * 
-     * @param ScID id of check
-     */
-    void deleteServiceCheck(Integer ScID);
     
-    /**
-     * shows number of days to next service check
-     * 
-     * @param ScID id of check
-     */
-    void showDaysToNextServiceCheck(Integer ScID);
-    
-    /**
-     * shows number of days to next check
-     * 
-     * @param ScID id of check
-     * @param name new name of the service check
-     */
-    void changeNameOfCheck(Integer ScID, ServiceCheckName name);
 }
