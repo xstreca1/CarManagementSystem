@@ -163,7 +163,7 @@ public class ServiceCheckDAOImpl implements ServiceCheckDAO {
 
     }
     
-    public List<ServiceCheck> getServiceCheckByName(String name){
+    public List<ServiceCheck> getServiceCheckByName(ServiceCheckName name){
         
         if (name == null) {
             throw new IllegalArgumentException("service check name is null");
