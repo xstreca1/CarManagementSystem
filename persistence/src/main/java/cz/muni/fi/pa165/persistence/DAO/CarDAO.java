@@ -28,6 +28,7 @@ public interface CarDAO {
     
     public List getCarByBodyStyle(bodyStyle bs);
     
+    public Car getCarByID (Integer carID);
     
     
 }
