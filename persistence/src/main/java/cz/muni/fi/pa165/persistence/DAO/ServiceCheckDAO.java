@@ -7,6 +7,7 @@ package cz.muni.fi.pa165.persistence.DAO;
 
 import cz.muni.fi.pa165.persistence.Entities.Car;
 import cz.muni.fi.pa165.persistence.Entities.ServiceCheck;
+import cz.muni.fi.pa165.persistence.Entities.ServiceCheck.ServiceCheckName;
 import java.util.List;
 
 /**
@@ -59,5 +60,14 @@ public interface ServiceCheckDAO {
      * @return List of service checks
      */
     public List getServiceChecksForCar(Car car);
+    
+    /**
+     * Get service checks by name
+     * 
+     * @param name
+     * @return list of serviceChecks
+     */
+    
+    List<ServiceCheck> getServiceCheckByName(ServiceCheckName name);
 
 }

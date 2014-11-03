@@ -162,5 +162,29 @@ public class ServiceCheckDAOImpl implements ServiceCheckDAO {
         return serviceChecks;
 
     }
+    
+    public List<ServiceCheck> getServiceCheckByName(ServiceCheckName name){
+        
+        if (name == null) {
+            throw new IllegalArgumentException("service check name is null");
+        }
+       
+        EntityManager em = emf.createEntityManager();
+
+        //begin of a transaction
+        em.getTransaction().begin();
+
+        //actual query
+        String sql = "SELECT s FROM ServiceCheck s WHERE s.name= :scName";
+        List<ServiceCheck> checks = em.createQuery(sql, ServiceCheck.class).
+                setParameter("scName", name).getResultList();
+
+        //commiting changes and closing entity manager
+        em.getTransaction().commit();
+        em.close();
+
+        return checks;
+    
+    }
 
 }
