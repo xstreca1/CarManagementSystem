@@ -52,6 +52,7 @@ public class CarDAOImplTest {
         car1.setMileage(55000);
         car1.setNumberOfSeats(5);
         car1.setTransmission(true);
+        car1.setIsActive(true);
 
         car2 = new Car();
         car2.setAvailibility(false);
@@ -66,6 +67,7 @@ public class CarDAOImplTest {
         car2.setMileage(56000);
         car2.setNumberOfSeats(4);
         car2.setTransmission(true);
+        car2.setIsActive(true);
 
         carForInsert = new Car();
         carForInsert.setAvailibility(false);
@@ -80,6 +82,7 @@ public class CarDAOImplTest {
         carForInsert.setMileage(559);
         carForInsert.setNumberOfSeats(2);
         carForInsert.setTransmission(true);
+        carForInsert.setIsActive(true);
 
         em.getTransaction().begin();
         em.persist(car1);
@@ -99,6 +102,7 @@ public class CarDAOImplTest {
         carForUpdate.setMileage(101200);
         carForUpdate.setNumberOfSeats(5);
         carForUpdate.setTransmission(true);
+        carForUpdate.setIsActive(true);
     }
 
     @After
