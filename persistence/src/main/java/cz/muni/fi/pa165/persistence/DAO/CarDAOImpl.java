@@ -79,10 +79,11 @@ public class CarDAOImpl implements CarDAO {
         return cars;
     }
     
-    public List listAllCars() {
+    public List listAllCars(boolean alsoInactive) {
         
-        String query = "SELECT c FROM Car c";
-        List<Car> cars = em.createQuery(query,Car.class).getResultList();
+        String query = "SELECT c FROM Car c WHERE c.isActive = :alsoInactive";
+        List<Car> cars = em.createQuery(query,Car.class).
+                setParameter("alsoInactive", alsoInactive).getResultList();
         
         return cars;
     }
