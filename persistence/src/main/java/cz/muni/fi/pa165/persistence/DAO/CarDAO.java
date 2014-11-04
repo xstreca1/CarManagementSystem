@@ -30,5 +30,6 @@ public interface CarDAO {
     
     public Car getCarByID (Integer carID);
     
+    public List listAllCars();
     
 }
