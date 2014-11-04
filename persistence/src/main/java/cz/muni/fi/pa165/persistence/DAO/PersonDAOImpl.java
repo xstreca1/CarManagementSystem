@@ -10,6 +10,7 @@ import java.util.Date;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.PersistenceContext;
 
 /**
  *
@@ -17,43 +18,29 @@ import javax.persistence.EntityManagerFactory;
  */
 public class PersonDAOImpl implements PersonDAO {
 
-    private static EntityManagerFactory emf;       
+    @PersistenceContext(name="carManagementSystem-unit")
+    private EntityManager em;
     
-    public PersonDAOImpl(EntityManagerFactory emf){
-        this.emf = emf;
-    }
-    
-    public EntityManagerFactory getEntityManagerFactory(){
-        return emf;
-    }
+    public PersonDAOImpl(EntityManager entityManager) {
+		if (entityManager == null) {
+			throw new IllegalArgumentException("argument 'em' must be set");
+		}
+		em = entityManager;
+	}
     
     @Override
     public void insertPerson(Person person) {
 
-        //create Entity Manager
-        //EntityManagerFactory emf = Persistence.createEntityManagerFactory("carManagementSystem-unit");
-        EntityManager em = emf.createEntityManager();
-
-        //begin of a transaction
-        em.getTransaction().begin();
-
+        if (person == null) {
+            throw new IllegalArgumentException("argument Person nemoze byt null");
+        }
         //actual query
         em.persist(person);
 
-        //commiting changes and closing entity manager
-        em.getTransaction().commit();
-        em.close();
     }
 
     @Override
     public void updatePerson(Person updatedPerson, Integer personID) {
-
-        //create Entity Manager
-        //EntityManagerFactory emf = Persistence.createEntityManagerFactory("carManagementSystem-unit");
-        EntityManager em = emf.createEntityManager();
-
-        //begin of a transaction
-        em.getTransaction().begin();
 
         //get all updatable attributes from the updated person entity instance
         //lease and sex could not be updated
@@ -74,32 +61,16 @@ public class PersonDAOImpl implements PersonDAO {
         person1.setNationality(nationality);
         person1.setPosition(position);
         person1.setSalary(salary);
-
-
-        //commiting changes and closing entity manager
-        em.getTransaction().commit();
-        em.close();
     }
 
     @Override
     public void deletePerson(Integer personID) {
         
-        //create Entity Manager
-        //EntityManagerFactory emf = Persistence.createEntityManagerFactory("carManagementSystem-unit");
-        EntityManager em = emf.createEntityManager();
-
         //person is retrieved
         Person person = em.find(Person.class, personID);
         
-        //begin of a transaction
-        em.getTransaction().begin();
-        
         //person is removed from Database (TODO - cascading delete?)
         em.remove(person);
-
-        //commiting changes and closing entity manager
-        em.getTransaction().commit();
-        em.close();
         
         //can also be done by em.executeQuery(DELETE_QUERY).executeUpdate();
     }
@@ -107,21 +78,10 @@ public class PersonDAOImpl implements PersonDAO {
     @Override
     public Person getPersonByID(Integer personID) {
 
-        //create Entity Manager
-        //EntityManagerFactory emf = Persistence.createEntityManagerFactory("carManagementSystem-unit");
-        EntityManager em = emf.createEntityManager();
-
-        //begin of a transaction
-        em.getTransaction().begin();
-
         //actual query
         String sql = "SELECT p FROM Person p WHERE p.id=:persID";
         Person person = em.createQuery(sql, Person.class)
                 .setParameter("persID", personID).getResultList().get(0);
-
-        //commiting changes and closing entity manager
-        em.getTransaction().commit();
-        em.close();
 
         return person;
     }
@@ -132,23 +92,11 @@ public class PersonDAOImpl implements PersonDAO {
         if (name == null) {
             throw new IllegalArgumentException("car name is null");
         }
-        
-        //create emf and em in every method because of transactions
-        //EntityManagerFactory emf
-                //= Persistence.createEntityManagerFactory("carManagementSystem-unit");
-        EntityManager em = emf.createEntityManager();
-
-        //begin of a transaction
-        em.getTransaction().begin();
 
         //actual query
         String sql = "SELECT p FROM Person p WHERE p.name= :persName";
         List<Person> people = em.createQuery(sql, Person.class).
                 setParameter("persName", name).getResultList();
-
-        //commiting changes and closing entity manager
-        em.getTransaction().commit();
-        em.close();
 
         return people;
     }
@@ -156,21 +104,9 @@ public class PersonDAOImpl implements PersonDAO {
     @Override
     public List<Person> getAllPeople() {
 
-        //create emf and em in every method because of transactions
-        //EntityManagerFactory emf
-                //= Persistence.createEntityManagerFactory("carManagementSystem-unit");
-        EntityManager em = emf.createEntityManager();
-
-        //begin of a transaction
-        em.getTransaction().begin();
-
         //actual query
         String sql = "SELECT p FROM Person p";
         List<Person> people = em.createQuery(sql,Person.class).getResultList();
-
-        //commiting changes and closing entity manager
-        em.getTransaction().commit();
-        em.close();
 
         return people;
     }

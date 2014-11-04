@@ -31,9 +31,10 @@ import org.junit.Test;
  */
 public class PersonDAOImplTest {
 
-    private static PersonDAOImpl dao = 
-            new PersonDAOImpl(Persistence.createEntityManagerFactory("carManagementSystem-unit"));
-
+   //private EntityManagerFactory emf;
+    private EntityManager em;
+    private PersonDAOImpl dao;
+    
     private static Person person;
     private static Person person2;
     private static Person person3;
@@ -43,8 +44,11 @@ public class PersonDAOImplTest {
 
     @Before
     public void setUpClass() {
-        EntityManager em = dao.getEntityManagerFactory().createEntityManager();
-        em.getTransaction().begin();
+        EntityManagerFactory emf = Persistence
+                .createEntityManagerFactory("carManagementSystem-unit");
+        em = emf.createEntityManager();
+        dao = new PersonDAOImpl(em);
+       
 
         //create simple person        
         person = new Person();
@@ -53,6 +57,7 @@ public class PersonDAOImplTest {
         person.setPosition("HR");
         person.setNationality("US");
         person.setSalary(25_000);
+        person.setIsActive(true);
 
         //create people with same name
         person2 = new Person();
@@ -61,6 +66,7 @@ public class PersonDAOImplTest {
         person2.setPosition("Marketing");
         person2.setNationality("US");
         person2.setSalary(30_000);
+        person2.setIsActive(true);
 
         person3 = new Person();
         person3.setName("JOE");
@@ -68,6 +74,7 @@ public class PersonDAOImplTest {
         person3.setPosition("Support");
         person3.setNationality("US");
         person3.setSalary(33_000);
+        person3.setIsActive(true);
 
         person4 = new Person();
         person4.setName("JOE");
@@ -75,14 +82,18 @@ public class PersonDAOImplTest {
         person4.setPosition("QA");
         person4.setNationality("US");
         person4.setSalary(38_000);
-
+        person4.setIsActive(true);
+        
+        em.getTransaction().begin();
+        
         //persist them
         em.persist(person);
         em.persist(person2);
         em.persist(person3);
         em.persist(person4);
+        
         em.getTransaction().commit();
-        em.close();
+        
 
         //create DAO object
         //dao = new PersonDAOImpl();
@@ -93,6 +104,7 @@ public class PersonDAOImplTest {
         toInsert.setPosition("Developer");
         toInsert.setNationality("US");
         toInsert.setSalary(45_000);
+        toInsert.setIsActive(true);
         
         toUpdate = new Person();
         toUpdate.setName("UPDATE");
@@ -100,13 +112,13 @@ public class PersonDAOImplTest {
         toUpdate.setPosition("Developer");
         toUpdate.setNationality("CZ");
         toUpdate.setSalary(46_000);
+        toUpdate.setIsActive(true);
 
     }
 
     @After
     public void tearDown() {
         
-        EntityManager em = dao.getEntityManagerFactory().createEntityManager();
         em.getTransaction().begin();
         em.createQuery("DELETE FROM Person").executeUpdate();
         em.getTransaction().commit();
@@ -117,12 +129,11 @@ public class PersonDAOImplTest {
     // test if entities created in setUp() method are persisted in database
     public void arePersisted() {
 
-        EntityManager em = dao.getEntityManagerFactory().createEntityManager();
         em.getTransaction().begin();
         List<Person> people = em.createQuery("SELECT p FROM Person p", Person.class).getResultList();
         assertEquals(people.size(), 4);
         em.getTransaction().commit();
-        em.close();
+        
     }
 
     @Test // PASS
@@ -135,15 +146,15 @@ public class PersonDAOImplTest {
         }
         catch(IllegalArgumentException e){}
         
+        em.getTransaction().begin();
         // persist person toInsert
         dao.insertPerson(toInsert);
         // find person toInsert in database
-        EntityManager em = dao.getEntityManagerFactory().createEntityManager();
-        em.getTransaction().begin();
+        
         Person pers = em.find(Person.class, toInsert.getId());
         Assert.assertTrue(em.contains(pers));
         em.getTransaction().commit();
-        em.close();
+        
 
     }
 
@@ -180,11 +191,10 @@ public class PersonDAOImplTest {
         // delete person
         dao.deletePerson(person4.getId());
         // person shoul be deleted
-        EntityManager em = dao.getEntityManagerFactory().createEntityManager();
         em.getTransaction().begin();
         Assert.assertFalse(em.contains(person4));
         em.getTransaction().commit();
-        em.close();
+        
     }
 
     @Test//FAIL
@@ -214,11 +224,12 @@ public class PersonDAOImplTest {
         catch(IndexOutOfBoundsException e){}
         catch(IllegalArgumentException e){}
         
+        
         // update persisted person with new non-persisted person toInsert
         dao.updatePerson(toUpdate, person2.getId());
         
-        EntityManager em = dao.getEntityManagerFactory().createEntityManager();
         em.getTransaction().begin();
+        
         Person updatedPerson = em.find(Person.class, person2.getId());
         // attributes e of person should be updated now
         assertEquals(updatedPerson.getName(), toUpdate.getName());
@@ -226,7 +237,7 @@ public class PersonDAOImplTest {
         assertEquals(updatedPerson.getNationality(), toUpdate.getNationality());
         assertEquals(updatedPerson.getSalary(), toUpdate.getSalary());
         em.getTransaction().commit();
-        em.close();
+        
     }
 
     @Test//FAIL
