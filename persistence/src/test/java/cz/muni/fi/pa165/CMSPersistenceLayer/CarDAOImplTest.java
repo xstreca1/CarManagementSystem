@@ -67,7 +67,7 @@ public class CarDAOImplTest {
         car2.setMileage(56000);
         car2.setNumberOfSeats(4);
         car2.setTransmission(true);
-        car2.setIsActive(true);
+        car2.setIsActive(false);
 
         carForInsert = new Car();
         carForInsert.setAvailibility(false);
@@ -167,6 +167,12 @@ public class CarDAOImplTest {
     public void testGetCarBySeats() {
         List<Car> carsBySeats = testedObject.getCarBySeats(5);
         assertEquals(1, carsBySeats.size());
+    }
+    
+    @Test
+    public void listAllCars() {
+        List<Car> cars = testedObject.listAllCars(true);
+        assertEquals(1, cars.size());
     }
 
     /*
