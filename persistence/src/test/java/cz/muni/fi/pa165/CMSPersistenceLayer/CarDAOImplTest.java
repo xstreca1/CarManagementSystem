@@ -11,7 +11,6 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import org.junit.After;
 import org.junit.Assert;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 import org.junit.Before;
@@ -25,8 +24,8 @@ public class CarDAOImplTest {
     public CarDAOImplTest() {
     }
     //private EntityManagerFactory emf;
-    private static final CarDAOImpl carDAO
-            = new CarDAOImpl(Persistence.createEntityManagerFactory("carManagementSystem-unit"));
+    private EntityManager em;
+    private CarDAOImpl testedObject;
 
     private static Car car1;
     private static Car car2;
@@ -35,8 +34,10 @@ public class CarDAOImplTest {
 
     @Before
     public void setUpClass() {
-        EntityManager em = carDAO.getEntityManagerFactory().createEntityManager();
-        em.getTransaction().begin();
+        EntityManagerFactory emf = Persistence
+                .createEntityManagerFactory("carManagementSystem-unit");
+        em = emf.createEntityManager();
+        testedObject = new CarDAOImpl(em);
 
         car1 = new Car();
         car1.setAvailibility(true);
@@ -66,12 +67,6 @@ public class CarDAOImplTest {
         car2.setNumberOfSeats(4);
         car2.setTransmission(true);
 
-        em.persist(car1);
-        em.persist(car2);
-
-        em.getTransaction().commit();
-        em.close();
-
         carForInsert = new Car();
         carForInsert.setAvailibility(false);
         carForInsert.setBrand("Porsche");
@@ -86,6 +81,11 @@ public class CarDAOImplTest {
         carForInsert.setNumberOfSeats(2);
         carForInsert.setTransmission(true);
 
+        em.getTransaction().begin();
+        em.persist(car1);
+        em.persist(car2);
+
+        em.getTransaction().commit();
         carForUpdate = new Car();
         carForUpdate.setAvailibility(false);
         carForUpdate.setBrand("Lada");
@@ -104,7 +104,6 @@ public class CarDAOImplTest {
     @After
     public void tearDown() {
 
-        EntityManager em = carDAO.getEntityManagerFactory().createEntityManager();
         em.getTransaction().begin();
         em.createQuery("DELETE FROM Car").executeUpdate();
         em.getTransaction().commit();
@@ -112,60 +111,57 @@ public class CarDAOImplTest {
 
     @Test
     public void isInDB() {
-        EntityManager em = carDAO.getEntityManagerFactory().createEntityManager();
         em.getTransaction().begin();
         List<Car> c = em.createQuery("SELECT c FROM Car c", Car.class).getResultList();
         assertEquals(c.size(), 2);
         em.getTransaction().commit();
-        em.close();
+
     }
 
     @Test
     public void testCreateCar() {
-        carDAO.createCar(carForInsert);
+   //     testedObject.createCar(carForInsert);
 
-        EntityManager em = carDAO.getEntityManagerFactory().createEntityManager();
-        em.getTransaction().begin();
-        Car car = em.find(Car.class, carForInsert.getId());
+        //System.out.println("HALOOOOOOOOOOOOOOOOOOOOOOO" + carForInsert.toString());
+     em.getTransaction().begin();
+        //     em.persist(carForInsert);
+        testedObject.createCar(carForInsert);
+        Car car = em.find(Car.class, carForInsert.getCarID());
         Assert.assertTrue(em.contains(car));
-        em.getTransaction().commit();
-        em.close();
+       em.getTransaction().commit();
+
     }
 
     @Test
     public void testUpdateCar() {
-        carDAO.updateCar(carForUpdate, car1.getCarID());
-        EntityManager em = carDAO.getEntityManagerFactory().createEntityManager();
+        testedObject.updateCar(carForUpdate, car1.getCarID());
         em.getTransaction().begin();
         Car updatedCar = em.find(Car.class, car1.getId());
         Assert.assertEquals(carForUpdate.getMileage(), updatedCar.getMileage());
         Assert.assertEquals(carForUpdate.isAvailibility(), updatedCar.isAvailibility());
         em.getTransaction().commit();
-        em.close();
 
     }
 
     @Test
     public void testDeleteCar() {
         Integer id = car2.getCarID();
-        carDAO.deleteCar(car2.getCarID());
-        EntityManager em = carDAO.getEntityManagerFactory().createEntityManager();
+        testedObject.deleteCar(car2.getCarID());
         em.getTransaction().begin();
         Assert.assertFalse(em.contains(car2));
         em.getTransaction().commit();
-        em.close();
 
     }
 
     @Test
     public void testListAllAvailableCars() {
-        List<Car> cars = carDAO.listAllAvailableCars();
+        List<Car> cars = testedObject.listAllAvailableCars();
         assertEquals(1, cars.size());
     }
 
     @Test
     public void testGetCarBySeats() {
-        List<Car> carsBySeats = carDAO.getCarBySeats(5);
+        List<Car> carsBySeats = testedObject.getCarBySeats(5);
         assertEquals(1, carsBySeats.size());
     }
 
