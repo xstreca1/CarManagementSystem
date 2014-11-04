@@ -12,6 +12,8 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 import javax.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
@@ -25,20 +27,20 @@ public class ServiceCheckImpl implements ServiceCheckInterface {
 
     // ServiceCheck DAO
     private ServiceCheckDAO scDAO;
+    
+    // EntityManagmentFactory
+    EntityManagerFactory emf = Persistence
+                .createEntityManagerFactory("carManagementSystem-unit");
+        
     // Entity Manager
-    private EntityManager em;
+    private EntityManager em = emf.createEntityManager();
+    
 
     // setter for ServiceCheck DAO - to be set in applicationContext.xml  
     public void setDao(ServiceCheckDAO scDAO) {
 
         this.scDAO = scDAO;
-    }
-
-    // setter for Entity manager - to be set in applicationContext.xml 
-    public void setEntityManager(EntityManager em) {
-
-        this.em = em;
-    }
+    }    
 
     public void createServiceCheck(ServiceCheck.ServiceCheckName name, String description, Car car, int serviceInterval) {
         // create instance of calendar to find out current time which will be used as paramter fo lastCheck
