@@ -4,7 +4,6 @@
 package cz.muni.fi.pa165.persistence.DAO;
 
 import cz.muni.fi.pa165.persistence.Entities.Address;
-import cz.muni.fi.pa165.persistence.Entities.Car;
 import cz.muni.fi.pa165.persistence.Entities.Person;
 import cz.muni.fi.pa165.persistence.Entities.Person.EmploymentStatus;
 import java.util.Date;
