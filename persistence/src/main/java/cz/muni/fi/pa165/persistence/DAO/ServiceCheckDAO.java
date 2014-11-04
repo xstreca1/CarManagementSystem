@@ -69,5 +69,13 @@ public interface ServiceCheckDAO {
      */
     
     List<ServiceCheck> getServiceCheckByName(ServiceCheckName name);
+    
+    /**
+     * method to update service interval of some serviceCheck
+     * 
+     * @param interval - new value of interval
+     * @param scID  - ID of serviceCheck to be updated
+     */
+    public void updateInterval(int interval, Integer scID);
 
 }

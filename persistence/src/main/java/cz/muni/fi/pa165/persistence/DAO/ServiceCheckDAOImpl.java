@@ -55,7 +55,7 @@ public class ServiceCheckDAOImpl implements ServiceCheckDAO {
         if (scID == null) {
             throw new IllegalArgumentException("service check ID is null");
         }
-        // get instance of ServiceCheck according to its ID. Save this instance to variable "update"
+        // get instance of ServiceCheck according to its ID. Save this instance to variable serviceCheck2
         ServiceCheck serviceCheck2 = (ServiceCheck) em.find(ServiceCheck.class, scID);
 
         // get new values of attributes
@@ -146,6 +146,16 @@ public class ServiceCheckDAOImpl implements ServiceCheckDAO {
                 setParameter("scName", name).getResultList();
 
         return checks;
+
+    }
+
+    public void updateInterval(int interval, Integer scID) {
+
+        // get instance of ServiceCheck according to its ID. Save this instance to variable "serviceCheck2"
+        ServiceCheck serviceCheck2 = (ServiceCheck) em.find(ServiceCheck.class, scID);
+
+        // set new value of serviceInterval      
+        serviceCheck2.setServiceInterval(interval);
 
     }
 
