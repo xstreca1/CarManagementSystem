@@ -30,6 +30,6 @@ public interface CarDAO {
     
     public Car getCarByID (Integer carID);
     
-    public List listAllCars();
+    public List listAllCars(boolean alsoInactive);
     
 }
