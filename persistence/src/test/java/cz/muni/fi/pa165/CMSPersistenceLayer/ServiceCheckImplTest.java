@@ -8,11 +8,14 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import org.junit.After;
 import org.junit.Assert;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.fail;
@@ -26,9 +29,9 @@ import org.junit.Test;
  */
 public class ServiceCheckImplTest {
 
-    private static ServiceCheckDAOImpl dao
-            = new ServiceCheckDAOImpl(Persistence.createEntityManagerFactory("carManagementSystem-unit"));
-
+   private EntityManager em;
+   private ServiceCheckDAOImpl dao;
+    
     private static ServiceCheck check1;
     private static ServiceCheck check2;
     private static ServiceCheck check3;
@@ -43,7 +46,10 @@ public class ServiceCheckImplTest {
 
     @Before
     public void setUpClass() {
-        EntityManager em = dao.getEntityManagerFactory().createEntityManager();
+        EntityManagerFactory emf = Persistence
+                .createEntityManagerFactory("carManagementSystem-unit");
+        em = emf.createEntityManager();
+        dao = new ServiceCheckDAOImpl(em);
         em.getTransaction().begin();
 
         car1 = new Car();
@@ -121,7 +127,7 @@ public class ServiceCheckImplTest {
         em.persist(check3);
 
         em.getTransaction().commit();
-        em.close();
+        
 
         // to test cretaeServiceCheck()
         checkInsert = new ServiceCheck();
@@ -144,7 +150,6 @@ public class ServiceCheckImplTest {
     @After
     public void tearDown() {
         
-        EntityManager em = dao.getEntityManagerFactory().createEntityManager();
         em.getTransaction().begin();
         em.createQuery("DELETE FROM ServiceCheck").executeUpdate();
         em.getTransaction().commit();
@@ -153,12 +158,11 @@ public class ServiceCheckImplTest {
 
     @Test //PASS
     public void isInDB() {
-        EntityManager em = dao.getEntityManagerFactory().createEntityManager();
         em.getTransaction().begin();
         List<ServiceCheck> s = em.createQuery("SELECT s FROM ServiceCheck s", ServiceCheck.class).getResultList();
         assertEquals(s.size(), 3);
         em.getTransaction().commit();
-        em.close();
+        
     }
 
     @Test // PASS
@@ -170,14 +174,15 @@ public class ServiceCheckImplTest {
         } catch (IllegalArgumentException e) {
         }
 
+        em.getTransaction().begin();
+        
         dao.createServiceCheck(checkInsert);
 
-        EntityManager em = dao.getEntityManagerFactory().createEntityManager();
-        em.getTransaction().begin();
+        
         ServiceCheck check = em.find(ServiceCheck.class, checkInsert.getScID());
         Assert.assertTrue(em.contains(check));
         em.getTransaction().commit();
-        em.close();
+        
 
     }
 
@@ -199,7 +204,6 @@ public class ServiceCheckImplTest {
 
         dao.updateServiceCheck(updatedCheck, check3.getScID());
         
-        EntityManager em = dao.getEntityManagerFactory().createEntityManager();
         
         em.getTransaction().begin();
         
@@ -212,7 +216,7 @@ public class ServiceCheckImplTest {
         assertEquals(serviceCheck2.getName(), updatedCheck.getName());
 
         em.getTransaction().commit();
-        em.close();
+       
     }
 
     @Test // PASS
@@ -225,11 +229,10 @@ public class ServiceCheckImplTest {
         // delete service check
         dao.deleteServiceCheck(check2.getScID());
         // service check should be deleted
-        EntityManager em = dao.getEntityManagerFactory().createEntityManager();
         em.getTransaction().begin();
         Assert.assertFalse(em.contains(check2));
         em.getTransaction().commit();
-        em.close();
+     
 
        
     }
