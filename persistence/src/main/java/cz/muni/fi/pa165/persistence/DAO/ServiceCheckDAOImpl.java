@@ -13,6 +13,7 @@ import java.util.Date;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.PersistenceContext;
 
 /**
  *
@@ -20,15 +21,17 @@ import javax.persistence.EntityManagerFactory;
  */
 public class ServiceCheckDAOImpl implements ServiceCheckDAO {
 
-    private EntityManagerFactory emf;
+    @PersistenceContext(name="carManagementSystem-unit")
+    private EntityManager em;
 
-    public ServiceCheckDAOImpl(EntityManagerFactory emf) {
-        this.emf = emf;
-    }
+    public ServiceCheckDAOImpl(EntityManager entityManager) {
+		if (entityManager == null) {
+			throw new IllegalArgumentException("argument 'em' must be set");
+		}
+		em = entityManager;
+	}
 
-    public EntityManagerFactory getEntityManagerFactory() {
-        return emf;
-    }
+    
 
     @Override
     public void createServiceCheck(ServiceCheck serviceCheck) {
@@ -36,13 +39,8 @@ public class ServiceCheckDAOImpl implements ServiceCheckDAO {
         if (serviceCheck == null) {
             throw new IllegalArgumentException("serviceCheck is null");
         }
-        // create new EntityManager and save instance of ServiceCheck to database
-        EntityManager em = emf.createEntityManager();
-        em.getTransaction().begin();
-        em.persist(serviceCheck);
-        em.getTransaction().commit();
-        em.close();
 
+        em.persist(serviceCheck);
     }
 
     @Override
@@ -54,10 +52,6 @@ public class ServiceCheckDAOImpl implements ServiceCheckDAO {
         if (scID == null) {
             throw new IllegalArgumentException("service check ID is null");
         }
-        // create new EntityManager
-        EntityManager em = emf.createEntityManager();
-        em.getTransaction().begin();
-
         // get instance of ServiceCheck according to its ID. Save this instance to variable "update"
         ServiceCheck serviceCheck2 = (ServiceCheck)em.find(ServiceCheck.class ,scID);
 
@@ -75,10 +69,6 @@ public class ServiceCheckDAOImpl implements ServiceCheckDAO {
         serviceCheck2.setDescription(newDescription);
         serviceCheck2.setCar(newCar);
 
-        // save updated serviceCheck to database
-        em.getTransaction().commit();
-        em.close();
-
     }
 
     @Override
@@ -87,16 +77,10 @@ public class ServiceCheckDAOImpl implements ServiceCheckDAO {
         if (scID == null) {
             throw new IllegalArgumentException("service check ID is null");
         }
-        // create new EntityManager
-        EntityManager em = emf.createEntityManager();
-        em.getTransaction().begin();
-
         // delete serviceCheck from database according to its ID
         String query = "SELECT s FROM ServiceCheck s WHERE s.scID = :ID";
         ServiceCheck toDelete = em.createQuery(query, ServiceCheck.class).setParameter("ID", scID).getSingleResult();
         em.remove(em.merge(toDelete));
-        em.getTransaction().commit();
-        em.close();
     }
 
     @Override
@@ -105,10 +89,6 @@ public class ServiceCheckDAOImpl implements ServiceCheckDAO {
         if (scID == null) {
             throw new IllegalArgumentException("service check ID is null");
         }
-        // create new EntityManager
-        EntityManager em = emf.createEntityManager();
-        em.getTransaction().begin();
-
         // get serviceCheck from database according to its ID
         String query = "SELECT s FROM ServiceCheck s WHERE s.scID = :ID";
         ServiceCheck serviceCheck = em.createQuery(query, ServiceCheck.class).setParameter("ID", scID).getSingleResult();
@@ -118,10 +98,6 @@ public class ServiceCheckDAOImpl implements ServiceCheckDAO {
 
         // get interval of this serviceCheck
         int interval = serviceCheck.getServiceInterval();
-
-        // end transaction and close EntityManager
-        em.getTransaction().commit();
-        em.close();
 
         // create instance of Calenar and set date to date of last performance of this serviceCheck
         Calendar nextControl = Calendar.getInstance();
@@ -146,18 +122,10 @@ public class ServiceCheckDAOImpl implements ServiceCheckDAO {
         if (car == null) {
             throw new IllegalArgumentException("car is null");
         }
-        // create new EntityManager
-        EntityManager em = emf.createEntityManager();
-        
-        em.getTransaction().begin();
 
         // get information about serviceCheck from database according to car (car is able to have more chcecks assigned). Save them to List.
         String query = "SELECT s FROM ServiceCheck s WHERE s.car= :scCar";
         List<ServiceCheck> serviceChecks = em.createQuery(query).setParameter("scCar", car).getResultList();
-
-        // cloese EntityManager
-        em.getTransaction().commit();
-        em.close();
 
         return serviceChecks;
 
@@ -169,19 +137,10 @@ public class ServiceCheckDAOImpl implements ServiceCheckDAO {
             throw new IllegalArgumentException("service check name is null");
         }
        
-        EntityManager em = emf.createEntityManager();
-
-        //begin of a transaction
-        em.getTransaction().begin();
-
         //actual query
         String sql = "SELECT s FROM ServiceCheck s WHERE s.name= :scName";
         List<ServiceCheck> checks = em.createQuery(sql, ServiceCheck.class).
                 setParameter("scName", name).getResultList();
-
-        //commiting changes and closing entity manager
-        em.getTransaction().commit();
-        em.close();
 
         return checks;
     
