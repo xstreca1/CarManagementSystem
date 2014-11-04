@@ -19,13 +19,9 @@ public interface CarServiceInterface {
     
     public void createCar(Car car);
     
-    public void setAvailibility(boolean availibility);
-    
-    public Lease leaseCar(Person person, Car car);
-    
     public Car getCarInfo(Integer carID);
     
-    public void returnCar(Lease lease);
+    public void returnCar(Integer leaseID);
     
     public List<Car> findAllCars(boolean alsoInactive);
     
