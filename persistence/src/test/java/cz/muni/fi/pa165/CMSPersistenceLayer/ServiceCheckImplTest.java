@@ -1,6 +1,6 @@
 package cz.muni.fi.pa165.CMSPersistenceLayer;
 
-import cz.muni.fi.pa165.persistence.DAO.ServiceCheckDAOImpl;
+import cz.muni.fi.pa165.persistence.dao.ServiceCheckDAOImpl;
 import cz.muni.fi.pa165.persistence.Entities.Car;
 import cz.muni.fi.pa165.persistence.Entities.ServiceCheck;
 import cz.muni.fi.pa165.persistence.Entities.ServiceCheck.ServiceCheckName;

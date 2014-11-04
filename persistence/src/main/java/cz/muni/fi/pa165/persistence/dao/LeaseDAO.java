@@ -1,4 +1,4 @@
-package cz.muni.fi.pa165.persistence.DAO;
+package cz.muni.fi.pa165.persistence.dao;
 
 import cz.muni.fi.pa165.persistence.Entities.Lease;
 import cz.muni.fi.pa165.persistence.Entities.Person;

@@ -5,7 +5,7 @@
  */
 package cz.muni.fi.pa165.CMSPersistenceLayer;
 
-import cz.muni.fi.pa165.persistence.DAO.LeaseDAOImpl;
+import cz.muni.fi.pa165.persistence.dao.LeaseDAOImpl;
 import cz.muni.fi.pa165.persistence.Entities.Address;
 import cz.muni.fi.pa165.persistence.Entities.Car;
 import cz.muni.fi.pa165.persistence.Entities.Lease;

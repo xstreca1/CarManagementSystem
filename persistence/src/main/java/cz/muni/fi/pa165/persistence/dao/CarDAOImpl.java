@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package cz.muni.fi.pa165.persistence.DAO;
+package cz.muni.fi.pa165.persistence.dao;
 
 import cz.muni.fi.pa165.persistence.Entities.Car;
 import java.util.List;
