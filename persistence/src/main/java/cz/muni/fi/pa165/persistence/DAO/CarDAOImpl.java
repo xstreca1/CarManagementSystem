@@ -78,6 +78,14 @@ public class CarDAOImpl implements CarDAO {
 
         return cars;
     }
+    
+    public List listAllCars() {
+        
+        String query = "SELECT c FROM Car c";
+        List<Car> cars = em.createQuery(query,Car.class).getResultList();
+        
+        return cars;
+    }
 
     @Override
     public List getCarByCategory(int category) {
