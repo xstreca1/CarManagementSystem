@@ -45,7 +45,7 @@ public class CarDAOImpl implements CarDAO {
         //get all updatable attributes from the updated car entity instance
         Integer mileage = car.getMileage();
         Boolean availibility = car.isAvailibility();
-        
+        Boolean isActive = car.isIsActive();
         
         //find car to be updated in DB
         Car car1 = (Car)em.find(Car.class ,carID);
@@ -53,6 +53,7 @@ public class CarDAOImpl implements CarDAO {
         //change attributes of persisted entity in DB
         car1.setMileage(mileage);
         car1.setAvailibility(availibility);
+        car1.setIsActive(isActive);
 
     }
 
