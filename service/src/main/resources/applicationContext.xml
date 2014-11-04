@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans 
+    
+    xmlns:tx="http://www.springframework.org/schema/tx"
+    xmlns:mvc="http://www.springframework.org/schema/mvc"
+    xmlns:context="http://www.springframework.org/schema/context"
+    xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+    xmlns:aop="http://www.springframework.org/schema/aop"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+    http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.0.xsd">
+        
+       
+    <!-- Beans for DAO Interface Implementations-->
+    
+    <bean id="personDAO" class="cz.muni.fi.pa165.persistence.DAO.PersonDAOImpl">     
+    </bean>
+    
+    <bean id="carDAO" class="cz.muni.fi.pa165.persistence.DAO.CarDAOImpl">     
+    </bean>
+    
+    <bean id="leaseDAO" class="cz.muni.fi.pa165.persistence.DAO.LeaseDAOImpl">     
+    </bean>
+    
+    <bean id="serviceCheckDAO" class="cz.muni.fi.pa165.persistence.DAO.ServiceCheckDAOImpl">     
+    </bean>
+    
+    <!-- Beans for service layer classes-->       
+     
+    <bean id="personService" class="cz.muni.fi.pa165.service.Entities.PersonServicesImpl">
+        
+    </bean>
+    
+    <bean id="carService" class="cz.muni.fi.pa165.service.Entities.CarImpl">
+        
+    </bean>
+    
+    <bean id="leaseService" class="cz.muni.fi.pa165.service.Entities.LeaseServiceImpl">
+        
+    </bean>
+    
+    <bean id="ServiceCheckService" class="cz.muni.fi.pa165.service.Entities.SsImpl">
+        <property name="scDAO">
+            <ref bean="serviceCheckDAO"/>
+        </property>        
+    </bean> 
+     
+    
+</beans>
