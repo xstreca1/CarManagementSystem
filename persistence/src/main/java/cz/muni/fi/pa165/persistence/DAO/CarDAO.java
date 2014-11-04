@@ -14,7 +14,7 @@ import java.util.List;
  * @author Jozef Puchly
  */
 public interface CarDAO {
-    public void createCar(Car car);
+    public Car createCar(Car car);
     
     public void updateCar(Car car, Integer carID);
     
