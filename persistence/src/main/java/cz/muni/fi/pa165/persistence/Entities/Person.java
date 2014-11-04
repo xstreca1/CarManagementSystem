@@ -54,20 +54,12 @@ public class Person implements Serializable {
 
     @Column(nullable = false)
     private String name;
-    
-    @Column(nullable=false)
+
+    @Column(nullable = false)
     private Boolean isActive;
 
     @Enumerated(EnumType.STRING)
     private EmploymentStatus employmentStatus;
-
-    public Boolean isIsActive() {
-        return isActive;
-    }
-
-    public void setIsActive(Boolean isActive) {
-        this.isActive = isActive;
-    }
 
     @Temporal(TemporalType.DATE)
     private Date dateOfBirth;
@@ -168,7 +160,16 @@ public class Person implements Serializable {
         this.lease = lease;
     }
 
+    public Boolean isIsActive() {
+        return isActive;
+    }
+
+    public void setIsActive(Boolean isActive) {
+        this.isActive = isActive;
+    }
+
     //----------------constructors-----------------------
+
     public Person() {
     }
 
