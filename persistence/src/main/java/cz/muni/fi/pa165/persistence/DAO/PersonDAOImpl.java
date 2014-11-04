@@ -61,10 +61,6 @@ public class PersonDAOImpl implements PersonDAO {
         person1.setNationality(nationality);
         person1.setPosition(position);
         person1.setSalary(salary);
-
-
-        //commiting changes and closing entity manager
-        em.getTransaction().commit();
     }
 
     @Override
