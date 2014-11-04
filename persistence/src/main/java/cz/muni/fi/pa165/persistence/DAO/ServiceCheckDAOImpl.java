@@ -21,17 +21,20 @@ import javax.persistence.PersistenceContext;
  */
 public class ServiceCheckDAOImpl implements ServiceCheckDAO {
 
-    @PersistenceContext(name="carManagementSystem-unit")
+    @PersistenceContext(name = "carManagementSystem-unit")
     private EntityManager em;
 
-    public ServiceCheckDAOImpl(EntityManager entityManager) {
-		if (entityManager == null) {
-			throw new IllegalArgumentException("argument 'em' must be set");
-		}
-		em = entityManager;
-	}
+    // constructor with no parameter
+    public ServiceCheckDAOImpl() {
 
-    
+    }
+
+    public ServiceCheckDAOImpl(EntityManager entityManager) {
+        if (entityManager == null) {
+            throw new IllegalArgumentException("argument 'em' must be set");
+        }
+        em = entityManager;
+    }
 
     @Override
     public void createServiceCheck(ServiceCheck serviceCheck) {
@@ -53,7 +56,7 @@ public class ServiceCheckDAOImpl implements ServiceCheckDAO {
             throw new IllegalArgumentException("service check ID is null");
         }
         // get instance of ServiceCheck according to its ID. Save this instance to variable "update"
-        ServiceCheck serviceCheck2 = (ServiceCheck)em.find(ServiceCheck.class ,scID);
+        ServiceCheck serviceCheck2 = (ServiceCheck) em.find(ServiceCheck.class, scID);
 
         // get new values of attributes
         ServiceCheckName newName = serviceCheck.getName();//netreba
@@ -130,20 +133,20 @@ public class ServiceCheckDAOImpl implements ServiceCheckDAO {
         return serviceChecks;
 
     }
-    
-    public List<ServiceCheck> getServiceCheckByName(ServiceCheckName name){
-        
+
+    public List<ServiceCheck> getServiceCheckByName(ServiceCheckName name) {
+
         if (name == null) {
             throw new IllegalArgumentException("service check name is null");
         }
-       
+
         //actual query
         String sql = "SELECT s FROM ServiceCheck s WHERE s.name= :scName";
         List<ServiceCheck> checks = em.createQuery(sql, ServiceCheck.class).
                 setParameter("scName", name).getResultList();
 
         return checks;
-    
+
     }
 
 }
