@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package cz.muni.fi.pa165.service.Entities;
 
 import cz.muni.fi.pa165.persistence.Entities.Car;
@@ -13,7 +9,8 @@ import java.util.Date;
 import java.util.List;
 
 /**
- *
+ * Interface for Lease on service layer
+ * 
  * @author Petr Potucek
  */
 public interface LeaseInterface {
@@ -42,20 +39,22 @@ public interface LeaseInterface {
      * @param person person with leases
      * @return return list of leases for person
      */
-    List getLeaseByPerson(Person person);
+    List<Lease> getLeaseByPerson(Person person);
     
     /**
-     * Gives all leases
+     * Returns all leases in the period
      * 
-     * @return return list of leases 
+     * @param from date from I want to display leases
+     * @param to date to which I want to displaz leases
+     * @return list of leases in that period
      */
-    List getAllLeases();
+    List<Lease> getAllLeases(Date from, Date to);
     
     /**
      * Gives a lease with given id
      * 
      * @param id id of lease
-     * @return lease with given id
+     * @return listlease with given id
      */
     Lease getLeaseById(int id);
     
