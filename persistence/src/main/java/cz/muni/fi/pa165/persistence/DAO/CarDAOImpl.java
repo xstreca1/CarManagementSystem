@@ -17,25 +17,31 @@ import javax.persistence.PersistenceContext;
  */
 public class CarDAOImpl implements CarDAO {
 
-    @PersistenceContext(name="carManagementSystem-unit")
+    @PersistenceContext(name = "carManagementSystem-unit")
     private EntityManager em;
 
+    //no parameter constructor
+
+    public CarDAOImpl() {
+
+    }
+
     public CarDAOImpl(EntityManager entityManager) {
-		if (entityManager == null) {
-			throw new IllegalArgumentException("argument 'em' must be set");
-		}
-		em = entityManager;
-	}
+        if (entityManager == null) {
+            throw new IllegalArgumentException("argument 'em' must be set");
+        }
+        em = entityManager;
+    }
 
     @Override
     public Car createCar(Car car) {
 
         // save car to DB if it null throw exception
         if (car == null) {
-			throw new IllegalArgumentException("unset argument car");
-		}
+            throw new IllegalArgumentException("unset argument car");
+        }
         em.persist(car);
-        
+
         return car;
     }
 
@@ -46,10 +52,10 @@ public class CarDAOImpl implements CarDAO {
         Integer mileage = car.getMileage();
         Boolean availibility = car.isAvailibility();
         Boolean isActive = car.isIsActive();
-        
+
         //find car to be updated in DB
-        Car car1 = (Car)em.find(Car.class ,carID);
-        
+        Car car1 = (Car) em.find(Car.class, carID);
+
         //change attributes of persisted entity in DB
         car1.setMileage(mileage);
         car1.setAvailibility(availibility);
@@ -60,13 +66,13 @@ public class CarDAOImpl implements CarDAO {
     @Override
     public void deleteCar(Integer carID) {
         if (carID == null) {
-			throw new IllegalArgumentException("unset argument carID'");
-		}
-        
-        Car car = em.find(Car.class, carID);     
-        
+            throw new IllegalArgumentException("unset argument carID'");
+        }
+
+        Car car = em.find(Car.class, carID);
+
         em.remove(car);
-            
+
     }
 
     @Override
@@ -74,18 +80,18 @@ public class CarDAOImpl implements CarDAO {
 
         // get all cars that are available. save them to list
         String query = "SELECT c FROM Car c WHERE c.availibility = :available";
-        List<Car> cars = em.createQuery(query,Car.class).
+        List<Car> cars = em.createQuery(query, Car.class).
                 setParameter("available", true).getResultList();
 
         return cars;
     }
-    
+
     public List listAllCars(boolean alsoInactive) {
-        
+
         String query = "SELECT c FROM Car c WHERE c.isActive = :alsoInactive";
-        List<Car> cars = em.createQuery(query,Car.class).
+        List<Car> cars = em.createQuery(query, Car.class).
                 setParameter("alsoInactive", alsoInactive).getResultList();
-        
+
         return cars;
     }
 
@@ -102,7 +108,7 @@ public class CarDAOImpl implements CarDAO {
 
     @Override
     public List getCarBySeats(int seats) {
-        
+
         // get all cars that have the chosen number of seats. save them to list
         String query = "SELECT c FROM Car c where numberOfSeats=:carNumberOfSeats";
         List<Car> cars = em.createQuery(query, Car.class).
@@ -113,10 +119,10 @@ public class CarDAOImpl implements CarDAO {
 
     @Override
     public List getCarByBodyStyle(Car.bodyStyle bs) {
-        
+
         // get all cars that have the chosen body style. save them to list
         String query = "SELECT c FROM Car c where c.bodyStyle=:carBodyStyle";
-         List<Car> cars = em.createQuery(query, Car.class).
+        List<Car> cars = em.createQuery(query, Car.class).
                 setParameter("carBodyStyle", bs).getResultList();
 
         return cars;
