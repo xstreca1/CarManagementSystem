@@ -53,6 +53,11 @@ public class CarImpl implements CarServiceInterface {
 
     public void retireCar(Car car) {
         
+        if (car.isIsActive()) {
+            car.setIsActive(false);
+        }
+        
+        carDAO.updateCar(car, car.getCarID());
     }
     
 }
