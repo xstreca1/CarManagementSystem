@@ -45,7 +45,7 @@ public class LeaseDAOImpl implements LeaseDAO {
         if (lease == null) throw new IllegalArgumentException("lease is null");
         if (leaseId < 0 ) throw new IllegalArgumentException("Wrong input for id");
         
-        int carMileage = lease.getCarMileage();
+        int distance = lease.getDistance();
         Date dateOfLease = lease.getDateOfLease();
         Date dateOfReturn = lease.getDateOfReturn();
         Boolean isClosed = lease.getIsClosed();
@@ -54,7 +54,7 @@ public class LeaseDAOImpl implements LeaseDAO {
            
         Lease lease1 = (Lease)em.find(Lease.class ,leaseId);
 
-        lease1.setCarMileage(carMileage);
+        lease1.setDistance(distance);
         lease1.setDateOfLease(dateOfLease);
         lease1.setDateOfReturn(dateOfReturn);
         lease1.setIsClosed(isClosed);

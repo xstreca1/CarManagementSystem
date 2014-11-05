@@ -38,7 +38,7 @@ public class ServiceCheckImpl implements ServiceCheckInterface {
 
     // setter for ServiceCheck DAO - to be set in applicationContext.xml  
     public void setDao(ServiceCheckDAO scDAO) {
-
+//check if not null
         this.scDAO = scDAO;
     }    
 

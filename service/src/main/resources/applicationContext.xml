@@ -27,19 +27,19 @@
     
     <!-- Beans for service layer classes-->       
      
-    <bean id="personService" class="cz.muni.fi.pa165.service.Entities.PersonServicesImpl">
+    <bean id="personService" class="cz.muni.fi.pa165.service.service.PersonServicesImpl">
         
     </bean>
     
-    <bean id="carService" class="cz.muni.fi.pa165.service.Entities.CarImpl">
+    <bean id="carService" class="cz.muni.fi.pa165.service.service.CarImpl">
         
     </bean>
     
-    <bean id="leaseService" class="cz.muni.fi.pa165.service.Entities.LeaseServiceImpl">
+    <bean id="leaseService" class="cz.muni.fi.pa165.service.service.LeaseServiceImpl">
         
     </bean>
     
-    <bean id="ServiceCheckService" class="cz.muni.fi.pa165.service.Entities.SsImpl">
+    <bean id="ServiceCheckService" class="cz.muni.fi.pa165.service.service.ServiceCheckImpl">
         <property name="scDAO">
             <ref bean="serviceCheckDAO"/>
         </property>        
