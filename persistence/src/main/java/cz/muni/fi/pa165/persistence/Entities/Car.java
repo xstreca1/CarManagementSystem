@@ -57,9 +57,8 @@ public class Car implements Serializable {
         EU6
 
     };
-    
+
     //-----------------attributes------------------------
-    
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -72,8 +71,8 @@ public class Car implements Serializable {
     public void setIsActive(Boolean isActive) {
         this.isActive = isActive;
     }
-    
-    @Column(nullable=false)
+
+    @Column(nullable = false)
     private Boolean isActive;
 
     @Column(nullable = false)
@@ -120,15 +119,13 @@ public class Car implements Serializable {
     private int numberOfSeats;
 
     //--------------relationships------------------------
-    
     @OneToMany(mappedBy = "car")
     private List<Lease> lease;
-    
+
     @OneToMany(mappedBy = "car")
     private List<ServiceCheck> serviceCheck;
-    
+
     //------------getters and setters--------------------
-    
     public Integer getCarID() {
         return CarID;
     }
@@ -235,20 +232,16 @@ public class Car implements Serializable {
         return CarID;
     }
 
-    
     //----------------------constructors---------------------
-    
     public Car() {
 
     }
 
     //-------------mandatory methods---------------------
-
-
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (CarID != null ? CarID.hashCode() : 0);
+        hash += (vehicleRegPlate != null ? vehicleRegPlate.hashCode() : 0);
         return hash;
     }
 
@@ -259,7 +252,9 @@ public class Car implements Serializable {
             return false;
         }
         Car other = (Car) object;
-        if ((this.CarID == null && other.CarID != null) || (this.CarID != null && !this.CarID.equals(other.CarID))) {
+        if ((this.vehicleRegPlate == null && other.vehicleRegPlate != null)
+                || (this.vehicleRegPlate != null
+                && !this.vehicleRegPlate.equals(other.vehicleRegPlate))) {
             return false;
         }
         return true;

@@ -1,3 +1,4 @@
 /target/
 /CMSPersistenceLayer/target/
 /persistence/target/
+*.log

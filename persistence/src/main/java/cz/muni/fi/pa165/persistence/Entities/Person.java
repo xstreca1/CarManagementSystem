@@ -14,9 +14,7 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -53,6 +51,9 @@ public class Person implements Serializable {
     private Integer id;
 
     @Column(nullable = false)
+    private String identificationNumber;
+    
+    @Column(nullable = false)
     private String name;
 
     @Column(nullable = false)
@@ -86,6 +87,10 @@ public class Person implements Serializable {
     //------------getters and setters--------------------
     public Integer getId() {
         return id;
+    }
+
+    public String getIdentificationNumber() {
+        return identificationNumber;
     }
 
     public String getName() {
@@ -169,7 +174,6 @@ public class Person implements Serializable {
     }
 
     //----------------constructors-----------------------
-
     public Person() {
     }
 
@@ -177,7 +181,7 @@ public class Person implements Serializable {
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (id != null ? id.hashCode() : 0);
+        hash += (identificationNumber != null ? identificationNumber.hashCode() : 0);
         return hash;
     }
 
@@ -188,7 +192,9 @@ public class Person implements Serializable {
             return false;
         }
         Person other = (Person) object;
-        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
+        if ((this.identificationNumber == null && other.identificationNumber != null) 
+                || (this.identificationNumber != null 
+                && !this.identificationNumber.equals(other.identificationNumber))) {
             return false;
         }
         return true;
