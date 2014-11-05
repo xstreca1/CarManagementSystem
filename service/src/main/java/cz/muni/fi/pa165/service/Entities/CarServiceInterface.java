@@ -8,6 +8,7 @@ package cz.muni.fi.pa165.service.Entities;
 
 import cz.muni.fi.pa165.persistence.Entities.Car;
 import cz.muni.fi.pa165.persistence.Entities.Lease;
+import cz.muni.fi.pa165.persistence.Entities.Lease.ReturnedStatus;
 import cz.muni.fi.pa165.persistence.Entities.Person;
 import java.util.List;
 
@@ -21,7 +22,7 @@ public interface CarServiceInterface {
     
     public Car getCarInfo(Integer carID);
     
-    public void returnCar(Integer leaseID);
+    public void returnCar(Integer leaseID, ReturnedStatus returnedStatus);
     
     public List<Car> findAllCars(boolean alsoInactive);
     
