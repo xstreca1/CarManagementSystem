@@ -4,7 +4,6 @@ import cz.muni.fi.pa165.persistence.dao.ServiceCheckDAOImpl;
 import cz.muni.fi.pa165.persistence.Entities.Car;
 import cz.muni.fi.pa165.persistence.Entities.ServiceCheck;
 import cz.muni.fi.pa165.persistence.Entities.ServiceCheck.ServiceCheckName;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.EntityManager;
@@ -13,14 +12,9 @@ import javax.persistence.Persistence;
 import org.junit.After;
 import org.junit.Assert;
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.fail;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 
 /**

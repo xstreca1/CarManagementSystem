@@ -7,22 +7,17 @@ package cz.muni.fi.pa165.CMSPersistenceLayer;
 
 import cz.muni.fi.pa165.persistence.dao.PersonDAOImpl;
 import cz.muni.fi.pa165.persistence.Entities.Address;
-import cz.muni.fi.pa165.persistence.Entities.Car;
 import cz.muni.fi.pa165.persistence.Entities.Person;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
-import javax.persistence.PersistenceUnit;
-import javax.transaction.NotSupportedException;
 import org.junit.After;
 import org.junit.Assert;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertNull;
 import static org.junit.Assert.fail;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 
 /**

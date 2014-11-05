@@ -86,6 +86,7 @@ public class CarDAOImpl implements CarDAO {
         return cars;
     }
 
+    @Override
     public List listAllCars(boolean alsoInactive) {
 
         String query = "SELECT c FROM Car c WHERE c.isActive = :alsoInactive";
@@ -127,7 +128,8 @@ public class CarDAOImpl implements CarDAO {
 
         return cars;
     }
-
+    
+    @Override
     public Car getCarByID(Integer CarID) {
 
         //actual query

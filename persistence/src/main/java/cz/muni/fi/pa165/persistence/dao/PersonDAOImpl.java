@@ -9,7 +9,6 @@ import cz.muni.fi.pa165.persistence.Entities.Person.EmploymentStatus;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
 import javax.persistence.PersistenceContext;
 
 /**
@@ -50,6 +49,7 @@ public class PersonDAOImpl implements PersonDAO {
         String name = updatedPerson.getName();
         String nationality = updatedPerson.getNationality();
         String position = updatedPerson.getPosition();
+        Boolean isActive = updatedPerson.isIsActive();
         int salary = updatedPerson.getSalary();
         
         Person person1 = (Person)em.find(Person.class ,personID);
@@ -61,6 +61,7 @@ public class PersonDAOImpl implements PersonDAO {
         person1.setNationality(nationality);
         person1.setPosition(position);
         person1.setSalary(salary);
+        person1.setIsActive(isActive);
     }
 
     @Override

@@ -19,6 +19,10 @@ public class LeaseDAOImpl implements LeaseDAO {
     @PersistenceContext(name="carManagementSystem-unit")
     private EntityManager em;
 
+    public LeaseDAOImpl() {
+    }
+
+    
     public LeaseDAOImpl(EntityManager entityMf) {
         if (entityMf == null) throw new IllegalArgumentException("the argument must be set");
 
