@@ -64,14 +64,6 @@ public class Car implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer CarID;
 
-    public Boolean isIsActive() {
-        return isActive;
-    }
-
-    public void setIsActive(Boolean isActive) {
-        this.isActive = isActive;
-    }
-
     @Column(nullable = false)
     private Boolean isActive;
 
@@ -232,7 +224,16 @@ public class Car implements Serializable {
         return CarID;
     }
 
+    public Boolean isIsActive() {
+        return isActive;
+    }
+
+    public void setIsActive(Boolean isActive) {
+        this.isActive = isActive;
+    }
+
     //----------------------constructors---------------------
+
     public Car() {
 
     }

@@ -8,7 +8,7 @@ package cz.muni.fi.pa165.Tests;
 
 import cz.muni.fi.pa165.persistence.Entities.Car;
 import cz.muni.fi.pa165.persistence.dao.CarDAO;
-import cz.muni.fi.pa165.service.Entities.CarImpl;
+import cz.muni.fi.pa165.service.service.CarImpl;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;

@@ -46,7 +46,7 @@ public class Lease implements Serializable {
     private int leaseId;
 
     @Column(name = "carMileage", nullable = false)
-    private int carMileage;
+    private int distance;
 
     @Temporal(TemporalType.DATE)
     private Date dateOfLease;
@@ -79,10 +79,10 @@ public class Lease implements Serializable {
     }
 
     /**
-     * @return the carMileage
+     * @return the distance
      */
-    public int getCarMileage() {
-        return carMileage;
+    public int getDistance() {
+        return distance;
     }
 
     /**
@@ -134,8 +134,8 @@ public class Lease implements Serializable {
      *
      * @param carMileage expected mileage of car
      */
-    public void setCarMileage(int carMileage) {
-        this.carMileage = carMileage;
+    public void setDistance(int carMileage) {
+        this.distance = carMileage;
     }
 
     /**
@@ -212,7 +212,7 @@ public class Lease implements Serializable {
     @Override
     public int hashCode() {
         return (int) this.leaseId
-                * carMileage
+                * distance
                 * car.hashCode()
                 * person.hashCode();
     }

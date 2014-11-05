@@ -7,7 +7,7 @@ package cz.muni.fi.pa165.Tests;
 
 import cz.muni.fi.pa165.persistence.Entities.Lease;
 import cz.muni.fi.pa165.persistence.Entities.Person;
-import cz.muni.fi.pa165.service.Entities.PersonServicesImpl;
+import cz.muni.fi.pa165.service.service.PersonServicesImpl;
 import java.util.Date;
 import java.util.List;
 import org.junit.AfterClass;
