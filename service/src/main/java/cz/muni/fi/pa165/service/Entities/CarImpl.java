@@ -10,6 +10,7 @@ import cz.muni.fi.pa165.persistence.dao.CarDAO;
 import cz.muni.fi.pa165.persistence.dao.LeaseDAO;
 import cz.muni.fi.pa165.persistence.Entities.Car;
 import cz.muni.fi.pa165.persistence.Entities.Lease;
+import cz.muni.fi.pa165.persistence.Entities.Lease.ReturnedStatus;
 import cz.muni.fi.pa165.persistence.Entities.Person;
 import java.util.List;
 import javax.transaction.Transactional;
@@ -36,9 +37,13 @@ public class CarImpl implements CarServiceInterface {
         return car;
     }
 
-    public void returnCar(Integer leaseID) {
+    public void returnCar(Integer leaseID, ReturnedStatus returnedStatus) {
         Lease lease = new Lease();
         lease = leaseDAO.getLeaseByID(leaseID);
+        Car car = lease.getCar();
+        car.setAvailibility(true);
+        lease.setIsClosed(true);
+        lease.setReturnedStatus(returnedStatus);
         
    //     leaseDAO.
     }
