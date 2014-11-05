@@ -1,4 +1,4 @@
-package cz.muni.fi.pa165.CMSPersistenceLayer;
+package cz.muni.fi.pa165.persistence.tests;
 
 import cz.muni.fi.pa165.persistence.dao.ServiceCheckDAOImpl;
 import cz.muni.fi.pa165.persistence.Entities.Car;

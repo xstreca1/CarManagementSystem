@@ -1,7 +1,7 @@
 /*
  * Unit test for Data access object of entity class Car
  */
-package cz.muni.fi.pa165.CMSPersistenceLayer;
+package cz.muni.fi.pa165.persistence.tests;
 
 import cz.muni.fi.pa165.persistence.dao.CarDAOImpl;
 import cz.muni.fi.pa165.persistence.Entities.Car;
