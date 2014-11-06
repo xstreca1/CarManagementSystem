@@ -203,6 +203,15 @@ public class LeaseDAOImplTest {
         List<Lease> leasesByPerson = dao.getLeasesByPerson(person);
         assertEquals(1, leasesByPerson.size());
     }
+    
+    /**
+     * Test of getLeasesById method, of class LeaseDAOImpl.
+     */
+    @Test
+    public void testGetLeaseByID() {
+        Lease leaseByID = dao.getLeaseByID(lease.getId());
+        assertEquals(lease, leaseByID);
+    }
 
     /**
      * Test of getAllLeases method, of class LeaseDAOImpl.
