@@ -9,7 +9,7 @@ import cz.muni.fi.pa165.persistence.Entities.Address;
 import cz.muni.fi.pa165.persistence.Entities.Car;
 import cz.muni.fi.pa165.persistence.Entities.Lease;
 import cz.muni.fi.pa165.persistence.Entities.Person;
-import cz.muni.fi.pa165.persistence.dao.LeaseDAOImpl;
+import cz.muni.fi.pa165.persistence.DAO.LeaseDAOImpl;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.EntityManager;

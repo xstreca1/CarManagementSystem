@@ -4,12 +4,12 @@
  */
 package cz.muni.fi.pa165.service.service;
 
-import cz.muni.fi.pa165.persistence.dao.LeaseDAO;
+import cz.muni.fi.pa165.persistence.DAO.LeaseDAO;
 import cz.muni.fi.pa165.persistence.Entities.Car;
 import cz.muni.fi.pa165.persistence.Entities.Lease;
 import cz.muni.fi.pa165.persistence.Entities.Lease.ReturnedStatus;
 import cz.muni.fi.pa165.persistence.Entities.Person;
-import cz.muni.fi.pa165.persistence.dao.PersonDAO;
+import cz.muni.fi.pa165.persistence.DAO.PersonDAO;
 import cz.muni.fi.pa165.service.dto.PersonDTO;
 import java.util.ArrayList;
 import java.util.Date;

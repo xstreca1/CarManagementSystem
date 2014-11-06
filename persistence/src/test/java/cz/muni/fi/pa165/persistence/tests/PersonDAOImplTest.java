@@ -5,7 +5,7 @@
  */
 package cz.muni.fi.pa165.persistence.tests;
 
-import cz.muni.fi.pa165.persistence.dao.PersonDAOImpl;
+import cz.muni.fi.pa165.persistence.DAO.PersonDAOImpl;
 import cz.muni.fi.pa165.persistence.Entities.Address;
 import cz.muni.fi.pa165.persistence.Entities.Person;
 import java.util.List;

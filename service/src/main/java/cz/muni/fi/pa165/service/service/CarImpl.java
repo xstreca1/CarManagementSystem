@@ -6,8 +6,8 @@
 
 package cz.muni.fi.pa165.service.service;
 
-import cz.muni.fi.pa165.persistence.dao.CarDAO;
-import cz.muni.fi.pa165.persistence.dao.LeaseDAO;
+import cz.muni.fi.pa165.persistence.DAO.CarDAO;
+import cz.muni.fi.pa165.persistence.DAO.LeaseDAO;
 import cz.muni.fi.pa165.persistence.Entities.Car;
 import cz.muni.fi.pa165.persistence.Entities.Lease;
 import cz.muni.fi.pa165.persistence.Entities.Lease.ReturnedStatus;

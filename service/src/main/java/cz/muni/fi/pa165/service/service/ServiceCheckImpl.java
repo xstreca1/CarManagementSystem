@@ -4,7 +4,7 @@
  */
 package cz.muni.fi.pa165.service.service;
 
-import cz.muni.fi.pa165.persistence.dao.ServiceCheckDAO;
+import cz.muni.fi.pa165.persistence.DAO.ServiceCheckDAO;
 import cz.muni.fi.pa165.persistence.Entities.Car;
 import cz.muni.fi.pa165.persistence.Entities.ServiceCheck;
 import java.util.ArrayList;

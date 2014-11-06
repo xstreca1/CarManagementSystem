@@ -1,6 +1,6 @@
 package cz.muni.fi.pa165.persistence.tests;
 
-import cz.muni.fi.pa165.persistence.dao.ServiceCheckDAOImpl;
+import cz.muni.fi.pa165.persistence.DAO.ServiceCheckDAOImpl;
 import cz.muni.fi.pa165.persistence.Entities.Car;
 import cz.muni.fi.pa165.persistence.Entities.ServiceCheck;
 import cz.muni.fi.pa165.persistence.Entities.ServiceCheck.ServiceCheckName;
@@ -59,6 +59,7 @@ public class ServiceCheckImplTest {
         car1.setMileage(55000);
         car1.setNumberOfSeats(5);
         car1.setTransmission(true);
+        car1.setIsActive(true);
 
         car2 = new Car();
         car2.setAvailibility(true);
@@ -73,6 +74,7 @@ public class ServiceCheckImplTest {
         car2.setMileage(55000);
         car2.setNumberOfSeats(5);
         car2.setTransmission(true);
+        car2.setIsActive(true);
 
         car3 = new Car();
         car3.setAvailibility(true);
@@ -87,6 +89,7 @@ public class ServiceCheckImplTest {
         car3.setMileage(55000);
         car3.setNumberOfSeats(5);
         car3.setTransmission(true);
+        car3.setIsActive(true);
 
         em.persist(car1);
         em.persist(car2);

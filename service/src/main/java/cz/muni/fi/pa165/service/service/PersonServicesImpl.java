@@ -7,7 +7,7 @@ package cz.muni.fi.pa165.service.service;
 
 import cz.muni.fi.pa165.persistence.Entities.Lease;
 import cz.muni.fi.pa165.persistence.Entities.Person;
-import cz.muni.fi.pa165.persistence.dao.PersonDAO;
+import cz.muni.fi.pa165.persistence.DAO.PersonDAO;
 import cz.muni.fi.pa165.service.dto.PersonDTO;
 import java.util.ArrayList;
 import java.util.Date;
@@ -64,6 +64,14 @@ public class PersonServicesImpl implements PersonServices {
     }
 
     public List<Person> getPeopleByName(String name) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public List<Lease> getTravelStatistics(Person person, Date from, Date to) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public boolean deactivatePerson(Person person) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

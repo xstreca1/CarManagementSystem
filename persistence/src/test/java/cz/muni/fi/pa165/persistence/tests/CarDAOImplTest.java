@@ -3,7 +3,7 @@
  */
 package cz.muni.fi.pa165.persistence.tests;
 
-import cz.muni.fi.pa165.persistence.dao.CarDAOImpl;
+import cz.muni.fi.pa165.persistence.DAO.CarDAOImpl;
 import cz.muni.fi.pa165.persistence.Entities.Car;
 import java.util.List;
 import javax.persistence.EntityManager;
