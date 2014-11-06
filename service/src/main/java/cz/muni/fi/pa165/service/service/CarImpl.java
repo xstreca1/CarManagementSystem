@@ -12,8 +12,16 @@ import cz.muni.fi.pa165.persistence.Entities.Car;
 import cz.muni.fi.pa165.persistence.Entities.Lease;
 import cz.muni.fi.pa165.persistence.Entities.Lease.ReturnedStatus;
 import cz.muni.fi.pa165.persistence.Entities.Person;
+import cz.muni.fi.pa165.service.dto.CarDTO;
+import java.util.ArrayList;
 import java.util.List;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
+import org.dozer.DozerBeanMapper;
+import org.dozer.Mapper;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Service;
 
 @Service("carService")
@@ -26,15 +34,30 @@ public class CarImpl implements CarServiceInterface {
     
     private CarDAO carDAO;
     private LeaseDAO leaseDAO;
+    @PersistenceContext
+    private EntityManager em;
     
-    public void createCar(Car car) {
-		carDAO.createCar(car);
+    public void createCar(CarDTO carDto) {
+		ApplicationContext applicationContext 
+                = new ClassPathXmlApplicationContext("/applicationContext.xml");
+        
+        CarDAO CarDAO = (CarDAO) applicationContext.getBean("carDAO");
+        Car carEntity = null;
+        
+        List<String> list = new ArrayList<String>();
+// Add the mapping configuration
+        list.add("dozerMapping.xml");
+// Add to DozerMapper
+        Mapper mapper = new DozerBeanMapper(list);
+        
+        mapper.map(carDto, carEntity, "car");
+        em.getTransaction().begin();
+        carDAO.createCar(carEntity);
+        em.getTransaction().commit();
     }
 
     public Car getCarInfo(Integer carID) {
-        Car car = new Car();
-        car = carDAO.getCarByID(carID);
-        return car;
+        return null;
     }
 
     public void returnCar(Integer leaseID, ReturnedStatus returnedStatus) {
@@ -56,13 +79,9 @@ public class CarImpl implements CarServiceInterface {
        
     }
 
-    public void retireCar(Car car) {
+    public void retireCar(CarDTO carDto) {
         
-        if (car.isIsActive()) {
-            car.setIsActive(false);
-        }
         
-        carDAO.updateCar(car, car.getCarID());
     }
     
 }
