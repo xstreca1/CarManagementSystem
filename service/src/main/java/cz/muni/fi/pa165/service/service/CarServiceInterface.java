@@ -10,6 +10,7 @@ import cz.muni.fi.pa165.persistence.Entities.Car;
 import cz.muni.fi.pa165.persistence.Entities.Lease;
 import cz.muni.fi.pa165.persistence.Entities.Lease.ReturnedStatus;
 import cz.muni.fi.pa165.persistence.Entities.Person;
+import cz.muni.fi.pa165.service.dto.CarDTO;
 import java.util.List;
 
 /**
@@ -18,7 +19,7 @@ import java.util.List;
  */
 public interface CarServiceInterface {
     
-    public void createCar(Car car);
+    public void createCar(CarDTO carDto);
     
     public Car getCarInfo(Integer carID);
     
@@ -26,5 +27,5 @@ public interface CarServiceInterface {
     
     public List<Car> findAllCars(boolean alsoInactive);
     
-    public void retireCar(Car car);
+    public void retireCar(CarDTO carDto);
 }
