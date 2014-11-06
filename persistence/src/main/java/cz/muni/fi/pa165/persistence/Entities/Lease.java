@@ -211,10 +211,18 @@ public class Lease implements Serializable {
     //-------------mandatory methods---------------------
     @Override
     public int hashCode() {
-        return (int) this.leaseId
-                * distance
-                * car.hashCode()
-                * person.hashCode();
+        int hash = 7;
+        hash = 17 * hash + this.leaseId;
+        hash = 17 * hash + (this.person != null ? this.person.hashCode() : 0);
+        hash = 17 * hash + (this.car != null ? this.car.hashCode() : 0);
+        hash = 17 * hash + (this.dateOfLease != null ? this.dateOfLease.hashCode() : 0);
+        hash = 17 * hash + (this.dateOfReturn != null ? this.dateOfReturn.hashCode() : 0);
+        hash = 17 * hash + this.distance;
+        hash = 17 * hash + (this.returnedStatus != null ? this.returnedStatus.hashCode() : 0);
+        hash = 17 * hash + (this.travelReason != null ? this.travelReason.hashCode() : 0);
+        hash = 17 * hash + (this.isClosed != null ? this.isClosed.hashCode() : 0);
+        
+        return hash;
     }
 
     @Override
@@ -222,7 +230,7 @@ public class Lease implements Serializable {
         if (object == null) {
             return false;
         }
-        if (!(object instanceof Lease)) {
+        if (getClass() != object.getClass()) {
             return false;
         }
 
@@ -236,7 +244,25 @@ public class Lease implements Serializable {
         if (!this.car.equals(other.car)) {
             return false;
         }
-
+        if (!this.dateOfLease.equals(other.dateOfLease)) {
+            return false;
+        }
+        if (!this.dateOfReturn.equals(other.dateOfReturn)) {
+            return false;
+        }
+        if (this.distance != other.distance) {
+            return false;
+        }
+        if (!this.returnedStatus.equals(other.returnedStatus)) {
+            return false;
+        }
+        if (!this.travelReason.equals(other.travelReason)) {
+            return false;
+        }
+        if (this.isClosed != other.isClosed) {
+            return false;
+        }
+        
         return true;
     }
 
