@@ -24,21 +24,15 @@ public class LeaseDTO {
     private Lease.ReturnedStatus returnedStatus;
 
     private Lease.TravelReason travelReason;
-
-    private Car car;
-    
-    private Person person;
     
      public LeaseDTO(Integer leaseId, Lease.TravelReason travelReason,int distance,
-            Date dateOfLease,Date dateOfReturn,Car car, Person person, Boolean isClosed,Lease.ReturnedStatus returnedStatus) {
+            Date dateOfLease,Date dateOfReturn, Boolean isClosed,Lease.ReturnedStatus returnedStatus) {
 
         this.leaseId = leaseId;
         this.travelReason = travelReason;
         this.distance = distance;
         this.dateOfLease = dateOfLease;
         this.dateOfReturn = dateOfReturn;
-        this.car = car;
-        this.person = person;
         this.isClosed = isClosed;//here?
         this.returnedStatus = returnedStatus;//here?
     }
@@ -71,14 +65,6 @@ public class LeaseDTO {
         this.travelReason = travelReason;
     }
 
-    public void setCar(Car car) {
-        this.car = car;
-    }
-
-    public void setPerson(Person person) {
-        this.person = person;
-    }
-
     public int getLeaseId() {
         return leaseId;
     }
@@ -106,12 +92,62 @@ public class LeaseDTO {
     public Lease.TravelReason getTravelReason() {
         return travelReason;
     }
-
-    public Car getCar() {
-        return car;
+    
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 17 * hash + this.leaseId;
+        hash = 17 * hash + (this.dateOfLease != null ? this.dateOfLease.hashCode() : 0);
+        hash = 17 * hash + (this.dateOfReturn != null ? this.dateOfReturn.hashCode() : 0);
+        hash = 17 * hash + this.distance;
+        hash = 17 * hash + (this.returnedStatus != null ? this.returnedStatus.hashCode() : 0);
+        hash = 17 * hash + (this.travelReason != null ? this.travelReason.hashCode() : 0);
+        hash = 17 * hash + (this.isClosed != null ? this.isClosed.hashCode() : 0);
+        
+        return hash;
     }
 
-    public Person getPerson() {
-        return person;
+    @Override
+    public boolean equals(Object object) {
+        if (object == null) {
+            return false;
+        }
+        if (getClass() != object.getClass()) {
+            return false;
+        }
+
+        LeaseDTO other = (LeaseDTO) object;
+        if (this.leaseId != other.leaseId) {
+            return false;
+        }
+        if (!this.dateOfLease.equals(other.dateOfLease)) {
+            return false;
+        }
+        if (!this.dateOfReturn.equals(other.dateOfReturn)) {
+            return false;
+        }
+        if (this.distance != other.distance) {
+            return false;
+        }
+        if (!this.returnedStatus.equals(other.returnedStatus)) {
+            return false;
+        }
+        if (!this.travelReason.equals(other.travelReason)) {
+            return false;
+        }
+        if (this.isClosed != other.isClosed) {
+            return false;
+        }
+        
+        return true;
     }
+
+    @Override
+    public String toString() {
+        return "Lease id: " + leaseId + "   Assigned to: " 
+                + "\n   date of lease: " + dateOfLease.toString() 
+                + "  date of return: " + dateOfReturn.toString()
+                + "is approved: " + isClosed.toString();
+    }
+
 }
