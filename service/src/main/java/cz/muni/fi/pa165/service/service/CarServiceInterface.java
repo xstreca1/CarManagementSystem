@@ -21,7 +21,7 @@ public interface CarServiceInterface {
     
     public void createCar(CarDTO carDto);
     
-    public void updateCar(CarDTO carDto);
+    public void updateCar(CarDTO carDto, Integer CarID);
     
     public List<CarDTO> findAllCars(boolean alsoInactive);
     

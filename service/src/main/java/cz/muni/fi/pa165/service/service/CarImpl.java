@@ -57,7 +57,7 @@ public class CarImpl implements CarServiceInterface {
     }
 
 
-    public void updateCar(CarDTO carDto) {
+    public void updateCar(CarDTO carDto, Integer carID) {
          ApplicationContext applicationContext 
                 = new ClassPathXmlApplicationContext("/applicationContext.xml");
         
@@ -72,7 +72,7 @@ public class CarImpl implements CarServiceInterface {
         
         mapper.map(carDto, carEntity, "car");
         em.getTransaction().begin();
-        carDAO.updateCar(carEntity, carEntity.getCarID());
+        carDAO.updateCar(carEntity, carID);
         em.getTransaction().commit();
         
    //     leaseDAO.

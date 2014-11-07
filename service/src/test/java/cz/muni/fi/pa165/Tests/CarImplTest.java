@@ -74,6 +74,10 @@ public class CarImplTest {
 
 					}
 				});
+        List<Car> allCars = new ArrayList<>();
+		allCars.add(new Car());
+		allCars.add(new Car());
+		Mockito.when(mockCarDao.listAllCars(true)).thenReturn(allCars);
         
     }
 
@@ -95,6 +99,15 @@ public class CarImplTest {
         service.deleteCar(carDto);
         
         verify(mockCarDao).deleteCar(car.getCarID());
+        
+    }
+    
+    @Test
+    public void findAllCars() {
+        
+            List<CarDTO> list = service.findAllCars(true);
+			assertNotNull(list);
+			assertEquals(2, list.size());
         
     }
 }
