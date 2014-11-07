@@ -3,7 +3,7 @@
           xsi:schemaLocation="http://dozer.sourceforge.net http://dozer.sourceforge.net/schema/beanmapping.xsd">
 	
     <mapping map-id="person">
-        <class-a>cz.muni.fi.pa165.persistence.DAO.Person</class-a>
+        <class-a>cz.muni.fi.pa165.persistence.Entities.Person</class-a>
         <class-b>cz.muni.fi.pa165.service.dto.PersonDTO</class-b>
         <field>
             <a>id</a>
@@ -51,7 +51,7 @@
         </field>
     </mapping>
     <mapping map-id="car">
-        <class-a>cz.muni.fi.pa165.persistence.DAO.Car</class-a>
+        <class-a>cz.muni.fi.pa165.persistence.Entities.Car</class-a>
         <class-b>cz.muni.fi.pa165.service.dto.CarDTO</class-b>
         <field>
             <a>CarID</a>
@@ -123,7 +123,7 @@
         </field>
     </mapping>
     <mapping map-id="servicecheck">
-        <class-a>cz.muni.fi.pa165.persistence.DAO.ServiceCheck</class-a>
+        <class-a>cz.muni.fi.pa165.persistence.Entities.ServiceCheck</class-a>
         <class-b>cz.muni.fi.pa165.service.dto.ServiceCheckDTO</class-b>
         <field>
             <a>scID</a>
@@ -147,7 +147,7 @@
         </field>
     </mapping>
     <mapping map-id="lease">
-        <class-a>cz.muni.fi.pa165.persistence.DAO.Lease</class-a>
+        <class-a>cz.muni.fi.pa165.persistence.Entities.Lease</class-a>
         <class-b>cz.muni.fi.pa165.service.dto.LeaseDTO</class-b>
         <field>
             <a>leaseId</a>
