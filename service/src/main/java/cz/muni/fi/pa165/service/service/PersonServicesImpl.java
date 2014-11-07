@@ -96,6 +96,8 @@ public class PersonServicesImpl implements PersonServices {
     public List<PersonDTO> findAllPeople(boolean alsoInactive) {
         //create empty list
         List<String> list = new ArrayList<String>();
+        
+        List<PersonDTO> peopleDTO = new ArrayList<PersonDTO>();
 
         PersonDTO personDTO = null;
 
@@ -104,7 +106,7 @@ public class PersonServicesImpl implements PersonServices {
         Mapper mapper = new DozerBeanMapper(list);
 
         if (alsoInactive = true) {
-            List<PersonDTO> peopleDTO = new ArrayList<PersonDTO>();
+            
             List<Person> people = personDAO.getAllPeople();
             for (Person p : people) {
                 mapper.map(p, personDTO, "person");
@@ -112,7 +114,7 @@ public class PersonServicesImpl implements PersonServices {
 
             }
         } else {
-            List<PersonDTO> peopleDTO = new ArrayList<PersonDTO>();
+        
             List<Person> people = personDAO.getAllPeople();
             for (Person p : people) {
                 if(p.isIsActive()){
@@ -120,24 +122,19 @@ public class PersonServicesImpl implements PersonServices {
                 peopleDTO.add(personDTO);
                 }
         }
+        
+    }
         return peopleDTO;
     }
 
-    throw new UnsupportedOperationException(
 
-"Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    @Override
+    public List<PersonDTO> getPeopleByName(String name) {
+        
+        
+        
     }
 
-    public List<Person> getPeopleByName(String name) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    public List<Lease> getTravelStatistics(Person person, Date from, Date to) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    public boolean deactivatePerson(Person person) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+    
 
 }

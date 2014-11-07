@@ -64,6 +64,6 @@ public interface PersonServices {
      * @param name name of a person searched for
      * @return list of people, who have selected name
      */
-    List<Person> getPeopleByName(String name);
+    List<PersonDTO> getPeopleByName(String name);
 
 }
