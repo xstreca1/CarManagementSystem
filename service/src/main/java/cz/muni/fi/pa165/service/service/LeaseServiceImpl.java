@@ -5,13 +5,10 @@
 package cz.muni.fi.pa165.service.service;
 
 import cz.muni.fi.pa165.persistence.DAO.LeaseDAO;
-import cz.muni.fi.pa165.persistence.Entities.Car;
 import cz.muni.fi.pa165.persistence.Entities.Lease;
 import cz.muni.fi.pa165.persistence.Entities.Lease.ReturnedStatus;
 import cz.muni.fi.pa165.persistence.Entities.Person;
-import cz.muni.fi.pa165.persistence.DAO.PersonDAO;
 import cz.muni.fi.pa165.service.dto.LeaseDTO;
-import cz.muni.fi.pa165.service.dto.PersonDTO;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -68,7 +65,7 @@ public class LeaseServiceImpl implements LeaseServiceInterface {
         mapper.map(leaseDTO, leaseEntity, "lease");
         
         em.getTransaction().begin();
-        leaseDAO.createCar(leaseEntity);
+        leaseDAO.createLease(leaseEntity);
         em.getTransaction().commit();
     }
 
@@ -118,7 +115,14 @@ public class LeaseServiceImpl implements LeaseServiceInterface {
             throw new IllegalArgumentException("Wrong type of id");
         } 
        
-	return leaseDAO.getLeaseByID(id);
+         ApplicationContext applicationContext 
+                = new ClassPathXmlApplicationContext("/applicationContext.xml");
+        list.add("dozerMapping.xml");
+        Lease lease = leaseDAO.getLeaseByID(id);
+	Mapper mapper = DozerBeanMapper.getInstance(list);
+	Lease leaseDTO = mapper.map(lease,LeaseDTO.class);
+        
+	return leaseDTO;
     }
 
     public void deleteLease(int id) {
@@ -140,7 +144,19 @@ public class LeaseServiceImpl implements LeaseServiceInterface {
             throw new NullPointerException("Date to is null");
         }
         
-        return null;//TODO
+        ApplicationContext applicationContext 
+                = new ClassPathXmlApplicationContext("/applicationContext.xml");
+        list.add("dozerMapping.xml");
+        List<Lease> allLeases = leaseDAO.getAllLeases(from, to);
+        List<Lease> leasesByPersonDTO = new ArrayList();
+        Mapper mapper = DozerBeanMapper.getInstance(list);
+        for(Lease lease: allLeases){
+            if ((lease.getPerson()).equals(person)){
+                leasesByPersonDTO.add(mapper.map(lease, LeaseDTO.class));
+            }        
+        }
+        
+	return leasesByPersonDTO;
     }
 } 
   
