@@ -8,11 +8,14 @@ package cz.muni.fi.pa165.service.service;
 import cz.muni.fi.pa165.persistence.Entities.Lease;
 import cz.muni.fi.pa165.persistence.Entities.Person;
 import cz.muni.fi.pa165.persistence.DAO.PersonDAO;
+import cz.muni.fi.pa165.persistence.DAO.ServiceCheckDAO;
 import cz.muni.fi.pa165.service.dto.PersonDTO;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 import javax.persistence.PersistenceContext;
 import org.dozer.DozerBeanMapper;
 import org.dozer.Mapper;
@@ -24,13 +27,45 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
  * @author Jakub Rumanovsky
  */
 public class PersonServicesImpl implements PersonServices {
+    
+    // Person DAO
+    private PersonDAO personDAO;
+    
+    // EntityManagmentFactory
+    EntityManagerFactory emf = Persistence
+                .createEntityManagerFactory("carManagementSystem-unit");
+    
+    // Entity Manager
+    private EntityManager em = emf.createEntityManager();    
 
-    @PersistenceContext
-    private EntityManager em;
+    // setter for ServiceCheck DAO - to be set in applicationContext.xml  
+    public void setDao(PersonDAO personDAO) {
+    //check if not null
+        this.personDAO = personDAO;
+    }    
 
-    public boolean createPerson() {
+    public boolean createPerson(PersonDTO personDTO) {
 
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        //create empty entity
+        Person personEntity = null;
+        
+        //create empty list
+        List<String> list = new ArrayList<String>();        
+       
+        // map DTO object on Entity
+        list.add("dozerMapping.xml");
+        Mapper mapper = new DozerBeanMapper(list);
+        
+        mapper.map(personDTO, personEntity, "person");
+
+        // start transaction
+        em.getTransaction().begin();
+
+        // save to database using some implementation od DAO
+        personDAO.insertPerson(personEntity);
+        
+        // commit transaction
+        em.getTransaction().commit();
     }
 
     public boolean editPerson(Person person, Integer personID) {

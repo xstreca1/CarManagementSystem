@@ -7,6 +7,7 @@ package cz.muni.fi.pa165.service.service;
 
 import cz.muni.fi.pa165.persistence.Entities.Lease;
 import cz.muni.fi.pa165.persistence.Entities.Person;
+import cz.muni.fi.pa165.service.dto.PersonDTO;
 import java.util.Date;
 import java.util.List;
 
@@ -21,7 +22,7 @@ public interface PersonServices {
      * @param all the mandatory attributes for person
      * @return true if no error occurs
      */
-    boolean createPerson();
+    boolean createPerson(PersonDTO personDTO);
     
     /**
      * return all leases (travel stats) for selected person
@@ -30,7 +31,7 @@ public interface PersonServices {
      * @param to the date to which the travel stats will be returned
      * @return 
      */
-    List<Lease> getTravelStatistics(Person person, Date from, Date to);
+    //List<Lease> getTravelStatistics(Person person, Date from, Date to);
 
     /**
      * edit the person selected by personID
@@ -48,7 +49,7 @@ public interface PersonServices {
      * @param person person to deactivate
      * @return true if everything is ok
      */
-    boolean deactivatePerson(Person person);
+    //boolean deactivatePerson(Person person);
 
     /**
      * get all people from the database
