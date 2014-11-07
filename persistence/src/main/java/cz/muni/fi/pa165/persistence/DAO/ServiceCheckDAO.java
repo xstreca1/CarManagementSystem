@@ -68,7 +68,7 @@ public interface ServiceCheckDAO {
      * @return list of serviceChecks
      */
     
-    List<ServiceCheck> getServiceCheckByName(ServiceCheckName name);
+    public List<ServiceCheck> getServiceCheckByName(ServiceCheckName name);
     
     /**
      * method to update service interval of some serviceCheck
