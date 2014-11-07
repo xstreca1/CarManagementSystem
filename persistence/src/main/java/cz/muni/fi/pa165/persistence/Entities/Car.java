@@ -273,7 +273,7 @@ public class Car implements Serializable {
     }
     
 
-    public Boolean getIsActive() {
+    public Boolean isIsActive() {
         return isActive;
     }
 

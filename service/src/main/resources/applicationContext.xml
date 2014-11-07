@@ -28,9 +28,9 @@
     <!-- Beans for service layer classes-->       
      
     <bean id="personService" class="cz.muni.fi.pa165.service.service.PersonServicesImpl">
-        <!--property name="personDAO">
+        <property name="personDAO">
             <ref bean="personDAO"/>  
-        </property-->
+        </property>
     </bean>
     
     <bean id="carService" class="cz.muni.fi.pa165.service.service.CarImpl">
@@ -42,9 +42,9 @@
     </bean>
     
     <bean id="ServiceCheckService" class="cz.muni.fi.pa165.service.service.ServiceCheckImpl">
-        <!--property name="scDAO">
+        <property name="scDAO">
             <ref bean="serviceCheckDAO"/>
-        </property-->        
+        </property>        
     </bean> 
      
     

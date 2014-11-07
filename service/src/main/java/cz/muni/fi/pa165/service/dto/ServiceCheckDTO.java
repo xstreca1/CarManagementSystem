@@ -23,11 +23,6 @@ public class ServiceCheckDTO {
     private String description;
     private Car car;
 
-    public ServiceCheckDTO() {
-    }
-    
-    
-
     public ServiceCheckDTO(ServiceCheck.ServiceCheckName name, int serviceInterval, Date lastCheck, String description, Car car) {
         this.name = name;
         this.serviceInterval = serviceInterval;
