@@ -211,13 +211,13 @@ public class LeaseDAOImplTest {
     /**
      * Test of getLeasesById method, of class LeaseDAOImpl.
      */
-    @Test
+   /* @Test
     public void testGetLeaseByID() {
         em.getTransaction().begin();
         Lease leaseByID = dao.getLeaseByID(lease.getId());
         em.getTransaction().commit();
         assertEquals(lease, leaseByID);
-    }
+    }*/
 
     /**
      * Test of getAllLeases method, of class LeaseDAOImpl.

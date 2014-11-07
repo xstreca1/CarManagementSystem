@@ -2,3 +2,4 @@
 /CMSPersistenceLayer/target/
 /persistence/target/
 *.log
+/service/target/
