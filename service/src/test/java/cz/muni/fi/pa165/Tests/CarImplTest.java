@@ -6,14 +6,16 @@
 
 package cz.muni.fi.pa165.Tests;
 
-import cz.muni.fi.pa165.persistence.Entities.Car;
 import cz.muni.fi.pa165.persistence.DAO.CarDAO;
+import cz.muni.fi.pa165.persistence.Entities.Car;
+import cz.muni.fi.pa165.service.dto.CarDTO;
 import cz.muni.fi.pa165.service.service.CarImpl;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.fail;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -39,6 +41,9 @@ public class CarImplTest {
     Car car;
     
     @Mock
+    CarDTO carDto;
+    
+    @Mock
     List<Car> cars;
     
     @InjectMocks
@@ -46,8 +51,28 @@ public class CarImplTest {
 
     @Before
     public void setUp() {
+        Mockito.when(mockCarDao.createCar(Matchers.any(Car.class)))
+                .thenAnswer(new Answer<Car>() {
+					@Override
+					public Car answer(InvocationOnMock inv)
+							throws Throwable {
+						Object[] args = inv.getArguments();
+						return (Car) args[0];
+
+					                                  }
+                });
         
     }
 
-		
+    @Test
+    public void testCreateCar(CarDTO carDto) {
+        
+                CarDTO dto = new CarDTO();
+                
+		service.createCar(dto);
+                
+		assertNotNull(dto);
+                
+		assertEquals(true, true);
+    }
 }
