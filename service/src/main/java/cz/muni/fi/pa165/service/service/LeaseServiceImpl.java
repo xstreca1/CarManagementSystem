@@ -128,13 +128,24 @@ public class LeaseServiceImpl implements LeaseServiceInterface {
 	return leaseDTO;
     }
 
-    public void deleteLease(int id) {
-        if (id < 0) {
-            throw new IllegalArgumentException("Wrong type of id");
-        }
+    public void deleteLease(LeaseDTO leaseDto) {
+        ApplicationContext applicationContext 
+                = new ClassPathXmlApplicationContext("/applicationContext.xml");
         
-        leaseDAO.deleteLease(id);
+        LeaseDAO leaseDao = (LeaseDAO) applicationContext.getBean("carDAO");
+        Lease leaseEntity = null;
+        
+        List<String> list = new ArrayList<String>();
+// Add the mapping configuration
+        list.add("dozerMapping.xml");
+// Add to DozerMapper
+        Mapper mapper = new DozerBeanMapper(list);
+        
+        mapper.map(leaseDto, leaseEntity, "lease");
+        leaseDao.deleteLease(leaseEntity.getId());
+     
     }
+    
 
     public List<Lease> getTravelStatistics(Person person, Date from, Date to) {
         if (person == null){
