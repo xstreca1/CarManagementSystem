@@ -62,7 +62,7 @@ public class Car implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer CarID;
+    private Integer carID;
 
     @Column(nullable = false)
     private Boolean isActive;
@@ -119,7 +119,7 @@ public class Car implements Serializable {
 
     //------------getters and setters--------------------
     public Integer getCarID() {
-        return CarID;
+        return carID;
     }
 
     public String getVehicleRegPlate() {
@@ -173,7 +173,7 @@ public class Car implements Serializable {
     public float getGasConsumption() {
         return gasConsumption;
     }
-
+    
     public void setGasConsumption(float gasConsumption) {
         this.gasConsumption = gasConsumption;
     }
@@ -221,16 +221,70 @@ public class Car implements Serializable {
     private boolean availibility;
 
     public Integer getId() {
-        return CarID;
+        return carID;
     }
 
-    public Boolean isIsActive() {
+    public Color getColor() {
+        return color;
+    }
+
+    public void setColor(Color color) {
+        this.color = color;
+    }
+
+    public bodyStyle getBodystyle() {
+        return bodystyle;
+    }
+
+    public void setBodystyle(bodyStyle bodystyle) {
+        this.bodystyle = bodystyle;
+    }
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
+    }
+
+    public emissionStandard getEmissionstandard() {
+        return emissionstandard;
+    }
+
+    public void setEmissionstandard(emissionStandard emissionstandard) {
+        this.emissionstandard = emissionstandard;
+    }
+
+    public List<Lease> getLease() {
+        return lease;
+    }
+
+    public void setLease(List<Lease> lease) {
+        this.lease = lease;
+    }
+
+    public List<ServiceCheck> getServiceCheck() {
+        return serviceCheck;
+    }
+
+    public void setServiceCheck(List<ServiceCheck> serviceCheck) {
+        this.serviceCheck = serviceCheck;
+    }
+    
+
+    public Boolean getIsActive() {
         return isActive;
     }
 
     public void setIsActive(Boolean isActive) {
         this.isActive = isActive;
     }
+
+    public void setCarID(Integer carID) {
+        this.carID = carID;
+    }
+    
 
     //----------------------constructors---------------------
 
@@ -263,7 +317,7 @@ public class Car implements Serializable {
 
     @Override
     public String toString() {
-        return "cz.muni.fi.pa165.carmanagementsystem.Car[ id=" + CarID + " ]";
+        return "cz.muni.fi.pa165.carmanagementsystem.Car[ id=" + carID + " ]";
     }
 
 }
