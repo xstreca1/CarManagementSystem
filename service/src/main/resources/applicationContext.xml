@@ -1,49 +1,84 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<beans 
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:jee="http://www.springframework.org/schema/jee" xmlns:lang="http://www.springframework.org/schema/lang"
+       xmlns:tx="http://www.springframework.org/schema/tx" xmlns:util="http://www.springframework.org/schema/util"
+       xmlns:p="http://www.springframework.org/schema/p" xmlns:jdbc="http://www.springframework.org/schema/jdbc"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+          http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd
+          http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-3.0.xsd
+          http://www.springframework.org/schema/lang http://www.springframework.org/schema/lang/spring-lang-3.0.xsd
+          http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
+          http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.0.xsd
+          http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc-3.0.xsd">
     
-    xmlns:tx="http://www.springframework.org/schema/tx"
-    xmlns:mvc="http://www.springframework.org/schema/mvc"
-    xmlns:context="http://www.springframework.org/schema/context"
-    xmlns="http://www.springframework.org/schema/beans"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
-    xmlns:aop="http://www.springframework.org/schema/aop"
-    xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
-    http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.0.xsd">
-        
+    <!--
+        Activates various annotations to be detected in bean classes: Spring's
+        @Required and @Autowired, as well as JSR 250's @PostConstruct,
+        @PreDestroy and @Resource (if available) and JPA's @PersistenceContext
+        and @PersistenceUnit (if available).
+    -->
+    <context:annotation-config />
+    
+    <!--
+        Instruct Spring to perform declarative transaction management
+        automatically on annotated classes.
+    -->
+    <tx:annotation-driven mode="aspectj" />
+    
+    <!-- JPA EntityManagerFactory -->
+    <bean id="entityManagerFactory"
+          class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean"
+          p:dataSource-ref="dataSource">
+        <property name="persistenceUnitName" value="carManagementSystem-unit" />
+        <property name="dataSource" ref="dataSource" />
+    </bean>
+
+    <!--
+        Transaction manager for a single JPA EntityManagerFactory (alternative to JTA)
+    -->
+    <bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager"
+          p:entityManagerFactory-ref="entityManagerFactory" />
+
+    <!--
+        Post-processor to perform exception translation on @Repository classes
+        (from native exceptions such as JPA PersistenceExceptions to
+        Spring&rsquo;s DataAccessException hierarchy).
+    -->
+    <bean class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor" />
+
     <!-- add bean for EMF -->
     <!-- Beans for DAO Interface Implementations-->
+    <bean id="personDAO" class="cz.muni.fi.pa165.persistence.DAO.PersonDAOImpl"/>     
     
-    <bean id="personDAO" class="cz.muni.fi.pa165.persistence.DAO.PersonDAOImpl">     
-    </bean>
+<bean id="carDAO" class="cz.muni.fi.pa165.persistence.DAO.CarDAOImpl">     
+</bean>
     
-    <bean id="carDAO" class="cz.muni.fi.pa165.persistence.DAO.CarDAOImpl">     
-    </bean>
+<bean id="leaseDAO" class="cz.muni.fi.pa165.persistence.DAO.LeaseDAOImpl">     
+</bean>
     
-    <bean id="leaseDAO" class="cz.muni.fi.pa165.persistence.DAO.LeaseDAOImpl">     
-    </bean>
+<bean id="serviceCheckDAO" class="cz.muni.fi.pa165.persistence.DAO.ServiceCheckDAOImpl">     
+</bean>
     
-    <bean id="serviceCheckDAO" class="cz.muni.fi.pa165.persistence.DAO.ServiceCheckDAOImpl">     
-    </bean>
-    
-    <!-- Beans for service layer classes-->       
+<!-- Beans for service layer classes-->       
      
-    <bean id="personService" class="cz.muni.fi.pa165.service.service.PersonServicesImpl">
+<bean id="personService" class="cz.muni.fi.pa165.service.service.PersonServicesImpl">
         
-    </bean>
+</bean>
     
-    <bean id="carService" class="cz.muni.fi.pa165.service.service.CarImpl">
+<bean id="carService" class="cz.muni.fi.pa165.service.service.CarImpl">
         
-    </bean>
+</bean>
     
-    <bean id="leaseService" class="cz.muni.fi.pa165.service.service.LeaseServiceImpl">
+<bean id="leaseService" class="cz.muni.fi.pa165.service.service.LeaseServiceImpl">
         
-    </bean>
+</bean>
     
-    <bean id="ServiceCheckService" class="cz.muni.fi.pa165.service.service.ServiceCheckImpl">
-        <property name="scDAO">
-            <ref bean="serviceCheckDAO"/>
-        </property>        
-    </bean> 
+<bean id="ServiceCheckService" class="cz.muni.fi.pa165.service.service.ServiceCheckImpl">
+    <property name="scDAO">
+        <ref bean="serviceCheckDAO"/>
+    </property>        
+</bean> 
      
     
 </beans>
