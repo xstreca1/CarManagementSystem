@@ -42,7 +42,7 @@ public class ServiceCheckImpl implements ServiceCheckInterface {
 
     public void createServiceCheck(ServiceCheckDTO checkDTO) {
         //create empty entity
-        ServiceCheck checkEntity = null;
+        ServiceCheck checkEntity = new ServiceCheck();
 
         //create empty list
         List<String> list = new ArrayList<String>();
@@ -61,7 +61,7 @@ public class ServiceCheckImpl implements ServiceCheckInterface {
     public int getDaysToNextServiceCheck(ServiceCheckDTO checkDTO) {
 
         //create empty entity
-        ServiceCheck checkEntity = null;
+        ServiceCheck checkEntity = new ServiceCheck();
 
         //create empty list
         List<String> list = new ArrayList<String>();
@@ -100,7 +100,7 @@ public class ServiceCheckImpl implements ServiceCheckInterface {
 
     public List<ServiceCheckDTO> getServiceChecksForCar(CarDTO carDTO) {
         //create empty entity
-        Car carEntity = null;
+        Car carEntity = new Car();
         
         ServiceCheckDTO checkDTO = null;
 
