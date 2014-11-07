@@ -15,6 +15,8 @@ public class PersonDTO {
 
     private Integer id;
 
+    private String identificationNumber;
+
     private String name;
 
     private Boolean isActive;
@@ -129,6 +131,14 @@ public class PersonDTO {
 
     public void setSalary(int salary) {
         this.salary = salary;
+    }
+
+    public String getIdentificationNumber() {
+        return identificationNumber;
+    }
+
+    public void setIdentificationNumber(String identificationNumber) {
+        this.identificationNumber = identificationNumber;
     }
 
 }
