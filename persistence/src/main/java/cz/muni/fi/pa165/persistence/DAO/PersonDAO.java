@@ -17,7 +17,7 @@ public interface PersonDAO {
      *
      * @param person instance of a class Person
      */
-    void insertPerson(Person person);
+    Person insertPerson(Person person);
 
     /**
      * update person, search for person by his/her ID in DB and then update it
@@ -34,7 +34,7 @@ public interface PersonDAO {
      *
      * @param personID string ID of a person (f.e. ID "number")
      */
-    void deletePerson(Integer PersonID);
+    Person deletePerson(Integer PersonID);
 
     /**
      * returns person by his/her ID, there is always only one person returned
@@ -59,4 +59,6 @@ public interface PersonDAO {
      * @return list of all people
      */
     List<Person> getAllPeople();
+    
+    List<Person> findAllPeople(Boolean isActive);
 }

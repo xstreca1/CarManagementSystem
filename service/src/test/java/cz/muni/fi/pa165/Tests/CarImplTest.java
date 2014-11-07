@@ -75,8 +75,8 @@ public class CarImplTest {
 					}
 				});
         List<Car> allCars = new ArrayList<>();
-		allCars.add(new Car());
-		allCars.add(new Car());
+		allCars.add(car);
+		allCars.add(car);
 		Mockito.when(mockCarDao.listAllCars(true)).thenReturn(allCars);
         
     }

@@ -28,13 +28,15 @@ public class PersonDAOImpl implements PersonDAO {
 	}
     
     @Override
-    public void insertPerson(Person person) {
+    public Person insertPerson(Person person) {
 
         if (person == null) {
             throw new IllegalArgumentException("argument Person nemoze byt null");
         }
         //actual query
         em.persist(person);
+        
+        return person;
 
     }
 
@@ -65,7 +67,7 @@ public class PersonDAOImpl implements PersonDAO {
     }
 
     @Override
-    public void deletePerson(Integer personID) {
+    public Person deletePerson(Integer personID) {
         
         //person is retrieved
         Person person = em.find(Person.class, personID);
@@ -73,6 +75,7 @@ public class PersonDAOImpl implements PersonDAO {
         //person is removed from Database (TODO - cascading delete?)
         em.remove(person);
         
+        return person;
         //can also be done by em.executeQuery(DELETE_QUERY).executeUpdate();
     }
 
@@ -108,6 +111,16 @@ public class PersonDAOImpl implements PersonDAO {
         //actual query
         String sql = "SELECT p FROM Person p";
         List<Person> people = em.createQuery(sql,Person.class).getResultList();
+
+        return people;
+    }
+    
+    @Override
+    public List<Person> findAllPeople(Boolean alsoInactive) {
+
+        String query = "SELECT c FROM Person c WHERE c.isActive = :alsoInactive";
+        List<Person> people = em.createQuery(query, Person.class).
+                setParameter("alsoInactive", alsoInactive).getResultList();
 
         return people;
     }

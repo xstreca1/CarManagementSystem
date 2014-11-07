@@ -2,9 +2,13 @@ package cz.muni.fi.pa165.Tests;
 
 import cz.muni.fi.pa165.persistence.DAO.ServiceCheckDAO;
 import cz.muni.fi.pa165.persistence.Entities.ServiceCheck;
+import cz.muni.fi.pa165.service.dto.ServiceCheckDTO;
 import cz.muni.fi.pa165.service.service.ServiceCheckImpl;
 import cz.muni.fi.pa165.service.service.ServiceCheckInterface;
 import org.junit.After;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNotNull;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -27,6 +31,12 @@ public class ServiceCheckImplTest {
     @Mock
     ServiceCheckDAO mockCheckDAO;
     
+    @Mock
+    ServiceCheck serviceCheck;
+    
+    @Mock
+    ServiceCheckDTO serviceCheckDTO;
+    
     @InjectMocks
     ServiceCheckInterface serviceCheckImpl = new ServiceCheckImpl();
     
@@ -41,14 +51,15 @@ public class ServiceCheckImplTest {
         });
     }
     
-    @After
-    public void tearDown(){
-    }
-    
     @Test
     public void testCreateServiceCheck(){
-        
-        
+          
+                
+		serviceCheckImpl.createServiceCheck(serviceCheckDTO);
+                
+		assertNotNull(serviceCheckDTO);
+                
+		assertEquals(true, true);
         
     }
     

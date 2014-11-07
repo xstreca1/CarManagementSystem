@@ -5,123 +5,98 @@
  */
 package cz.muni.fi.pa165.Tests;
 
+import cz.muni.fi.pa165.persistence.DAO.PersonDAO;
 import cz.muni.fi.pa165.persistence.Entities.Lease;
 import cz.muni.fi.pa165.persistence.Entities.Person;
+import cz.muni.fi.pa165.service.dto.PersonDTO;
 import cz.muni.fi.pa165.service.service.PersonServicesImpl;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import org.junit.AfterClass;
+import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.fail;
+import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import static org.junit.Assert.*;
+import org.junit.runner.RunWith;
+import org.mockito.InjectMocks;
+import org.mockito.Matchers;
+import org.mockito.Mock;
+import org.mockito.Mockito;
+import static org.mockito.Mockito.verify;
+import org.mockito.invocation.InvocationOnMock;
+import org.mockito.runners.MockitoJUnitRunner;
+import org.mockito.stubbing.Answer;
 
 /**
  *
  * @author jrumanov
  */
+@RunWith(MockitoJUnitRunner.class)
 public class PersonServicesImplTest {
     
-    public PersonServicesImplTest() {
+    @Mock
+    PersonDAO mockPersonDao;
+    
+    @Mock
+    Person person;
+    
+    @Mock
+    PersonDTO personDto;
+    
+    @Mock
+    List<Person> people;
+    
+    @InjectMocks
+    private PersonServicesImpl service = new PersonServicesImpl();
+    
+    
+    @Before
+    public void setUp() {
+        
+         Mockito.when(mockPersonDao.insertPerson(Matchers.any(Person.class)))
+                .thenAnswer(new Answer<Person>() {
+					@Override
+					public Person answer(InvocationOnMock inv)
+							throws Throwable {
+						Object[] args = inv.getArguments();
+						return (Person) args[0];
+
+					                                  }
+                });
+        
+        List<Person> allPeople = new ArrayList<>();
+		allPeople.add(person);
+		allPeople.add(person);
+		Mockito.when(mockPersonDao.findAllPeople(true)).thenReturn(allPeople);
     }
     
-    @BeforeClass
-    public static void setUpClass() {
+    
+    @Test
+    public void testInsertPerson() {
+                
+		service.createPerson(personDto);
+                
+		assertNotNull(personDto);
+                
+		assertEquals(true, true);
     }
     
-    @AfterClass
-    public static void tearDownClass() {
-    }
-
-    /**
-     * Test of createPerson method, of class PersonServicesImpl.
-     */
     @Test
-    public void testCreatePerson() {
-        System.out.println("createPerson");
-        PersonServicesImpl instance = new PersonServicesImpl();
-        boolean expResult = false;
-        boolean result = instance.createPerson();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+    public void testFindAllPersons() {
+        List<PersonDTO> list = service.findAllPeople(true);
+			assertNotNull(list);
+			assertEquals(2, list.size());
     }
+    
+    
+    
+    
 
-    /**
-     * Test of getTravelStatistics method, of class PersonServicesImpl.
-     */
-    @Test
-    public void testGetTravelStatistics() {
-        System.out.println("getTravelStatistics");
-        Person person = null;
-        Date from = null;
-        Date to = null;
-        PersonServicesImpl instance = new PersonServicesImpl();
-        List<Lease> expResult = null;
-        List<Lease> result = instance.getTravelStatistics(person, from, to);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of editPerson method, of class PersonServicesImpl.
-     */
-    @Test
-    public void testEditPerson() {
-        System.out.println("editPerson");
-        Person person = null;
-        Integer personID = null;
-        PersonServicesImpl instance = new PersonServicesImpl();
-        boolean expResult = false;
-        boolean result = instance.editPerson(person, personID);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of deactivatePerson method, of class PersonServicesImpl.
-     */
-    @Test
-    public void testDeactivatePerson() {
-        System.out.println("deactivatePerson");
-        Person person = null;
-        PersonServicesImpl instance = new PersonServicesImpl();
-        boolean expResult = false;
-        boolean result = instance.deactivatePerson(person);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of findAllPeople method, of class PersonServicesImpl.
-     */
-    @Test
-    public void testFindAllPeople() {
-        System.out.println("findAllPeople");
-        boolean alsoInactive = false;
-        PersonServicesImpl instance = new PersonServicesImpl();
-        List<Person> expResult = null;
-        List<Person> result = instance.findAllPeople(alsoInactive);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of getPeopleByName method, of class PersonServicesImpl.
-     */
-    @Test
-    public void testGetPeopleByName() {
-        System.out.println("getPeopleByName");
-        String name = "";
-        PersonServicesImpl instance = new PersonServicesImpl();
-        List<Person> expResult = null;
-        List<Person> result = instance.getPeopleByName(name);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
     
 }
