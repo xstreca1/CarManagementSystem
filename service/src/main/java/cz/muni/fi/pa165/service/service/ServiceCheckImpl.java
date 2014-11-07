@@ -4,11 +4,14 @@
  */
 package cz.muni.fi.pa165.service.service;
 
+
 import cz.muni.fi.pa165.persistence.DAO.ServiceCheckDAO;
 import cz.muni.fi.pa165.persistence.Entities.Car;
 import cz.muni.fi.pa165.persistence.Entities.ServiceCheck;
+import cz.muni.fi.pa165.service.dto.ServiceCheckDTO;
 import java.util.ArrayList;
 import java.util.Calendar;
+import static java.util.Collections.list;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.EntityManager;
@@ -16,6 +19,8 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.transaction.Transactional;
 import org.springframework.stereotype.Service;
+import org.dozer.DozerBeanMapper;
+import org.dozer.Mapper;
 
 /**
  *
@@ -42,37 +47,48 @@ public class ServiceCheckImpl implements ServiceCheckInterface {
         this.scDAO = scDAO;
     }    
 
-    public void createServiceCheck(ServiceCheck.ServiceCheckName name, String description, Car car, int serviceInterval) {
-        // create instance of calendar to find out current time which will be used as paramter fo lastCheck
-        Calendar now = Calendar.getInstance();
-
-        // create new serviceCheck, set lastCheck as current date
-        ServiceCheck check = new ServiceCheck();
-        check.setName(name);
-        check.setDescription(description);
-        check.setCar(car);
-        check.setServiceInterval(serviceInterval);
-        check.setLastCheck(now.getTime());
+    public void createServiceCheck(ServiceCheckDTO checkDTO) {
+        //create empty entity
+        ServiceCheck checkEntity = null;
+        
+        //create empty list
+        List<String> list = new ArrayList<String>();        
+       
+        // map DTO object on Entity
+        list.add("dozerMapping.xml");
+        Mapper mapper = new DozerBeanMapper(list);
+        
+        mapper.map(checkDTO, checkEntity, "servicecheck");
 
         // start transaction
         em.getTransaction().begin();
 
         // save to database using some implementation od DAO
-        scDAO.createServiceCheck(check);
+        scDAO.createServiceCheck(checkEntity);
 
         // commit transaction
         em.getTransaction().commit();
 
     }
 
-    public int getDaysToNextServiceCheck(ServiceCheck check) {
+    public int getDaysToNextServiceCheck(ServiceCheckDTO checkDTO) {
 
-        Integer checkID = check.getScID();
+        //create empty entity
+        ServiceCheck checkEntity = null;
+        
+        //create empty list
+        List<String> list = new ArrayList<String>();        
+       
+        // map DTO object on Entity
+        list.add("dozerMapping.xml");
+        Mapper mapper = new DozerBeanMapper(list);
+        
+        mapper.map(checkDTO, checkEntity, "servicecheck");
 
         // start transaction
         em.getTransaction().begin();
 
-        int daysToNext = scDAO.getDaysToNext(checkID);
+        int daysToNext = scDAO.getDaysToNext(checkEntity.getScID());
 
         // commit transaction
         em.getTransaction().commit();
