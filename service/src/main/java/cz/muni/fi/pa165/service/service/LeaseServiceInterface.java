@@ -58,7 +58,7 @@ public interface LeaseServiceInterface {
      * 
      * @param leaseId id of lease to be deleted 
      */
-    void deleteLease(int leaseId);
+    void deleteLease(LeaseDTO leaseDto);
     
     /**
      * Method displays leases of the person in certain period
