@@ -62,7 +62,7 @@ public class Car implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer CarID;
+    private Integer carID;
 
     @Column(nullable = false)
     private Boolean isActive;
@@ -79,6 +79,9 @@ public class Car implements Serializable {
 
     @Column(nullable = false)
     private String brand;
+    
+    @Column(nullable = false)
+    private Boolean availibility;
 
     @Column(nullable = false)
     private String typeName;
@@ -97,6 +100,9 @@ public class Car implements Serializable {
 
     @Column(nullable = false)
     private boolean transmission;
+    
+    @Column(nullable = false)
+    private float engineDisplacement;
 
     @Enumerated(EnumType.STRING)
     private Category category;
@@ -119,7 +125,7 @@ public class Car implements Serializable {
 
     //------------getters and setters--------------------
     public Integer getCarID() {
-        return CarID;
+        return carID;
     }
 
     public String getVehicleRegPlate() {
@@ -217,11 +223,9 @@ public class Car implements Serializable {
     public void setAvailibility(boolean availibility) {
         this.availibility = availibility;
     }
-    private float engineDisplacement;
-    private boolean availibility;
 
     public Integer getId() {
-        return CarID;
+        return carID;
     }
 
     public Boolean isIsActive() {
@@ -263,7 +267,7 @@ public class Car implements Serializable {
 
     @Override
     public String toString() {
-        return "cz.muni.fi.pa165.carmanagementsystem.Car[ id=" + CarID + " ]";
+        return "cz.muni.fi.pa165.carmanagementsystem.Car[ id=" + carID + " ]";
     }
 
 }
