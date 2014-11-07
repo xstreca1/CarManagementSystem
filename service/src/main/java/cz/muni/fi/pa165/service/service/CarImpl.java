@@ -56,31 +56,75 @@ public class CarImpl implements CarServiceInterface {
         em.getTransaction().commit();
     }
 
-    public Car getCarInfo(Integer carID) {
-        return null;
-    }
 
-    public void returnCar(Integer leaseID, ReturnedStatus returnedStatus) {
-        Lease lease = new Lease();
-        lease = leaseDAO.getLeaseByID(leaseID);
-        Car car = lease.getCar();
-        car.setAvailibility(true);
-        lease.setIsClosed(true);
-        lease.setReturnedStatus(returnedStatus);
+    public void updateCar(CarDTO carDto) {
+         ApplicationContext applicationContext 
+                = new ClassPathXmlApplicationContext("/applicationContext.xml");
+        
+        CarDAO CarDAO = (CarDAO) applicationContext.getBean("carDAO");
+        Car carEntity = null;
+        
+        List<String> list = new ArrayList<String>();
+// Add the mapping configuration
+        list.add("dozerMapping.xml");
+// Add to DozerMapper
+        Mapper mapper = new DozerBeanMapper(list);
+        
+        mapper.map(carDto, carEntity, "car");
+        em.getTransaction().begin();
+        carDAO.updateCar(carEntity, carEntity.getCarID());
+        em.getTransaction().commit();
         
    //     leaseDAO.
     }
 
-    public List<Car> findAllCars(boolean alsoInactive) {
+    public List<CarDTO> findAllCars(boolean alsoInactive) {
         
-        List<Car> cars = carDAO.listAllCars(alsoInactive);
+        	ApplicationContext applicationContext 
+                = new ClassPathXmlApplicationContext("/applicationContext.xml");
         
-        return cars;
+        CarDAO CarDAO = (CarDAO) applicationContext.getBean("carDAO");
+        Car carEntity = null;
+        CarDTO carDto = null;
+        
+        List<String> list = new ArrayList<String>();
+        List<Car> ori = new ArrayList<Car>();
+        List<CarDTO> n = new ArrayList<CarDTO>();
+        
+
+// Add the mapping configuration
+        list.add("dozerMapping.xml");
+// Add to DozerMapper
+        Mapper mapper = new DozerBeanMapper(list);
+        for (Car co : ori) {
+             n.add(mapper.map(co, CarDTO.class));
+        mapper.map(carDto, carEntity, "car");
+        em.getTransaction().begin();
+        carDAO.listAllCars(alsoInactive);
+        em.getTransaction().commit();
        
+        }
+        return n;
     }
 
-    public void retireCar(CarDTO carDto) {
+    public void deleteCar(CarDTO carDto) {
         
+        ApplicationContext applicationContext 
+                = new ClassPathXmlApplicationContext("/applicationContext.xml");
+        
+        CarDAO CarDAO = (CarDAO) applicationContext.getBean("carDAO");
+        Car carEntity = null;
+        
+        List<String> list = new ArrayList<String>();
+// Add the mapping configuration
+        list.add("dozerMapping.xml");
+// Add to DozerMapper
+        Mapper mapper = new DozerBeanMapper(list);
+        
+        mapper.map(carDto, carEntity, "car");
+        em.getTransaction().begin();
+        carDAO.deleteCar(carEntity.getCarID());
+        em.getTransaction().commit();
         
     }
     
