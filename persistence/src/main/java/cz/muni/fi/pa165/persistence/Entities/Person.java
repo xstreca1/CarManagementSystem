@@ -177,6 +177,11 @@ public class Person implements Serializable {
         this.isActive = isActive;
     }
 
+    public void setId(Integer id) {
+        this.id = id;
+    }
+    
+
     //----------------constructors-----------------------
     public Person() {
     }

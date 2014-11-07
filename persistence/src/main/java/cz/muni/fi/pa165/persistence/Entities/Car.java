@@ -281,6 +281,11 @@ public class Car implements Serializable {
         this.isActive = isActive;
     }
 
+    public void setCarID(Integer carID) {
+        this.carID = carID;
+    }
+    
+
     //----------------------constructors---------------------
 
     public Car() {
