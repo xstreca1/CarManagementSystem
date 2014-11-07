@@ -8,6 +8,7 @@ package cz.muni.fi.pa165.service.service;
 import cz.muni.fi.pa165.persistence.DAO.ServiceCheckDAO;
 import cz.muni.fi.pa165.persistence.Entities.Car;
 import cz.muni.fi.pa165.persistence.Entities.ServiceCheck;
+import cz.muni.fi.pa165.service.dto.CarDTO;
 import cz.muni.fi.pa165.service.dto.ServiceCheckDTO;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -123,11 +124,22 @@ public class ServiceCheckImpl implements ServiceCheckInterface {
 
     }
 
-    public List<ServiceCheck> getServiceChecksForCar(Car car) {
+    public List<ServiceCheck> getServiceChecksForCar(CarDTO carDTO) {
+        //create empty entity
+        Car carEntity = null;
+        
+        //create empty list
+        List<String> list = new ArrayList<String>();        
+       
+        // map DTO object on Entity
+        list.add("dozerMapping.xml");
+        Mapper mapper = new DozerBeanMapper(list);
+        
+        mapper.map(carDTO, carEntity, "car");
 
         // start transaction
         em.getTransaction().begin();
-        List<ServiceCheck> checks = scDAO.getServiceChecksForCar(car);
+        List<ServiceCheck> checks = scDAO.getServiceChecksForCar(carEntity);
          // commit transaction
         em.getTransaction().commit();
         return checks;
