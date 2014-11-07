@@ -102,7 +102,7 @@ public class LeaseServiceImpl implements LeaseServiceInterface {
                 = new ClassPathXmlApplicationContext("/applicationContext.xml");
         list.add("dozerMapping.xml");
         List<Lease> allLeases = leaseDAO.getAllLeases(from, to);
-	Mapper mapper = DozerBeanMapper.getInstance(list);
+	Mapper mapper = new DozerBeanMapper(list);
 	List leasesDTO = new ArrayList(allLeases.size());
 	for (Lease lease : allLeases) {
             leasesDTO.add(mapper.map(lease, LeaseDTO.class));

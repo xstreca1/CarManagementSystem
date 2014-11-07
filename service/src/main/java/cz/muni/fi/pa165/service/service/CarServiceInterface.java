@@ -21,11 +21,9 @@ public interface CarServiceInterface {
     
     public void createCar(CarDTO carDto);
     
-    public Car getCarInfo(Integer carID);
+    public void updateCar(CarDTO carDto, Integer CarID);
     
-    public void returnCar(Integer leaseID, ReturnedStatus returnedStatus);
+    public List<CarDTO> findAllCars(boolean alsoInactive);
     
-    public List<Car> findAllCars(boolean alsoInactive);
-    
-    public void retireCar(CarDTO carDto);
+    public void deleteCar(CarDTO carDto);
 }

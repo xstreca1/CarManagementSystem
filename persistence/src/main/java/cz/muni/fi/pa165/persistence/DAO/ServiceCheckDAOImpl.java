@@ -37,13 +37,14 @@ public class ServiceCheckDAOImpl implements ServiceCheckDAO {
     }
 
     @Override
-    public void createServiceCheck(ServiceCheck serviceCheck) {
+    public ServiceCheck createServiceCheck(ServiceCheck serviceCheck) {
         // testing method parameters
         if (serviceCheck == null) {
             throw new IllegalArgumentException("serviceCheck is null");
         }
 
         em.persist(serviceCheck);
+        return serviceCheck;
     }
 
     @Override
