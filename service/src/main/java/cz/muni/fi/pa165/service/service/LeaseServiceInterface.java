@@ -1,10 +1,9 @@
 package cz.muni.fi.pa165.service.service;
 
-import cz.muni.fi.pa165.persistence.Entities.Car;
 import cz.muni.fi.pa165.persistence.Entities.Lease;
 import cz.muni.fi.pa165.persistence.Entities.Lease.ReturnedStatus;
-import cz.muni.fi.pa165.persistence.Entities.Lease.TravelReason;
 import cz.muni.fi.pa165.persistence.Entities.Person;
+import cz.muni.fi.pa165.service.dto.LeaseDTO;
 import java.util.Date;
 import java.util.List;
 
@@ -15,16 +14,12 @@ import java.util.List;
  */
 public interface LeaseServiceInterface {
     /**
-     * Create lease, sets parameters and store it in the database by DAO 
+     * Create lease in database
      * 
-     * @param car leased car
-     * @param person person who wants a lease
-     * @param travelReason reason of lease WORK, PERSONAL
-     * @param carMileage how many km person suppose to drive on the lease
-     * @param dateOfLease date, when the car was leased
-     * @param dateOfReturn date, when the lease was returned
+     * @param leaseDTO data transfer object mapped to Lease, to be created
+     *                 in the database by DAO
      */
-    void createLease(Car car, Person person, TravelReason travelReason, int carMileage, Date dateOfLease, Date dateOfReturn);
+    void createLease(LeaseDTO leaseDTO);
     
     /**
      * sets status of car, when it is returned (RETURNED, BROKEN)
@@ -64,5 +59,15 @@ public interface LeaseServiceInterface {
      * @param leaseId id of lease to be deleted 
      */
     void deleteLease(int leaseId);
+    
+    /**
+     * Method displays leases of the person in certain period
+     * 
+     * @param person person to show
+     * @param from date from which it will be showed
+     * @param to date to it will be showed
+     * @return list of leases
+     */
+    List<Lease> getTravelStatistics(Person person, Date from, Date to);
     
 }
