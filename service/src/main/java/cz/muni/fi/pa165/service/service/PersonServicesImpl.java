@@ -24,7 +24,6 @@ import org.springframework.stereotype.Service;
  *
  * @author Jakub Rumanovsky
  */
-
 @Service("personService")
 @Repository //for transformation of exceptions to DataAccessException
 @Transactional //to handle transactions
@@ -43,7 +42,8 @@ public class PersonServicesImpl implements PersonServices {
     }
 
     public boolean createPerson(PersonDTO personDTO) {
-
+        
+        try{
         //create empty entity
         Person personEntity = null;
 
@@ -58,12 +58,39 @@ public class PersonServicesImpl implements PersonServices {
 
         // save to database using some implementation od DAO
         personDAO.insertPerson(personEntity);
+        }
+        catch(Exception ex){        
+        ex.printStackTrace();
+        return false;
+    }
 
         return true;
     }
 
-    public boolean editPerson(Person person, Integer personID) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public boolean editPerson(PersonDTO personDTO, Integer personID) {
+
+    try{    
+    //create empty entity
+        Person personEntity = null;
+
+        //create empty list
+        List<String> list = new ArrayList<String>();
+
+        // map DTO object on Entity
+        list.add("dozerMapping.xml");
+        Mapper mapper = new DozerBeanMapper(list);
+
+        mapper.map(personDTO, personEntity, "person");
+
+        personDAO.updatePerson(personEntity, personID);
+    }
+    catch (Exception ex){        
+        ex.printStackTrace();
+        return false;
+    }
+
+        return true;
+
     }
 
     /**
@@ -91,7 +118,7 @@ public class PersonServicesImpl implements PersonServices {
     public List<PersonDTO> findAllPeople(boolean alsoInactive) {
         //create empty list
         List<String> list = new ArrayList<String>();
-        
+
         List<PersonDTO> peopleDTO = new ArrayList<PersonDTO>();
 
         PersonDTO personDTO = null;
@@ -101,7 +128,7 @@ public class PersonServicesImpl implements PersonServices {
         Mapper mapper = new DozerBeanMapper(list);
 
         if (alsoInactive = true) {
-            
+
             List<Person> people = personDAO.getAllPeople();
             for (Person p : people) {
                 mapper.map(p, personDTO, "person");
@@ -109,40 +136,38 @@ public class PersonServicesImpl implements PersonServices {
 
             }
         } else {
-        
+
             List<Person> people = personDAO.getAllPeople();
             for (Person p : people) {
-                if(p.isIsActive()){
-                mapper.map(p, personDTO, "person");
-                peopleDTO.add(personDTO);
+                if (p.isIsActive()) {
+                    mapper.map(p, personDTO, "person");
+                    peopleDTO.add(personDTO);
                 }
+            }
+
         }
-        
-    }
         return peopleDTO;
     }
 
-
     @Override
     public List<PersonDTO> getPeopleByName(String name) {
-        
+
         List<String> list = new ArrayList<String>();
-        
+
         List<PersonDTO> peopleDTO = new ArrayList<PersonDTO>();
 
         PersonDTO personDTO = null;
-        
+
         list.add("dozerMapping.xml");
         Mapper mapper = new DozerBeanMapper(list);
-        
+
         List<Person> people = personDAO.getPeopleByName(name);
         for (Person p : people) {
-                mapper.map(p, personDTO, "person");
-                peopleDTO.add(personDTO);     
-        
-        
-    }
-    return peopleDTO;
+            mapper.map(p, personDTO, "person");
+            peopleDTO.add(personDTO);
 
-}
+        }
+        return peopleDTO;
+
+    }
 }
