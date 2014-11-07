@@ -21,7 +21,7 @@ public interface ServiceCheckDAO {
      *
      * @param seviceCheck - instance of class ServiceCheck
      */
-    public void createServiceCheck(ServiceCheck seviceCheck);
+    public ServiceCheck createServiceCheck(ServiceCheck seviceCheck);
 
     /**
      * Method used to get the instance of ServiceCheck class from database
