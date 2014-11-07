@@ -57,7 +57,7 @@ public interface PersonServices {
      * deactivated, if false, it returns only people who are active in a company
      * @return list of people
      */
-    List<Person> findAllPeople(boolean alsoInactive);
+    List<PersonDTO> findAllPeople(boolean alsoInactive);
 
     /**
      * return people who has a name as in a parameter
