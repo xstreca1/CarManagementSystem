@@ -25,7 +25,6 @@ import org.springframework.stereotype.Service;
  */
 
 @Service("serviceCheckService")
-@Repository //for transformation of exceptions to DataAccessException
 @Transactional //to handle transactions
 public class ServiceCheckImpl implements ServiceCheckInterface {
 

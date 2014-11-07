@@ -51,34 +51,33 @@
     <!-- Beans for DAO Interface Implementations-->
     <bean id="personDAO" class="cz.muni.fi.pa165.persistence.DAO.PersonDAOImpl"/>     
     
-<bean id="carDAO" class="cz.muni.fi.pa165.persistence.DAO.CarDAOImpl">     
-</bean>
+    <bean id="carDAO" class="cz.muni.fi.pa165.persistence.DAO.CarDAOImpl">     
+    </bean>
     
-<bean id="leaseDAO" class="cz.muni.fi.pa165.persistence.DAO.LeaseDAOImpl">     
-</bean>
+    <bean id="leaseDAO" class="cz.muni.fi.pa165.persistence.DAO.LeaseDAOImpl">     
+    </bean>
     
-<bean id="serviceCheckDAO" class="cz.muni.fi.pa165.persistence.DAO.ServiceCheckDAOImpl">     
-</bean>
+    <bean id="serviceCheckDAO" class="cz.muni.fi.pa165.persistence.DAO.ServiceCheckDAOImpl">     
+    </bean>
     
-<!-- Beans for service layer classes-->       
+    <!-- Beans for service layer classes-->       
      
-<bean id="personService" class="cz.muni.fi.pa165.service.service.PersonServicesImpl">
+    <bean id="personService" class="cz.muni.fi.pa165.service.service.PersonServicesImpl">
+        <property name="personDAO">
+            <ref bean="personDAO"/>  
+    </bean>
+    
+    <bean id="carService" class="cz.muni.fi.pa165.service.service.CarImpl">
         
-</bean>
+    </bean>
     
-<bean id="carService" class="cz.muni.fi.pa165.service.service.CarImpl">
+    <bean id="leaseService" class="cz.muni.fi.pa165.service.service.LeaseServiceImpl">
         
-</bean>
+    </bean>
     
-<bean id="leaseService" class="cz.muni.fi.pa165.service.service.LeaseServiceImpl">
-        
-</bean>
-    
-<bean id="ServiceCheckService" class="cz.muni.fi.pa165.service.service.ServiceCheckImpl">
-    <property name="scDAO">
-        <ref bean="serviceCheckDAO"/>
-    </property>        
-</bean> 
-     
-    
+    <bean id="ServiceCheckService" class="cz.muni.fi.pa165.service.service.ServiceCheckImpl">
+        <property name="scDAO">
+            <ref bean="serviceCheckDAO"/>
+        </property>        
+    </bean> 
 </beans>

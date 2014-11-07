@@ -10,11 +10,14 @@ import java.util.Date;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import org.springframework.stereotype.Repository;
 
 /**
  *
  * @author Jakub Rumanovsky
  */
+
+@Repository("personDAO") //for transformation of exceptions to DataAccessException
 public class PersonDAOImpl implements PersonDAO {
 
     @PersistenceContext(name="carManagementSystem-unit")
