@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package cz.muni.fi.pa165.service.dto;
 
 import cz.muni.fi.pa165.persistence.Entities.Car;
@@ -13,9 +12,11 @@ import cz.muni.fi.pa165.persistence.Entities.Car;
  * @author jozef.puchly
  */
 public class CarDTO {
-    
+
+    private Integer carID;
+
     private Boolean isActive;
-    
+
     private String vehicleRegPlate;
 
     private int yearOfManufacture;
@@ -163,7 +164,15 @@ public class CarDTO {
     public void setNumberOfSeats(int numberOfSeats) {
         this.numberOfSeats = numberOfSeats;
     }
-    
+
+    public Integer getCarID() {
+        return carID;
+    }
+
+    public void setCarID(Integer carID) {
+        this.carID = carID;
+    }
+
     @Override
     public int hashCode() {
         int hash = 7;
@@ -241,5 +250,5 @@ public class CarDTO {
         }
         return true;
     }
-    
+
 }
