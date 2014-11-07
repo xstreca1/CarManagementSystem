@@ -105,9 +105,7 @@ public class PersonServicesImplTest {
 			assertNotNull(list);
 			assertEquals(2, list.size());
         
-    }
-    
-    
+    }       
 
     
 }
