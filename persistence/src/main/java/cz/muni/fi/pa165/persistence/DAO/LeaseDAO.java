@@ -62,12 +62,6 @@ public interface LeaseDAO {
      */
     public List getAllLeases(Date from, Date until);    
     
-    /**
-     * Picks a lease from the database by its id
-     * 
-     * @param Id id of the lease to be picked up
-     * @return instance of lease
-     */
-    public Lease getLeaseByID(Integer Id);
+    public Lease getLeaseByID(Integer ID);
     
 }
