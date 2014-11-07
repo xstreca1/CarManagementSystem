@@ -81,11 +81,10 @@ public class CarImplTest {
     @Test
     public void testCreateCar() {
         
-                CarDTO dto = new CarDTO();
                 
 		service.createCar(carDto);
                 
-		assertNotNull(dto);
+		assertNotNull(carDto);
                 
 		assertEquals(true, true);
     }
