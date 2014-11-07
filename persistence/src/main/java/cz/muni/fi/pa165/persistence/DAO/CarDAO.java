@@ -19,7 +19,7 @@ public interface CarDAO {
     
     public void updateCar(Car car, Integer carID);
     
-    public void deleteCar(Integer carID);
+    public Car deleteCar(Integer carID);
     
     public List listAllAvailableCars();
     
