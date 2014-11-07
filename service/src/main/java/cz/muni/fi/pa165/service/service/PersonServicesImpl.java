@@ -27,35 +27,35 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
  * @author Jakub Rumanovsky
  */
 public class PersonServicesImpl implements PersonServices {
-    
+
     // Person DAO
     private PersonDAO personDAO;
-    
+
     // EntityManagmentFactory
     EntityManagerFactory emf = Persistence
-                .createEntityManagerFactory("carManagementSystem-unit");
-    
+            .createEntityManagerFactory("carManagementSystem-unit");
+
     // Entity Manager
-    private EntityManager em = emf.createEntityManager();    
+    private EntityManager em = emf.createEntityManager();
 
     // setter for ServiceCheck DAO - to be set in applicationContext.xml  
     public void setDao(PersonDAO personDAO) {
-    //check if not null
+        //check if not null
         this.personDAO = personDAO;
-    }    
+    }
 
     public boolean createPerson(PersonDTO personDTO) {
 
         //create empty entity
         Person personEntity = null;
-        
+
         //create empty list
-        List<String> list = new ArrayList<String>();        
-       
+        List<String> list = new ArrayList<String>();
+
         // map DTO object on Entity
         list.add("dozerMapping.xml");
         Mapper mapper = new DozerBeanMapper(list);
-        
+
         mapper.map(personDTO, personEntity, "person");
 
         // start transaction
@@ -63,38 +63,53 @@ public class PersonServicesImpl implements PersonServices {
 
         // save to database using some implementation od DAO
         personDAO.insertPerson(personEntity);
-        
+
         // commit transaction
         em.getTransaction().commit();
+
+        return true;
     }
 
     public boolean editPerson(Person person, Integer personID) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    public boolean deactivatePerson(PersonDTO personDto) {
+    /**
+     * public boolean deactivatePerson(PersonDTO personDto) {
+     *
+     * ApplicationContext applicationContext = new
+     * ClassPathXmlApplicationContext("/applicationContext.xml");
+     *
+     * PersonDAO personDAO = (PersonDAO)
+     * applicationContext.getBean("personDAO"); Person personEntity = null;
+     *
+     * List<String> list = new ArrayList<String>(); // Add the mapping
+     * configuration list.add("dozerMapping.xml"); // Add to DozerMapper Mapper
+     * mapper = new DozerBeanMapper(list);
+     *
+     * mapper.map(personDto, personEntity, "person");
+     * em.getTransaction().begin(); personDAO.updatePerson(personEntity,
+     * personEntity.getId()); em.getTransaction().commit();
+     *
+     * throw new UnsupportedOperationException("Not supported yet."); //To
+     * change body of generated methods, choose Tools | Templates. }
+    *
+     */
+    @Override
+    public List<PersonDTO> findAllPeople(boolean alsoInactive) {      
+            //create empty list
+            List<String> list = new ArrayList<String>();
 
-        ApplicationContext applicationContext 
-                = new ClassPathXmlApplicationContext("/applicationContext.xml");
-        
-        PersonDAO personDAO = (PersonDAO) applicationContext.getBean("personDAO");
-        Person personEntity = null;
-        
-        List<String> list = new ArrayList<String>();
-// Add the mapping configuration
-        list.add("dozerMapping.xml");
-// Add to DozerMapper
-        Mapper mapper = new DozerBeanMapper(list);
-        
-        mapper.map(personDto, personEntity, "person");
-        em.getTransaction().begin();
-        personDAO.updatePerson(personEntity, personEntity.getId());
-        em.getTransaction().commit();
+            // map DTO object on Entity
+            list.add("dozerMapping.xml");
+            Mapper mapper = new DozerBeanMapper(list);
+            
+             if (alsoInactive = true) {
 
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+            List<Person> people = personDAO.getAllPeople();
 
-    public List<Person> findAllPeople(boolean alsoInactive) {
+        }
+
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
