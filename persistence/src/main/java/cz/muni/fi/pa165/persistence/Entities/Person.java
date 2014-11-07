@@ -169,7 +169,7 @@ public class Person implements Serializable {
         this.lease = lease;
     }
 
-    public Boolean isIsActive() {
+    public Boolean getIsActive() {
         return isActive;
     }
 

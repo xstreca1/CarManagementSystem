@@ -173,7 +173,7 @@ public class Car implements Serializable {
     public float getGasConsumption() {
         return gasConsumption;
     }
-
+    
     public void setGasConsumption(float gasConsumption) {
         this.gasConsumption = gasConsumption;
     }
@@ -223,6 +223,55 @@ public class Car implements Serializable {
     public Integer getId() {
         return carID;
     }
+
+    public Color getColor() {
+        return color;
+    }
+
+    public void setColor(Color color) {
+        this.color = color;
+    }
+
+    public bodyStyle getBodystyle() {
+        return bodystyle;
+    }
+
+    public void setBodystyle(bodyStyle bodystyle) {
+        this.bodystyle = bodystyle;
+    }
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
+    }
+
+    public emissionStandard getEmissionstandard() {
+        return emissionstandard;
+    }
+
+    public void setEmissionstandard(emissionStandard emissionstandard) {
+        this.emissionstandard = emissionstandard;
+    }
+
+    public List<Lease> getLease() {
+        return lease;
+    }
+
+    public void setLease(List<Lease> lease) {
+        this.lease = lease;
+    }
+
+    public List<ServiceCheck> getServiceCheck() {
+        return serviceCheck;
+    }
+
+    public void setServiceCheck(List<ServiceCheck> serviceCheck) {
+        this.serviceCheck = serviceCheck;
+    }
+    
 
     public Boolean isIsActive() {
         return isActive;

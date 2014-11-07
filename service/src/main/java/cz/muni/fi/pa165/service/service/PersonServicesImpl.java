@@ -139,7 +139,7 @@ public class PersonServicesImpl implements PersonServices {
 
             List<Person> people = personDAO.getAllPeople();
             for (Person p : people) {
-                if (p.isIsActive()) {
+                if (p.getIsActive()) {
                     mapper.map(p, personDTO, "person");
                     peopleDTO.add(personDTO);
                 }
@@ -156,7 +156,7 @@ public class PersonServicesImpl implements PersonServices {
 
         List<PersonDTO> peopleDTO = new ArrayList<PersonDTO>();
 
-        PersonDTO personDTO = null;
+        PersonDTO personDTO = new PersonDTO();
 
         list.add("dozerMapping.xml");
         Mapper mapper = new DozerBeanMapper(list);

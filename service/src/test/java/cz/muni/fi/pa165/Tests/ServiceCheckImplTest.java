@@ -104,10 +104,10 @@ public class ServiceCheckImplTest {
         assertEquals(true, true);
     }
     
-    @Test
+   /** @Test
     public void testSetCheckInterval(){
     }
-    
+    **/
     @Test
     public void testGetServiceChecksForCar(){
         

@@ -54,7 +54,7 @@ public class PersonDAOImpl implements PersonDAO {
         String name = updatedPerson.getName();
         String nationality = updatedPerson.getNationality();
         String position = updatedPerson.getPosition();
-        Boolean isActive = updatedPerson.isIsActive();
+        Boolean isActive = updatedPerson.getIsActive();
         int salary = updatedPerson.getSalary();
         
         Person person1 = (Person)em.find(Person.class ,personID);

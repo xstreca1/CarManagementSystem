@@ -35,6 +35,11 @@ public class PersonDTO {
 
     private int salary;
 
+    public PersonDTO() {
+    }
+    
+    
+
     public PersonDTO(Integer id, String name, Boolean isActive,
             Person.EmploymentStatus employmentStatus, Date dateOfBirth,
             String position, Person.Sex sex, Address address,
@@ -52,7 +57,7 @@ public class PersonDTO {
         this.salary = salary;
 
     }
-
+    
     public Integer getId() {
         return id;
     }

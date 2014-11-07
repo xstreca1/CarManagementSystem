@@ -71,6 +71,15 @@ public class ServiceCheckDTO {
         this.car = car;
     }
 
+    public int getScID() {
+        return scID;
+    }
+
+    public void setScID(int scID) {
+        this.scID = scID;
+    }
+    
+
     @Override
     public int hashCode() {
         int hash = 7;
