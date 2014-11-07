@@ -7,6 +7,7 @@ import java.util.Date;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import org.springframework.stereotype.Repository;
 
 /**
  * Implementation of LeaseDAO interface Implements functionality of lease
@@ -14,6 +15,8 @@ import javax.persistence.PersistenceContext;
  * @author Petr Potucek
  * @since 2014-09
  */
+
+@Repository("leaseDAO") //for transformation of exceptions to DataAccessException
 public class LeaseDAOImpl implements LeaseDAO {
 
     @PersistenceContext(name="carManagementSystem-unit")

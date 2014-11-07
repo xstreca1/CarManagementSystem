@@ -10,11 +10,14 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.PersistenceContext;
+import org.springframework.stereotype.Repository;
 
 /**
  *
  * @author Jozef Puchly
  */
+
+@Repository("carDAO") //for transformation of exceptions to DataAccessException
 public class CarDAOImpl implements CarDAO {
 
     @PersistenceContext(name = "carManagementSystem-unit")

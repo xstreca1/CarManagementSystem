@@ -28,7 +28,6 @@ import org.springframework.stereotype.Service;
  */
 
 @Service("carService")
-@Repository //for transformation of exceptions to DataAccessException
 @Transactional //to handle transactions
 public class CarImpl implements CarServiceInterface {
     

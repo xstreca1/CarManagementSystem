@@ -25,7 +25,6 @@ import org.springframework.stereotype.Service;
  */
 
 @Service("serviceCheckService")
-@Repository //for transformation of exceptions to DataAccessException
 @Transactional //to handle transactions
 public class ServiceCheckImpl implements ServiceCheckInterface {
 
@@ -99,12 +98,16 @@ public class ServiceCheckImpl implements ServiceCheckInterface {
 
     }
 
-    public List<ServiceCheck> getServiceChecksForCar(CarDTO carDTO) {
+    public List<ServiceCheckDTO> getServiceChecksForCar(CarDTO carDTO) {
         //create empty entity
         Car carEntity = null;
+        
+        ServiceCheckDTO checkDTO = null;
 
         //create empty list
         List<String> list = new ArrayList<String>();
+        
+        List<ServiceCheckDTO> checkListDTO = new ArrayList<ServiceCheckDTO>();
 
         // map DTO object on Entity
         list.add("dozerMapping.xml");
@@ -113,8 +116,13 @@ public class ServiceCheckImpl implements ServiceCheckInterface {
         mapper.map(carDTO, carEntity, "car");
 
         List<ServiceCheck> checks = scDAO.getServiceChecksForCar(carEntity);
+        for (ServiceCheck s : checks) {
+            mapper.map(s, checkDTO, "servicecheck");
+            checkListDTO.add(checkDTO);
 
-        return checks;
+        }
+
+        return checkListDTO;
 
     }
 
