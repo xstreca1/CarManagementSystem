@@ -59,6 +59,16 @@ public class LeaseServiceImplTest {
 
 					                                  }
                 });
+        Mockito.when(mockLeaseDao.deleteLease(Matchers.any(Integer.class)))
+				.thenAnswer(new Answer<Lease>() {
+					@Override
+					public Lease answer(InvocationOnMock inv)
+							throws Throwable {
+						Object[] args = inv.getArguments();
+						return (Lease) args[0];
+
+					}
+				});
     }
     
     @Test
@@ -69,6 +79,15 @@ public class LeaseServiceImplTest {
 		assertNotNull(leaseDto);
                 
 		assertEquals(true, true);
+    }
+    
+    @Test
+    public void testDeleteLease() {
+        
+        service.deleteLease(leaseDto);
+        
+        verify(mockLeaseDao).deleteLease(lease.getId());
+        
     }
     
 }
