@@ -11,6 +11,9 @@ import cz.muni.fi.pa165.persistence.Entities.Lease;
 import cz.muni.fi.pa165.service.dto.LeaseDTO;
 import cz.muni.fi.pa165.service.service.LeaseServiceImpl;
 import java.util.List;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNotNull;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -30,7 +33,7 @@ import org.mockito.stubbing.Answer;
 public class LeaseServiceImplTest {
     
     @Mock
-    LeaseDAO leaseDao;
+    LeaseDAO mockLeaseDao;
     
     @Mock
     Lease lease;
@@ -43,5 +46,29 @@ public class LeaseServiceImplTest {
     
     @InjectMocks
     private LeaseServiceImpl service = new LeaseServiceImpl();
+    
+    @Before
+    public void setUp() {
+        Mockito.when(mockLeaseDao.createLease(Matchers.any(Lease.class)))
+                .thenAnswer(new Answer<Lease>() {
+					@Override
+					public Lease answer(InvocationOnMock inv)
+							throws Throwable {
+						Object[] args = inv.getArguments();
+						return (Lease) args[0];
+
+					                                  }
+                });
+    }
+    
+    @Test
+    public void testCreateLease() {
+                
+                service.createLease(leaseDto);
+                
+		assertNotNull(leaseDto);
+                
+		assertEquals(true, true);
+    }
     
 }
