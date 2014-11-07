@@ -5,6 +5,7 @@
  */
 package cz.muni.fi.pa165.service.service;
 
+import cz.muni.fi.pa165.persistence.DAO.CarDAO;
 import cz.muni.fi.pa165.persistence.Entities.Lease;
 import cz.muni.fi.pa165.persistence.Entities.Person;
 import cz.muni.fi.pa165.persistence.DAO.PersonDAO;
@@ -17,6 +18,9 @@ import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
 import org.dozer.DozerBeanMapper;
 import org.dozer.Mapper;
+import org.springframework.beans.factory.annotation.Required;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
@@ -29,65 +33,65 @@ import org.springframework.stereotype.Service;
 @Transactional //to handle transactions
 public class PersonServicesImpl implements PersonServices {
 
-    // Person DAO
     private PersonDAO personDAO;
 
     @PersistenceContext
     private EntityManager em;
 
     // setter for ServiceCheck DAO - to be set in applicationContext.xml  
-    public void setDao(PersonDAO personDAO) {
-        //check if not null
-        this.personDAO = personDAO;
-    }
-
+    // public void setDao(PersonDAO personDAO) {
+    //check if not null
+    //   this.personDAO = personDAO;
+    //}
     public boolean createPerson(PersonDTO personDTO) {
-        
-        try{
-        //create empty entity
-        Person personEntity = null;
+        ApplicationContext applicationContext
+                = new ClassPathXmlApplicationContext("/applicationContext.xml");
+        personDAO = (PersonDAO) applicationContext.getBean("personDAO");
+        try {
+            //create empty entity
+            Person personEntity = null;
 
-        //create empty list
-        List<String> list = new ArrayList<String>();
+            //create empty list
+            List<String> list = new ArrayList<String>();
 
-        // map DTO object on Entity
-        list.add("dozerMapping.xml");
-        Mapper mapper = new DozerBeanMapper(list);
+            // map DTO object on Entity
+            list.add("dozerMapping.xml");
+            Mapper mapper = new DozerBeanMapper(list);
 
-        mapper.map(personDTO, personEntity, "person");
+            mapper.map(personDTO, personEntity, "person");
 
-        // save to database using some implementation od DAO
-        personDAO.insertPerson(personEntity);
+            // save to database using some implementation od DAO
+            personDAO.insertPerson(personEntity);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            return false;
         }
-        catch(Exception ex){        
-        ex.printStackTrace();
-        return false;
-    }
 
         return true;
     }
 
     public boolean editPerson(PersonDTO personDTO, Integer personID) {
+        ApplicationContext applicationContext
+                = new ClassPathXmlApplicationContext("/applicationContext.xml");
+        personDAO = (PersonDAO) applicationContext.getBean("personDAO");
+        try {
+            //create empty entity
+            Person personEntity = null;
 
-    try{    
-    //create empty entity
-        Person personEntity = null;
+            //create empty list
+            List<String> list = new ArrayList<String>();
 
-        //create empty list
-        List<String> list = new ArrayList<String>();
+            // map DTO object on Entity
+            list.add("dozerMapping.xml");
+            Mapper mapper = new DozerBeanMapper(list);
 
-        // map DTO object on Entity
-        list.add("dozerMapping.xml");
-        Mapper mapper = new DozerBeanMapper(list);
+            mapper.map(personDTO, personEntity, "person");
 
-        mapper.map(personDTO, personEntity, "person");
-
-        personDAO.updatePerson(personEntity, personID);
-    }
-    catch (Exception ex){        
-        ex.printStackTrace();
-        return false;
-    }
+            personDAO.updatePerson(personEntity, personID);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            return false;
+        }
 
         return true;
 
@@ -116,6 +120,9 @@ public class PersonServicesImpl implements PersonServices {
      */
     @Override
     public List<PersonDTO> findAllPeople(boolean alsoInactive) {
+        ApplicationContext applicationContext
+                = new ClassPathXmlApplicationContext("/applicationContext.xml");
+        personDAO = (PersonDAO) applicationContext.getBean("personDAO");
         //create empty list
         List<String> list = new ArrayList<String>();
 
@@ -151,6 +158,9 @@ public class PersonServicesImpl implements PersonServices {
 
     @Override
     public List<PersonDTO> getPeopleByName(String name) {
+        ApplicationContext applicationContext
+                = new ClassPathXmlApplicationContext("/applicationContext.xml");
+        personDAO = (PersonDAO) applicationContext.getBean("personDAO");
 
         List<String> list = new ArrayList<String>();
 

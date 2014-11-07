@@ -45,7 +45,7 @@ public class CarDTO {
 
     private int numberOfSeats;
 
-    public Boolean isIsActive() {
+    public Boolean getIsActive() {
         return isActive;
     }
 
