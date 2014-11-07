@@ -69,11 +69,15 @@ public class PersonServicesImplTest {
 
 					                                  }
                 });
+         
         
         List<Person> allPeople = new ArrayList<>();
 		allPeople.add(person);
 		allPeople.add(person);
 		Mockito.when(mockPersonDao.findAllPeople(true)).thenReturn(allPeople);
+                
+                Mockito.when(mockPersonDao.getPeopleByName(Matchers.contains("JOZO")))
+				.thenReturn(allPeople);
     }
     
     
@@ -94,7 +98,14 @@ public class PersonServicesImplTest {
 			assertEquals(2, list.size());
     }
     
-    
+    @Test
+    public void getPeopleByName() {
+        
+        List<PersonDTO> list = service.getPeopleByName("JOZO");
+			assertNotNull(list);
+			assertEquals(2, list.size());
+        
+    }
     
     
 
