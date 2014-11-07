@@ -52,7 +52,7 @@ public class Person implements Serializable {
 
     @Column(nullable = false)
     private String identificationNumber;
-    
+
     @Column(nullable = false)
     private String name;
 
@@ -91,6 +91,10 @@ public class Person implements Serializable {
 
     public String getIdentificationNumber() {
         return identificationNumber;
+    }
+
+    public void setIdentificationNumber(String identificationNumber) {
+        this.identificationNumber = identificationNumber;
     }
 
     public String getName() {
@@ -192,8 +196,8 @@ public class Person implements Serializable {
             return false;
         }
         Person other = (Person) object;
-        if ((this.identificationNumber == null && other.identificationNumber != null) 
-                || (this.identificationNumber != null 
+        if ((this.identificationNumber == null && other.identificationNumber != null)
+                || (this.identificationNumber != null
                 && !this.identificationNumber.equals(other.identificationNumber))) {
             return false;
         }

@@ -26,10 +26,10 @@ import org.junit.Test;
  */
 public class PersonDAOImplTest {
 
-   //private EntityManagerFactory emf;
+    //private EntityManagerFactory emf;
     private EntityManager em;
     private PersonDAOImpl dao;
-    
+
     private static Person person;
     private static Person person2;
     private static Person person3;
@@ -43,7 +43,6 @@ public class PersonDAOImplTest {
                 .createEntityManagerFactory("carManagementSystem-unit");
         em = emf.createEntityManager();
         dao = new PersonDAOImpl(em);
-       
 
         //create simple person        
         person = new Person();
@@ -53,6 +52,7 @@ public class PersonDAOImplTest {
         person.setNationality("US");
         person.setSalary(25_000);
         person.setIsActive(true);
+        person.setIdentificationNumber("EA123456");
 
         //create people with same name
         person2 = new Person();
@@ -62,6 +62,7 @@ public class PersonDAOImplTest {
         person2.setNationality("US");
         person2.setSalary(30_000);
         person2.setIsActive(true);
+        person2.setIdentificationNumber("EA212143");
 
         person3 = new Person();
         person3.setName("JOE");
@@ -70,6 +71,7 @@ public class PersonDAOImplTest {
         person3.setNationality("US");
         person3.setSalary(33_000);
         person3.setIsActive(true);
+        person3.setIdentificationNumber("EA142234");
 
         person4 = new Person();
         person4.setName("JOE");
@@ -78,17 +80,17 @@ public class PersonDAOImplTest {
         person4.setNationality("US");
         person4.setSalary(38_000);
         person4.setIsActive(true);
-        
+        person4.setIdentificationNumber("EA654321");
+
         em.getTransaction().begin();
-        
+
         //persist them
         em.persist(person);
         em.persist(person2);
         em.persist(person3);
         em.persist(person4);
-        
+
         em.getTransaction().commit();
-        
 
         //create DAO object
         //dao = new PersonDAOImpl();
@@ -100,7 +102,8 @@ public class PersonDAOImplTest {
         toInsert.setNationality("US");
         toInsert.setSalary(45_000);
         toInsert.setIsActive(true);
-        
+        toInsert.setIdentificationNumber("EA545454");
+
         toUpdate = new Person();
         toUpdate.setName("UPDATE");
         toUpdate.setAddress(new Address());
@@ -108,12 +111,13 @@ public class PersonDAOImplTest {
         toUpdate.setNationality("CZ");
         toUpdate.setSalary(46_000);
         toUpdate.setIsActive(true);
+        toUpdate.setIdentificationNumber("EA342235");
 
     }
 
     @After
     public void tearDown() {
-        
+
         em.getTransaction().begin();
         em.createQuery("DELETE FROM Person").executeUpdate();
         em.getTransaction().commit();
@@ -128,28 +132,27 @@ public class PersonDAOImplTest {
         List<Person> people = em.createQuery("SELECT p FROM Person p", Person.class).getResultList();
         assertEquals(people.size(), 4);
         em.getTransaction().commit();
-        
+
     }
 
     @Test // PASS
     // test if it is possible to persist person using method insertPerson()
     public void testInsertPerson() {
         // try if bad input results in IllegalArgument Exception
-        try{
-        dao.insertPerson(null); 
-        fail("wrong input allowed!");
+        try {
+            dao.insertPerson(null);
+            fail("wrong input allowed!");
+        } catch (IllegalArgumentException e) {
         }
-        catch(IllegalArgumentException e){}
-        
+
         em.getTransaction().begin();
         // persist person toInsert
         dao.insertPerson(toInsert);
         // find person toInsert in database
-        
+
         Person pers = em.find(Person.class, toInsert.getId());
         Assert.assertTrue(em.contains(pers));
         em.getTransaction().commit();
-        
 
     }
 
@@ -157,12 +160,12 @@ public class PersonDAOImplTest {
     // test if it is possible to get person from DB using getPersonById()
     public void testGetPersonById() {
         // try if bad input results in Exception
-        try{
-        dao.getPersonByID(null); 
-        fail("wrong input allowed!");
-        }        
-        catch(IndexOutOfBoundsException e){}
-        
+        try {
+            dao.getPersonByID(null);
+            fail("wrong input allowed!");
+        } catch (IndexOutOfBoundsException e) {
+        }
+
         // get person using getPersonById method
         Person pers = dao.getPersonByID(person.getId());
         // pers should be not null
@@ -176,20 +179,18 @@ public class PersonDAOImplTest {
     // tests if person can be deleted using method deletePerson()
     public void testDeletePerson() {
         // try if bad input results in Exception
-   /**     try{
-        dao.deletePerson(null); 
-        fail("wrong input allowed!");
-        }        
-       catch(IndexOutOfBoundsException e){}
-       */
-        
+        /**
+         * try{ dao.deletePerson(null); fail("wrong input allowed!"); }
+         * catch(IndexOutOfBoundsException e){}
+         */
+
         // delete person
         dao.deletePerson(person4.getId());
         // person shoul be deleted
         em.getTransaction().begin();
         Assert.assertFalse(em.contains(person4));
         em.getTransaction().commit();
-        
+
     }
 
     @Test//FAIL
@@ -204,27 +205,26 @@ public class PersonDAOImplTest {
     @Test//FAIL
     public void testUpdatePerson() {
         // try if bad input results in Exception
-        try{
-        dao.updatePerson(null, person2.getId()); 
-        fail("wrong input allowed!");
-        }        
-        catch(IllegalArgumentException e){}
-        catch(NullPointerException e){}
-        
+        try {
+            dao.updatePerson(null, person2.getId());
+            fail("wrong input allowed!");
+        } catch (IllegalArgumentException e) {
+        } catch (NullPointerException e) {
+        }
+
         // try if bad input results in Exception
-        try{
-        dao.updatePerson(toUpdate, null); 
-        fail("wrong input allowed!");
-        }        
-        catch(IndexOutOfBoundsException e){}
-        catch(IllegalArgumentException e){}
-        
-        
+        try {
+            dao.updatePerson(toUpdate, null);
+            fail("wrong input allowed!");
+        } catch (IndexOutOfBoundsException e) {
+        } catch (IllegalArgumentException e) {
+        }
+
         // update persisted person with new non-persisted person toInsert
         dao.updatePerson(toUpdate, person2.getId());
-        
+
         em.getTransaction().begin();
-        
+
         Person updatedPerson = em.find(Person.class, person2.getId());
         // attributes e of person should be updated now
         assertEquals(updatedPerson.getName(), toUpdate.getName());
@@ -232,18 +232,18 @@ public class PersonDAOImplTest {
         assertEquals(updatedPerson.getNationality(), toUpdate.getNationality());
         assertEquals(updatedPerson.getSalary(), toUpdate.getSalary());
         em.getTransaction().commit();
-        
+
     }
 
     @Test//FAIL
     public void testGetPeopleByName() {
         // try if bad input results in Exception
-        try{
-        dao.getPeopleByName(null); 
-        fail("wrong input allowed!");
-        }        
-        catch(IllegalArgumentException e){}
-        
+        try {
+            dao.getPeopleByName(null);
+            fail("wrong input allowed!");
+        } catch (IllegalArgumentException e) {
+        }
+
         // get people by name
         List<Person> list = dao.getPeopleByName("JOE");
         // list should not be empty
@@ -253,6 +253,5 @@ public class PersonDAOImplTest {
         assertEquals(persons, 3);
 
     }
-    
-    
+
 }
