@@ -81,7 +81,7 @@ public class PersonServicesImplTest {
     }
     
     
-    @Test
+    @Test //OK
     public void testInsertPerson() {
                 
 		service.createPerson(personDto);
