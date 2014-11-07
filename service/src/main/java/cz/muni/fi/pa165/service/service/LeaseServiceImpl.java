@@ -10,14 +10,16 @@ import cz.muni.fi.pa165.persistence.Entities.Lease;
 import cz.muni.fi.pa165.persistence.Entities.Lease.ReturnedStatus;
 import cz.muni.fi.pa165.persistence.Entities.Person;
 import cz.muni.fi.pa165.persistence.DAO.PersonDAO;
+import cz.muni.fi.pa165.service.dto.LeaseDTO;
 import cz.muni.fi.pa165.service.dto.PersonDTO;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
 import org.dozer.DozerBeanMapper;
 import org.dozer.Mapper;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Service;
@@ -30,63 +32,115 @@ import org.springframework.stereotype.Service;
 @Transactional
 public class LeaseServiceImpl implements LeaseServiceInterface {
 
-    @Autowired
-    private LeaseDAO leaseDao;
-
+   
+    private LeaseDAO leaseDAO;
+    private static List<String> list = new ArrayList<String>();
+    @PersistenceContext
+    private EntityManager em;
+   
     /**
      * setter for lease
      *
      * @param leaseDao lease to be setted
      */
-    public void setLeaseDao(LeaseDAO leaseDao) {
-        this.leaseDao = leaseDao;
+    public void setLeaseDao(LeaseDAO leaseDAO) {
+         if (leaseDAO == null) {
+            throw new NullPointerException("null object");
+        } 
+        
+        this.leaseDAO = leaseDAO;
     }
-
-    public void createLease(Car car, Person person, Lease.TravelReason travelReason, int carMileage, Date dateOfLease, Date dateOfReturn) {
-        //creation of lease to persist
-        Lease lease = new Lease();
-
-        //set parameters to lease before persist
-        lease.setCar(car);
-        lease.setPerson(person);
-        lease.setTravelReason(travelReason);
-        lease.setDistance(carMileage);
-        lease.setDateOfLease(dateOfLease);
-        lease.setDateOfReturn(dateOfReturn);
-
-        //set if lease is closed
-        lease.setIsClosed(Boolean.FALSE);
-
-        //persist
-        leaseDao.createLease(lease);
+ 
+    public void createLease(LeaseDTO leaseDTO) {
+        if (leaseDTO == null) {
+            throw new NullPointerException("null object");
+        }
+        
+        ApplicationContext applicationContext 
+                = new ClassPathXmlApplicationContext("/applicationContext.xml");
+        
+        leaseDAO = (LeaseDAO) applicationContext.getBean("leaseDAO");
+        Lease leaseEntity = null;
+        
+        list.add("dozerMapping.xml");
+        
+        Mapper mapper = new DozerBeanMapper(list);
+        mapper.map(leaseDTO, leaseEntity, "lease");
+        
+        em.getTransaction().begin();
+        leaseDAO.createCar(leaseEntity);
+        em.getTransaction().commit();
     }
 
     public void setReturnedStatus(int id, ReturnedStatus status) {
-        (leaseDao.getLeaseByID(id)).setReturnedStatus(status);
+         if (id < 0) {
+            throw new IllegalArgumentException("wrong type of id");
+        }
+          if (status == null) {
+            throw new NullPointerException("null object");
+        }  
+                
+        (leaseDAO.getLeaseByID(id)).setReturnedStatus(status);
     }
 
     public List getLeaseByPerson(Person person) {
+        if (person == null){
+            throw new NullPointerException("person is null");
+        }
+        
         List<Lease> leasesForPerson;
 
-        return leasesForPerson = leaseDao.getLeasesByPerson(person);
+        return leasesForPerson = leaseDAO.getLeasesByPerson(person);
     }
 
     public List getAllLeases(Date from, Date to) {
-        List<Lease> allLeases;
-
-        return allLeases = leaseDao.getAllLeases(from, to);
-
+        if (from == null) {
+            throw new NullPointerException("Date from is null");
+        }
+        if (to == null) {
+            throw new NullPointerException("Date to is null");
+        } 
+        
+        ApplicationContext applicationContext 
+                = new ClassPathXmlApplicationContext("/applicationContext.xml");
+        list.add("dozerMapping.xml");
+        List<Lease> allLeases = leaseDAO.getAllLeases(from, to);
+	Mapper mapper = DozerBeanMapper.getInstance(list);
+	List leasesDTO = new ArrayList(allLeases.size());
+	for (Lease lease : allLeases) {
+            leasesDTO.add(mapper.map(lease, LeaseDTO.class));
+        }
+	return leasesDTO;
     }
 
     public Lease getLeaseById(int id) {
-        return leaseDao.getLeaseByID(id);
+        if (id < 0) {
+            throw new IllegalArgumentException("Wrong type of id");
+        } 
+       
+	return leaseDAO.getLeaseByID(id);
     }
 
-    public void deleteLease(int leaseId) {
-        leaseDao.deleteLease(leaseId);
+    public void deleteLease(int id) {
+        if (id < 0) {
+            throw new IllegalArgumentException("Wrong type of id");
+        }
+        
+        leaseDAO.deleteLease(id);
     }
 
     public List<Lease> getTravelStatistics(Person person, Date from, Date to) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        if (person == null){
+            throw new NullPointerException("person is null");
+        }
+        if (from == null) {
+            throw new NullPointerException("Date from is null");
+        }
+        if (to == null) {
+            throw new NullPointerException("Date to is null");
+        }
+        
+        return null;//TODO
     }
-}
+} 
+  
