@@ -9,27 +9,25 @@ package cz.muni.fi.pa165.service.service;
 import cz.muni.fi.pa165.persistence.DAO.CarDAO;
 import cz.muni.fi.pa165.persistence.DAO.LeaseDAO;
 import cz.muni.fi.pa165.persistence.Entities.Car;
-import cz.muni.fi.pa165.persistence.Entities.Lease;
-import cz.muni.fi.pa165.persistence.Entities.Lease.ReturnedStatus;
-import cz.muni.fi.pa165.persistence.Entities.Person;
 import cz.muni.fi.pa165.service.dto.CarDTO;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.transaction.Transactional;
 import org.dozer.DozerBeanMapper;
 import org.dozer.Mapper;
 import javax.transaction.Transactional;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Service;
 
 /**
  *
  * @author jozef.puchly
  */
 
+@Service("carService")
 @Repository //for transformation of exceptions to DataAccessException
 @Transactional //to handle transactions
 public class CarImpl implements CarServiceInterface {
@@ -53,9 +51,7 @@ public class CarImpl implements CarServiceInterface {
         Mapper mapper = new DozerBeanMapper(list);
         
         mapper.map(carDto, carEntity, "car");
-        em.getTransaction().begin();
         carDAO.createCar(carEntity);
-        em.getTransaction().commit();
     }
 
 
@@ -73,11 +69,8 @@ public class CarImpl implements CarServiceInterface {
         Mapper mapper = new DozerBeanMapper(list);
         
         mapper.map(carDto, carEntity, "car");
-        em.getTransaction().begin();
         carDAO.updateCar(carEntity, carID);
-        em.getTransaction().commit();
-        
-   //     leaseDAO.
+
     }
 
     public List<CarDTO> findAllCars(boolean alsoInactive) {
@@ -101,9 +94,7 @@ public class CarImpl implements CarServiceInterface {
         for (Car co : ori) {
              n.add(mapper.map(co, CarDTO.class));
         mapper.map(carDto, carEntity, "car");
-        em.getTransaction().begin();
         carDAO.listAllCars(alsoInactive);
-        em.getTransaction().commit();
        
         }
         return n;
@@ -124,10 +115,8 @@ public class CarImpl implements CarServiceInterface {
         Mapper mapper = new DozerBeanMapper(list);
         
         mapper.map(carDto, carEntity, "car");
-        em.getTransaction().begin();
         carDAO.deleteCar(carEntity.getCarID());
-        em.getTransaction().commit();
-        
+     
     }
     
 }

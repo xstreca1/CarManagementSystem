@@ -13,18 +13,19 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
 import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
 import org.dozer.DozerBeanMapper;
 import org.dozer.Mapper;
 import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Service;
 
 /**
  *
  * @author Jakub Rumanovsky
  */
+
+@Service("personService")
 @Repository //for transformation of exceptions to DataAccessException
 @Transactional //to handle transactions
 public class PersonServicesImpl implements PersonServices {
@@ -55,14 +56,8 @@ public class PersonServicesImpl implements PersonServices {
 
         mapper.map(personDTO, personEntity, "person");
 
-        // start transaction
-        em.getTransaction().begin();
-
         // save to database using some implementation od DAO
         personDAO.insertPerson(personEntity);
-
-        // commit transaction
-        em.getTransaction().commit();
 
         return true;
     }

@@ -20,12 +20,14 @@ import org.dozer.Mapper;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Service;
 
 /**
  *
  * @author Petr Potucek
  */
 
+@Service("leaseService")
 @Repository //for transformation of exceptions to DataAccessException
 @Transactional //to handle transactions
 public class LeaseServiceImpl implements LeaseServiceInterface {
@@ -66,9 +68,8 @@ public class LeaseServiceImpl implements LeaseServiceInterface {
         Mapper mapper = new DozerBeanMapper(list);
         mapper.map(leaseDTO, leaseEntity, "lease");
         
-        em.getTransaction().begin();
         leaseDAO.createLease(leaseEntity);
-        em.getTransaction().commit();
+        
     }
 
     public void setReturnedStatus(int id, ReturnedStatus status) {
