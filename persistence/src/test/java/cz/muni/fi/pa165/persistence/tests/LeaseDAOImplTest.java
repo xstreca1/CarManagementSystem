@@ -84,19 +84,16 @@ public class LeaseDAOImplTest {
         car2.setNumberOfSeats(4);
         car2.setTransmission(true);
         car2.setIsActive(true);
-        
-        em.persist(car1);
-        em.persist(car2);
-        
-         //create person
+
+        //create person
         person = new Person();
         person.setName("JOHN");
         person.setAddress(new Address());
         person.setPosition("HR");
         person.setNationality("US");
-        person.setSalary(25_000);  
-       
-        em.persist(person);
+        person.setSalary(25_000);
+        person.setIsActive(true);
+        person.setIdentificationNumber("EB123456");
 
         //create lease - two of them       
         lease = new Lease();
@@ -113,15 +110,19 @@ public class LeaseDAOImplTest {
         lease2.setDateOfReturn(date4);
         lease2.setIsClosed(true);
         lease2.setCar(car1);
-        
-        //persist leases
+
+        em.getTransaction().begin();
+
+        //persist entities
+        em.persist(person);
+
+        em.persist(car1);
+        em.persist(car2);
+
         em.persist(lease);
         em.persist(lease2);
 
-       
-        
         em.getTransaction().commit();
-        em.close();
 
         //create DAO object
         toInsert = new Lease();
@@ -144,6 +145,7 @@ public class LeaseDAOImplTest {
         em.getTransaction().begin();
         em.createQuery("DELETE FROM Lease").executeUpdate();
         em.getTransaction().commit();
+        em.close();
     }
 
     /**
@@ -159,9 +161,9 @@ public class LeaseDAOImplTest {
 
     @Test
     public void testCreateLease() {
-        dao.createLease(toInsert);
 
         em.getTransaction().begin();
+        dao.createLease(toInsert);
         Lease lease3 = em.find(Lease.class, toInsert.getId());
         Assert.assertTrue(em.contains(lease3));
         em.getTransaction().commit();
@@ -200,16 +202,20 @@ public class LeaseDAOImplTest {
      */
     @Test
     public void testGetLeasesByPerson() {
+        em.getTransaction().begin();
         List<Lease> leasesByPerson = dao.getLeasesByPerson(person);
+        em.getTransaction().commit();
         assertEquals(1, leasesByPerson.size());
     }
-    
+
     /**
      * Test of getLeasesById method, of class LeaseDAOImpl.
      */
     @Test
     public void testGetLeaseByID() {
+        em.getTransaction().begin();
         Lease leaseByID = dao.getLeaseByID(lease.getId());
+        em.getTransaction().commit();
         assertEquals(lease, leaseByID);
     }
 
@@ -218,7 +224,9 @@ public class LeaseDAOImplTest {
      */
     @Test
     public void testGetAllLeases() {
+        em.getTransaction().begin();
         List<Lease> leases = dao.getAllLeases(date1, date4);
+        em.getTransaction().commit();
         assertEquals(2, leases.size());
     }
 
