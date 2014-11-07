@@ -10,11 +10,14 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.PersistenceContext;
+import org.springframework.stereotype.Repository;
 
 /**
  *
  * @author Jozef Puchly
  */
+
+@Repository("carDAO") //for transformation of exceptions to DataAccessException
 public class CarDAOImpl implements CarDAO {
 
     @PersistenceContext(name = "carManagementSystem-unit")
@@ -51,7 +54,7 @@ public class CarDAOImpl implements CarDAO {
         //get all updatable attributes from the updated car entity instance
         Integer mileage = car.getMileage();
         Boolean availibility = car.isAvailibility();
-        Boolean isActive = car.isIsActive();
+        Boolean isActive = car.getIsActive();
 
         //find car to be updated in DB
         Car car1 = (Car) em.find(Car.class, carID);

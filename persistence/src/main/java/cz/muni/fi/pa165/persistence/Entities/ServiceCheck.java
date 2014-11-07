@@ -105,6 +105,11 @@ public class ServiceCheck implements Serializable {
         this.car = car;
     }
 
+    public void setScID(int scID) {
+        this.scID = scID;
+    }
+    
+
     //----------------constructors-----------------------
     public ServiceCheck() {
     }

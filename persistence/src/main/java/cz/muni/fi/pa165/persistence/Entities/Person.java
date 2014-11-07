@@ -169,13 +169,18 @@ public class Person implements Serializable {
         this.lease = lease;
     }
 
-    public Boolean isIsActive() {
+    public Boolean getIsActive() {
         return isActive;
     }
 
     public void setIsActive(Boolean isActive) {
         this.isActive = isActive;
     }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+    
 
     //----------------constructors-----------------------
     public Person() {

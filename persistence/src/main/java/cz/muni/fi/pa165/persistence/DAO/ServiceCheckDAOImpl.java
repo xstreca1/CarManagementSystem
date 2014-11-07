@@ -14,11 +14,14 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.PersistenceContext;
+import org.springframework.stereotype.Repository;
 
 /**
  *
  * @author Martin Strecansky
  */
+
+@Repository("serviceCheckDAO") //for transformation of exceptions to DataAccessException
 public class ServiceCheckDAOImpl implements ServiceCheckDAO {
 
     @PersistenceContext(name = "carManagementSystem-unit")
