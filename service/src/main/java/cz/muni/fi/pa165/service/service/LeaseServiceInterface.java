@@ -4,6 +4,7 @@ import cz.muni.fi.pa165.persistence.Entities.Lease;
 import cz.muni.fi.pa165.persistence.Entities.Lease.ReturnedStatus;
 import cz.muni.fi.pa165.persistence.Entities.Person;
 import cz.muni.fi.pa165.service.dto.LeaseDTO;
+import cz.muni.fi.pa165.service.dto.PersonDTO;
 import java.util.Date;
 import java.util.List;
 
@@ -34,7 +35,7 @@ public interface LeaseServiceInterface {
      * @param person person with leases
      * @return return list of leases for person
      */
-    List<Lease> getLeaseByPerson(Person person);
+    List<LeaseDTO> getLeaseByPerson(PersonDTO personDTO);
     
     /**
      * Returns all leases in the period

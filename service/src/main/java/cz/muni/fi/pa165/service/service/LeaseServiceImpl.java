@@ -9,6 +9,7 @@ import cz.muni.fi.pa165.persistence.Entities.Lease;
 import cz.muni.fi.pa165.persistence.Entities.Lease.ReturnedStatus;
 import cz.muni.fi.pa165.persistence.Entities.Person;
 import cz.muni.fi.pa165.service.dto.LeaseDTO;
+import cz.muni.fi.pa165.service.dto.PersonDTO;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -83,14 +84,31 @@ public class LeaseServiceImpl implements LeaseServiceInterface {
         (leaseDAO.getLeaseByID(id)).setReturnedStatus(status);
     }
 
-    public List getLeaseByPerson(Person person) {
-        if (person == null){
-            throw new NullPointerException("person is null");
+    public List<LeaseDTO> getLeaseByPerson(PersonDTO personDTO) {
+        if (personDTO == null){
+            throw new NullPointerException("personDTO is null");
+        }
+        Person personEntity = null;
+        
+        LeaseDTO leaseDTO = null;
+        
+        List<String> list = new ArrayList<String>();
+        
+        List<LeaseDTO> leaseListDTO = new ArrayList<LeaseDTO>();
+
+                // map DTO object on Entity
+        list.add("dozerMapping.xml");
+        Mapper mapper = new DozerBeanMapper(list);
+
+        mapper.map(personDTO, personEntity, "person");
+
+        List<Lease> leaseList = leaseDAO.getLeasesByPerson(personEntity);;
+        for (Lease l : leaseList) {
+            mapper.map(l, leaseDTO, "lease");
+            leaseListDTO.add(leaseDTO);
         }
         
-        List<Lease> leasesForPerson;
-
-        return leasesForPerson = leaseDAO.getLeasesByPerson(person);
+        return leaseListDTO;
     }
 
     public List getAllLeases(Date from, Date to) {
