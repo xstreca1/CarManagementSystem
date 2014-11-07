@@ -39,7 +39,7 @@ public interface PersonServices {
      * @param personID id of current instance
      * @return 
      */
-    boolean editPerson(Person person, Integer personID);
+    boolean editPerson(PersonDTO personDTO, Integer personID);
     //spytat sa ci je to takto vporiadku
 
     /**
