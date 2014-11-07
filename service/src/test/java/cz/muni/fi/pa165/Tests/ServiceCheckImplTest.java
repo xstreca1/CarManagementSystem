@@ -63,12 +63,20 @@ public class ServiceCheckImplTest {
             }
         });
         
+        Mockito.when(mockCheckDAO.getDaysToNext(Matchers.any(Integer.class)))
+                .thenAnswer(new Answer<ServiceCheck>() {
+            @Override
+            public ServiceCheck answer(InvocationOnMock inv) throws Throwable {
+                Object[] args = inv.getArguments();
+                return (ServiceCheck) args[0];
+            }
+        });
+        
         List<ServiceCheck> allChecks = new ArrayList<>();
 		allChecks.add(serviceCheck);
 		allChecks.add(serviceCheck);
         Mockito.when(mockCheckDAO.getServiceChecksForCar(Matchers.any(Car.class)))
-				.thenReturn(allChecks);
-            
+				.thenReturn(allChecks);       
             
     }
     
@@ -88,6 +96,12 @@ public class ServiceCheckImplTest {
     
     @Test
     public void testGetDaysToNextServiceCheck(){
+        
+        serviceCheckImpl.getDaysToNextServiceCheck(serviceCheckDTO);
+        
+        assertNotNull(serviceCheckDTO);
+        
+        assertEquals(true, true);
     }
     
     @Test
