@@ -8,10 +8,19 @@ package cz.muni.fi.pa165.Tests;
 
 import cz.muni.fi.pa165.persistence.DAO.LeaseDAO;
 import cz.muni.fi.pa165.persistence.Entities.Lease;
+import cz.muni.fi.pa165.persistence.Entities.Person;
 import cz.muni.fi.pa165.service.dto.LeaseDTO;
+import cz.muni.fi.pa165.service.dto.PersonDTO;
 import cz.muni.fi.pa165.service.service.LeaseServiceImpl;
+import java.util.ArrayList;
 import java.util.List;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNotNull;
 import org.junit.Before;
@@ -44,6 +53,9 @@ public class LeaseServiceImplTest {
     @Mock
     List<Lease> leases;
     
+    @Mock
+    PersonDTO personDto;
+    
     @InjectMocks
     private LeaseServiceImpl service = new LeaseServiceImpl();
     
@@ -69,6 +81,13 @@ public class LeaseServiceImplTest {
 
 					}
 				});
+        
+        List<Lease> allLeases = new ArrayList<>();
+		allLeases.add(lease);
+		allLeases.add(lease);
+        
+        Mockito.when(mockLeaseDao.getLeasesByPerson(Matchers.any(Person.class)))
+				.thenReturn(allLeases);
     }
     
     @Test
@@ -87,6 +106,15 @@ public class LeaseServiceImplTest {
         service.deleteLease(leaseDto);
         
         verify(mockLeaseDao).deleteLease(lease.getId());
+        
+    }
+    
+    @Test
+    public void getLeasesByPerson() {
+        
+        List<LeaseDTO> list = LeaseServiceImpl.getLeasesByPerson(personDto);
+			assertNotNull(list);
+			assertEquals(2, list.size());
         
     }
     
