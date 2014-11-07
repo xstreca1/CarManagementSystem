@@ -70,10 +70,6 @@
             <b>yearOfManufacture</b>
         </field>
         <field>
-            <a>dateOfBirth</a>
-            <b>dateOfBirth</b>
-        </field>
-        <field>
             <a>mileage</a>
             <b>mileage</b>
         </field>
