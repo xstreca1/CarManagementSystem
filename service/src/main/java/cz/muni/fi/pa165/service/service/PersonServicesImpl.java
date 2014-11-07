@@ -97,17 +97,35 @@ public class PersonServicesImpl implements PersonServices {
         //create empty list
         List<String> list = new ArrayList<String>();
 
+        PersonDTO personDTO = null;
+
         // map DTO object on Entity
         list.add("dozerMapping.xml");
         Mapper mapper = new DozerBeanMapper(list);
 
         if (alsoInactive = true) {
-
+            List<PersonDTO> peopleDTO = new ArrayList<PersonDTO>();
             List<Person> people = personDAO.getAllPeople();
+            for (Person p : people) {
+                mapper.map(p, personDTO, "person");
+                peopleDTO.add(personDTO);
 
+            }
+        } else {
+            List<PersonDTO> peopleDTO = new ArrayList<PersonDTO>();
+            List<Person> people = personDAO.getAllPeople();
+            for (Person p : people) {
+                if(p.isIsActive()){
+                mapper.map(p, personDTO, "person");
+                peopleDTO.add(personDTO);
+                }
         }
+        return peopleDTO;
+    }
 
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    throw new UnsupportedOperationException(
+
+"Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     public List<Person> getPeopleByName(String name) {
