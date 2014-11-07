@@ -64,7 +64,7 @@ public class CarDAOImpl implements CarDAO {
     }
 
     @Override
-    public void deleteCar(Integer carID) {
+    public Car deleteCar(Integer carID) {
         if (carID == null) {
             throw new IllegalArgumentException("unset argument carID'");
         }
@@ -72,7 +72,8 @@ public class CarDAOImpl implements CarDAO {
         Car car = em.find(Car.class, carID);
 
         em.remove(car);
-
+        
+        return car;
     }
 
     @Override
