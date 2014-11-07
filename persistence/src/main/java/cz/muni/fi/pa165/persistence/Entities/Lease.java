@@ -43,7 +43,7 @@ public class Lease implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int leaseId;
+    private Integer leaseId;
 
     @Column(name = "carMileage", nullable = false)
     private int distance;
