@@ -4,7 +4,6 @@
  */
 package cz.muni.fi.pa165.service.service;
 
-
 import cz.muni.fi.pa165.persistence.DAO.ServiceCheckDAO;
 import cz.muni.fi.pa165.persistence.Entities.Car;
 import cz.muni.fi.pa165.persistence.Entities.ServiceCheck;
@@ -18,47 +17,44 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
 import org.springframework.stereotype.Service;
 import org.dozer.DozerBeanMapper;
 import org.dozer.Mapper;
+import org.springframework.stereotype.Repository;
 
 /**
  *
  * @author Martin Strecansky
  */
-@Service
-@Transactional
+@Repository //for transformation of exceptions to DataAccessException
+@Transactional //to handle transactions
 public class ServiceCheckImpl implements ServiceCheckInterface {
 
     // ServiceCheck DAO
     private ServiceCheckDAO scDAO;
-    
-    // EntityManagmentFactory
-    EntityManagerFactory emf = Persistence
-                .createEntityManagerFactory("carManagementSystem-unit");
-        
-    // Entity Manager
-    private EntityManager em = emf.createEntityManager();
-    
+
+    @PersistenceContext
+    private EntityManager em;
 
     // setter for ServiceCheck DAO - to be set in applicationContext.xml  
     public void setDao(ServiceCheckDAO scDAO) {
 //check if not null
         this.scDAO = scDAO;
-    }    
+    }
 
     public void createServiceCheck(ServiceCheckDTO checkDTO) {
         //create empty entity
         ServiceCheck checkEntity = null;
-        
+
         //create empty list
-        List<String> list = new ArrayList<String>();        
-       
+        List<String> list = new ArrayList<String>();
+
         // map DTO object on Entity
         list.add("dozerMapping.xml");
         Mapper mapper = new DozerBeanMapper(list);
-        
+
         mapper.map(checkDTO, checkEntity, "servicecheck");
 
         // start transaction
@@ -76,14 +72,14 @@ public class ServiceCheckImpl implements ServiceCheckInterface {
 
         //create empty entity
         ServiceCheck checkEntity = null;
-        
+
         //create empty list
-        List<String> list = new ArrayList<String>();        
-       
+        List<String> list = new ArrayList<String>();
+
         // map DTO object on Entity
         list.add("dozerMapping.xml");
         Mapper mapper = new DozerBeanMapper(list);
-        
+
         mapper.map(checkDTO, checkEntity, "servicecheck");
 
         // start transaction
@@ -127,20 +123,20 @@ public class ServiceCheckImpl implements ServiceCheckInterface {
     public List<ServiceCheck> getServiceChecksForCar(CarDTO carDTO) {
         //create empty entity
         Car carEntity = null;
-        
+
         //create empty list
-        List<String> list = new ArrayList<String>();        
-       
+        List<String> list = new ArrayList<String>();
+
         // map DTO object on Entity
         list.add("dozerMapping.xml");
         Mapper mapper = new DozerBeanMapper(list);
-        
+
         mapper.map(carDTO, carEntity, "car");
 
         // start transaction
         em.getTransaction().begin();
         List<ServiceCheck> checks = scDAO.getServiceChecksForCar(carEntity);
-         // commit transaction
+        // commit transaction
         em.getTransaction().commit();
         return checks;
 

@@ -20,16 +20,18 @@ import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
 import org.dozer.DozerBeanMapper;
 import org.dozer.Mapper;
+import javax.transaction.Transactional;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Repository;
 
-@Service("carService")
-@Transactional
 /**
  *
  * @author jozef.puchly
  */
+
+@Repository //for transformation of exceptions to DataAccessException
+@Transactional //to handle transactions
 public class CarImpl implements CarServiceInterface {
     
     private CarDAO carDAO;

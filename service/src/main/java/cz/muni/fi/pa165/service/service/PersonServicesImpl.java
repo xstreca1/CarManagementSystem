@@ -8,7 +8,6 @@ package cz.muni.fi.pa165.service.service;
 import cz.muni.fi.pa165.persistence.Entities.Lease;
 import cz.muni.fi.pa165.persistence.Entities.Person;
 import cz.muni.fi.pa165.persistence.DAO.PersonDAO;
-import cz.muni.fi.pa165.persistence.DAO.ServiceCheckDAO;
 import cz.muni.fi.pa165.service.dto.PersonDTO;
 import java.util.ArrayList;
 import java.util.Date;
@@ -17,26 +16,24 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.PersistenceContext;
+import javax.transaction.Transactional;
 import org.dozer.DozerBeanMapper;
 import org.dozer.Mapper;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.stereotype.Repository;
 
 /**
  *
  * @author Jakub Rumanovsky
  */
+@Repository //for transformation of exceptions to DataAccessException
+@Transactional //to handle transactions
 public class PersonServicesImpl implements PersonServices {
 
     // Person DAO
     private PersonDAO personDAO;
 
-    // EntityManagmentFactory
-    EntityManagerFactory emf = Persistence
-            .createEntityManagerFactory("carManagementSystem-unit");
-
-    // Entity Manager
-    private EntityManager em = emf.createEntityManager();
+    @PersistenceContext
+    private EntityManager em;
 
     // setter for ServiceCheck DAO - to be set in applicationContext.xml  
     public void setDao(PersonDAO personDAO) {
@@ -93,18 +90,18 @@ public class PersonServicesImpl implements PersonServices {
      *
      * throw new UnsupportedOperationException("Not supported yet."); //To
      * change body of generated methods, choose Tools | Templates. }
-    *
+     *
      */
     @Override
-    public List<PersonDTO> findAllPeople(boolean alsoInactive) {      
-            //create empty list
-            List<String> list = new ArrayList<String>();
+    public List<PersonDTO> findAllPeople(boolean alsoInactive) {
+        //create empty list
+        List<String> list = new ArrayList<String>();
 
-            // map DTO object on Entity
-            list.add("dozerMapping.xml");
-            Mapper mapper = new DozerBeanMapper(list);
-            
-             if (alsoInactive = true) {
+        // map DTO object on Entity
+        list.add("dozerMapping.xml");
+        Mapper mapper = new DozerBeanMapper(list);
+
+        if (alsoInactive = true) {
 
             List<Person> people = personDAO.getAllPeople();
 

@@ -19,19 +19,21 @@ import org.dozer.DozerBeanMapper;
 import org.dozer.Mapper;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Repository;
 
 /**
  *
  * @author Petr Potucek
  */
-@Service
-@Transactional
+
+@Repository //for transformation of exceptions to DataAccessException
+@Transactional //to handle transactions
 public class LeaseServiceImpl implements LeaseServiceInterface {
 
    
     private LeaseDAO leaseDAO;
     private static List<String> list = new ArrayList<String>();
+    
     @PersistenceContext
     private EntityManager em;
    
