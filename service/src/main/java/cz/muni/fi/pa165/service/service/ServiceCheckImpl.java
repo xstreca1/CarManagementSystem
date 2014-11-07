@@ -102,7 +102,7 @@ public class ServiceCheckImpl implements ServiceCheckInterface {
         //create empty entity
         Car carEntity = new Car();
         
-        ServiceCheckDTO checkDTO = null;
+        ServiceCheckDTO checkDTO = new  ServiceCheckDTO();
 
         //create empty list
         List<String> list = new ArrayList<String>();
