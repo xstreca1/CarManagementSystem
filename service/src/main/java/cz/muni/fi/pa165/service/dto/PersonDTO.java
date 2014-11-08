@@ -32,11 +32,13 @@ public class PersonDTO {
     private String nationality;
 
     private int salary;
+    
+    private String IdentificationNumber;
 
     public PersonDTO(Integer id, String name, Boolean isActive,
             Person.EmploymentStatus employmentStatus, Date dateOfBirth,
             String position, Person.Sex sex, Address address,
-            String nationality, int salary) {
+            String nationality, int salary, String identificationNumber) {
 
         this.id = id;
         this.name = name;
@@ -48,7 +50,12 @@ public class PersonDTO {
         this.address = address;
         this.nationality = nationality;
         this.salary = salary;
+        this.IdentificationNumber = identificationNumber;
 
+    }
+
+    public PersonDTO() {
+        
     }
 
     public Integer getId() {
@@ -61,6 +68,14 @@ public class PersonDTO {
 
     public String getName() {
         return name;
+    }
+
+    public String getIdentificationNumber() {
+        return IdentificationNumber;
+    }
+
+    public void setIdentificationNumber(String IdentificationNumber) {
+        this.IdentificationNumber = IdentificationNumber;
     }
 
     public void setName(String name) {

@@ -1,9 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package cz.muni.fi.pa165.Tests;
 
 import cz.muni.fi.pa165.persistence.DAO.CarDAO;
@@ -11,13 +5,10 @@ import cz.muni.fi.pa165.persistence.Entities.Car;
 import cz.muni.fi.pa165.service.dto.CarDTO;
 import cz.muni.fi.pa165.service.service.CarImpl;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.fail;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -75,8 +66,8 @@ public class CarImplTest {
 					}
 				});
         List<Car> allCars = new ArrayList<>();
-		allCars.add(new Car());
-		allCars.add(new Car());
+		allCars.add(car);
+		allCars.add(car);
 		Mockito.when(mockCarDao.listAllCars(true)).thenReturn(allCars);
         
     }
@@ -84,11 +75,10 @@ public class CarImplTest {
     @Test
     public void testCreateCar() {
         
-                CarDTO dto = new CarDTO();
                 
 		service.createCar(carDto);
                 
-		assertNotNull(dto);
+		assertNotNull(carDto);
                 
 		assertEquals(true, true);
     }

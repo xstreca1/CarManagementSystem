@@ -23,6 +23,10 @@ public class PersonDAOImpl implements PersonDAO {
     @PersistenceContext(name="carManagementSystem-unit")
     private EntityManager em;
     
+    public PersonDAOImpl () {
+        
+    }
+    
     public PersonDAOImpl(EntityManager entityManager) {
 		if (entityManager == null) {
 			throw new IllegalArgumentException("argument 'em' must be set");

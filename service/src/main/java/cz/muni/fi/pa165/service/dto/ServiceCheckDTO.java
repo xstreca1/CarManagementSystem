@@ -15,9 +15,16 @@ import java.util.Date;
  * @author Mato
  */
 public class ServiceCheckDTO {
-    
-    private int scID;
+    private Integer scID;
     private ServiceCheck.ServiceCheckName name;
+
+    public Integer getScID() {
+        return scID;
+    }
+
+    public void setScID(Integer scID) {
+        this.scID = scID;
+    }
     private int serviceInterval;
     private Date lastCheck;
     private String description;
@@ -29,6 +36,10 @@ public class ServiceCheckDTO {
         this.lastCheck = lastCheck;
         this.description = description;
         this.car = car;
+    }
+
+    public ServiceCheckDTO() {
+        
     }
 
     public ServiceCheck.ServiceCheckName getName() {

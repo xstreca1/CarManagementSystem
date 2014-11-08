@@ -16,6 +16,9 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
 import org.dozer.DozerBeanMapper;
+import org.springframework.beans.factory.annotation.Required;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.dozer.Mapper;
 import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
@@ -29,6 +32,7 @@ import org.springframework.stereotype.Service;
 @Transactional //to handle transactions
 public class PersonServicesImpl implements PersonServices {
 
+    
     // Person DAO
     private PersonDAO personDAO;
 
@@ -40,8 +44,11 @@ public class PersonServicesImpl implements PersonServices {
         //check if not null
         this.personDAO = personDAO;
     }
-
     public boolean createPerson(PersonDTO personDTO) {
+        
+        ApplicationContext applicationContext
+                = new ClassPathXmlApplicationContext("/applicationContext.xml");
+        personDAO = (PersonDAO) applicationContext.getBean("personDAO");
         
         try{
         //create empty entity

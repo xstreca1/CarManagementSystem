@@ -1,9 +1,6 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package cz.muni.fi.pa165.service.service;
 
+import cz.muni.fi.pa165.persistence.DAO.PersonDAO;
 import cz.muni.fi.pa165.persistence.DAO.ServiceCheckDAO;
 import cz.muni.fi.pa165.persistence.Entities.Car;
 import cz.muni.fi.pa165.persistence.Entities.ServiceCheck;
@@ -16,14 +13,14 @@ import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
 import org.dozer.DozerBeanMapper;
 import org.dozer.Mapper;
-import org.springframework.stereotype.Repository;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Service;
 
 /**
  *
  * @author Martin Strecansky
  */
-
 @Service("serviceCheckService")
 @Transactional //to handle transactions
 public class ServiceCheckImpl implements ServiceCheckInterface {
@@ -35,12 +32,14 @@ public class ServiceCheckImpl implements ServiceCheckInterface {
     private EntityManager em;
 
     // setter for ServiceCheck DAO - to be set in applicationContext.xml  
-    public void setDao(ServiceCheckDAO scDAO) {
+    //public void setDao(ServiceCheckDAO scDAO) {
 //check if not null
-        this.scDAO = scDAO;
-    }
-
+    //this.scDAO = scDAO;
+    //}
     public void createServiceCheck(ServiceCheckDTO checkDTO) {
+        ApplicationContext applicationContext
+                = new ClassPathXmlApplicationContext("/applicationContext.xml");
+        scDAO = (ServiceCheckDAO) applicationContext.getBean("serviceCheckDAO");
         //create empty entity
         ServiceCheck checkEntity = new ServiceCheck();
 
@@ -52,14 +51,16 @@ public class ServiceCheckImpl implements ServiceCheckInterface {
         Mapper mapper = new DozerBeanMapper(list);
 
         mapper.map(checkDTO, checkEntity, "servicecheck");
-        
+
         // save to database using some implementation od DAO
         scDAO.createServiceCheck(checkEntity);
 
     }
 
     public int getDaysToNextServiceCheck(ServiceCheckDTO checkDTO) {
-
+        ApplicationContext applicationContext
+                = new ClassPathXmlApplicationContext("/applicationContext.xml");
+        scDAO = (ServiceCheckDAO) applicationContext.getBean("serviceCheckDAO");
         //create empty entity
         ServiceCheck checkEntity = new ServiceCheck();
 
@@ -73,16 +74,17 @@ public class ServiceCheckImpl implements ServiceCheckInterface {
         mapper.map(checkDTO, checkEntity, "servicecheck");
 
         int daysToNext = scDAO.getDaysToNext(checkEntity.getScID());
-        
+
         return daysToNext;
 
     }
 
     public void setCheckInterval(List<Car> carList, ServiceCheck.ServiceCheckName scName, int serviceInterval) {
-
+        ApplicationContext applicationContext
+                = new ClassPathXmlApplicationContext("/applicationContext.xml");
+        scDAO = (ServiceCheckDAO) applicationContext.getBean("personDAO");
         // create new list to store service checks with same name
         // start transaction
-
         List<ServiceCheck> checkList = scDAO.getServiceCheckByName(scName);
 
         // Set new serviceInterval for every serviceCheck, which is assigned to some car from list
@@ -99,14 +101,17 @@ public class ServiceCheckImpl implements ServiceCheckInterface {
     }
 
     public List<ServiceCheckDTO> getServiceChecksForCar(CarDTO carDTO) {
+        ApplicationContext applicationContext
+                = new ClassPathXmlApplicationContext("/applicationContext.xml");
+        scDAO = (ServiceCheckDAO) applicationContext.getBean("serviceCheckDAO");
         //create empty entity
         Car carEntity = new Car();
         
-        ServiceCheckDTO checkDTO = null;
+        ServiceCheckDTO checkDTO = new ServiceCheckDTO();
 
         //create empty list
         List<String> list = new ArrayList<String>();
-        
+
         List<ServiceCheckDTO> checkListDTO = new ArrayList<ServiceCheckDTO>();
 
         // map DTO object on Entity
