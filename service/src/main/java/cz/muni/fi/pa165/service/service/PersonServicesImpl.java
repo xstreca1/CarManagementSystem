@@ -75,8 +75,7 @@ public class PersonServicesImpl implements PersonServices {
     }
 
     public boolean editPerson(PersonDTO personDTO, Integer personID) {
-
-    try{    
+   
     //create empty entity
         Person personEntity = null;
 
@@ -90,11 +89,7 @@ public class PersonServicesImpl implements PersonServices {
         mapper.map(personDTO, personEntity, "person");
 
         personDAO.updatePerson(personEntity, personID);
-    }
-    catch (Exception ex){        
-        ex.printStackTrace();
-        return false;
-    }
+    
 
         return true;
 
