@@ -15,6 +15,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
+import org.springframework.beans.factory.annotation.Autowired;
 
 /**
  *
@@ -24,13 +25,18 @@ import org.springframework.stereotype.Service;
 @Service("carService")
 @Transactional //to handle transactions
 public class CarImpl implements CarServiceInterface {
-    
+   
     private CarDAO carDAO;
+    
     private LeaseDAO leaseDAO;
     @PersistenceContext
     private EntityManager em;
     
-    public void createCar(CarDTO carDto) {
+    public void setDAO (CarDAO carDao) {
+        this.carDAO = carDao;
+    }
+    
+    public CarDTO createCar(CarDTO carDto) {
         
         ApplicationContext applicationContext
                 = new ClassPathXmlApplicationContext("/applicationContext.xml");
@@ -46,6 +52,8 @@ public class CarImpl implements CarServiceInterface {
         
         mapper.map(carDto, carEntity, "car");
         carDAO.createCar(carEntity);
+        
+        return carDto;
     }
 
 
@@ -89,7 +97,7 @@ public class CarImpl implements CarServiceInterface {
 
     public void deleteCar(CarDTO carDto) {
         
-        Car carEntity = null;
+        Car carEntity = new Car();
         
         List<String> list = new ArrayList<String>();
 // Add the mapping configuration
@@ -98,7 +106,7 @@ public class CarImpl implements CarServiceInterface {
         Mapper mapper = new DozerBeanMapper(list);
         
         mapper.map(carDto, carEntity, "car");
-        carDAO.deleteCar(carEntity.getCarID());
+        carDAO.deleteCar(carDto.getCarID());
      
     }
     

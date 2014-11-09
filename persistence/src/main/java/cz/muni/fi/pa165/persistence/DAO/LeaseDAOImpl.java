@@ -37,10 +37,12 @@ public class LeaseDAOImpl implements LeaseDAO {
     }
 
     @Override
-    public void createLease(Lease lease) {
+    public Lease createLease(Lease lease) {
         if (lease == null) throw new IllegalArgumentException("Lease is null");
  
         em.persist(lease); 
+        
+        return lease;
     }
 
     @Override
@@ -66,11 +68,13 @@ public class LeaseDAOImpl implements LeaseDAO {
     }
 
     @Override
-    public void deleteLease(int leaseId) {
+    public Lease deleteLease(int leaseId) {
         if (leaseId < 0) throw new IllegalArgumentException("Wrong input for id");
         
         Lease lease = (Lease)em.find(Lease.class ,leaseId);  
         em.remove(lease);
+        
+        return lease;
     }
     
     @Override

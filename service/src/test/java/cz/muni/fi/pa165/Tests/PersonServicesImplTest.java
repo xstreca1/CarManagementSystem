@@ -70,11 +70,14 @@ public class PersonServicesImplTest {
 		allPeople.add(person);
 		allPeople.add(person);
                 
-		Mockito.when(mockPersonDao.findAllPeople(true)).thenReturn(allPeople);
+                List<Person> namedPeople = new ArrayList<Person>();
+                namedPeople.add(person);
+                namedPeople.add(person);
                 
-        List<Person> namedPeople = new ArrayList<Person>();
-                namedPeople.add(person);
-                namedPeople.add(person);
+		Mockito.when(mockPersonDao.findAllPeople(Matchers.anyBoolean()))
+                        .thenReturn(namedPeople);
+                
+       
                 
                 Mockito.when(mockPersonDao.getPeopleByName(Matchers.contains("JOZO")))
 				.thenReturn(namedPeople);

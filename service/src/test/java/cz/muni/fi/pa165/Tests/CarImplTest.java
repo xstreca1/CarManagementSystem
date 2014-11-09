@@ -44,7 +44,7 @@ public class CarImplTest {
     private CarImpl service = new CarImpl();
 
     @Before
-    public void setUp() {
+    public void initMock() {
         Mockito.when(mockCarDao.createCar(Matchers.any(Car.class)))
                 .thenAnswer(new Answer<Car>() {
 					@Override
@@ -56,12 +56,12 @@ public class CarImplTest {
 					                                  }
                 });
         Mockito.when(mockCarDao.deleteCar(Matchers.any(Integer.class)))
-				.thenAnswer(new Answer<Car>() {
+				.thenAnswer(new Answer<Integer>() {
 					@Override
-					public Car answer(InvocationOnMock inv)
+					public Integer answer(InvocationOnMock inv)
 							throws Throwable {
 						Object[] args = inv.getArguments();
-						return (Car) args[0];
+						return (Integer) args[0];
 
 					}
 				});
@@ -74,11 +74,13 @@ public class CarImplTest {
 
     @Test
     public void testCreateCar() {
+             
+                CarDTO carDto2 = new CarDTO();
+                
         
+		service.createCar(carDto2);
                 
-		service.createCar(carDto);
-                
-		assertNotNull(carDto);
+		assertNotNull(carDto2);
                 
 		assertEquals(true, true);
     }

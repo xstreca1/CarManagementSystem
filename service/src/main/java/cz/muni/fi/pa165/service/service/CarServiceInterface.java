@@ -19,7 +19,7 @@ import java.util.List;
  */
 public interface CarServiceInterface {
     
-    public void createCar(CarDTO carDto);
+    public CarDTO createCar(CarDTO carDto);
     
     public void updateCar(CarDTO carDto, Integer CarID);
     

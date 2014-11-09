@@ -17,7 +17,7 @@ public interface LeaseDAO {
      * 
      * @param lease lease to be created
      */
-    public void createLease(Lease lease);
+    public Lease createLease(Lease lease);
     
     /**
      * Update an existing lease
@@ -36,7 +36,7 @@ public interface LeaseDAO {
      * 
      * @param leaseId id of lease to be deleted
      */
-    public void deleteLease(int leaseId);
+    public Lease deleteLease(int leaseId);
     
     /**
      * Shows list of leases for person

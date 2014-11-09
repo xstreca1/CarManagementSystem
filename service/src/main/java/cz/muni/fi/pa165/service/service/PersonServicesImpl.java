@@ -52,7 +52,7 @@ public class PersonServicesImpl implements PersonServices {
         
         try{
         //create empty entity
-        Person personEntity = null;
+        Person personEntity = new Person();
 
         //create empty list
         List<String> list = new ArrayList<String>();

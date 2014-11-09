@@ -13,6 +13,8 @@ import org.junit.After;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNotNull;
@@ -24,6 +26,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Matchers;
 import org.mockito.Mock;
 import org.mockito.Mockito;
+import org.mockito.MockitoAnnotations;
 import org.mockito.invocation.InvocationOnMock;
 import org.mockito.runners.MockitoJUnitRunner;
 import org.mockito.stubbing.Answer;
@@ -51,6 +54,7 @@ public class ServiceCheckImplTest {
     
     @InjectMocks
     ServiceCheckInterface serviceCheckImpl = new ServiceCheckImpl();
+
     
     @Before
     public void setUp(){
@@ -85,10 +89,11 @@ public class ServiceCheckImplTest {
     @Test
     public void testCreateServiceCheck(){
           
+                ServiceCheckDTO serviceCheckDTO2 = new ServiceCheckDTO();
                 
-		serviceCheckImpl.createServiceCheck(serviceCheckDTO);
+		serviceCheckImpl.createServiceCheck(serviceCheckDTO2);
                 
-		assertNotNull(serviceCheckDTO);
+		assertNotNull(serviceCheckDTO2);
                 
 		assertEquals(true, true);
         
