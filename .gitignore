@@ -3,3 +3,4 @@
 /persistence/target/
 *.log
 /service/target/
+/web/target/
