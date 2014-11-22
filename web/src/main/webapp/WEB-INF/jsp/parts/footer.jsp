@@ -1,17 +1,20 @@
 <%-- 
     Document   : footer
-    Created on : Nov 22, 2014, 6:00:55 PM
     Author     : jozef.puchly
 --%>
 
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
-    </head>
-    <body>
-        <h1>Hello World!</h1>
-    </body>
+    <div class="footer">
+		<p>
+			<spring:message code="${pageFooter}" text="" />
+		</p>
+    </div>
+</div>
+
+<script type="text/javascript">
+    $(function(){
+	    $('.datePicker').appendDtpicker();
+    });
+</script>
+
+</body>
 </html>
