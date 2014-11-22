@@ -63,5 +63,7 @@ public interface PersonServices {
      * @return list of people, who have selected name
      */
     List<PersonDTO> getPeopleByName(String name);
+    
+    PersonDTO getPersonByID(Integer id);
 
 }
