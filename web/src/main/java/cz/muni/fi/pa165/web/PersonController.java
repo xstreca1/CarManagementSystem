@@ -18,9 +18,12 @@ import java.util.List;
 import java.util.Locale;
 import static javax.swing.text.StyleConstants.ModelAttribute;
 import javax.validation.Valid;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
+import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -41,7 +44,7 @@ public class PersonController {
 	ServiceCheckInterface serviceCheckService;
 	PersonServices personService;
 
-	
+	@Autowired
 	public PersonController(CarServiceInterface carService,
 			ServiceCheckInterface serviceCheckService,
                         LeaseServiceInterface leaseService,
@@ -81,6 +84,16 @@ public class PersonController {
        @RequestMapping(value = "/update", method = RequestMethod.POST)
 	public String updatePerson(@ModelAttribute("person") PersonDTO person,
 			BindingResult result, ModelMap model, @PathVariable Integer id) {
+            
+            if (result.hasErrors()) {
+            for (ObjectError ge : result.getGlobalErrors()) {
+                
+            }
+            for (FieldError fe : result.getFieldErrors()) {
+      
+            }
+            return person.getId()==null?"person/list":"person/edit";
+        }
 		
 		personService.editPerson(person, id);
 		

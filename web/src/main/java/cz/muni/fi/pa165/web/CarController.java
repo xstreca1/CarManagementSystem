@@ -44,7 +44,7 @@ public class CarController {
 	ServiceCheckInterface serviceCheckService;
 	PersonServices personService;
 
-	
+	@Autowired
 	public CarController(CarServiceInterface carService,
 			ServiceCheckInterface serviceCheckService,
                         LeaseServiceInterface leaseService,
