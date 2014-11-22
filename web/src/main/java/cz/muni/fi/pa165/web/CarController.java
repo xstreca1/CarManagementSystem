@@ -98,6 +98,22 @@ public class CarController {
 		}
 		return "redirect:/car/list";
 	}
+        
+        @RequestMapping(value = "/update/{id}", method = RequestMethod.GET)
+        public String update_form(@PathVariable Integer id, ModelMap model) {
+            CarDTO car = carService.getCarByID(id);
+            model.addAttribute("car", car);
+            return "car/edit";
+        }
+        
+        @RequestMapping(value = "/update", method = RequestMethod.POST)
+	public String updateCar(@ModelAttribute("car") CarDTO car,
+			BindingResult result, ModelMap model, @PathVariable Integer id) {
+		
+		carService.updateCar(car, id);
+		
+		return "redirect:/car/list";
+	}
 
 
 	
