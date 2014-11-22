@@ -28,9 +28,9 @@ public class ServiceCheckDTO {
     private int serviceInterval;
     private Date lastCheck;
     private String description;
-    private Car car;
+    private CarDTO car;
 
-    public ServiceCheckDTO(ServiceCheck.ServiceCheckName name, int serviceInterval, Date lastCheck, String description, Car car) {
+    public ServiceCheckDTO(ServiceCheck.ServiceCheckName name, int serviceInterval, Date lastCheck, String description, CarDTO car) {
         this.name = name;
         this.serviceInterval = serviceInterval;
         this.lastCheck = lastCheck;
@@ -74,11 +74,11 @@ public class ServiceCheckDTO {
         this.description = description;
     }
 
-    public Car getCar() {
+    public CarDTO getCar() {
         return car;
     }
 
-    public void setCar(Car car) {
+    public void setCar(CarDTO car) {
         this.car = car;
     }
 
