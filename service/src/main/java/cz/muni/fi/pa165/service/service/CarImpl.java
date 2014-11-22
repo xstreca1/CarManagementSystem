@@ -110,4 +110,22 @@ public class CarImpl implements CarServiceInterface {
      
     }
     
+    public CarDTO getCarByID(Integer id) {
+        
+        Car carEntity = new Car();
+        CarDTO carDto = new CarDTO();
+        
+        List<String> list = new ArrayList<String>();
+        
+        list.add("dozerMapping.xml");
+        
+        carEntity = carDAO.getCarByID(id);
+        
+        Mapper mapper = new DozerBeanMapper(list);
+        
+        mapper.map(carEntity, carDto, "car");
+        
+        return carDto;
+    }
+    
 }
