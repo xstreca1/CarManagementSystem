@@ -26,4 +26,6 @@ public interface CarServiceInterface {
     public List<CarDTO> findAllCars(boolean alsoInactive);
     
     public void deleteCar(CarDTO carDto);
+    
+    public CarDTO getCarByID(Integer id);
 }
