@@ -172,4 +172,22 @@ public class PersonServicesImpl implements PersonServices {
         return peopleDTO;
 
     }
+    
+    @Override
+    public PersonDTO getPersonByID(Integer id) {
+        Person personEntity = new Person();
+        PersonDTO personDto = new PersonDTO();
+        
+        List<String> list = new ArrayList<String>();
+        
+        list.add("dozerMapping.xml");
+        
+        personEntity = personDAO.getPersonByID(id);
+        
+        Mapper mapper = new DozerBeanMapper(list);
+        
+        mapper.map(personEntity, personDto, "person");
+        
+        return personDto;
+    }
 }
