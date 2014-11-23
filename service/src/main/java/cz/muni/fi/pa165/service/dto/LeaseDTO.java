@@ -25,16 +25,8 @@ public class LeaseDTO {
 
     private Lease.TravelReason travelReason;
     
-     public LeaseDTO(Integer leaseId, Lease.TravelReason travelReason,int distance,
-            Date dateOfLease,Date dateOfReturn, Boolean isClosed,Lease.ReturnedStatus returnedStatus) {
+     public LeaseDTO() {
 
-        this.leaseId = leaseId;
-        this.travelReason = travelReason;
-        this.distance = distance;
-        this.dateOfLease = dateOfLease;
-        this.dateOfReturn = dateOfReturn;
-        this.isClosed = isClosed;//here?
-        this.returnedStatus = returnedStatus;//here?
     }
 
     public void setLeaseId(int leaseId) {
