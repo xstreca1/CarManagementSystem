@@ -64,4 +64,6 @@ public interface LeaseServiceInterface {
      */
     List<Lease> getTravelStatistics(Person person, Date from, Date to);
     
+    LeaseDTO getLeasyByID(Integer id);
+    
 }

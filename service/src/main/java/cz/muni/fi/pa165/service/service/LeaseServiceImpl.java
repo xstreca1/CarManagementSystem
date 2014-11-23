@@ -173,6 +173,23 @@ public class LeaseServiceImpl implements LeaseServiceInterface {
 	return leasesByPersonDTO;
     }
 
+    public LeaseDTO getLeaseByID(Integer id) {
+        
+        Lease leaseEntity = new Lease();
+        LeaseDTO leaseDto = new LeaseDTO();
+        
+        List<String> list = new ArrayList<String>();
+        
+        list.add("dozerMapping.xml");
+        
+        leaseEntity = leaseDAO.getLeaseByID(id);
+        
+        Mapper mapper = new DozerBeanMapper(list);
+        
+        mapper.map(leaseEntity, leaseDto, "lease");
+        
+        return leaseDto;
+    }
 
 } 
   
