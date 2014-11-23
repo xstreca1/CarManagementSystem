@@ -6,10 +6,65 @@
 
 package cz.muni.fi.pa165.web;
 
+import cz.muni.fi.pa165.service.dto.LeaseDTO;
+import cz.muni.fi.pa165.service.service.CarServiceInterface;
+import cz.muni.fi.pa165.service.service.LeaseServiceInterface;
+import cz.muni.fi.pa165.service.service.PersonServices;
+import cz.muni.fi.pa165.service.service.ServiceCheckInterface;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+
 /**
  *
  * @author jozef.puchly
  */
+@Controller
+@RequestMapping("/lease")
 public class LeaseController {
+    
+        CarServiceInterface carService;
+	LeaseServiceInterface leaseService;
+	ServiceCheckInterface serviceCheckService;
+	PersonServices personService;
+
+	@Autowired
+	public LeaseController(CarServiceInterface carService,
+			ServiceCheckInterface serviceCheckService,
+                        LeaseServiceInterface leaseService,
+			PersonServices personService) {
+		this.carService = carService;
+		this.leaseService = leaseService;
+		this.serviceCheckService = serviceCheckService;
+		this.personService = personService;
+        }
+        
+        @RequestMapping(value = "/delete/{id}")
+	public String deleteLease(@PathVariable String id, ModelMap model) {
+		boolean deleted = false;
+		String errorMsg = null;
+		LeaseDTO lease = new LeaseDTO();
+		try {
+			Integer leaseID = Integer.valueOf(id);
+                        
+                        lease = leaseService.getLeaseByID(leaseID);
+			leaseService.deleteLease(lease);
+			deleted = true;
+		} catch (DataAccessException | NumberFormatException
+				| NullPointerException e) {
+			
+			deleted = false;
+			errorMsg = e.getMessage();
+		}
+
+		model.addAttribute("deleteStatus", deleted);
+		if (errorMsg != null) {
+			model.addAttribute("errorMessage", errorMsg);
+		}
+		return "redirect:/lease/list";
+	}
     
 }
