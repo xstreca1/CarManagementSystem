@@ -11,12 +11,17 @@ import cz.muni.fi.pa165.service.service.CarServiceInterface;
 import cz.muni.fi.pa165.service.service.LeaseServiceInterface;
 import cz.muni.fi.pa165.service.service.PersonServices;
 import cz.muni.fi.pa165.service.service.ServiceCheckInterface;
+import java.util.Date;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
 /**
  *
@@ -66,5 +71,18 @@ public class LeaseController {
 		}
 		return "redirect:/lease/list";
 	}
+        
+        @RequestMapping(value = "/listLeases", method = RequestMethod.GET)
+	public ModelAndView listLeases(ModelMap model,
+			@RequestParam("DateFrom") Date dateFrom,
+                        @RequestParam("DateTo") Date dateTo )
+        {
+
+		List<LeaseDTO> leaseNew = leaseService.getAllLeases(dateFrom, dateTo);
+		model.addAttribute("leaseNew", leaseNew);
+
+		return new ModelAndView("listLeases");
+	}
+
     
 }
