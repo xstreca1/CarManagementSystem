@@ -1,6 +1,6 @@
 <%-- 
-    Document   : delete
-    Created on : Nov 23, 2014, 12:00:23 PM
+    Document   : listPeople
+    Created on : Nov 23, 2014, 12:27:30 PM
     Author     : jrumanov
 --%>
 
