@@ -79,5 +79,30 @@ public class ServiceCheckController {
 		}
 		return "redirect:list";
 	}
-    
+        
+    @RequestMapping(value = "/listServiceChecks", method = RequestMethod.GET)
+        public ModelAndView listServiceChecks(ModelMap model,
+                @RequestParam("car") CarDTO car) {
+            
+                List<ServiceCheckDTO> serviceCheckNew = serviceCheckService.getServiceChecksForCar(car);
+		model.addAttribute("serviceCheckNew", serviceCheckNew);
+
+		return new ModelAndView("listServiceChecks");
+        }
+        
+    @RequestMapping(value = "/getDaysToNextSC", method = RequestMethod.GET)
+        public ModelAndView getDaysToNextSC(ModelMap model,
+                @RequestParam("serviceCheck") ServiceCheckDTO sc) {
+            
+                int days;
+                
+                days = serviceCheckService.getDaysToNextServiceCheck(sc);
+                
+                model.addAttribute("days", days);
+                
+                return new ModelAndView("getDaysToNextSC");
+                        
+                        
+        }
+     
 }
