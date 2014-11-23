@@ -44,7 +44,7 @@ public interface LeaseServiceInterface {
      * @param to date to which I want to displaz leases
      * @return list of leases in that period
      */
-    List<Lease> getAllLeases(Date from, Date to);
+    List<LeaseDTO> getAllLeases(Date from, Date to);
     
     /**
      * Gives a lease with given id

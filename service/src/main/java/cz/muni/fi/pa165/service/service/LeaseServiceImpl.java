@@ -108,7 +108,7 @@ public class LeaseServiceImpl implements LeaseServiceInterface {
         return leaseListDTO;
     }
 
-    public List getAllLeases(Date from, Date to) {
+    public List<LeaseDTO> getAllLeases(Date from, Date to) {
         if (from == null) {
             throw new NullPointerException("Date from is null");
         }
@@ -121,7 +121,7 @@ public class LeaseServiceImpl implements LeaseServiceInterface {
         list.add("dozerMapping.xml");
         List<Lease> allLeases = leaseDAO.getAllLeases(from, to);
 	Mapper mapper = new DozerBeanMapper(list);
-	List leasesDTO = new ArrayList(allLeases.size());
+	List<LeaseDTO> leasesDTO = new ArrayList(allLeases.size());
 	for (Lease lease : allLeases) {
             leasesDTO.add(mapper.map(lease, LeaseDTO.class));
         }
@@ -173,7 +173,8 @@ public class LeaseServiceImpl implements LeaseServiceInterface {
 	return leasesByPersonDTO;
     }
 
-    public LeaseDTO getLeaseByID(Integer id) {
+    @Override
+    public LeaseDTO getLeasyByID(Integer id) {
         
         Lease leaseEntity = new Lease();
         LeaseDTO leaseDto = new LeaseDTO();
@@ -190,6 +191,10 @@ public class LeaseServiceImpl implements LeaseServiceInterface {
         
         return leaseDto;
     }
+
+    
+
+
 
 } 
   
