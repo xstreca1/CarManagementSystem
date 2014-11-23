@@ -4,14 +4,23 @@
     Author     : jrumanov
 --%>
 
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
-    </head>
-    <body>
-        <h1>Hello World!</h1>
-    </body>
-</html>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+    <table>
+        <tr>
+            <th><form:label path="mileage"><fmt:message key="car.mileage"/></form:label></th>
+            <td><form:input path="mileage"/></td>
+            <td><form:errors path="mileage" cssClass="error"/></td>
+        </tr>
+        <tr>
+            <th><form:label path="availibility"><fmt:message key="car.availibility"/></form:label></th>
+            <td><form:input path="availibility"/></td>
+            <td><form:errors path="availibility" cssClass="error"/></td>
+        </tr>
+        <tr>
+            <th><form:label path="isActive"><fmt:message key="car.isActive"/></form:label></th>
+            <td><form:checkbox path="isActive"/></td>
+            <td><form:errors path="isActive" cssClass="error"/></td>
+        </tr>
+    </table>

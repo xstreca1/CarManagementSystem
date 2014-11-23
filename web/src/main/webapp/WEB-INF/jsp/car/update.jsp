@@ -11,12 +11,12 @@
 <%@ taglib prefix="s" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
-<fmt:message var="title" key="book.edit.title"/>
+<fmt:message var="title" key="car.edit.title"/>
 <my:layout title="${title}">
  <jsp:attribute name="body">
-<form:form method="post" action="${pageContext.request.contextPath}/book/update" modelAttribute="book">
+<form:form method="post" action="${pageContext.request.contextPath}/car/update" modelAttribute="car">
     <form:hidden path="id"/>
-    <fieldset><legend><fmt:message key="book.edit.edit"/></legend>
+    <fieldset><legend><fmt:message key="car.edit.edit"/></legend>
         <%@include file="form.jsp"%>
         <input type="submit" value="<fmt:message key='book.edit.save'/>">
     </fieldset>
