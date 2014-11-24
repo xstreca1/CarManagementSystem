@@ -147,7 +147,7 @@ public class LeaseServiceImpl implements LeaseServiceInterface {
     }
     
 
-    public List<Lease> getTravelStatistics(Person person, Date from, Date to) {
+    public List<LeaseDTO> getTravelStatistics(PersonDTO person, Date from, Date to) {
         if (person == null){
             throw new NullPointerException("person is null");
         }
@@ -162,13 +162,13 @@ public class LeaseServiceImpl implements LeaseServiceInterface {
                 = new ClassPathXmlApplicationContext("/applicationContext.xml");
         list.add("dozerMapping.xml");
         List<Lease> allLeases = leaseDAO.getAllLeases(from, to);
-        List<Lease> leasesByPersonDTO = new ArrayList();
-     /*   Mapper mapper = DozerBeanMapper.getInstance(list);
+        List<LeaseDTO> leasesByPersonDTO = new ArrayList();
+        Mapper mapper = new DozerBeanMapper(list);
         for(Lease lease: allLeases){
             if ((lease.getPerson()).equals(person)){
                 leasesByPersonDTO.add(mapper.map(lease, LeaseDTO.class));
             }        
-        } */
+        } 
         
 	return leasesByPersonDTO;
     }

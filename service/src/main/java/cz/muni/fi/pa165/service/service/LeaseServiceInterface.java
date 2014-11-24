@@ -62,7 +62,7 @@ public interface LeaseServiceInterface {
      * @param to date to it will be showed
      * @return list of leases
      */
-    List<Lease> getTravelStatistics(Person person, Date from, Date to);
+    List<LeaseDTO> getTravelStatistics(PersonDTO person, Date from, Date to);
     
     LeaseDTO getLeasyByID(Integer id);
     
