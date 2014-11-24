@@ -7,6 +7,7 @@
 package cz.muni.fi.pa165.web;
 
 import cz.muni.fi.pa165.service.dto.LeaseDTO;
+import cz.muni.fi.pa165.service.dto.PersonDTO;
 import cz.muni.fi.pa165.service.service.CarServiceInterface;
 import cz.muni.fi.pa165.service.service.LeaseServiceInterface;
 import cz.muni.fi.pa165.service.service.PersonServices;
@@ -83,6 +84,20 @@ public class LeaseController {
 
 		return new ModelAndView("listLeases");
 	}
+        
+        @RequestMapping(value = "/getTravelStatistics", method = RequestMethod.GET)
+        public ModelAndView getTravelStatistics(ModelMap model,
+                @RequestParam("Person") PersonDTO person,
+                @RequestParam("DateFrom") Date dateFrom,
+                @RequestParam("DateTo") Date dateTo) {
+            
+            List<LeaseDTO> travelStatisticsNew = leaseService.getTravelStatistics(person, dateFrom, dateTo);
+            model.addAttribute("travelStatisticsNew", travelStatisticsNew);
+            
+            return new ModelAndView("getTravelStatistics");
+        }
+        
+                
 
     
 }
