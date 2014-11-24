@@ -100,5 +100,15 @@ public class PersonController {
 		return "redirect:/person/list";
 	}
         
+        @RequestMapping(value = "/listPeopleByName", method = RequestMethod.GET)
+        public ModelAndView listPeopleByName(ModelMap model,
+                @RequestParam("Name") String name) {
+            
+            List<PersonDTO> namedPersonNew = personService.getPeopleByName(name);
+            model.addAttribute("getPeopleByName", namedPersonNew);
+            
+            return new ModelAndView("getPeopleByName");
+        }
+        
         
 }
