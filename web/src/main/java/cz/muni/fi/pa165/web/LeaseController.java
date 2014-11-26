@@ -18,6 +18,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -95,6 +96,15 @@ public class LeaseController {
             model.addAttribute("travelStatisticsNew", travelStatisticsNew);
             
             return new ModelAndView("getTravelStatistics");
+        }
+        
+        @RequestMapping(value = "/addLease", method = RequestMethod.POST)
+        public String addLease(ModelMap model,
+                @ModelAttribute("lease") LeaseDTO lease) {
+            
+            leaseService.createLease(lease);
+            
+            return "redirect:list";
         }
         
                 
