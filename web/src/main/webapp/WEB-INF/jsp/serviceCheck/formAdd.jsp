@@ -29,7 +29,7 @@
             </tr>
             <tr>
                 <th><form:label path="description"><fmt:message key="serviceCheck.description"/></form:label></th>
-                <td><form:input path="description"/></td>
+                <td><form:textarea path="description"/></td>
                 <td><form:errors path="description" cssClass="error"/></td>
             </tr>
             <tr>
