@@ -25,7 +25,7 @@ import javax.persistence.TemporalType;
  * @since 2014-09
  */
 @Entity
-@Table(name = "Lease")
+//@Table(name = "Lease")
 public class Lease implements Serializable {
 
     //--------------------enums-------------------------- 
@@ -202,6 +202,10 @@ public class Lease implements Serializable {
      */
     public void setPerson(Person person) {
         this.person = person;
+    }
+
+    public void setLeaseId(Integer leaseId) {
+        this.leaseId = leaseId;
     }
 
     //----------------constructors-----------------------
