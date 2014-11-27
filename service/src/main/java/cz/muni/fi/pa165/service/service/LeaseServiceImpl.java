@@ -160,7 +160,7 @@ public class LeaseServiceImpl implements LeaseServiceInterface {
     }
 
     @Override
-    public LeaseDTO getLeasyByID(Integer id) {
+    public LeaseDTO getLeaseByID(Integer id) {
         
         Lease leaseEntity = new Lease();
         LeaseDTO leaseDto = new LeaseDTO();
