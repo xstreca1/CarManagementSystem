@@ -51,19 +51,14 @@ public class LeaseServiceImpl implements LeaseServiceInterface {
     }
  
     public void createLease(LeaseDTO leaseDTO) {
-        if (leaseDTO == null) {
-            throw new NullPointerException("null object");
-        }
+     
+        Lease leaseEntity = new Lease();
         
-        ApplicationContext applicationContext 
-                = new ClassPathXmlApplicationContext("/applicationContext.xml");
+        List<String> list2 = new ArrayList<String>();
         
-        leaseDAO = (LeaseDAO) applicationContext.getBean("leaseDAO");
-        Lease leaseEntity = null;
+        list2.add("dozerMapping.xml");
         
-        list.add("dozerMapping.xml");
-        
-        Mapper mapper = new DozerBeanMapper(list);
+        Mapper mapper = new DozerBeanMapper(list2);
         mapper.map(leaseDTO, leaseEntity, "lease");
         
         leaseDAO.createLease(leaseEntity);
@@ -116,9 +111,6 @@ public class LeaseServiceImpl implements LeaseServiceInterface {
             throw new NullPointerException("Date to is null");
         } 
         
-        ApplicationContext applicationContext 
-                = new ClassPathXmlApplicationContext("/applicationContext.xml");
-        list.add("dozerMapping.xml");
         List<Lease> allLeases = leaseDAO.getAllLeases(from, to);
 	Mapper mapper = new DozerBeanMapper(list);
 	List<LeaseDTO> leasesDTO = new ArrayList(allLeases.size());
@@ -129,11 +121,8 @@ public class LeaseServiceImpl implements LeaseServiceInterface {
     }
 
     public void deleteLease(LeaseDTO leaseDto) {
-        ApplicationContext applicationContext 
-                = new ClassPathXmlApplicationContext("/applicationContext.xml");
         
-        LeaseDAO leaseDao = (LeaseDAO) applicationContext.getBean("carDAO");
-        Lease leaseEntity = null;
+        Lease leaseEntity = new Lease();
         
         List<String> list = new ArrayList<String>();
 // Add the mapping configuration
@@ -142,7 +131,7 @@ public class LeaseServiceImpl implements LeaseServiceInterface {
         Mapper mapper = new DozerBeanMapper(list);
         
         mapper.map(leaseDto, leaseEntity, "lease");
-        leaseDao.deleteLease(leaseEntity.getId());
+        leaseDAO.deleteLease(leaseEntity.getId());
      
     }
     
@@ -158,9 +147,6 @@ public class LeaseServiceImpl implements LeaseServiceInterface {
             throw new NullPointerException("Date to is null");
         }
         
-        ApplicationContext applicationContext 
-                = new ClassPathXmlApplicationContext("/applicationContext.xml");
-        list.add("dozerMapping.xml");
         List<Lease> allLeases = leaseDAO.getAllLeases(from, to);
         List<LeaseDTO> leasesByPersonDTO = new ArrayList();
         Mapper mapper = new DozerBeanMapper(list);
