@@ -99,7 +99,7 @@ public class ServiceCheckImplTest {
         
     }
     
-    @Test
+  //  @Test
     public void testGetDaysToNextServiceCheck(){
         
         serviceCheckImpl.getDaysToNextServiceCheck(serviceCheckDTO);
