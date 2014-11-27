@@ -5,9 +5,9 @@
  */
 package cz.muni.fi.pa165.service.service;
 
+import cz.muni.fi.pa165.persistence.DAO.PersonDAO;
 import cz.muni.fi.pa165.persistence.Entities.Lease;
 import cz.muni.fi.pa165.persistence.Entities.Person;
-import cz.muni.fi.pa165.persistence.DAO.PersonDAO;
 import cz.muni.fi.pa165.service.dto.PersonDTO;
 import java.util.ArrayList;
 import java.util.Date;
@@ -16,10 +16,11 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
 import org.dozer.DozerBeanMapper;
+import org.dozer.Mapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Required;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
-import org.dozer.Mapper;
 import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
@@ -32,7 +33,7 @@ import org.springframework.stereotype.Service;
 @Transactional //to handle transactions
 public class PersonServicesImpl implements PersonServices {
 
-    
+    @Autowired
     // Person DAO
     private PersonDAO personDAO;
 
@@ -46,11 +47,7 @@ public class PersonServicesImpl implements PersonServices {
     }
     public boolean createPerson(PersonDTO personDTO) {
         
-        ApplicationContext applicationContext
-                = new ClassPathXmlApplicationContext("/applicationContext.xml");
-        personDAO = (PersonDAO) applicationContext.getBean("personDAO");
         
-        try{
         //create empty entity
         Person personEntity = new Person();
 
@@ -65,11 +62,6 @@ public class PersonServicesImpl implements PersonServices {
 
         // save to database using some implementation od DAO
         personDAO.insertPerson(personEntity);
-        }
-        catch(Exception ex){        
-        ex.printStackTrace();
-        return false;
-    }
 
         return true;
     }
