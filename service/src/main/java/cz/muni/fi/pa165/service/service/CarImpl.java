@@ -41,9 +41,6 @@ public class CarImpl implements CarServiceInterface {
     
     public CarDTO createCar(CarDTO carDto) {
         
-        ApplicationContext applicationContext
-                = new ClassPathXmlApplicationContext("/applicationContext.xml");
-        carDAO = (CarDAO) applicationContext.getBean("carDAO");
         
         Car carEntity = new Car();
         
