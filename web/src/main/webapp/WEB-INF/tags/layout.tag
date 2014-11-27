@@ -25,6 +25,7 @@
 <div id="navigation">
     <ul>
         <!-- here will be some links that shows on all the pages-->
+        <!-- home, employees, cars, leases -->
     </ul>
 </div>
 <div id="content">
