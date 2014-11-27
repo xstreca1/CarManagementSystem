@@ -26,9 +26,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 @Transactional //to handle transactions
 public class CarImpl implements CarServiceInterface {
    
+    @Autowired
     private CarDAO carDAO;
     
+    @Autowired
     private LeaseDAO leaseDAO;
+    
     @PersistenceContext
     private EntityManager em;
     
