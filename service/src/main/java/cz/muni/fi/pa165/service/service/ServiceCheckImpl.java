@@ -26,6 +26,7 @@ import org.springframework.stereotype.Service;
 @Transactional //to handle transactions
 public class ServiceCheckImpl implements ServiceCheckInterface {
 
+    @Autowired
     // ServiceCheck DAO
     private ServiceCheckDAO scDAO;
 
@@ -38,9 +39,7 @@ public class ServiceCheckImpl implements ServiceCheckInterface {
     //this.scDAO = scDAO;
     //}
     public void createServiceCheck(ServiceCheckDTO checkDTO) {
-        ApplicationContext applicationContext
-                = new ClassPathXmlApplicationContext("/applicationContext.xml");
-        scDAO = (ServiceCheckDAO) applicationContext.getBean("serviceCheckDAO");
+   
         //create empty entity
         ServiceCheck checkEntity = new ServiceCheck();
 
@@ -59,9 +58,7 @@ public class ServiceCheckImpl implements ServiceCheckInterface {
     }
 
     public int getDaysToNextServiceCheck(ServiceCheckDTO checkDTO) {
-        ApplicationContext applicationContext
-                = new ClassPathXmlApplicationContext("/applicationContext.xml");
-        scDAO = (ServiceCheckDAO) applicationContext.getBean("serviceCheckDAO");
+ 
         //create empty entity
         ServiceCheck checkEntity = new ServiceCheck();
 
@@ -81,9 +78,7 @@ public class ServiceCheckImpl implements ServiceCheckInterface {
     }
 
     public void setCheckInterval(List<Car> carList, ServiceCheck.ServiceCheckName scName, int serviceInterval) {
-        ApplicationContext applicationContext
-                = new ClassPathXmlApplicationContext("/applicationContext.xml");
-        scDAO = (ServiceCheckDAO) applicationContext.getBean("personDAO");
+  
         // create new list to store service checks with same name
         // start transaction
         List<ServiceCheck> checkList = scDAO.getServiceCheckByName(scName);
@@ -102,9 +97,7 @@ public class ServiceCheckImpl implements ServiceCheckInterface {
     }
 
     public List<ServiceCheckDTO> getServiceChecksForCar(CarDTO carDTO) {
-        ApplicationContext applicationContext
-                = new ClassPathXmlApplicationContext("/applicationContext.xml");
-        scDAO = (ServiceCheckDAO) applicationContext.getBean("serviceCheckDAO");
+
         //create empty entity
         Car carEntity = new Car();
         
