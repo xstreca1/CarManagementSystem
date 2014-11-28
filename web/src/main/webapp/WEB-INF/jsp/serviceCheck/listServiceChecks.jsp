@@ -35,12 +35,12 @@
                     <td><c:out value="${serviceCheck.lastCheck}"/></td>                    
                     <td><c:out value="${serviceCheck.description}"/></td>                    
                     <td>
-                        <form method="get" action="${pageContext.request.contextPath}/serviceCheck/update/${book.id}">
+                        <form method="get" action="${pageContext.request.contextPath}/serviceCheck/update/${serviceCheck.id}">
                             <input type="submit" value="<fmt:message key='serviceCheck.list.edit'/>">
                         </form>
                     </td>
                     <td>
-                        <form method="post" action="${pageContext.request.contextPath}/serviceCheck/delete/${book.id}">
+                        <form method="post" action="${pageContext.request.contextPath}/serviceCheck/delete/${serviceCheck.id}">
                             <input type="submit" value="<fmt:message key='serviceCheck.list.delete'/>">
                         </form>
                     </td>

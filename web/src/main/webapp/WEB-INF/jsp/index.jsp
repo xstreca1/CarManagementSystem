@@ -48,7 +48,7 @@
             <ul>
                 <li>
                     <div id="wrapper">
-                        <a href="">
+                        <a href="/lease/index.jsp">
                             <div class="slideContainer">
                                 <img class="slideIcon"  height="" src="img/spravaPujcek.png">
                             </div>
@@ -56,7 +56,7 @@
                     </div>
                 </li><li>
                     <div id="wrapper">
-                        <a href="">
+                        <a href="/car/index.jsp">
                             <div class="slideContainer">
                                 <img class="slideIcon"  height="" src="img/spravaVozu.png">
                             </div>
@@ -66,7 +66,7 @@
 
                 <li>
                     <div id="wrapper">
-                        <a href="">
+                        <a href="/person/index.jsp">
                             <div class="slideContainer">
                                 <img class="slideIcon"  height="" src="img/zamestnanci.png">
                             </div>
@@ -75,7 +75,7 @@
                 </li>
                 <li>
                     <div id="wrapper">
-                        <a href="">
+                        <a href="/serviceCheck/index.jsp">
                             <div class="slideContainer">
                                 <img class="slideIcon"  height="" src="img/servis.png">
                             </div>
