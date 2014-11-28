@@ -1,0 +1,82 @@
+/* 
+    Document   : style
+    Created on : 28.11.2014, 8:05:09
+    Author     : Petr Potucek
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+body { 
+    margin: 0; 
+    padding: 0; 
+    background-color: #ffffff; 
+    font-family: 'Open Sans', sans-serif; 
+    font-size: 100%; /* 16px */ 
+}
+h1{
+    font-family: 'Open Sans', sans-serif; 
+    font-size: 2.25em/*36/*/; 
+    color: #25252b; 
+    font-weight: lighter;
+    text-align: center;
+    text-transform: uppercase;
+}
+h2{
+    font-family: 'Open Sans', sans-serif; 
+    font-size: 2em/*36/*/; 
+    color: white; 
+    font-weight: bold;
+    text-align: center;
+    text-transform: uppercase;
+}
+/*hlavicka*/
+header{
+    height:100px;
+    background:#2c3e50;
+}
+
+
+/*stylovani sekci*/
+.sekce{
+    width:1200px;
+    display: table;   
+    margin: 0 auto;
+
+}
+.sekce ul{
+
+    list-style-type: none;
+}
+.sekce ul li{
+    display: inline-block;
+}
+
+/* Prechod pro sekce */
+#wrapper{
+    padding: 15px 15px 15px 15px; 
+    width:236px; 
+    height:326px;
+}
+.slideContainer{
+    height:326px; 
+    overflow:hidden; 
+    position: absolute; 
+    width: 236px; 
+
+}
+.slideIcon{
+    width:236px;
+    height:auto; 
+    position:absolute; 
+    margin-top:-326px; 
+    -webkit-transition:.4s ease; 
+    -moz-transition:.4s ease; 
+    -ms-transition:.4s ease; 
+    -o-transition:.4s ease; 
+    transition:.4s ease;
+}
+.slideIcon:hover{
+    position:absolute; 
+    margin-top:0;
+}
+
