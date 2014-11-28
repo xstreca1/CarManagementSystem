@@ -57,10 +57,10 @@ public class PersonController {
 
 	@RequestMapping(value = "/listPeople", method = RequestMethod.GET)
 	public ModelAndView listPeople(ModelMap model,
-			@RequestParam("isInactive") boolean isInactive) {
+			@RequestParam(value = "isInactive", required = false) boolean isInactive) {
 
-		List<PersonDTO> personNew = personService.findAllPeople(isInactive);
-		model.addAttribute("personNew", personNew);
+		List<PersonDTO> people = personService.findAllPeople(isInactive);
+		model.addAttribute("people", people);
 
 		return new ModelAndView("listPeople");
 	}
@@ -71,7 +71,7 @@ public class PersonController {
 		
 		personService.createPerson(person);
 
-		return "redirect:list";
+		return "redirect:/person/listPeople";
 	}
         
         @RequestMapping(value = "/update/{id}", method = RequestMethod.GET)
@@ -97,7 +97,7 @@ public class PersonController {
 		
 		personService.editPerson(person, id);
 		
-		return "redirect:/person/list";
+		return "redirect:/person/listPeople";
 	}
         
         @RequestMapping(value = "/listPeopleByName", method = RequestMethod.GET)

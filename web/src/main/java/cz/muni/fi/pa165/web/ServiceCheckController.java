@@ -84,8 +84,8 @@ public class ServiceCheckController {
         public ModelAndView listServiceChecks(ModelMap model,
                 @RequestParam("car") CarDTO car) {
             
-                List<ServiceCheckDTO> serviceCheckNew = serviceCheckService.getServiceChecksForCar(car);
-		model.addAttribute("serviceCheckNew", serviceCheckNew); 
+                List<ServiceCheckDTO> checks = serviceCheckService.getServiceChecksForCar(car);
+		model.addAttribute("checks", checks); 
                 
 		return new ModelAndView("listServiceChecks");
         }
