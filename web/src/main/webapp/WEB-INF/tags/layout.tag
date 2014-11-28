@@ -27,33 +27,33 @@
                 <ul>
                     <li>
                         <a href="index.jsp">
-                            HOME
+                            <fmt:message key="layout.menu.home"/>
                         </a>
                     </li>
                     <li>
                         <a href="lease/index.jsp">
-                            SPRÁVA PŮJČEK
+                            <fmt:message key="layout.menu.lease"/>
                         </a>
                     </li>
                     <li>
                         <a href="car/index.jsp">
-                            SPRÁVA VOZŮ
+                            <fmt:message key="layout.menu.car"/>
                         </a>
                     </li>
                     <li>
                         <a href="person/index.jsp">
-                            ZAMĚSTNANCI
+                            <fmt:message key="layout.menu.person"/>
                         </a>
                     </li>
                     <li>
                         <a href="serviceCheck/index.jsp">
-                            SERVIS
+                            <fmt:message key="layout.menu.serviceCheck"/>
                         </a>
                     </li>
                 </ul>
             </nav> 
         </header>
-        
+
         <div id="content">
             <c:if test="${not empty message}">
                 <div class="message"><c:out value="${message}"/></div>
