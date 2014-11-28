@@ -6,7 +6,7 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
 <!-- title of the page -->
-<fmt:message var="title" key="lease.list.title"/>
+<fmt:message var="title" key="car.index.title"/>
 <my:layout title="${title}">
 
     <jsp:attribute name="body">
