@@ -80,8 +80,8 @@ public class LeaseController {
                         @RequestParam("DateTo") Date dateTo )
         {
 
-		List<LeaseDTO> leaseNew = leaseService.getAllLeases(dateFrom, dateTo);
-		model.addAttribute("leaseNew", leaseNew);
+		List<LeaseDTO> leases = leaseService.getAllLeases(dateFrom, dateTo);
+		model.addAttribute("leases", leases);
 
 		return new ModelAndView("listLeases");
 	}

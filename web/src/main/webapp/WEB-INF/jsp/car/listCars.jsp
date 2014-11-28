@@ -11,8 +11,10 @@
 <%@ taglib prefix="s" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
+<!-- title of the page -->
 <fmt:message var="title" key="car.list.title"/>
 <my:layout title="${title}">
+    
     <jsp:attribute name="body">
 
         <p><fmt:message key="car.list.allCars"/></p>
@@ -56,12 +58,12 @@
                     <td><fmt:message key="car.isActive.${car.isActive}"/></td>
 
                     <td>
-                        <form method="get" action="${pageContext.request.contextPath}/car/update/${book.id}">
+                        <form method="get" action="${pageContext.request.contextPath}/car/update/${car.id}">
                             <input type="submit" value="<fmt:message key='car.list.edit'/>">
                         </form>
                     </td>
                     <td>
-                        <form method="post" action="${pageContext.request.contextPath}/car/delete/${book.id}">
+                        <form method="post" action="${pageContext.request.contextPath}/car/delete/${car.id}">
                             <input type="submit" value="<fmt:message key='car.list.delete'/>">
                         </form>
                     </td>

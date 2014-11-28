@@ -32,7 +32,7 @@
         <th><form:label path="returnedStatus"><fmt:message key="lease.returnedStatus"/></form:label></th>
         <td><form:select path="returnedStatus">
                 <c:forEach items="${returnedStatuses}" var="r">
-                    <form:option value="${r}"><fmt:message key="Lease.ReturnedStatus.${r}"/></form:option>
+                    <form:option value="${r}"><fmt:message key="lease.ReturnedStatus.${r}"/></form:option>
                 </c:forEach>
             </form:select>
         </td>
@@ -42,7 +42,7 @@
         <th><form:label path="travelReason"><fmt:message key="lease.travelReason"/></form:label></th>
         <td><form:select path="travelReason">
                 <c:forEach items="${travelReasons}" var="t">
-                    <form:option value="${r}"><fmt:message key="Lease.TravelReason.${r}"/></form:option>
+                    <form:option value="${r}"><fmt:message key="lease.TravelReason.${r}"/></form:option>
                 </c:forEach>
             </form:select>
         </td>

@@ -3,9 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package cz.muni.fi.pa165.web;
-
 
 import cz.muni.fi.pa165.service.dto.CarDTO;
 import cz.muni.fi.pa165.service.service.CarServiceInterface;
@@ -13,9 +11,6 @@ import cz.muni.fi.pa165.service.service.LeaseServiceInterface;
 import cz.muni.fi.pa165.service.service.PersonServices;
 import cz.muni.fi.pa165.service.service.ServiceCheckInterface;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.LinkedList;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
@@ -31,91 +26,88 @@ import org.springframework.web.servlet.ModelAndView;
 
 /**
  * Machine controller implementation
- * 
+ *
  * @author Jozef Puchly
- * 
+ *
  */
 @Controller
 @RequestMapping("/car")
 public class CarController {
 
-	CarServiceInterface carService;
-	LeaseServiceInterface leaseService;
-	ServiceCheckInterface serviceCheckService;
-	PersonServices personService;
+    CarServiceInterface carService;
+    LeaseServiceInterface leaseService;
+    ServiceCheckInterface serviceCheckService;
+    PersonServices personService;
 
-	@Autowired
-	public CarController(CarServiceInterface carService,
-			ServiceCheckInterface serviceCheckService,
-                        LeaseServiceInterface leaseService,
-			PersonServices personService) {
-		this.carService = carService;
-		this.leaseService = leaseService;
-		this.serviceCheckService = serviceCheckService;
-		this.personService = personService;
+    @Autowired
+    public CarController(CarServiceInterface carService,
+            ServiceCheckInterface serviceCheckService,
+            LeaseServiceInterface leaseService,
+            PersonServices personService) {
+        this.carService = carService;
+        this.leaseService = leaseService;
+        this.serviceCheckService = serviceCheckService;
+        this.personService = personService;
+    }
+
+    @RequestMapping(value = "/listCars", method = RequestMethod.GET)
+    public ModelAndView listCars(ModelMap model,
+            @RequestParam(value = "isInactive", required = false) boolean isInactive) {
+
+        List<CarDTO> cars = carService.findAllCars(isInactive);
+        model.addAttribute("cars", cars);
+        
+        //send mav to jsp page
+        return new ModelAndView("listCars");
+    }
+
+    @RequestMapping(value = "/add", method = RequestMethod.POST)
+    public String addCar(@ModelAttribute("car") CarDTO car,
+            BindingResult result, ModelMap model) {
+
+        carService.createCar(car);
+
+        return "redirect:/car/listCars";
+    }
+
+    @RequestMapping(value = "/delete/{id}")
+    public String deleteCar(@PathVariable String id, ModelMap model) {
+        boolean deleted = false;
+        String errorMsg = null;
+        CarDTO car = new CarDTO();
+        try {
+            Integer carID = Integer.valueOf(id);
+
+            car = carService.getCarByID(carID);
+            carService.deleteCar(car);
+            deleted = true;
+        } catch (DataAccessException | NumberFormatException | NullPointerException e) {
+
+            deleted = false;
+            errorMsg = e.getMessage();
         }
 
-	@RequestMapping(value = "/listCars", method = RequestMethod.GET)
-	public ModelAndView listCars(ModelMap model,
-			@RequestParam("isInactive") boolean isInactive) {
-
-		List<CarDTO> carNew = carService.findAllCars(isInactive);
-		model.addAttribute("carNew", carNew);
-
-		return new ModelAndView("listCars");
-	}
-
-	@RequestMapping(value = "/add", method = RequestMethod.POST)
-	public String addCar(@ModelAttribute("car") CarDTO car,
-			BindingResult result, ModelMap model) {
-		
-		carService.createCar(car);
-
-		return "redirect:list";
-	}
-
-	@RequestMapping(value = "/delete/{id}")
-	public String deleteCar(@PathVariable String id, ModelMap model) {
-		boolean deleted = false;
-		String errorMsg = null;
-		CarDTO car = new CarDTO();
-		try {
-			Integer carID = Integer.valueOf(id);
-                        
-                        car = carService.getCarByID(carID);
-			carService.deleteCar(car);
-			deleted = true;
-		} catch (DataAccessException | NumberFormatException
-				| NullPointerException e) {
-			
-			deleted = false;
-			errorMsg = e.getMessage();
-		}
-
-		model.addAttribute("deleteStatus", deleted);
-		if (errorMsg != null) {
-			model.addAttribute("errorMessage", errorMsg);
-		}
-		return "redirect:/car/list";
-	}
-        
-        @RequestMapping(value = "/update/{id}", method = RequestMethod.GET)
-        public String update_form(@PathVariable Integer id, ModelMap model) {
-            CarDTO car = carService.getCarByID(id);
-            model.addAttribute("car", car);
-            return "car/edit";
+        model.addAttribute("deleteStatus", deleted);
+        if (errorMsg != null) {
+            model.addAttribute("errorMessage", errorMsg);
         }
-        
-        @RequestMapping(value = "/update", method = RequestMethod.POST)
-	public String updateCar(@ModelAttribute("car") CarDTO car,
-			BindingResult result, ModelMap model, @PathVariable Integer id) {
-		
-		carService.updateCar(car, id);
-		
-		return "redirect:/car/list";
-	}
+        return "redirect:/car/listCars";
+    }
 
+    @RequestMapping(value = "/update/{id}", method = RequestMethod.GET)
+    public String update_form(@PathVariable Integer id, ModelMap model) {
+        CarDTO car = carService.getCarByID(id);
+        model.addAttribute("car", car);
+        return "car/edit";
+    }
 
-	
+    @RequestMapping(value = "/update", method = RequestMethod.POST)
+    public String updateCar(@ModelAttribute("car") CarDTO car,
+            BindingResult result, ModelMap model, @PathVariable Integer id) {
+
+        carService.updateCar(car, id);
+
+        return "redirect:/car/listCars";
+    }
+
 }
-

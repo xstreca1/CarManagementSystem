@@ -18,7 +18,7 @@
     <form:hidden path="id"/>
     <fieldset><legend><fmt:message key="car.add.add"/></legend>
         <%@include file="formAdd.jsp"%>
-        <input type="submit" value="<fmt:message key='car.edit.save'/>">
+        <input type="submit" value="<fmt:message key='car.add.save'/>">
     </fieldset>
 </form:form>
 </jsp:attribute>

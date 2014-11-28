@@ -96,12 +96,5 @@
                                   itemValue="emissionstandard" /></td>
                 <td><form:errors path="emissionstandard" cssClass="error"/></td>
             </tr>
-            <tr>
-                <td colspan="2"><button class="button" type="button"
-                                        value="Add car"
-                                        <%-- onclick="javascript:validateAndSubmitAddLoanForm()"> --%>
-                        <spring:message code="lang.addCar" text="Add car" />
-                    </button></td>
-            </tr>
-
+            
         </table>
