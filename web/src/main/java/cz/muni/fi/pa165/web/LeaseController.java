@@ -75,7 +75,7 @@ public class LeaseController {
 	}
         
         @RequestMapping(value = "/listLeases", method = RequestMethod.GET)
-	public ModelAndView listLeases(ModelMap model,
+	public ModelAndView listLeases(ModelMap model,  
 			@RequestParam("dateFrom") Date dateFrom,
                         @RequestParam("dateTo") Date dateTo )
         {

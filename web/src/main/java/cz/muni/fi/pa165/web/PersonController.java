@@ -102,7 +102,7 @@ public class PersonController {
         
         @RequestMapping(value = "/listPeopleByName", method = RequestMethod.GET)
         public ModelAndView listPeopleByName(ModelMap model,
-                @RequestParam("Name") String name) {
+                @RequestParam("name") String name) {
             
             List<PersonDTO> namedPersonNew = personService.getPeopleByName(name);
             model.addAttribute("getPeopleByName", namedPersonNew);
