@@ -14,25 +14,51 @@
 
 <!DOCTYPE html>
 <html lang="${pageContext.request.locale}">
-<head>
-    <title><c:out value="${title}"/></title>
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/style.css"/>
-    <jsp:invoke fragment="head"/>
-</head>
-<body>
-<h1><c:out value="${title}"/></h1>
+    <head>
+        <title><c:out value="${title}"/></title>
+        <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/style.css"/>
+        <jsp:invoke fragment="head"/>
+    </head>
+    <body>
+        <h1><c:out value="${title}"/></h1>
 
-<div id="navigation">
-    <ul>
-        <!-- here will be some links that shows on all the pages-->
-        <!-- home, employees, cars, leases -->
-    </ul>
-</div>
-<div id="content">
-    <c:if test="${not empty message}">
-        <div class="message"><c:out value="${message}"/></div>
-    </c:if>
-    <jsp:invoke fragment="body"/>
-</div>
-</body>
+        <header>
+            <nav>  
+                <ul>
+                    <li>
+                        <a href="index.jsp">
+                            HOME
+                        </a>
+                    </li>
+                    <li>
+                        <a href="lease/index.jsp">
+                            SPRÁVA PŮJČEK
+                        </a>
+                    </li>
+                    <li>
+                        <a href="car/index.jsp">
+                            SPRÁVA VOZŮ
+                        </a>
+                    </li>
+                    <li>
+                        <a href="person/index.jsp">
+                            ZAMĚSTNANCI
+                        </a>
+                    </li>
+                    <li>
+                        <a href="serviceCheck/index.jsp">
+                            SERVIS
+                        </a>
+                    </li>
+                </ul>
+            </nav> 
+        </header>
+        
+        <div id="content">
+            <c:if test="${not empty message}">
+                <div class="message"><c:out value="${message}"/></div>
+            </c:if>
+            <jsp:invoke fragment="body"/>
+        </div>
+    </body>
 </html>
