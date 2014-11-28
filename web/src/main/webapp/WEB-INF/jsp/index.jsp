@@ -1,48 +1,21 @@
+<%-- 
+    Document   : index
+    Created on : Nov 23, 2014, 2:35:19 PM
+    Author     : Petr Potucek
+--%>
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
+<%@ taglib tagdir="/WEB-INF/tags" prefix="my" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="s" uri="http://www.springframework.org/tags" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
-<html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link rel="stylesheet" type="text/css" href="style.css" />
-        <title>Welcome to Spring Web MVC project</title>
-    </head>
+<!-- title of the page -->
+<fmt:message var="title" key="lease.list.title"/>
+<my:layout title="${title}">
 
-    <body>
-        <header>
-            <nav>  
-                <ul>
-                    <li>
-                        <a href="index.jsp">
-                            HOME
-                        </a>
-                    </li>
-                    <li>
-                        <a href="lease/index.jsp">
-                            SPRÁVA PŮJČEK
-                        </a>
-                    </li>
-                    <li>
-                        <a href="car/index.jsp">
-                            SPRÁVA VOZŮ
-                        </a>
-                    </li>
-                    <li>
-                        <a href="person/index.jsp">
-                            ZAMĚSTNANCI
-                        </a>
-                    </li>
-                    <li>
-                        <a href="serviceCheck/index.jsp">
-                            SERVIS
-                        </a>
-                    </li>
-                </ul>
-            </nav> 
-        </header>
-
-
-
+    <jsp:attribute name="body">
         <section class="sekce">
             <h1>Sekce</h1>
             <ul>
@@ -84,7 +57,7 @@
                 </li>
             </ul>
         </section>
-    </body>
-</html>
+    </jsp:attribute>
+</my:layout>
 
 
