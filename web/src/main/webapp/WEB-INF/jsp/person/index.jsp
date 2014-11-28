@@ -9,9 +9,11 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Add or list all employees</title>
     </head>
     <body>
-        <h1>Hello World!</h1>
+        <a href="/person/add">Add a new car</a>
+        <a href="/person/listPeople?isInactive=false">list all active cars</a>
+        <a href="/person/listPeople?isInactive=true">list all cars</a>
     </body>
 </html>
