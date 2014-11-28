@@ -14,7 +14,7 @@
 <!-- title of the page -->
 <fmt:message var="title" key="car.list.title"/>
 <my:layout title="${title}">
-    
+
     <jsp:attribute name="body">
 
         <p><fmt:message key="car.list.allCars"/></p>
@@ -66,12 +66,19 @@
                         <form method="post" action="${pageContext.request.contextPath}/car/delete/${car.id}">
                             <input type="submit" value="<fmt:message key='car.list.delete'/>">
                         </form>
-                    </td>                    <td>
-                        <form method="post" action="${pageContext.request.contextPath}/lease/delete/${car.id}">
-                            <input type="submit" value="<fmt:message key='car.list.delete'/>">
+                    </td>                    
+                    <td>
+                        <form method="post" action="${pageContext.request.contextPath}/serviceCheck/listServiceChecks/${car.id}">
+                            <input type="submit" value="<fmt:message key='car.list.showSC'/>">
                         </form>
                     </td>
-
+                    <td>
+                        <form method="post" action="${pageContext.request.contextPath}/serviceCheck/getDaysToNextSC/${car.id}">
+                            <input type="submit" value="<fmt:message key='car.list.showDaysSC'/>">
+                            <!--neviem ci to ma odkial zobrat ten request param, treba skontrolovat-->
+                        </form>
+                    </td>
+                    <!--sem este getLeasesByCar alebo tak nejak bude pomenovana ta metoda-->
                 </tr>
             </c:forEach>
         </table>

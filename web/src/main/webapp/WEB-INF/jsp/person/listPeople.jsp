@@ -58,6 +58,11 @@
                             <input type="submit" value="<fmt:message key='person.list.delete'/>">
                         </form>
                     </td>
+                    <td>
+                        <form method="post" action="${pageContext.request.contextPath}/lease//getTravelStatistics/${person.id}">
+                            <input type="submit" value="<fmt:message key='person.list.getTravelStatsForPerson'/>">
+                        </form>
+                    </td>
 
                 </tr>
             </c:forEach>
