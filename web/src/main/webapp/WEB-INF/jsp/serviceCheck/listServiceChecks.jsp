@@ -50,9 +50,9 @@
         </table>
 
         <form:form method="post" action="${pageContext.request.contextPath}/serviceCheck/update" modelAttribute="serviceCheck">
-            <fieldset><legend><fmt:message key="serviceCheck.list.newbook"/></legend>
+            <fieldset><legend><fmt:message key="serviceCheck.list.newServiceCheck"/></legend>
                 <%@include file="form.jsp"%>
-                <input type="submit" value="<fmt:message key='serviceCheck.list.createBook'/>">
+                <input type="submit" value="<fmt:message key='serviceCheck.list.createServiceCheck'/>">
             </fieldset>
         </form:form>
     </jsp:attribute>

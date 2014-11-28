@@ -98,7 +98,7 @@ public class CarController {
     public String update_form(@PathVariable Integer id, ModelMap model) {
         CarDTO car = carService.getCarByID(id);
         model.addAttribute("car", car);
-        return "car/edit";
+        return "car/update";
     }
 
     @RequestMapping(value = "/update", method = RequestMethod.POST)

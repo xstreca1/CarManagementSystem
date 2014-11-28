@@ -92,8 +92,8 @@ public class LeaseController {
                 @RequestParam("DateFrom") Date dateFrom,
                 @RequestParam("DateTo") Date dateTo) {
             
-            List<LeaseDTO> travelStatisticsNew = leaseService.getTravelStatistics(person, dateFrom, dateTo);
-            model.addAttribute("travelStatisticsNew", travelStatisticsNew);
+            List<LeaseDTO> travelStatistics = leaseService.getTravelStatistics(person, dateFrom, dateTo);
+            model.addAttribute("travelStatistics", travelStatistics);
             
             return new ModelAndView("getTravelStatistics");
         }
