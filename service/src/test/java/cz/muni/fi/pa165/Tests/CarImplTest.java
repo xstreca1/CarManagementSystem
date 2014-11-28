@@ -84,7 +84,7 @@ public class CarImplTest {
 		assertEquals(true, true);
     }
     
-//    @Test
+  //  @Test
     public void testDeleteCar() {
         
         service.deleteCar(carDto);
@@ -98,7 +98,7 @@ public class CarImplTest {
         
             List<CarDTO> list = service.findAllCars(true);
 			assertNotNull(list);
-			assertEquals(0, list.size());
+			assertEquals(2, list.size());
         
     }
 }
