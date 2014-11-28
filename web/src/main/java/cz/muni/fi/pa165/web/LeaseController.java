@@ -98,7 +98,7 @@ public class LeaseController {
             return new ModelAndView("getTravelStatistics");
         }
         
-        @RequestMapping(value = "/addLease", method = RequestMethod.POST)
+        @RequestMapping(value = "/add", method = RequestMethod.POST)
         public String addLease(ModelMap model,
                 @ModelAttribute("lease") LeaseDTO lease) {
             

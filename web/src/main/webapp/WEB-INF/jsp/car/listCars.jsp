@@ -67,7 +67,7 @@
                             <input type="submit" value="<fmt:message key='car.list.delete'/>">
                         </form>
                     </td>                    <td>
-                        <form method="post" action="${pageContext.request.contextPath}/car/delete/${car.id}">
+                        <form method="post" action="${pageContext.request.contextPath}/lease/delete/${car.id}">
                             <input type="submit" value="<fmt:message key='car.list.delete'/>">
                         </form>
                     </td>
