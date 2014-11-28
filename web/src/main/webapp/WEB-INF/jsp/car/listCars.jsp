@@ -68,21 +68,15 @@
                         </form>
                     </td>                    
                     <td>
-                        <form method="post" action="${pageContext.request.contextPath}/serviceCheck/listServiceChecks/${car.id}">
+                        <form method="post" action="${pageContext.request.contextPath}/serviceCheck/listServiceChecks/${car}">
                             <input type="submit" value="<fmt:message key='car.list.showSC'/>">
                         </form>
                     </td>
-                    <td>
-                        <form method="post" action="${pageContext.request.contextPath}/serviceCheck/getDaysToNextSC/${car.id}">
-                            <input type="submit" value="<fmt:message key='car.list.showDaysSC'/>">
-                            <!--neviem ci to ma odkial zobrat ten request param, treba skontrolovat-->
-                        </form>
-                    </td>
+                    <!--add getDaysToNextSC-->
                     <!--sem este getLeasesByCar alebo tak nejak bude pomenovana ta metoda-->
                 </tr>
             </c:forEach>
         </table>
-
         <!-- add?-->
         <form:form method="post" action="${pageContext.request.contextPath}/car/update" modelAttribute="car">
             <fieldset><legend><fmt:message key="car.list.newCar"/></legend>
