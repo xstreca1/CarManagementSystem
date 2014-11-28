@@ -10,8 +10,35 @@
 
     <body>
         <header>
-            <nav>
-            </nav>
+            <nav>  
+                <ul>
+                    <li>
+                        <a href="">
+                            HOME
+                        </a>
+                    </li>
+                    <li>
+                        <a href="">
+                            SPRÁVA PŮJČEK
+                        </a>
+                    </li>
+                    <li>
+                        <a href="">
+                            SPRÁVA VOZŮ
+                        </a>
+                    </li>
+                    <li>
+                        <a href="">
+                            ZAMĚSTNANCI
+                        </a>
+                    </li>
+                    <li>
+                        <a href="">
+                            SERVIS
+                        </a>
+                    </li>
+                </ul>
+            </nav> 
         </header>
 
 
