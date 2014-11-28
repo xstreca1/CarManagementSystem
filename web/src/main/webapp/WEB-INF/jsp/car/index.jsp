@@ -1,19 +1,18 @@
-<%-- 
-    Document   : index for car
-    Created on : Nov 28, 2014, 5:07:52 PM
-    Author     : jrumanov
---%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Add or list all available cars</title>
-    </head>
-    <body>
+<%@ taglib tagdir="/WEB-INF/tags" prefix="my" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="s" uri="http://www.springframework.org/tags" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+
+<!-- title of the page -->
+<fmt:message var="title" key="lease.list.title"/>
+<my:layout title="${title}">
+
+    <jsp:attribute name="body">
         <a href="/car/add">Add a new car</a>
         <a href="/car/listCars?isInactive=false">list all active cars</a>
         <a href="/car/listCars?isInactive=true">list all cars</a>
-    </body>
-</html>
+    </jsp:attribute>
+</my:layout>
+
