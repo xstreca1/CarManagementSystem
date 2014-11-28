@@ -9,9 +9,10 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Add or list all ServiceChecks</title>
     </head>
     <body>
-        <h1>Hello World!</h1>
+        <a href="/lease/add">Add a new service check</a>
+        <a href="/lease/listServiceChecks">list all service checks</a>
     </body>
 </html>

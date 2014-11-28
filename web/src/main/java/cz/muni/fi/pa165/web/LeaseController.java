@@ -76,8 +76,8 @@ public class LeaseController {
         
         @RequestMapping(value = "/listLeases", method = RequestMethod.GET)
 	public ModelAndView listLeases(ModelMap model,
-			@RequestParam("DateFrom") Date dateFrom,
-                        @RequestParam("DateTo") Date dateTo )
+			@RequestParam("dateFrom") Date dateFrom,
+                        @RequestParam("dateTo") Date dateTo )
         {
 
 		List<LeaseDTO> leases = leaseService.getAllLeases(dateFrom, dateTo);
@@ -88,9 +88,9 @@ public class LeaseController {
         
         @RequestMapping(value = "/getTravelStatistics", method = RequestMethod.GET)
         public ModelAndView getTravelStatistics(ModelMap model,
-                @RequestParam("Person") PersonDTO person,
-                @RequestParam("DateFrom") Date dateFrom,
-                @RequestParam("DateTo") Date dateTo) {
+                @RequestParam("person") PersonDTO person,
+                @RequestParam("dateFrom") Date dateFrom,
+                @RequestParam("dateTo") Date dateTo) {
             
             List<LeaseDTO> travelStatistics = leaseService.getTravelStatistics(person, dateFrom, dateTo);
             model.addAttribute("travelStatistics", travelStatistics);

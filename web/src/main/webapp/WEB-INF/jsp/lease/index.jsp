@@ -12,6 +12,7 @@
         <title>Add or list all Leases</title>
     </head>
     <body>
-        <h1>Hello World!</h1>
+        <a href="/lease/add">Add a new lease</a>
+        <a href="/lease/listLeases?dateFrom=2014-01-01&dateTo=2100-01-01">list all leases</a>
     </body>
 </html>
