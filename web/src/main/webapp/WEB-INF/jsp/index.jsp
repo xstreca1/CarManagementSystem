@@ -1,63 +1,19 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+    "http://www.w3.org/TR/html4/loose.dtd">
 
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link rel="stylesheet" type="text/css" href="style.css" />
         <title>Welcome to Spring Web MVC project</title>
     </head>
 
     <body>
-        <header>
-            <nav>
-            </nav>
-        </header>
-
-
-
-        <section class="sekce">
-            <h1>Sekce</h1>
-            <ul>
-                <li>
-                    <div id="wrapper">
-                        <a href="">
-                            <div class="slideContainer">
-                                <img class="slideIcon"  height="" src="img/spravaPujcek.png">
-                            </div>
-                        </a>
-                    </div>
-                </li><li>
-                    <div id="wrapper">
-                        <a href="">
-                            <div class="slideContainer">
-                                <img class="slideIcon"  height="" src="img/spravaVozu.png">
-                            </div>
-                        </a>
-                    </div>
-                </li>
-
-                <li>
-                    <div id="wrapper">
-                        <a href="">
-                            <div class="slideContainer">
-                                <img class="slideIcon"  height="" src="img/zamestnanci.png">
-                            </div>
-                        </a>
-                    </div>
-                </li>
-                <li>
-                    <div id="wrapper">
-                        <a href="">
-                            <div class="slideContainer">
-                                <img class="slideIcon"  height="" src="img/servis.png">
-                            </div>
-                        </a>
-                    </div>
-                </li>
-            </ul>
-        </section>
+        <p>Hello! This is the default welcome page for a Spring Web MVC project.</p>
+        <p><i>To display a different welcome page for this project, modify</i>
+            <tt>index.jsp</tt> <i>, or create your own welcome page then change
+                the redirection in</i> <tt>redirect.jsp</tt> <i>to point to the new
+                welcome page and also update the welcome-file setting in</i>
+            <tt>web.xml</tt>.</p>
     </body>
 </html>
-
-
