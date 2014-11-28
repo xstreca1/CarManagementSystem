@@ -15,7 +15,7 @@
 <my:layout title="${title}">
 
     <jsp:attribute name="body">
-        <a href="/lease/add">Add a new service check</a>
+        <a href="/lease/add">Add a new service check</a><br />
         <a href="/lease/listServiceChecks">list all service checks</a>
   </jsp:attribute>
 </my:layout>

@@ -16,8 +16,8 @@
 
     <jsp:attribute name="body">
 
-        <a href="/person/add">Add a new car</a>
-        <a href="/person/listPeople?isInactive=false">list all active cars</a>
+        <a href="/person/add">Add a new car</a><br />
+        <a href="/person/listPeople?isInactive=false">list all active cars</a><br />
         <a href="/person/listPeople?isInactive=true">list all cars</a>
     </jsp:attribute>
 </my:layout>

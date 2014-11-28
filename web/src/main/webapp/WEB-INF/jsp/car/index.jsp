@@ -10,8 +10,8 @@
 <my:layout title="${title}">
 
     <jsp:attribute name="body">
-        <a href="/car/add">Add a new car</a>
-        <a href="/car/listCars?isInactive=false">list all active cars</a>
+        <a href="/car/add">Add a new car</a><br />
+        <a href="/car/listCars?isInactive=false">list all active cars</a><br />
         <a href="/car/listCars?isInactive=true">list all cars</a>
     </jsp:attribute>
 </my:layout>

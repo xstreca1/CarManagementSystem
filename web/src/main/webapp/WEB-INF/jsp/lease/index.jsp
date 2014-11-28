@@ -16,7 +16,7 @@
 
     <jsp:attribute name="body">
 
-        <a href="/lease/add">Add a new lease</a>
+        <a href="/lease/add">Add a new lease</a><br />
         <a href="/lease/listLeases?dateFrom=2014-01-01&dateTo=2100-01-01">list all leases</a>
 
     </jsp:attribute>
