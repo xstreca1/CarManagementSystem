@@ -66,16 +66,24 @@ public class PersonServicesImplTest {
                 });
          
         
+        Person person2 = new Person(); 
+        person2.setName("PATO");
+        person2.setIsActive(true);
+        
+        Person person3 = new Person();
+        person3.setName("MAREK");
+        person3.setIsActive(true);
+         
         List<Person> allPeople = new ArrayList<Person>();
-		allPeople.add(person);
-		allPeople.add(person);
+		allPeople.add(person2);
+		allPeople.add(person3);
                 
                 List<Person> namedPeople = new ArrayList<Person>();
                 namedPeople.add(person);
                 namedPeople.add(person);
                 
-		Mockito.when(mockPersonDao.findAllPeople(Matchers.anyBoolean()))
-                        .thenReturn(namedPeople);
+		Mockito.when(mockPersonDao.findAllPeople(true))
+                        .thenReturn(allPeople);
                 
        
                 
@@ -94,7 +102,7 @@ public class PersonServicesImplTest {
 		assertEquals(true, true);
     }
     
-  //  @Test
+    @Test
     public void testFindAllPersons() {
         List<PersonDTO> list = service.findAllPeople(true);
 			assertNotNull(list);
