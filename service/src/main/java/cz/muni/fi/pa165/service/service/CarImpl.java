@@ -74,11 +74,10 @@ public class CarImpl implements CarServiceInterface {
 
     public List<CarDTO> findAllCars(boolean alsoInactive) {
         
-        Car carEntity = null;
-        CarDTO carDto = null;
+        Car carEntity = new Car();
+        CarDTO carDto = new CarDTO();
         
         List<String> list = new ArrayList<String>();
-        List<Car> ori = new ArrayList<Car>();
         List<CarDTO> n = new ArrayList<CarDTO>();
         
 
@@ -86,10 +85,12 @@ public class CarImpl implements CarServiceInterface {
         list.add("dozerMapping.xml");
 // Add to DozerMapper
         Mapper mapper = new DozerBeanMapper(list);
+        
+        List<Car> ori = carDAO.listAllCars(alsoInactive);
+        
         for (Car co : ori) {
-             n.add(mapper.map(co, CarDTO.class));
-        mapper.map(carDto, carEntity, "car");
-        carDAO.listAllCars(alsoInactive);
+            mapper.map(co, carDto, "car");
+            n.add(carDto);
        
         }
         return n;
