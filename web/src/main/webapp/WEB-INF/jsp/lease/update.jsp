@@ -1,5 +1,5 @@
 <%-- 
-    Document   : update
+    Document   : update lease
     Created on : Nov 23, 2014, 12:00:46 PM
     Author     : jrumanov
 --%>
@@ -14,7 +14,7 @@
 <fmt:message var="title" key="lease.edit.title"/>
 <my:layout title="${title}">
  <jsp:attribute name="body">
-<form:form method="post" action="${pageContext.request.contextPath}/lease/update" modelAttribute="book">
+<form:form method="post" action="${pageContext.request.contextPath}/lease/update" modelAttribute="lease">
     <form:hidden path="id"/>
     <fieldset><legend><fmt:message key="lease.edit.edit"/></legend>
         <%@include file="form.jsp"%>
