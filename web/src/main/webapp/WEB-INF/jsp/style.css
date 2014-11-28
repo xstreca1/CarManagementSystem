@@ -35,6 +35,39 @@ header{
     background:#2c3e50;
 }
 
+/*menu*/
+nav{
+    width:100%;
+}
+nav ul{
+    display: table;   
+    margin: 0 auto;
+    list-style-type: none;
+}
+nav ul li{
+    display: inline-block;
+}
+nav ul li a{
+    display: block;
+    padding:30px 20px 37px 20px;
+    font-family: 'Open Sans', sans-serif; 
+    font-size: 1.5em/*36/*/; 
+    font-weight: lighter;
+    color: rgb(197,207,218);
+    text-decoration: none;
+    -webkit-transition: color .5s, background .5s, height .5s;
+    -moz-transition: color .5s, background .5s, height .5s;
+    -o-transition: color .5s, background .5s, height .5s;
+    -ms-transition: color .5s, background .5s, height .5s;
+    transition: color .5s, background .5s, height .5s;
+}
+nav a:hover { 
+    color:rgb(255,255,255);
+    background:rgb(30,42,56);
+   
+}
+
+
 
 /*stylovani sekci*/
 .sekce{
@@ -49,6 +82,7 @@ header{
 }
 .sekce ul li{
     display: inline-block;
+    
 }
 
 /* Prechod pro sekce */
