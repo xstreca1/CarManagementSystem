@@ -26,7 +26,7 @@
               class="org.springframework.jdbc.datasource.DriverManagerDataSource">
         <property name="driverClassName" value="org.apache.derby.jdbc.ClientDriver" />
         <property name="url"
-                          value="jdbc:derby://localhost:1527/memory:sample;create=true" />
+                          value="jdbc:derby://localhost:1527/memory:pa165;create=true" />
         <property name="username" value="pa165" />
         <property name="password" value="pa165" />
     </bean>
