@@ -41,7 +41,7 @@ public class ServiceCheckImplTest {
     @Before
     public void setUpClass() {
         EntityManagerFactory emf = Persistence
-                .createEntityManagerFactory("carManagementSystem-unit");
+                .createEntityManagerFactory("Test-unit");
         em = emf.createEntityManager();
         dao = new ServiceCheckDAOImpl(em);
         em.getTransaction().begin();

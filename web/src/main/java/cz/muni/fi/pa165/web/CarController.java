@@ -69,6 +69,11 @@ public class CarController {
 
         return "redirect:/car/listCars";
     }
+    
+//    @RequestMapping(method = RequestMethod.POST)
+//    public String home() {
+//        return "index";
+//    }
 
     @RequestMapping(value = "/delete/{id}")
     public String deleteCar(@PathVariable String id, ModelMap model) {

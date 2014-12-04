@@ -16,20 +16,21 @@
     <!-- add bean for EMF -->
     <!-- Beans for DAO Interface Implementations-->
     <bean id="entityManagerFactory"
-          class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean"
-          p:dataSource-ref="dataSource">
+          class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
         <property name="persistenceUnitName" value="carManagementSystem-unit" />
-        <property name="dataSource" ref="dataSource" />
+<!--          p:dataSource-ref="dataSource">-->
+        <!--<property name="persistenceUnitName" value="carManagementSystem-unit" />-->
+        <!--<property name="dataSource" ref="dataSource" />-->
     </bean>
     
-    <bean id="dataSource"
+    <!--<bean id="dataSource"
               class="org.springframework.jdbc.datasource.DriverManagerDataSource">
         <property name="driverClassName" value="org.apache.derby.jdbc.ClientDriver" />
         <property name="url"
-                          value="jdbc:derby://localhost:1527/memory:pa165;create=true" />
+                          value="jdbc:derby://localhost:1527//pa165" />
         <property name="username" value="pa165" />
         <property name="password" value="pa165" />
-    </bean>
+    </bean>-->
     
     <bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager"
           p:entityManagerFactory-ref="entityManagerFactory" />
