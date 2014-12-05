@@ -72,8 +72,6 @@
     </bean> 
     
     <tx:annotation-driven />
-     
-    <!--tx:annotation-driven/-->
  
     
 </beans>

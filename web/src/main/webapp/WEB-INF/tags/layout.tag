@@ -16,7 +16,7 @@
 <html lang="${pageContext.request.locale}">
     <head>
         <title><c:out value="${title}"/></title>
-        <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/jsp/style.css"/>
+        <link rel="stylesheet" type="text/css" href="resources/style.css"/>
         <jsp:invoke fragment="head"/>
     </head>
     <body>

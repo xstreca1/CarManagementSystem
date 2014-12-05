@@ -10,7 +10,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="s" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-
+<link rel="stylesheet" type="text/css" href="resources/style.css"/>
 <!-- title of the page -->
 <fmt:message var="title" key="index.title"/>
 <my:layout title="${title}">
