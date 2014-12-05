@@ -23,25 +23,25 @@
                     <div id="wrapper">
                         <a href="lease/index.jsp">
                             <div class="slideContainer">
-                                <img class="slideIcon"  height="" src="img/spravaPujcek.png">
-                            </div>
-                        </a>
-                    </div>
-                </li><li>
-                    <div id="wrapper">
-                        <a href="car/index.jsp">
-                            <div class="slideContainer">
-                                <img class="slideIcon"  height="" src="img/spravaVozu.png">
+                                <img class="slideIcon" src="<c:url value="/resources/img/spravaPujcek.png" />"/>
                             </div>
                         </a>
                     </div>
                 </li>
-
+                <li>
+                    <div id="wrapper">
+                        <a href="car/index.jsp">
+                            <div class="slideContainer">
+                                <img class="slideIcon" src="<c:url value="/resources/img/spravaVozu.png" />"/>
+                            </div>
+                        </a>
+                    </div>
+                </li>
                 <li>
                     <div id="wrapper">
                         <a href="person/index.jsp">
                             <div class="slideContainer">
-                                <img class="slideIcon"  height="" src="img/zamestnanci.png">
+                                <img class="slideIcon" src="<c:url value="/resources/img/zamestnanci.png" />"/>
                             </div>
                         </a>
                     </div>
@@ -50,11 +50,11 @@
                     <div id="wrapper">
                         <a href="serviceCheck/index.jsp">
                             <div class="slideContainer">
-                                <img class="slideIcon"  height="" src="img/servis.png">
+                                <img class="slideIcon" src="<c:url value="/resources/img/servis.png" />"/>
                             </div>
                         </a>
                     </div>
-                </li>
+                </li>  
             </ul>
         </section>
     </jsp:attribute>
