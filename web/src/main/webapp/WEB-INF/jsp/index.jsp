@@ -21,7 +21,7 @@
             <ul>
                 <li>
                     <div id="wrapper">
-                        <a href="lease/listLeases?dateFrom=2011-01-01&dateTo=2015-01-01">
+                        <a href="lease/index.jsp">
                             <div class="slideContainer">
                                 <img class="slideIcon" src="<c:url value="/resources/img/spravaPujcek.png" />"/>
                             </div>
@@ -30,7 +30,7 @@
                 </li>
                 <li>
                     <div id="wrapper">
-                        <a href="car/listCars">
+                        <a href="car/index.jsp">
                             <div class="slideContainer">
                                 <img class="slideIcon" src="<c:url value="/resources/img/spravaVozu.png" />"/>
                             </div>
