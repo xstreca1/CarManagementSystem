@@ -15,7 +15,7 @@
     
     <jsp:attribute name="body">
 
-        <p><fmt:message key="lease.list.allLeases"/></p>
+        <p><fmt:message key="lease.list.lastAdded"/></p>
 
         <table class="basic">
             <tr>
