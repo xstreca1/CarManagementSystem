@@ -84,7 +84,7 @@ public class CarController {
         return new ModelAndView("cars");
     }
 
-    @RequestMapping(value = "/add", method = RequestMethod.GET)
+    @RequestMapping(value = "/add", method = RequestMethod.POST)
     public String addCar(@ModelAttribute CarDTO car,
              ModelMap model) {
 
