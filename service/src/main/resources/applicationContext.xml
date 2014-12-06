@@ -13,39 +13,21 @@
           http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc-3.0.xsd">
     <context:annotation-config />
     
-    <!--
-    Logging
-    -->
-    <bean id="log4jInitialization" class="org.springframework.beans.factory.config.MethodInvokingFactoryBean">
-        <property name="targetClass" value="org.springframework.util.Log4jConfigurer" />
-        <property name="targetMethod" value="initLogging" />
-        <property name="arguments">
-            <list>
-                <value>classpath:properties/log4j.properties</value>
-            </list>
-        </p java.lang.AbstractMethodError: org.slf4j.impl.JDK14LoggerAdapter.log(Lorg/slf4j/Marker;Ljava/lang/String;ILjava/lang/String;[Ljava/lang/Object;Ljava/lang/Throwable;)Vroperty>
-    </bean>
-
-    <bean id="log4jInitializationJLU" class="org.springframework.beans.factory.config.MethodInvokingFactoryBean">
-        <property name="targetClass" value="org.slf4j.bridge.SLF4JBridgeHandler" />
-        <property name="targetMethod" value="install" />
-    </bean>
-    
     <!-- add bean for EMF -->
     <!-- Beans for DAO Interface Implementations-->
     <bean id="entityManagerFactory"
           class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
         <property name="persistenceUnitName" value="carManagementSystem-unit" />
-        <!--          p:dataSource-ref="dataSource">-->
+<!--          p:dataSource-ref="dataSource">-->
         <!--property name="persistenceUnitName" value="carManagementSystem-unit" /-->
         <property name="dataSource" ref="dataSource" />
     </bean>
     
     <bean id="dataSource"
-          class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+              class="org.springframework.jdbc.datasource.DriverManagerDataSource">
         <property name="driverClassName" value="org.apache.derby.jdbc.ClientDriver" />
         <property name="url"
-                  value="jdbc:derby://localhost:1527/pa165" />
+                          value="jdbc:derby://localhost:1527/pa165" />
         <property name="username" value="pa165" />
         <property name="password" value="pa165" />
     </bean>
