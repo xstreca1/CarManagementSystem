@@ -59,6 +59,14 @@ public class PersonController {
         return "personListPeople";
     }
 
+    @ModelAttribute("person")
+      public PersonDTO getPerson()
+      {
+        PersonDTO person = new PersonDTO();
+        
+        return person;
+    }
+    
     @RequestMapping(value = "/listPeople", method = RequestMethod.GET)
     public ModelAndView listPeople(ModelMap model,
             @RequestParam(value = "isInactive", required = false) boolean isInactive) {
