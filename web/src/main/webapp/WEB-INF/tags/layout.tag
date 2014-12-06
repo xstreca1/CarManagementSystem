@@ -26,27 +26,27 @@
             <nav>  
                 <ul>
                     <li>
-                        <a href="/">
+                        <a href="${pageContext.request.contextPath}/">
                             <fmt:message key="layout.menu.home"/>
                         </a>
                     </li>
                     <li>
-                        <a href="lease/">
+                        <a href="${pageContext.request.contextPath}/lease/">
                             <fmt:message key="layout.menu.lease"/>
                         </a>
                     </li>
                     <li>
-                        <a href="car/">
+                        <a href="${pageContext.request.contextPath}/car/">
                             <fmt:message key="layout.menu.car"/>
                         </a>
                     </li>
                     <li>
-                        <a href="person/">
+                        <a href="${pageContext.request.contextPath}/person/">
                             <fmt:message key="layout.menu.person"/>
                         </a>
                     </li>
                     <li>
-                        <a href="serviceCheck/">
+                        <a href="${pageContext.request.contextPath}/serviceCheck/">
                             <fmt:message key="layout.menu.serviceCheck"/>
                         </a>
                     </li>
