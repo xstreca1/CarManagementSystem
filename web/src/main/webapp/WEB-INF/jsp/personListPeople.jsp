@@ -11,11 +11,11 @@
 <%@ taglib prefix="s" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
-<fmt:message var="title" key="book.list.title"/>
+<fmt:message var="title" key="person.list.title"/>
 <my:layout title="${title}">
     <jsp:attribute name="body">
 
-        <p><fmt:message key="book.list.allbooks"/></p>
+        <p><fmt:message key="person.list.allPeople"/></p>
 
         <table class="basic">
             <tr>
