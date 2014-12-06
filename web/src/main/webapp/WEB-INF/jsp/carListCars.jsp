@@ -21,7 +21,7 @@
 
         <table class="basic">
             <tr>
-                <th>car.id</th>
+                <th>id</th>
                 <th><fmt:message key="car.vehicleRegPlate"/></th>
                 <th><fmt:message key="car.brand"/></th>
                 <th><fmt:message key="car.typeName"/></th>
