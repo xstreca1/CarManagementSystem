@@ -15,6 +15,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -34,9 +35,16 @@ import org.springframework.web.servlet.ModelAndView;
 @RequestMapping("/car")
 public class CarController {
 
+    @Autowired
     CarServiceInterface carService;
+    
+    @Autowired
     LeaseServiceInterface leaseService;
+    
+    @Autowired
     ServiceCheckInterface serviceCheckService;
+    
+    @Autowired
     PersonServices personService;
 
     @Autowired
@@ -50,9 +58,18 @@ public class CarController {
         this.personService = personService;
     }
 
+    @ModelAttribute("car")
+      public CarDTO getCar()
+      {
+        CarDTO car = new CarDTO();
+        
+        return car;
+    }
+     
     @RequestMapping(value = "/", method = RequestMethod.GET)
-    public String carsHome()
+    public String carsHome(Model model)
     {
+        
         return "carListCars";
     }
     
@@ -67,10 +84,12 @@ public class CarController {
         return new ModelAndView("cars");
     }
 
-    @RequestMapping(value = "/add", method = RequestMethod.POST)
-    public String addCar(@ModelAttribute("car") CarDTO car,
-            BindingResult result, ModelMap model) {
+    @RequestMapping(value = "/add", method = RequestMethod.GET)
+    public String addCar(@ModelAttribute CarDTO car,
+             ModelMap model) {
 
+        model.addAttribute("car", new CarDTO());
+        
         carService.createCar(car);
 
         return "/car/listCars";
@@ -113,7 +132,7 @@ public class CarController {
     }
 
     @RequestMapping(value = "/update", method = RequestMethod.POST)
-    public String updateCar(@ModelAttribute("car") CarDTO car,
+    public String updateCar(@ModelAttribute CarDTO car,
             BindingResult result, ModelMap model, @PathVariable Integer id) {
 
         carService.updateCar(car, id);
