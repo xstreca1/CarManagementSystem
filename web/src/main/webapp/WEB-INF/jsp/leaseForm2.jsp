@@ -27,6 +27,7 @@
                 <tr>
 
                     <td><fmt:message key="lease.distance"/> :</td>
+                    <td><form:input path="distance"/></td>
 
                     
 

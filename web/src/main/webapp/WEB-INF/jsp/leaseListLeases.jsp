@@ -18,7 +18,7 @@
     
     <jsp:attribute name="body">
 
-        <p><fmt:message key="lease.list.allLeases"/></p>
+        <p><fmt:message key="lease.list.lastAdded"/></p>
 
         <table class="basic">
             <tr>
@@ -57,12 +57,12 @@
             </c:forEach>
         </table>
 
-        <!-- add?-->
+     <%-- 
         <form:form method="post" action="${pageContext.request.contextPath}/lease/update" modelAttribute="lease">
             <fieldset><legend><fmt:message key="lease.list.newLease"/></legend>
                 <%@include file="leaseForm2.jsp"%>
                 <input type="submit" value="<fmt:message key='lease.list.createLease'/>">
             </fieldset>
-        </form:form>
+        </form:form> --%>
     </jsp:attribute>
 </my:layout>
