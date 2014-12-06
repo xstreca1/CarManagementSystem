@@ -15,7 +15,6 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -65,7 +64,7 @@ public class CarController {
         model.addAttribute("cars", cars);
         
         //send mav to jsp page
-        return new ModelAndView("listCars");
+        return new ModelAndView("cars");
     }
 
     @RequestMapping(value = "/add", method = RequestMethod.POST)

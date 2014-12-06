@@ -16,7 +16,7 @@
 
     <jsp:attribute name="body">
         <section class="sekce">
-            <h1>Sekce</h1>
+            <h1><fmt:message key="layout.menu.sections"/></h1>
             <ul>
                 <li>
                     <div id="wrapper">
