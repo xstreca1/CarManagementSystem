@@ -21,7 +21,7 @@
 
         <table class="basic">
             <tr>
-                <th>id</th>
+                <th>car.id</th>
                 <th><fmt:message key="car.vehicleRegPlate"/></th>
                 <th><fmt:message key="car.brand"/></th>
                 <th><fmt:message key="car.typeName"/></th>
@@ -46,7 +46,7 @@
                     <td><c:out value="${car.brand}"/></td>
                     <td><c:out value="${car.typeName}"/></td>
                     <td><c:out value="${car.yearOfManufacture}"/></td>
-                    <td><c:out value="${car.mileage}"/></td>
+                    <td><c:out value="${cars.mileage}"/></td>
                     <td><fmt:message key="car.color.${car.color}"/></td>
                     <td><fmt:message key="car.bodystyle.${car.bodystyle}"/></td>
                     <td><c:out value="${car.enginePower}"/></td>                    
