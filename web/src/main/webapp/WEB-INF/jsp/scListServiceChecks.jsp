@@ -15,7 +15,7 @@
 <my:layout title="${title}">
     <jsp:attribute name="body">
 
-        <p><fmt:message key="serviceCheck.list.allbooks"/></p>
+        <p><fmt:message key="serviceCheck.list.title"/></p>
 
         <table class="basic">
             <tr>
