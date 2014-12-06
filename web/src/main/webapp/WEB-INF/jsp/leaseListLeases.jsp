@@ -11,6 +11,7 @@
 <%@ taglib prefix="s" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
+
 <!-- title of the page -->
 <fmt:message var="title" key="lease.list.title"/>
 <my:layout title="${title}">
@@ -59,7 +60,7 @@
         <!-- add?-->
         <form:form method="post" action="${pageContext.request.contextPath}/lease/update" modelAttribute="lease">
             <fieldset><legend><fmt:message key="lease.list.newLease"/></legend>
-                <%@include file="leaseForm.jsp"%>
+                <%@include file="leaseForm2.jsp"%>
                 <input type="submit" value="<fmt:message key='lease.list.createLease'/>">
             </fieldset>
         </form:form>
