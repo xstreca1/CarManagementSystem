@@ -80,7 +80,7 @@
         <!-- add?-->
         <form:form method="post" action="${pageContext.request.contextPath}/car/update" modelAttribute="car">
             <fieldset><legend><fmt:message key="car.list.newCar"/></legend>
-                <%@include file="form.jsp"%>
+                <%@include file="carForm.jsp"%>
                 <input type="submit" value="<fmt:message key='car.list.createCar'/>">
             </fieldset>
         </form:form>

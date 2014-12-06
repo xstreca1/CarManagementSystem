@@ -59,7 +59,7 @@
         <!-- add?-->
         <form:form method="post" action="${pageContext.request.contextPath}/lease/update" modelAttribute="lease">
             <fieldset><legend><fmt:message key="lease.list.newLease"/></legend>
-                <%@include file="form.jsp"%>
+                <%@include file="leaseForm.jsp"%>
                 <input type="submit" value="<fmt:message key='lease.list.createLease'/>">
             </fieldset>
         </form:form>

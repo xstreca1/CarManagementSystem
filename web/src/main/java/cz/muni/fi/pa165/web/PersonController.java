@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package cz.muni.fi.pa165.web;
 
 import cz.muni.fi.pa165.persistence.Entities.Person;
@@ -39,76 +38,80 @@ import org.springframework.web.servlet.ModelAndView;
 @RequestMapping("/person")
 public class PersonController {
 
-	CarServiceInterface carService;
-	LeaseServiceInterface leaseService;
-	ServiceCheckInterface serviceCheckService;
-	PersonServices personService;
+    CarServiceInterface carService;
+    LeaseServiceInterface leaseService;
+    ServiceCheckInterface serviceCheckService;
+    PersonServices personService;
 
-	@Autowired
-	public PersonController(CarServiceInterface carService,
-			ServiceCheckInterface serviceCheckService,
-                        LeaseServiceInterface leaseService,
-			PersonServices personService) {
-		this.carService = carService;
-		this.leaseService = leaseService;
-		this.serviceCheckService = serviceCheckService;
-		this.personService = personService;
-        }
+    @Autowired
+    public PersonController(CarServiceInterface carService,
+            ServiceCheckInterface serviceCheckService,
+            LeaseServiceInterface leaseService,
+            PersonServices personService) {
+        this.carService = carService;
+        this.leaseService = leaseService;
+        this.serviceCheckService = serviceCheckService;
+        this.personService = personService;
+    }
 
-	@RequestMapping(value = "/listPeople", method = RequestMethod.GET)
-	public ModelAndView listPeople(ModelMap model,
-			@RequestParam(value = "isInactive", required = false) boolean isInactive) {
+    @RequestMapping(value = "/", method = RequestMethod.GET)
+    public String carsHome() {
+        return "personListPeople";
+    }
 
-		List<PersonDTO> people = personService.findAllPeople(isInactive);
-		model.addAttribute("people", people);
+    @RequestMapping(value = "/listPeople", method = RequestMethod.GET)
+    public ModelAndView listPeople(ModelMap model,
+            @RequestParam(value = "isInactive", required = false) boolean isInactive) {
 
-		return new ModelAndView("listPeople");
-	}
+        List<PersonDTO> people = personService.findAllPeople(isInactive);
+        model.addAttribute("people", people);
 
-	@RequestMapping(value = "/add", method = RequestMethod.POST)
-	public String addPerson(@ModelAttribute("person") PersonDTO person,
-			BindingResult result, ModelMap model) {
-		
-		personService.createPerson(person);
+        return new ModelAndView("listPeople");
+    }
 
-		return "redirect:/person/listPeople";
-	}
-        
-        @RequestMapping(value = "/update/{id}", method = RequestMethod.GET)
-        public String update_form(@PathVariable Integer id, ModelMap model) {
-            PersonDTO person = personService.getPersonByID(id);
-            model.addAttribute("person", person);
-            return "person/edit";
-        }
-        
-       @RequestMapping(value = "/update", method = RequestMethod.POST)
-	public String updatePerson(@ModelAttribute("person") PersonDTO person,
-			BindingResult result, ModelMap model, @PathVariable Integer id) {
-            
-            if (result.hasErrors()) {
+    @RequestMapping(value = "/add", method = RequestMethod.POST)
+    public String addPerson(@ModelAttribute("person") PersonDTO person,
+            BindingResult result, ModelMap model) {
+
+        personService.createPerson(person);
+
+        return "redirect:/person/listPeople";
+    }
+
+    @RequestMapping(value = "/update/{id}", method = RequestMethod.GET)
+    public String update_form(@PathVariable Integer id, ModelMap model) {
+        PersonDTO person = personService.getPersonByID(id);
+        model.addAttribute("person", person);
+        return "person/edit";
+    }
+
+    @RequestMapping(value = "/update", method = RequestMethod.POST)
+    public String updatePerson(@ModelAttribute("person") PersonDTO person,
+            BindingResult result, ModelMap model, @PathVariable Integer id) {
+
+        if (result.hasErrors()) {
             for (ObjectError ge : result.getGlobalErrors()) {
-                
+
             }
             for (FieldError fe : result.getFieldErrors()) {
-      
+
             }
-            return person.getId()==null?"person/list":"person/edit";
+            return person.getId() == null ? "person/list" : "person/edit";
         }
-		
-		personService.editPerson(person, id);
-		
-		return "redirect:/person/listPeople";
-	}
-        
-        @RequestMapping(value = "/listPeopleByName", method = RequestMethod.GET)
-        public ModelAndView listPeopleByName(ModelMap model,
-                @RequestParam("name") String name) {
-            
-            List<PersonDTO> namedPersonNew = personService.getPeopleByName(name);
-            model.addAttribute("getPeopleByName", namedPersonNew);
-            
-            return new ModelAndView("getPeopleByName");
-        }
-        
-        
+
+        personService.editPerson(person, id);
+
+        return "redirect:/person/listPeople";
+    }
+
+    @RequestMapping(value = "/listPeopleByName", method = RequestMethod.GET)
+    public ModelAndView listPeopleByName(ModelMap model,
+            @RequestParam("name") String name) {
+
+        List<PersonDTO> namedPersonNew = personService.getPeopleByName(name);
+        model.addAttribute("getPeopleByName", namedPersonNew);
+
+        return new ModelAndView("getPeopleByName");
+    }
+
 }

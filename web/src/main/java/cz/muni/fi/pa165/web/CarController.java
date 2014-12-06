@@ -15,6 +15,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -50,6 +51,12 @@ public class CarController {
         this.personService = personService;
     }
 
+    @RequestMapping(value = "/", method = RequestMethod.GET)
+    public String carsHome()
+    {
+        return "carListCars";
+    }
+    
     @RequestMapping(value = "/listCars", method = RequestMethod.GET)
     public ModelAndView listCars(ModelMap model,
             @RequestParam(value = "isInactive", required = false) boolean isInactive) {
@@ -67,7 +74,7 @@ public class CarController {
 
         carService.createCar(car);
 
-        return "redirect:/car/listCars";
+        return "/car/listCars";
     }
     
 //    @RequestMapping(method = RequestMethod.POST)

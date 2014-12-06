@@ -70,7 +70,7 @@
 
         <form:form method="post" action="${pageContext.request.contextPath}/person/update" modelAttribute="person">
             <fieldset><legend><fmt:message key="person.list.newperson"/></legend>
-                <%@include file="form.jsp"%>
+                <%@include file="personForm.jsp"%>
                 <input type="submit" value="<fmt:message key='person.list.addPerson'/>">
             </fieldset>
         </form:form>

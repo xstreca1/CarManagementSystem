@@ -26,27 +26,27 @@
             <nav>  
                 <ul>
                     <li>
-                        <a href="index.jsp">
+                        <a href="/">
                             <fmt:message key="layout.menu.home"/>
                         </a>
                     </li>
                     <li>
-                        <a href="lease/index.jsp">
+                        <a href="lease/">
                             <fmt:message key="layout.menu.lease"/>
                         </a>
                     </li>
                     <li>
-                        <a href="car/index.jsp">
+                        <a href="car/">
                             <fmt:message key="layout.menu.car"/>
                         </a>
                     </li>
                     <li>
-                        <a href="person/index.jsp">
+                        <a href="person/">
                             <fmt:message key="layout.menu.person"/>
                         </a>
                     </li>
                     <li>
-                        <a href="serviceCheck/index.jsp">
+                        <a href="serviceCheck/">
                             <fmt:message key="layout.menu.serviceCheck"/>
                         </a>
                     </li>

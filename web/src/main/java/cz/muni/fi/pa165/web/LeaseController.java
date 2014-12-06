@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package cz.muni.fi.pa165.web;
 
 import cz.muni.fi.pa165.service.dto.LeaseDTO;
@@ -32,82 +31,82 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 @RequestMapping("/lease")
 public class LeaseController {
-    
-        CarServiceInterface carService;
-	LeaseServiceInterface leaseService;
-	ServiceCheckInterface serviceCheckService;
-	PersonServices personService;
 
-	@Autowired
-	public LeaseController(CarServiceInterface carService,
-			ServiceCheckInterface serviceCheckService,
-                        LeaseServiceInterface leaseService,
-			PersonServices personService) {
-		this.carService = carService;
-		this.leaseService = leaseService;
-		this.serviceCheckService = serviceCheckService;
-		this.personService = personService;
+    CarServiceInterface carService;
+    LeaseServiceInterface leaseService;
+    ServiceCheckInterface serviceCheckService;
+    PersonServices personService;
+
+    @Autowired
+    public LeaseController(CarServiceInterface carService,
+            ServiceCheckInterface serviceCheckService,
+            LeaseServiceInterface leaseService,
+            PersonServices personService) {
+        this.carService = carService;
+        this.leaseService = leaseService;
+        this.serviceCheckService = serviceCheckService;
+        this.personService = personService;
+    }
+
+    @RequestMapping(value = "/", method = RequestMethod.GET)
+    public String leaseHome() {
+        return "leaseListLeases";
+    }
+
+    @RequestMapping(value = "/delete/{id}")
+    public String deleteLease(@PathVariable String id, ModelMap model) {
+        boolean deleted = false;
+        String errorMsg = null;
+        LeaseDTO lease = new LeaseDTO();
+        try {
+            Integer leaseID = Integer.valueOf(id);
+
+            lease = leaseService.getLeaseByID(leaseID);
+            leaseService.deleteLease(lease);
+            deleted = true;
+        } catch (DataAccessException | NumberFormatException | NullPointerException e) {
+
+            deleted = false;
+            errorMsg = e.getMessage();
         }
-        
-        @RequestMapping(value = "/delete/{id}")
-	public String deleteLease(@PathVariable String id, ModelMap model) {
-		boolean deleted = false;
-		String errorMsg = null;
-		LeaseDTO lease = new LeaseDTO();
-		try {
-			Integer leaseID = Integer.valueOf(id);
-                        
-                        lease = leaseService.getLeaseByID(leaseID);
-			leaseService.deleteLease(lease);
-			deleted = true;
-		} catch (DataAccessException | NumberFormatException
-				| NullPointerException e) {
-			
-			deleted = false;
-			errorMsg = e.getMessage();
-		}
 
-		model.addAttribute("deleteStatus", deleted);
-		if (errorMsg != null) {
-			model.addAttribute("errorMessage", errorMsg);
-		}
-		return "redirect:/lease/list";
-	}
-        
-        @RequestMapping(value = "/listLeases", method = RequestMethod.GET)
-	public ModelAndView listLeases(ModelMap model,  
-			@RequestParam("dateFrom") Date dateFrom,
-                        @RequestParam("dateTo") Date dateTo )
-        {
-
-		List<LeaseDTO> leases = leaseService.getAllLeases(dateFrom, dateTo);
-		model.addAttribute("leases", leases);
-
-		return new ModelAndView("listLeases");
-	}
-        
-        @RequestMapping(value = "/getTravelStatistics", method = RequestMethod.GET)
-        public ModelAndView getTravelStatistics(ModelMap model,
-                @RequestParam("person") PersonDTO person,
-                @RequestParam("dateFrom") Date dateFrom,
-                @RequestParam("dateTo") Date dateTo) {
-            
-            List<LeaseDTO> travelStatistics = leaseService.getTravelStatistics(person, dateFrom, dateTo);
-            model.addAttribute("travelStatistics", travelStatistics);
-            
-            return new ModelAndView("getTravelStatistics");
+        model.addAttribute("deleteStatus", deleted);
+        if (errorMsg != null) {
+            model.addAttribute("errorMessage", errorMsg);
         }
-        
-        @RequestMapping(value = "/add", method = RequestMethod.POST)
-        public String addLease(ModelMap model,
-                @ModelAttribute("lease") LeaseDTO lease) {
-            
-            leaseService.createLease(lease);
-            
-            return "redirect:list";
-        }
-        
-                
+        return "redirect:/lease/list";
+    }
 
-    
+    @RequestMapping(value = "/listLeases", method = RequestMethod.GET)
+    public ModelAndView listLeases(ModelMap model,
+            @RequestParam("dateFrom") Date dateFrom,
+            @RequestParam("dateTo") Date dateTo) {
+
+        List<LeaseDTO> leases = leaseService.getAllLeases(dateFrom, dateTo);
+        model.addAttribute("leases", leases);
+
+        return new ModelAndView("listLeases");
+    }
+
+    @RequestMapping(value = "/getTravelStatistics", method = RequestMethod.GET)
+    public ModelAndView getTravelStatistics(ModelMap model,
+            @RequestParam("person") PersonDTO person,
+            @RequestParam("dateFrom") Date dateFrom,
+            @RequestParam("dateTo") Date dateTo) {
+
+        List<LeaseDTO> travelStatistics = leaseService.getTravelStatistics(person, dateFrom, dateTo);
+        model.addAttribute("travelStatistics", travelStatistics);
+        //add if requestParam == null then default
+        return new ModelAndView("getTravelStatistics");
+    }
+
+    @RequestMapping(value = "/add", method = RequestMethod.POST)
+    public String addLease(ModelMap model,
+            @ModelAttribute("lease") LeaseDTO lease) {
+
+        leaseService.createLease(lease);
+
+        return "redirect:list";
+    }
+
 }
