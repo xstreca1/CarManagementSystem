@@ -48,12 +48,12 @@
                 </tr>
             </c:forEach>
         </table>
-
+<%-- 
         <form:form method="post" action="${pageContext.request.contextPath}/serviceCheck/update" modelAttribute="serviceCheck">
             <fieldset><legend><fmt:message key="serviceCheck.list.newServiceCheck"/></legend>
                 <%@include file="scForm.jsp"%>
                 <input type="submit" value="<fmt:message key='serviceCheck.list.createServiceCheck'/>">
             </fieldset>
-        </form:form>
+        </form:form>--%>
     </jsp:attribute>
 </my:layout>
