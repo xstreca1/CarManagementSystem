@@ -54,7 +54,16 @@
     p:viewName="index" />
     -->
     
-    <bean id="localeChangeInterceptor"
+    <!--
+    This bean is responsible for finding locale resources.
+    -->
+    <bean id="messageSource"
+          class="org.springframework.context.support.ResourceBundleMessageSource">
+        <property name="basename" value="messages" />
+        <property name="defaultEncoding" value="UTF-8"/>
+    </bean>
+    
+    <!--bean id="localeChangeInterceptor"
           class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor">
         <property name="paramName" value="language" />
     </bean>
@@ -65,14 +74,6 @@
                 <ref bean="localeChangeInterceptor" />
             </list>
         </property>
-    </bean>
-    
-    <!--
-    This bean.
-    -->
-    <bean id="messageSource"
-          class="org.springframework.context.support.ResourceBundleMessageSource">
-        <property name="basename" value="messages" />
-    </bean>
+    </bean-->
 
 </beans>
