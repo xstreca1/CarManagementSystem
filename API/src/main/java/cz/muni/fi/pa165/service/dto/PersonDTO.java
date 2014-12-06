@@ -1,7 +1,7 @@
 /*
  * Data transfer object for Person entity
  */
-package cz.muni.fi.pa165.api;
+package cz.muni.fi.pa165.service.dto;
 
 import cz.muni.fi.pa165.persistence.Entities.Address;
 import cz.muni.fi.pa165.persistence.Entities.Person;

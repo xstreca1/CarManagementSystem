@@ -1,4 +1,4 @@
-package cz.muni.fi.pa165.api;
+package cz.muni.fi.pa165.service.service;
 
 import cz.muni.fi.pa165.persistence.Entities.Lease;
 import cz.muni.fi.pa165.persistence.Entities.Lease.ReturnedStatus;
