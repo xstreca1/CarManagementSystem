@@ -50,7 +50,7 @@ public class LeaseController {
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String leaseHome() {
-        return "leaseListLeases";
+        return "leasesLastAdded";
     }
 
     @RequestMapping(value = "/delete/{id}")
