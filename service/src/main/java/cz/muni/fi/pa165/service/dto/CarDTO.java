@@ -14,8 +14,18 @@ import cz.muni.fi.pa165.persistence.Entities.Car;
 public class CarDTO {
 
     private Integer carID;
+    
+    private String availibility;
 
     private Boolean isActive;
+
+    public String getAvailibility() {
+        return availibility;
+    }
+
+    public void setAvailibility(String availibility) {
+        this.availibility = availibility;
+    }
 
     private String vehicleRegPlate;
 
