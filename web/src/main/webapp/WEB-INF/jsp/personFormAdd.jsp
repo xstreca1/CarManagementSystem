@@ -50,7 +50,7 @@
         <td><form:errors path="sex" cssClass="error"/></td>
     </tr>
     <tr>
-        <th><form:label path="isActive"><fmt:message key="car.isActive"/></form:label></th>
+        <th><form:label path="isActive"><fmt:message key="person.isActive"/></form:label></th>
         <td><form:checkbox path="isActive"/></td>
         <td><form:errors path="isActive" cssClass="error"/></td>
     </tr>

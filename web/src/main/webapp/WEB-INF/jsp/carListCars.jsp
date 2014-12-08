@@ -41,12 +41,12 @@
             </tr>
             <c:forEach items="${cars}" var="car">
                 <tr>
-                    <td>${car.id}</td>
+                    <td>${car.carID}</td>
                     <td><c:out value="${car.vehicleRegPlate}"/></td>
                     <td><c:out value="${car.brand}"/></td>
                     <td><c:out value="${car.typeName}"/></td>
                     <td><c:out value="${car.yearOfManufacture}"/></td>
-                    <td><c:out value="${cars.mileage}"/></td>
+                    <td><c:out value="${car.mileage}"/></td>
                     <td><fmt:message key="car.color.${car.color}"/></td>
                     <td><fmt:message key="car.bodystyle.${car.bodystyle}"/></td>
                     <td><c:out value="${car.enginePower}"/></td>                    
@@ -58,12 +58,12 @@
                     <td><fmt:message key="car.isActive.${car.isActive}"/></td>
 
                     <td>
-                        <form method="get" action="${pageContext.request.contextPath}/car/update/${car.id}">
+                        <form method="get" action="${pageContext.request.contextPath}/car/update/${car.carID}">
                             <input type="submit" value="<fmt:message key='car.list.edit'/>">
                         </form>
                     </td>
                     <td>
-                        <form method="post" action="${pageContext.request.contextPath}/car/delete/${car.id}">
+                        <form method="post" action="${pageContext.request.contextPath}/car/delete/${car.carID}">
                             <input type="submit" value="<fmt:message key='car.list.delete'/>">
                         </form>
                     </td>                    
@@ -78,7 +78,7 @@
             </c:forEach>
         </table>
         <!-- add?-->
-        <form:form method="post" action="${pageContext.request.contextPath}/car/update" modelAttribute="car">
+        <form:form method="post" action="${pageContext.request.contextPath}/car/add" modelAttribute="car">
             <fieldset><legend><fmt:message key="car.list.newCar"/></legend>
                 <%@include file="carFormAdd.jsp"%>
                 <input type="submit" value="<fmt:message key='car.list.createCar'/>">

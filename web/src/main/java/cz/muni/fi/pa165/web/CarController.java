@@ -5,6 +5,7 @@
  */
 package cz.muni.fi.pa165.web;
 
+import static com.sun.corba.se.spi.presentation.rmi.StubAdapter.request;
 import cz.muni.fi.pa165.service.dto.CarDTO;
 import cz.muni.fi.pa165.service.service.CarServiceInterface;
 import cz.muni.fi.pa165.service.service.LeaseServiceInterface;
@@ -12,6 +13,7 @@ import cz.muni.fi.pa165.service.service.PersonServices;
 import cz.muni.fi.pa165.service.service.ServiceCheckInterface;
 
 import java.util.List;
+import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Controller;
@@ -67,11 +69,15 @@ public class CarController {
     }
      
     @RequestMapping(value = "/", method = RequestMethod.GET)
-    public String carsHome(Model model)
-    {
-        
+    public String carsHome(HttpServletRequest request)
+    {List<CarDTO> cars = carService.findAllCars(true);
+        request.setAttribute("cars", cars);
+
         return "carListCars";
     }
+        
+        
+    
     
     @RequestMapping(value = "/listCars", method = RequestMethod.GET)
     public ModelAndView listCars(ModelMap model,
@@ -92,7 +98,7 @@ public class CarController {
         
         carService.createCar(car);
 
-        return "/car/listCars";
+        return "redirect:/car/";
     }
     
 //    @RequestMapping(method = RequestMethod.POST)

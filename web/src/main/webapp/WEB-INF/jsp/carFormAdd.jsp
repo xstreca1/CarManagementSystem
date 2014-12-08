@@ -14,6 +14,7 @@
         <td><form:input path="mileage"/></td>
         <td><form:errors path="mileage" cssClass="error"/></td>
     </tr>
+    
     <tr>
         <th><form:label path="availibility"><fmt:message key="car.availibility"/></form:label></th>
         <td><form:input path="availibility"/></td>
@@ -51,7 +52,7 @@
     </tr>
     <tr>
         <th><form:label path="transmission"><fmt:message key="car.transmission"/></form:label></th>
-        <td><form:input path="transmission"/></td>
+        <td><form:checkbox path="transmission"/></td>
         <td><form:errors path="transmission" cssClass="error"/></td>
     </tr>
     <tr>
@@ -62,7 +63,7 @@
     <tr>
         <th><form:label path="numberOfSeats"><fmt:message key="car.numberOfSeats"/></form:label></th>
         <td><form:input path="numberOfSeats"/></td>
-        <td><form:errors path="numberOfSeats" cssClass="error"/></td>
+       <%-- <td><form:errors path="numberOfSeats" cssClass="error"/></td>--%>
     </tr>
     <tr>
         <th><form:label path="color"><fmt:message key="car.color"/></form:label></th>
@@ -98,6 +99,11 @@
             </form:select></td>
 
         <td><form:errors path="emissionstandard" cssClass="error"/></td>
+    </tr>
+    <tr>
+        <th><form:label path="isActive"><fmt:message key="car.isActive"/></form:label></th>
+        <td><form:checkbox path="isActive"/></td>
+        <td><form:errors path="isActive" cssClass="error"/></td>
     </tr>
 
 </table>
