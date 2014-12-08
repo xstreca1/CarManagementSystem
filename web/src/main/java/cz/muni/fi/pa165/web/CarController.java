@@ -101,12 +101,23 @@ public class CarController {
         return "redirect:/car/";
     }
     
+    @RequestMapping(value = "/delete/{id}")
+    public String deletePerson(@PathVariable Integer id, ModelMap model) {
+        
+        CarDTO car1 = carService.getCarByID(id);
+        model.addAttribute("car1", car1); 
+        car1.setIsActive(false);
+        carService.updateCar(car1, id);
+
+        return "redirect:/car/";
+    }
+    
 //    @RequestMapping(method = RequestMethod.POST)
 //    public String home() {
 //        return "index";
 //    }
 
-    @RequestMapping(value = "/delete/{id}")
+    /*@RequestMapping(value = "/delete/{id}")
     public String deleteCar(@PathVariable String id, ModelMap model) {
         boolean deleted = false;
         String errorMsg = null;
@@ -128,7 +139,7 @@ public class CarController {
             model.addAttribute("errorMessage", errorMsg);
         }
         return "redirect:/car/listCars";
-    }
+    }*/
 
     @RequestMapping(value = "/update/{id}", method = RequestMethod.GET)
     public String update_form(@PathVariable Integer id, ModelMap model) {

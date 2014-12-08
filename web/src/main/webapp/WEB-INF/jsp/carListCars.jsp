@@ -65,7 +65,7 @@
                         </form>
                     </td>
                     <td>
-                        <form method="post" action="${pageContext.request.contextPath}/car/delete/${car.carID}">
+                        <form method="post" action="${pageContext.request.contextPath}/car/delete/${car.carID}"modelAttribute="car1">
                             <input type="submit" value="<fmt:message key='car.list.delete'/>">
                         </form>
                     </td>                    

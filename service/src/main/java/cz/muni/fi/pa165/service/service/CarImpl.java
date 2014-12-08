@@ -59,7 +59,7 @@ public class CarImpl implements CarServiceInterface {
 
     public void updateCar(CarDTO carDto, Integer carID) {
         
-        Car carEntity = null;
+        Car carEntity = new Car();
         
         List<String> list = new ArrayList<String>();
 // Add the mapping configuration
