@@ -76,7 +76,7 @@ public class PersonController {
         return person;
     }
 
-    @RequestMapping(value = "/listPeople", method = RequestMethod.GET)
+    /*@RequestMapping(value = "/listPeople", method = RequestMethod.GET)
     public ModelAndView listPeople(ModelMap model,
             @RequestParam(value = "isInactive", required = false) boolean isInactive) {
 
@@ -84,7 +84,7 @@ public class PersonController {
         model.addAttribute("people", people);
 
         return new ModelAndView("listPeople");
-    }
+    }*/
 
     @RequestMapping(value = "/add", method = RequestMethod.POST)
     public String addPerson(@ModelAttribute("person") PersonDTO person,
@@ -126,8 +126,7 @@ public class PersonController {
 
         return "redirect:/person/";
     }
-
-    @RequestMapping(value = "/update", method = RequestMethod.POST)
+    /*@RequestMapping(value = "/update", method = RequestMethod.POST)
     public String updatePerson(@ModelAttribute("person") PersonDTO person,
             BindingResult result, ModelMap model, @PathVariable Integer id) {
 
@@ -154,6 +153,6 @@ public class PersonController {
         model.addAttribute("getPeopleByName", namedPersonNew);
 
         return new ModelAndView("getPeopleByName");
-    }
+    }*/
 
 }
