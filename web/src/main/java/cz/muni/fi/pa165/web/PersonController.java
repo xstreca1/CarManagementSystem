@@ -88,8 +88,20 @@ public class PersonController {
     @RequestMapping(value = "/add", method = RequestMethod.POST)
     public String addPerson(@ModelAttribute("person") PersonDTO person,
             BindingResult result, ModelMap model) {
-
+        
+       
         personService.createPerson(person);
+
+        return "redirect:/person/";
+    }
+    
+    @RequestMapping(value = "/delete/{id}")
+    public String deletePerson(@PathVariable Integer id, ModelMap model) {
+        
+        PersonDTO person1 = personService.getPersonByID(id);
+        model.addAttribute("person1", person1); 
+        person1.setIsActive(false);
+        personService.editPerson(person1, id);
 
         return "redirect:/person/";
     }
