@@ -15,15 +15,15 @@ public class CarDTO {
 
     private Integer carID;
     
-    private String availibility;
+    private boolean availibility;
 
     private Boolean isActive;
 
-    public String getAvailibility() {
+    public boolean getAvailibility() {
         return availibility;
     }
 
-    public void setAvailibility(String availibility) {
+    public void setAvailibility() {
         this.availibility = availibility;
     }
 

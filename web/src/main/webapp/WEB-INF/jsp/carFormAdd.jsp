@@ -17,7 +17,7 @@
     
     <tr>
         <th><form:label path="availibility"><fmt:message key="car.availibility"/></form:label></th>
-        <td><form:input path="availibility"/></td>
+        <td><form:checkbox path="availibility"/></td>
         <td><form:errors path="availibility" cssClass="error"/></td>
     </tr>
     <tr>
