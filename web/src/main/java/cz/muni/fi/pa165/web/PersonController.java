@@ -16,6 +16,7 @@ import java.io.IOException;
 import static java.lang.Math.log;
 import static java.rmi.server.LogStream.log;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 import javax.servlet.ServletException;
@@ -88,18 +89,17 @@ public class PersonController {
     @RequestMapping(value = "/add", method = RequestMethod.POST)
     public String addPerson(@ModelAttribute("person") PersonDTO person,
             BindingResult result, ModelMap model) {
-        
-       
+
         personService.createPerson(person);
 
         return "redirect:/person/";
     }
-    
+
     @RequestMapping(value = "/delete/{id}")
     public String deletePerson(@PathVariable Integer id, ModelMap model) {
-        
+
         PersonDTO person1 = personService.getPersonByID(id);
-        model.addAttribute("person1", person1); 
+        model.addAttribute("person1", person1);
         person1.setIsActive(false);
         personService.editPerson(person1, id);
 
@@ -107,10 +107,24 @@ public class PersonController {
     }
 
     @RequestMapping(value = "/update/{id}", method = RequestMethod.GET)
-    public String update_form(@PathVariable Integer id, ModelMap model) {
-        PersonDTO person = personService.getPersonByID(id);
-        model.addAttribute("person", person);
-        return "person/edit";
+    public String update_form(@PathVariable Integer id, HttpServletRequest request) {
+        
+        List<PersonDTO> people = new ArrayList();
+        people.add(personService.getPersonByID(id));
+        request.setAttribute("people", people);
+        //model.addAttribute("person2", person2);
+        return "personAdd";
+    }
+
+    @RequestMapping(value = "/edit/{id}", method = RequestMethod.POST)
+    public String editPerson(@ModelAttribute("person") PersonDTO person,@PathVariable Integer id,
+            BindingResult result, ModelMap model) {
+
+        
+        personService.editPerson(person, id);
+        
+
+        return "redirect:/person/";
     }
 
     @RequestMapping(value = "/update", method = RequestMethod.POST)

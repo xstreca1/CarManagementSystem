@@ -49,7 +49,7 @@
                     <td><fmt:message key="person.isActive.${person.isActive}"/></td>
 
                     <td>
-                        <form method="get" action="${pageContext.request.contextPath}/person/update/${person.id}">
+                        <form method="get" action="${pageContext.request.contextPath}/person/update/${person.id}" modelAttribute="person">
                             <input type="submit" value="<fmt:message key='person.list.edit'/>">
                         </form>
                     </td>
