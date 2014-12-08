@@ -42,7 +42,7 @@
                     <td><c:out value="${person.dateOfBirth}"/></td>
                     <td><c:out value="${person.nationality}"/></td>
                     <td><fmt:message key="person.sex.${person.sex}"/></td>
-                    <td><c:out value="${person.address}"/></td>
+                  <%-- <td><c:out value="${person.address}"/></td>--%>
                     <td><fmt:message key="person.employmentStatus.${person.employmentStatus}"/></td>
                     <td><c:out value="${person.position}"/></td>
                     <td><c:out value="${person.salary}"/></td>
