@@ -68,7 +68,7 @@
             </c:forEach>
         </table>
 
-        <form:form method="post" action="${pageContext.request.contextPath}/person/update" modelAttribute="person">
+        <form:form method="post" action="${pageContext.request.contextPath}/person/add" modelAttribute="person">
             <fieldset><legend><fmt:message key="person.list.newperson"/></legend>
                 <%@include file="personFormAdd.jsp"%>
                 <input type="submit" value="<fmt:message key='person.list.addPerson'/>">

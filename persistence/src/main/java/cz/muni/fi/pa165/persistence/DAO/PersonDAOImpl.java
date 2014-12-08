@@ -52,7 +52,7 @@ public class PersonDAOImpl implements PersonDAO {
 
         //get all updatable attributes from the updated person entity instance
         //lease and sex could not be updated
-        Address address = updatedPerson.getAddress();
+        //Address address = updatedPerson.getAddress();
         Date dateOfBirth = updatedPerson.getDateOfBirth();
         EmploymentStatus empStat = updatedPerson.getEmploymentStatus();
         String name = updatedPerson.getName();
@@ -64,7 +64,7 @@ public class PersonDAOImpl implements PersonDAO {
         Person person1 = (Person)em.find(Person.class ,personID);
         
         //change attributes of persisted entity in DB
-        person1.setAddress(address);
+        //person1.setAddress(address);
         person1.setEmploymentStatus(empStat);
         person1.setName(name);
         person1.setNationality(nationality);

@@ -13,11 +13,11 @@
         <td><form:input path="name"/></td>
         <td><form:errors path="name" cssClass="error"/></td>
     </tr>
-    <tr>
+    <%-- <tr>
         <th><form:label path="dateOfBirth"><fmt:message key="person.dateOfBirth"/></form:label></th>
         <td><form:input path="dateOfBirth"/></td>
         <td><form:errors path="dateOfBirth" cssClass="error"/></td>
-    </tr>
+    </tr>--%>
     <tr>
         <th><form:label path="position"><fmt:message key="person.position"/></form:label></th>
         <td><form:input path="position"/></td>
@@ -48,6 +48,16 @@
                 <form:options items="${enumValues}" />
             </form:select></td>
         <td><form:errors path="sex" cssClass="error"/></td>
+    </tr>
+    <tr>
+        <th><form:label path="isActive"><fmt:message key="car.isActive"/></form:label></th>
+        <td><form:checkbox path="isActive"/></td>
+        <td><form:errors path="isActive" cssClass="error"/></td>
+    </tr>
+    <tr>
+        <th><form:label path="identificationNumber"><fmt:message key="person.identificationNumber"/></form:label></th>
+        <td><form:input path="identificationNumber"/></td>
+        <td><form:errors path="identificationNumber" cssClass="error"/></td>
     </tr>
 
 </table>

@@ -88,7 +88,7 @@ public class LeaseDAOImplTest {
         //create person
         person = new Person();
         person.setName("JOHN");
-        person.setAddress(new Address());
+       // person.setAddress(new Address());
         person.setPosition("HR");
         person.setNationality("US");
         person.setSalary(25_000);

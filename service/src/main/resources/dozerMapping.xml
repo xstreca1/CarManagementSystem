@@ -37,10 +37,7 @@
             <a>sex</a>
             <b>sex</b>
         </field>
-        <field>
-            <a>address</a>
-            <b>address</b>
-        </field>
+       
         <field>
             <a>nationality</a>
             <b>nationality</b>

@@ -47,7 +47,7 @@ public class PersonDAOImplTest {
         //create simple person        
         person = new Person();
         person.setName("JOHN");
-        person.setAddress(new Address());
+       // person.setAddress(new Address());
         person.setPosition("HR");
         person.setNationality("US");
         person.setSalary(25_000);
@@ -57,7 +57,7 @@ public class PersonDAOImplTest {
         //create people with same name
         person2 = new Person();
         person2.setName("JOE");
-        person2.setAddress(new Address());
+        //person2.setAddress(new Address());
         person2.setPosition("Marketing");
         person2.setNationality("US");
         person2.setSalary(30_000);
@@ -66,7 +66,7 @@ public class PersonDAOImplTest {
 
         person3 = new Person();
         person3.setName("JOE");
-        person3.setAddress(new Address());
+        //person3.setAddress(new Address());
         person3.setPosition("Support");
         person3.setNationality("US");
         person3.setSalary(33_000);
@@ -75,7 +75,7 @@ public class PersonDAOImplTest {
 
         person4 = new Person();
         person4.setName("JOE");
-        person4.setAddress(new Address());
+        //person4.setAddress(new Address());
         person4.setPosition("QA");
         person4.setNationality("US");
         person4.setSalary(38_000);
@@ -97,7 +97,7 @@ public class PersonDAOImplTest {
         //create person which is not persisted in database to test insertPerson method
         toInsert = new Person();
         toInsert.setName("TEST");
-        toInsert.setAddress(new Address());
+        //toInsert.setAddress(new Address());
         toInsert.setPosition("Developer");
         toInsert.setNationality("US");
         toInsert.setSalary(45_000);
@@ -106,7 +106,7 @@ public class PersonDAOImplTest {
 
         toUpdate = new Person();
         toUpdate.setName("UPDATE");
-        toUpdate.setAddress(new Address());
+    //    toUpdate.setAddress(new Address());
         toUpdate.setPosition("Developer");
         toUpdate.setNationality("CZ");
         toUpdate.setSalary(46_000);

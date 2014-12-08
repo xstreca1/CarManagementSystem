@@ -83,7 +83,7 @@ public class PersonController {
 
         personService.createPerson(person);
 
-        return "redirect:/person/listPeople";
+        return "personListPeople";
     }
 
     @RequestMapping(value = "/update/{id}", method = RequestMethod.GET)

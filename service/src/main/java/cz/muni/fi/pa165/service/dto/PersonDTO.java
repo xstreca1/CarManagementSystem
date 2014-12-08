@@ -27,7 +27,7 @@ public class PersonDTO {
 
     private Person.Sex sex;
 
-    private Address address;
+    //private Address address;
 
     private String nationality;
 
@@ -37,7 +37,7 @@ public class PersonDTO {
 
     public PersonDTO(Integer id, String name, Boolean isActive,
             Person.EmploymentStatus employmentStatus, Date dateOfBirth,
-            String position, Person.Sex sex, Address address,
+            String position, Person.Sex sex, //Address address,
             String nationality, int salary, String identificationNumber) {
 
         this.id = id;
@@ -47,7 +47,7 @@ public class PersonDTO {
         this.dateOfBirth = dateOfBirth;
         this.position = position;
         this.sex = sex;
-        this.address = address;
+        //this.address = address;
         this.nationality = nationality;
         this.salary = salary;
         this.IdentificationNumber = identificationNumber;
@@ -122,13 +122,13 @@ public class PersonDTO {
         this.sex = sex;
     }
 
-    public Address getAddress() {
+    /*public Address getAddress() {
         return address;
     }
 
     public void setAddress(Address address) {
         this.address = address;
-    }
+    }*/
 
     public String getNationality() {
         return nationality;

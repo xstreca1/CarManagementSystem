@@ -71,8 +71,8 @@ public class Person implements Serializable {
     @Enumerated(EnumType.STRING)
     private Sex sex;
 
-    @Embedded
-    private Address address;
+    /*@Embedded
+    private Address address;*/
 
     @Column(nullable = false)
     private String nationality;
@@ -121,13 +121,13 @@ public class Person implements Serializable {
         this.position = position;
     }
 
-    public Address getAddress() {
+    /*public Address getAddress() {
         return address;
-    }
+    }*/
 
-    public void setAddress(Address address) {
+    /*public void setAddress(Address address) {
         this.address = address;
-    }
+    }*/
 
     public String getNationality() {
         return nationality;
