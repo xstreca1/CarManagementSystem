@@ -36,6 +36,7 @@
                 <th><fmt:message key="car.VIN"/></th>
                 <th><fmt:message key="car.emissionstandard"/></th>
                 <th><fmt:message key="car.isActive"/></th>
+                <th><fmt:message key="car.availibility"/></th>
                 <th></th>
                 <th></th>
             </tr>
@@ -56,6 +57,7 @@
                     <td><c:out value="${car.VIN}"/></td> 
                     <td><c:out value="${car.emissionstandard}"/></td> 
                     <td><fmt:message key="car.isActive.${car.isActive}"/></td>
+                    <td><fmt:message key="car.availibility.${car.availibility}"/></td>
 
                     <td>
                         <form method="get" action="${pageContext.request.contextPath}/car/update/${car.carID}">
