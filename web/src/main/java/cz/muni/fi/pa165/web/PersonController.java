@@ -5,16 +5,22 @@
  */
 package cz.muni.fi.pa165.web;
 
+import static com.sun.corba.se.spi.presentation.rmi.StubAdapter.request;
 import cz.muni.fi.pa165.persistence.Entities.Person;
 import cz.muni.fi.pa165.service.dto.PersonDTO;
 import cz.muni.fi.pa165.service.service.CarServiceInterface;
 import cz.muni.fi.pa165.service.service.LeaseServiceInterface;
 import cz.muni.fi.pa165.service.service.PersonServices;
 import cz.muni.fi.pa165.service.service.ServiceCheckInterface;
+import java.io.IOException;
 import static java.lang.Math.log;
 import static java.rmi.server.LogStream.log;
+import java.sql.SQLException;
 import java.util.List;
 import java.util.Locale;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import static javax.swing.text.StyleConstants.ModelAttribute;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -55,18 +61,20 @@ public class PersonController {
     }
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
-    public String carsHome() {
+    public String carsHome(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        List<PersonDTO> people = personService.findAllPeople(true);
+        request.setAttribute("people", people);
+
         return "personListPeople";
     }
 
     @ModelAttribute("person")
-      public PersonDTO getPerson()
-      {
+    public PersonDTO getPerson() {
         PersonDTO person = new PersonDTO();
-        
+
         return person;
     }
-    
+
     @RequestMapping(value = "/listPeople", method = RequestMethod.GET)
     public ModelAndView listPeople(ModelMap model,
             @RequestParam(value = "isInactive", required = false) boolean isInactive) {
@@ -83,7 +91,7 @@ public class PersonController {
 
         personService.createPerson(person);
 
-        return "personListPeople";
+        return "redirect:/person/";
     }
 
     @RequestMapping(value = "/update/{id}", method = RequestMethod.GET)
