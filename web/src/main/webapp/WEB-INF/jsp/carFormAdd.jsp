@@ -67,28 +67,37 @@
     <tr>
         <th><form:label path="color"><fmt:message key="car.color"/></form:label></th>
         <td><form:select path="color">
-            <option> "1" </option></form:select></td>
+                <form:option value="-"> <fmt:message key="enum.select"/></form:option>
+                <form:options items="${enumValues}" />
+            </form:select></td>
         <td><form:errors path="color" cssClass="error"/></td>
     </tr>
     <tr>
         <th><form:label path="category"><fmt:message key="car.category"/></form:label></th>
         <td><form:select path="category">
-        <option> "1" </option></form:select>
-    </td>
-    <td><form:errors path="category" cssClass="error"/></td>
-</tr>
-<tr>
-    <th><form:label path="bodystyle"><fmt:message key="car.bodystyle"/></form:label></th>
-    <td><form:select path="bodystyle">
-    <option> "1" </option></form:select></td>
-<td><form:errors path="bodystyle" cssClass="error"/></td>
-</tr>
-<tr>
-    <th><form:label path="emissionstandard"><fmt:message key="car.emissionstandard"/></form:label></th>
-    <td><form:select path="emissionstandard">
-    <option> "1" </option> </form:select></td>
+                <form:option value="-"> <fmt:message key="enum.select"/></form:option>
+                <form:options items="${enumValues}" />
+            </form:select>
+        </td>
+        <td><form:errors path="category" cssClass="error"/></td>
+    </tr>
+    <tr>
+        <th><form:label path="bodystyle"><fmt:message key="car.bodystyle"/></form:label></th>
+        <td><form:select path="bodystyle">
+                <form:option value="-" > <fmt:message key="enum.select"/></form:option>
+                <form:options items="${enumValues}" />
+            </form:select>
+        </td>
+        <td><form:errors path="bodystyle" cssClass="error"/></td>
+    </tr>
+    <tr>
+        <th><form:label path="emissionstandard"><fmt:message key="car.emissionstandard"/></form:label></th>
+        <td><form:select path="emissionstandard">
+                <form:option value="-" > <fmt:message key="enum.select"/></form:option>
+                <form:options items="${enumValues}" />
+            </form:select></td>
 
-<td><form:errors path="emissionstandard" cssClass="error"/></td>
-</tr>
+        <td><form:errors path="emissionstandard" cssClass="error"/></td>
+    </tr>
 
 </table>

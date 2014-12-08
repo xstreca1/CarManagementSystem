@@ -36,16 +36,18 @@
     <tr>
         <th><form:label path="employmentStatus"><fmt:message key="person.employmentStatus"/></form:label></th>
         <td><form:select path="employmentStatus">
-        <option> "1" </option></form:select></td>
-<td><form:errors path="employmentStatus" cssClass="error"/></td>
-</tr>
-<tr>
-    <th><form:label path="sex"><fmt:message key="person.sex"/></form:label></th>
-    <td><form:select path="sex">
-    <option> "muz" </option>
-    <option> "zena" </option>
-    <option> "iny" </option> </form:select></td>
-<td><form:errors path="sex" cssClass="error"/></td>
-</tr>
+                <form:option value="-"> <fmt:message key="enum.select"/></form:option>
+                <form:options items="${enumValues}" />
+            </form:select></td>
+        <td><form:errors path="employmentStatus" cssClass="error"/></td>
+    </tr>
+    <tr>
+        <th><form:label path="sex"><fmt:message key="person.sex"/></form:label></th>
+        <td><form:select path="sex">
+                <form:option value="-"> <fmt:message key="enum.select"/></form:option>
+                <form:options items="${enumValues}" />
+            </form:select></td>
+        <td><form:errors path="sex" cssClass="error"/></td>
+    </tr>
 
 </table>
