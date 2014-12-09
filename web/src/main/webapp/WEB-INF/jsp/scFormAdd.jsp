@@ -8,7 +8,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
-<table>
+<table id="add">
             <tr>
                 <th><form:label path="name"><fmt:message key="serviceCheck.name"/></form:label></th>
                 <td><form:select path="name"/>
@@ -16,8 +16,7 @@
                                   itemLabel="name"
                                   itemValue="name" /></td>
                 <td><form:errors path="name" cssClass="error"/></td>
-            </tr>    
-            <tr>
+            
                 <th><form:label path="serviceInterval"><fmt:message key="serviceCheck.serviceInterval"/></form:label></th>
                 <td><form:input path="serviceInterval"/></td>
                 <td><form:errors path="serviceInterval" cssClass="error"/></td>
@@ -26,8 +25,7 @@
                 <th><form:label path="lastCheck"><fmt:message key="serviceCheck.lastCheck"/></form:label></th>
                 <td><form:input path="lastCheck"/></td>
                 <td><form:errors path="lastCheck" cssClass="error"/></td>
-            </tr>
-            <tr>
+           
                 <th><form:label path="description"><fmt:message key="serviceCheck.description"/></form:label></th>
                 <td><form:textarea path="description"/></td>
                 <td><form:errors path="description" cssClass="error"/></td>

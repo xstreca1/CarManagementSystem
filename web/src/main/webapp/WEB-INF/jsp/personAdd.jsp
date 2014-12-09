@@ -16,7 +16,7 @@
     <jsp:attribute name="body">
         <p><fmt:message key="person.list.allPeople"/></p>
 
-        <table class="basic">
+        <table class="basic" id="add">
             <tr>
                 <th>id</th>
                 <th><fmt:message key="person.name"/></th>
