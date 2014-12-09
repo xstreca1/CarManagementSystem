@@ -8,7 +8,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
-<table id="add">
+<table>
     <tr>
         <th><form:label path="name"><fmt:message key="person.name"/></form:label></th>
         <td><form:input path="name"/></td>

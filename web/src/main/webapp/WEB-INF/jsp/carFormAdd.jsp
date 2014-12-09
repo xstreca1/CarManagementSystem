@@ -8,12 +8,14 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
-<table id="add">
+<table>
     <tr>
         <th><form:label path="mileage"><fmt:message key="car.mileage"/></form:label></th>
         <td><form:input path="mileage"/></td>
         <td><form:errors path="mileage" cssClass="error"/></td>
+    </tr>
     
+    <tr>
         <th><form:label path="availibility"><fmt:message key="car.availibility"/></form:label></th>
         <td><form:checkbox path="availibility"/></td>
         <td><form:errors path="availibility" cssClass="error"/></td>
@@ -22,7 +24,8 @@
         <th><form:label path="vehicleRegPlate"><fmt:message key="car.vehicleRegPlate"/></form:label></th>
         <td><form:input path="vehicleRegPlate"/></td>
         <td><form:errors path="vehicleRegPlate" cssClass="error"/></td>
-    
+    </tr>
+    <tr>
         <th><form:label path="yearOfManufacture"><fmt:message key="car.yearOfManufacture"/></form:label></th>
         <td><form:input path="yearOfManufacture"/></td>
         <td><form:errors path="yearOfManufacture" cssClass="error"/></td>
@@ -31,7 +34,8 @@
         <th><form:label path="brand"><fmt:message key="car.brand"/></form:label></th>
         <td><form:input path="brand"/></td>
         <td><form:errors path="brand" cssClass="error"/></td>
-   
+    </tr>
+    <tr>
         <th><form:label path="typeName"><fmt:message key="car.typeName"/></form:label></th>
         <td><form:input path="typeName"/></td>
         <td><form:errors path="typeName" cssClass="error"/></td>
@@ -40,7 +44,8 @@
         <th><form:label path="enginePower"><fmt:message key="car.enginePower"/></form:label></th>
         <td><form:input path="enginePower"/></td>
         <td><form:errors path="enginePower" cssClass="error"/></td>
-    
+    </tr>
+    <tr>
         <th><form:label path="gasConsumption"><fmt:message key="car.gasConsumption"/></form:label></th>
         <td><form:input path="gasConsumption"/></td>
         <td><form:errors path="gasConsumption" cssClass="error"/></td>
@@ -49,7 +54,8 @@
         <th><form:label path="transmission"><fmt:message key="car.transmission"/></form:label></th>
         <td><form:checkbox path="transmission"/></td>
         <td><form:errors path="transmission" cssClass="error"/></td>
-   
+    </tr>
+    <tr>
         <th><form:label path="VIN"><fmt:message key="car.VIN"/></form:label></th>
         <td><form:input path="VIN"/></td>
         <td><form:errors path="VIN" cssClass="error"/></td>

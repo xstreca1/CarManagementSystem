@@ -6,12 +6,13 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<table id="add">
+<table>
     <tr>
         <th><form:label path="distance"><fmt:message key="lease.distance"/></form:label></th>
         <td><form:input path="distance"/></td>
         <td><form:errors path="distance" cssClass="error"/></td>
-    
+    </tr>
+    <tr>
         <th><form:label path="dateOfLease"><fmt:message key="lease.dateOfLease"/></form:label></th>
         <td><form:input path="dateOfLease"/></td>
         <td><form:errors path="dateOfLease" cssClass="error"/></td>
