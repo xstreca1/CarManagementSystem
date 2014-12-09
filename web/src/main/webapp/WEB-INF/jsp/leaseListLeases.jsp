@@ -44,12 +44,12 @@
 
                     <td>
                         <form method="get" action="${pageContext.request.contextPath}/lease/update/${lease.id}">
-                            <input class="btn black" type="submit" value="<fmt:message key='lease.list.edit'/>">
+                            <input type="submit" value="<fmt:message key='lease.list.edit'/>">
                         </form>
                     </td>
                     <td>
                         <form method="post" action="${pageContext.request.contextPath}/lease/delete/${lease.id}">
-                            <input class="btn black" type="submit" value="<fmt:message key='lease.list.delete'/>">
+                            <input type="submit" value="<fmt:message key='lease.list.delete'/>">
                         </form>
                     </td>
 

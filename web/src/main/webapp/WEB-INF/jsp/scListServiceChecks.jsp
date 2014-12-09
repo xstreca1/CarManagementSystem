@@ -36,12 +36,12 @@
                     <td><c:out value="${serviceCheck.description}"/></td>                    
                     <td>
                         <form method="get" action="${pageContext.request.contextPath}/serviceCheck/update/${serviceCheck.id}">
-                            <input class="btn black" type="submit" value="<fmt:message key='serviceCheck.list.edit'/>">
+                            <input type="submit" value="<fmt:message key='serviceCheck.list.edit'/>">
                         </form>
                     </td>
                     <td>
                         <form method="post" action="${pageContext.request.contextPath}/serviceCheck/delete/${serviceCheck.id}">
-                            <input class="btn black" type="submit" value="<fmt:message key='serviceCheck.list.delete'/>">
+                            <input type="submit" value="<fmt:message key='serviceCheck.list.delete'/>">
                         </form>
                     </td>
 

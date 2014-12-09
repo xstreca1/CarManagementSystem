@@ -50,17 +50,17 @@
 
                     <td>
                         <form method="get" action="${pageContext.request.contextPath}/person/update/${person.id}" modelAttribute="person">
-                            <input class="btn black" type="submit" value="<fmt:message key='person.list.edit'/>">
+                            <input type="submit" value="<fmt:message key='person.list.edit'/>">
                         </form>
                     </td>
                     <td>
                         <form method="post" action="${pageContext.request.contextPath}/person/delete/${person.id}"modelAttribute="person1">
-                            <input class="btn black" type="submit" value="<fmt:message key='person.list.delete'/>">
+                            <input type="submit" value="<fmt:message key='person.list.delete'/>">
                         </form>
                     </td>
                     <td>
                         <form method="post" action="${pageContext.request.contextPath}/lease/getTravelStatistics/${person}">
-                            <input class="btn black" type="submit" value="<fmt:message key='person.list.getTravelStatsForPerson'/>">
+                            <input type="submit" value="<fmt:message key='person.list.getTravelStatsForPerson'/>">
                         </form>
                     </td>
 
@@ -71,7 +71,7 @@
         <form:form method="post" action="${pageContext.request.contextPath}/person/add" modelAttribute="person">
             <fieldset><legend><fmt:message key="person.list.newperson"/></legend>
                 <%@include file="personFormAdd.jsp"%>
-                <input class="btn black" type="submit" value="<fmt:message key='person.list.addPerson'/>">
+                <input type="submit" value="<fmt:message key='person.list.addPerson'/>">
             </fieldset>
         </form:form>
     </jsp:attribute>
