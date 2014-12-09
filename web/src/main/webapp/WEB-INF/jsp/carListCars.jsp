@@ -61,17 +61,17 @@
 
                     <td>
                         <form method="get" action="${pageContext.request.contextPath}/car/update/${car.carID}">
-                            <input type="submit" value="<fmt:message key='car.list.edit'/>">
+                            <input class="btn black" type="submit" value="<fmt:message key='car.list.edit'/>">
                         </form>
                     </td>
                     <td>
                         <form method="post" action="${pageContext.request.contextPath}/car/delete/${car.carID}"modelAttribute="car1">
-                            <input type="submit" value="<fmt:message key='car.list.delete'/>">
+                            <input class="btn black" type="submit" value="<fmt:message key='car.list.delete'/>">
                         </form>
                     </td>                    
                     <td>
                         <form method="post" action="${pageContext.request.contextPath}/serviceCheck/listServiceChecks/${car}">
-                            <input type="submit" value="<fmt:message key='car.list.showSC'/>">
+                            <input class="btn black" type="submit" value="<fmt:message key='car.list.showSC'/>">
                         </form>
                     </td>
                     <!--add getDaysToNextSC-->
@@ -83,7 +83,7 @@
         <form:form method="post" action="${pageContext.request.contextPath}/car/add" modelAttribute="car">
             <fieldset><legend><fmt:message key="car.list.newCar"/></legend>
                 <%@include file="carFormAdd.jsp"%>
-                <input type="submit" value="<fmt:message key='car.list.createCar'/>">
+                <input class="btn black" type="submit" value="<fmt:message key='car.list.createCar'/>">
             </fieldset>
         </form:form>
     </jsp:attribute>

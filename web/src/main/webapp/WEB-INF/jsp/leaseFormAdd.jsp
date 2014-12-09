@@ -59,7 +59,7 @@
 
 </tr>
 <tr>
-    <td colspan="2"><button class="button" type="button"
+    <td colspan="2"><button class="btn black" class="button" type="button"
                             value="Add lease"
                             <%-- onclick="javascript:validateAndSubmitAddLoanForm()"> --%>
                             <spring:message code="lang.addLease" text="Add lease" />

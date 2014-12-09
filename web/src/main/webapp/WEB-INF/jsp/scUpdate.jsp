@@ -18,7 +18,7 @@
     <form:hidden path="id"/>
     <fieldset><legend><fmt:message key="serviceCheck.edit.edit"/></legend>
         <%@include file="form.jsp"%>
-        <input type="submit" value="<fmt:message key='serviceCheck.edit.save'/>">
+        <input class="btn black" type="submit" value="<fmt:message key='serviceCheck.edit.save'/>">
     </fieldset>
 </form:form>
 </jsp:attribute>
