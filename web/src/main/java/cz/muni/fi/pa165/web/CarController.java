@@ -234,6 +234,6 @@ public class CarController {
 
         serviceCheckService.createServiceCheck(check);
         
-        return "redirect:/servieCheck/";
+        return "redirect:/serviceCheck/";
     }
 }
