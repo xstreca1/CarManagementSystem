@@ -56,7 +56,7 @@
                     <td><fmt:message key="car.availibility.${car.availibility}"/></td>
                         
                     <td>
-                    <form:form method="post" action="${pageContext.request.contextPath}/lease/add" modelAttribute="lease">
+                    <form:form method="post" action="${pageContext.request.contextPath}/car/confirmLease/${car.carID}" modelAttribute="lease">
                             
                             <fieldset><legend><fmt:message key="lease.add.add"/></legend>
                                 <%@include file="leaseFormAdd.jsp"%>

@@ -6,6 +6,7 @@
 package cz.muni.fi.pa165.web;
 
 import static com.sun.corba.se.spi.presentation.rmi.StubAdapter.request;
+import cz.muni.fi.pa165.persistence.Entities.Car;
 import cz.muni.fi.pa165.persistence.Entities.Lease;
 import cz.muni.fi.pa165.service.dto.CarDTO;
 import cz.muni.fi.pa165.service.dto.LeaseDTO;
@@ -13,16 +14,21 @@ import cz.muni.fi.pa165.service.service.CarServiceInterface;
 import cz.muni.fi.pa165.service.service.LeaseServiceInterface;
 import cz.muni.fi.pa165.service.service.PersonServices;
 import cz.muni.fi.pa165.service.service.ServiceCheckInterface;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -185,5 +191,22 @@ public class CarController {
         model.addAttribute("lease", lease);
         //model.addAttribute("person2", person2);
         return "leaseCar";
+    }
+    
+    @RequestMapping(value = "/confirmLease/{id}", method = RequestMethod.POST)
+    public String confirmLeaseCar(@PathVariable Integer id,@ModelAttribute("lease") LeaseDTO lease,
+            ModelMap model) {
+
+        model.addAttribute("lease", lease);
+
+        leaseService.createLease(lease);
+        
+        return "redirect:/lease/";
+    }
+    @InitBinder
+    public void initBinder(WebDataBinder binder) {
+        SimpleDateFormat sdf = new SimpleDateFormat("MM-dd-yyyy");
+        sdf.setLenient(true);
+        binder.registerCustomEditor(Date.class, new CustomDateEditor(sdf, true));
     }
 }

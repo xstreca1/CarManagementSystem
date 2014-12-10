@@ -19,6 +19,7 @@
     </tr>
     <tr>
         <th><form:label path="dateOfReturn"><fmt:message key="lease.dateOfReturn"/></form:label></th>
+        
         <td><form:input path="dateOfReturn"/></td>
         <td><form:errors path="dateOfReturn" cssClass="error"/></td>
     </tr>            
