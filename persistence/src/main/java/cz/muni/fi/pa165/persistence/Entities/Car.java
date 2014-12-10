@@ -89,19 +89,19 @@ public class Car implements Serializable {
     @Enumerated(EnumType.STRING)
     private bodyStyle bodystyle;
 
-    @Column(nullable = false)
+    @Column //(nullable = false)
     private int enginePower;
 
-    @Column(nullable = false)
+    @Column //(nullable = false)
     private float gasConsumption;
 
-    @Column(nullable = false)
+    @Column //(nullable = false)
     private boolean transmission;
 
     @Enumerated(EnumType.STRING)
     private Category category;
 
-    @Column(nullable = false)
+    @Column //(nullable = false)
     private String VIN;
 
     @Enumerated(EnumType.STRING)

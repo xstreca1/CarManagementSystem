@@ -160,7 +160,7 @@ public class CarController {
         cars.add(carService.getCarByID(id));
         request.setAttribute("cars", cars);
         //model.addAttribute("person2", person2);
-        return "carAdd";
+        return "carEdit";
     }
 
     @RequestMapping(value = "/edit/{id}", method = RequestMethod.POST)
