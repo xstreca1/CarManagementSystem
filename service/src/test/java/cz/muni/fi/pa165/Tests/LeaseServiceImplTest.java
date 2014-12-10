@@ -111,13 +111,13 @@ public class LeaseServiceImplTest {
         
     }
     
- /*   @Test
+    @Test
     public void getLeasesByPerson() {
         
-        List<LeaseDTO> list = LeaseServiceImpl.getLeaseByPerson(personDto);
+        List<LeaseDTO> list = service.getLeaseByPerson(personDto);
 			assertNotNull(list);
 			assertEquals(2, list.size());
         
     }
-    */
+    
 }
