@@ -29,18 +29,18 @@
             </tr>
             <c:forEach items="${checks}" var="serviceCheck">
                 <tr>
-                    <td>${serviceCheck.id}</td>
+                    <td>${serviceCheck.scID}</td>
                     <td><fmt:message key="serviceCheck.name.${serviceCheck.name}"/></td>
                     <td><c:out value="${serviceCheck.serviceInterval}"/></td>                    
                     <td><c:out value="${serviceCheck.lastCheck}"/></td>                    
                     <td><c:out value="${serviceCheck.description}"/></td>                    
                     <td>
-                        <form method="get" action="${pageContext.request.contextPath}/serviceCheck/update/${serviceCheck.id}">
+                        <form method="get" action="${pageContext.request.contextPath}/serviceCheck/update/${serviceCheck.scID}">
                             <input type="submit" value="<fmt:message key='serviceCheck.list.edit'/>">
                         </form>
                     </td>
                     <td>
-                        <form method="post" action="${pageContext.request.contextPath}/serviceCheck/delete/${serviceCheck.id}">
+                        <form method="post" action="${pageContext.request.contextPath}/serviceCheck/delete/${serviceCheck.scID}">
                             <input type="submit" value="<fmt:message key='serviceCheck.list.delete'/>">
                         </form>
                     </td>
