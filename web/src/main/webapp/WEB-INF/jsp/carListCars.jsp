@@ -73,6 +73,11 @@
                         <form method="get" action="${pageContext.request.contextPath}/car/lease/${car.carID}"modelAttribute="lease">
                             <input type="submit" value="<fmt:message key='car.list.lease'/>">
                         </form>
+                    </td>
+                    <td>
+                        <form method="get" action="${pageContext.request.contextPath}/car/check/${car.carID}"modelAttribute="check">
+                            <input type="submit" value="<fmt:message key='car.list.check'/>">
+                        </form>
                     </td>  
                     <td>
                         <form method="post" action="${pageContext.request.contextPath}/serviceCheck/listServiceChecks/${car}">

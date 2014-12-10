@@ -10,6 +10,7 @@ import cz.muni.fi.pa165.persistence.Entities.Car;
 import cz.muni.fi.pa165.persistence.Entities.Lease;
 import cz.muni.fi.pa165.service.dto.CarDTO;
 import cz.muni.fi.pa165.service.dto.LeaseDTO;
+import cz.muni.fi.pa165.service.dto.ServiceCheckDTO;
 import cz.muni.fi.pa165.service.service.CarServiceInterface;
 import cz.muni.fi.pa165.service.service.LeaseServiceInterface;
 import cz.muni.fi.pa165.service.service.PersonServices;
@@ -208,5 +209,31 @@ public class CarController {
         SimpleDateFormat sdf = new SimpleDateFormat("MM-dd-yyyy");
         sdf.setLenient(true);
         binder.registerCustomEditor(Date.class, new CustomDateEditor(sdf, true));
+    }
+    @RequestMapping(value = "/check/{id}", method = RequestMethod.GET)
+    public String addCheck(@PathVariable Integer id, ModelMap model) {
+
+        List<CarDTO> cars = new ArrayList();
+        cars.add(carService.getCarByID(id));
+        model.addAttribute("cars", cars);
+        
+        model.addAttribute("check", new ServiceCheckDTO());
+
+        //ServiceCheckDTO check = new ServiceCheckDTO();
+        //serviceCheckService.createServiceCheck(check);
+        //model.addAttribute("check", check);
+        //model.addAttribute("person2", person2);
+        return "assignCheck";
+    }
+    
+    @RequestMapping(value = "/confirmCheck/{id}", method = RequestMethod.POST)
+    public String confirmCheck(@PathVariable Integer id,@ModelAttribute("check") ServiceCheckDTO check,
+            ModelMap model) {
+
+        model.addAttribute("check", check);
+
+        serviceCheckService.createServiceCheck(check);
+        
+        return "redirect:/servieCheck/";
     }
 }
