@@ -82,9 +82,9 @@ public class LeaseServiceImpl implements LeaseServiceInterface {
         if (personDTO == null) {
             throw new NullPointerException("personDTO is null");
         }
-        Person personEntity = null;
+        Person personEntity = new Person();
 
-        LeaseDTO leaseDTO = null;
+        LeaseDTO leaseDTO = new LeaseDTO();
 
         List<String> list = new ArrayList<String>();
 
