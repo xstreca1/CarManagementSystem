@@ -68,11 +68,11 @@ public class ServiceCheckImplTest {
         });
         
         Mockito.when(mockCheckDAO.getDaysToNext(Matchers.any(Integer.class)))
-                .thenAnswer(new Answer<ServiceCheck>() {
+                .thenAnswer(new Answer<Integer>() {
             @Override
-            public ServiceCheck answer(InvocationOnMock inv) throws Throwable {
+            public Integer answer(InvocationOnMock inv) throws Throwable {
                 Object[] args = inv.getArguments();
-                return (ServiceCheck) args[0];
+                return (Integer) args[0];
             }
         });
         
@@ -99,7 +99,7 @@ public class ServiceCheckImplTest {
         
     }
     
-  //  @Test
+    @Test
     public void testGetDaysToNextServiceCheck(){
         
         serviceCheckImpl.getDaysToNextServiceCheck(serviceCheckDTO);
