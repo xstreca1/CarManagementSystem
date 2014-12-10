@@ -124,5 +124,32 @@ public class ServiceCheckImpl implements ServiceCheckInterface {
         return checkListDTO;
 
     }
+    
+    @Override
+    public List<ServiceCheckDTO> findAllChecks() {
+        //create empty list
+        List<String> list = new ArrayList<String>();
+
+        List<ServiceCheckDTO> checksDTO = new ArrayList<ServiceCheckDTO>();
+
+        ServiceCheckDTO checkDTO = new ServiceCheckDTO();
+
+        // map DTO object on Entity
+        list.add("dozerMapping.xml");
+        Mapper mapper = new DozerBeanMapper(list);
+
+        List<ServiceCheck> checks = scDAO.findAllChecks();
+
+        for (ServiceCheck c : checks) {
+            mapper.map(c, checkDTO, "lease");
+            checksDTO.add(checkDTO);
+        }
+
+        return checksDTO;
+    }
+
+   
+
+    
 
 }

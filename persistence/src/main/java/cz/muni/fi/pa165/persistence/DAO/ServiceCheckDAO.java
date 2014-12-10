@@ -77,5 +77,7 @@ public interface ServiceCheckDAO {
      * @param scID  - ID of serviceCheck to be updated
      */
     public void updateInterval(int interval, Integer scID);
+    
+    public List<ServiceCheck> findAllChecks();
 
 }

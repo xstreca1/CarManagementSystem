@@ -6,6 +6,7 @@
 package cz.muni.fi.pa165.persistence.DAO;
 
 import cz.muni.fi.pa165.persistence.Entities.Car;
+import cz.muni.fi.pa165.persistence.Entities.Lease;
 import cz.muni.fi.pa165.persistence.Entities.ServiceCheck;
 import cz.muni.fi.pa165.persistence.Entities.ServiceCheck.ServiceCheckName;
 import java.util.Calendar;
@@ -161,6 +162,15 @@ public class ServiceCheckDAOImpl implements ServiceCheckDAO {
         // set new value of serviceInterval      
         serviceCheck2.setServiceInterval(interval);
 
+    }
+    
+    @Override
+    public List<ServiceCheck> findAllChecks(){
+    
+         String sql = "SELECT l FROM Lease l";
+        List<ServiceCheck> checks = em.createQuery(sql,ServiceCheck.class).getResultList();
+
+        return checks;
     }
 
 }

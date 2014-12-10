@@ -51,7 +51,9 @@ public interface ServiceCheckInterface {
      * @return list of ServiceChecks
      */
 
-    List<ServiceCheckDTO> getServiceChecksForCar(CarDTO carDTO); 
+    List<ServiceCheckDTO> getServiceChecksForCar(CarDTO carDTO);
+    
+    public List<ServiceCheckDTO> findAllChecks();
     
     
 }
