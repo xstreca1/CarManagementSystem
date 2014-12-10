@@ -139,7 +139,7 @@ public class LeaseServiceImpl implements LeaseServiceInterface {
         List<Lease> leases = leaseDAO.findAllLeases();
 
         for (Lease l : leases) {
-            mapper.map(l, leaseDTO, "lease");
+            leaseDTO = mapper.map(l, LeaseDTO.class);
             leasesDTO.add(leaseDTO);
         }
 

@@ -124,7 +124,7 @@ public class PersonServicesImpl implements PersonServices {
         List<Person> people = personDAO.findAllPeople(alsoInactive);
         
         for (Person p : people) {
-                mapper.map(p, personDTO, "person");
+                personDTO = mapper.map(p, PersonDTO.class);
                 peopleDTO.add(personDTO);
         }
 

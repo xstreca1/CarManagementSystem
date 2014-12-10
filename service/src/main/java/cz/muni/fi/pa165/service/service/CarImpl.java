@@ -89,7 +89,7 @@ public class CarImpl implements CarServiceInterface {
         List<Car> ori = carDAO.listAllCars(alsoInactive);
         
         for (Car co : ori) {
-            mapper.map(co, carDto, "car");
+            carDto = mapper.map(co, CarDTO.class);
             n.add(carDto);
        
         }
