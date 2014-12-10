@@ -64,4 +64,6 @@ public interface LeaseDAO {
     
     public Lease getLeaseByID(Integer ID);
     
+    List<Lease> findAllLeases(); 
+    
 }

@@ -68,4 +68,6 @@ public interface LeaseServiceInterface {
     
     void deleteLease(LeaseDTO leaseDTO);
     
+    List <LeaseDTO> findAllLeases();
+    
 }

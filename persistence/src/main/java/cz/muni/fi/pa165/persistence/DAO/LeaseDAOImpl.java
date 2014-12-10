@@ -15,19 +15,19 @@ import org.springframework.stereotype.Repository;
  * @author Petr Potucek
  * @since 2014-09
  */
-
 @Repository("leaseDAO") //for transformation of exceptions to DataAccessException
 public class LeaseDAOImpl implements LeaseDAO {
 
-    @PersistenceContext(name="carManagementSystem-unit")
+    @PersistenceContext(name = "carManagementSystem-unit")
     private EntityManager em;
 
     public LeaseDAOImpl() {
     }
 
-    
     public LeaseDAOImpl(EntityManager entityMf) {
-        if (entityMf == null) throw new IllegalArgumentException("the argument must be set");
+        if (entityMf == null) {
+            throw new IllegalArgumentException("the argument must be set");
+        }
 
         em = entityMf;
     }
@@ -38,26 +38,32 @@ public class LeaseDAOImpl implements LeaseDAO {
 
     @Override
     public Lease createLease(Lease lease) {
-        if (lease == null) throw new IllegalArgumentException("Lease is null");
- 
-        em.persist(lease); 
-        
+        if (lease == null) {
+            throw new IllegalArgumentException("Lease is null");
+        }
+
+        em.persist(lease);
+
         return lease;
     }
 
     @Override
-    public void updateLease(Lease lease, int leaseId) {  
-        if (lease == null) throw new IllegalArgumentException("lease is null");
-        if (leaseId < 0 ) throw new IllegalArgumentException("Wrong input for id");
-        
+    public void updateLease(Lease lease, int leaseId) {
+        if (lease == null) {
+            throw new IllegalArgumentException("lease is null");
+        }
+        if (leaseId < 0) {
+            throw new IllegalArgumentException("Wrong input for id");
+        }
+
         int distance = lease.getDistance();
         Date dateOfLease = lease.getDateOfLease();
         Date dateOfReturn = lease.getDateOfReturn();
         Boolean isClosed = lease.getIsClosed();
         Car car = lease.getCar();
         Person person = lease.getPerson();
-           
-        Lease lease1 = (Lease)em.find(Lease.class ,leaseId);
+
+        Lease lease1 = (Lease) em.find(Lease.class, leaseId);
 
         lease1.setDistance(distance);
         lease1.setDateOfLease(dateOfLease);
@@ -69,18 +75,22 @@ public class LeaseDAOImpl implements LeaseDAO {
 
     @Override
     public Lease deleteLease(int leaseId) {
-        if (leaseId < 0) throw new IllegalArgumentException("Wrong input for id");
-        
-        Lease lease = (Lease)em.find(Lease.class ,leaseId);  
+        if (leaseId < 0) {
+            throw new IllegalArgumentException("Wrong input for id");
+        }
+
+        Lease lease = (Lease) em.find(Lease.class, leaseId);
         em.remove(lease);
-        
+
         return lease;
     }
-    
+
     @Override
     public List getLeasesByPerson(Person person) {
-        if (person == null) throw new IllegalArgumentException("person is null");
-        
+        if (person == null) {
+            throw new IllegalArgumentException("person is null");
+        }
+
         String query = "SELECT k FROM Lease k WHERE k.person= :person";//TODO
         List<Lease> leases = em.createQuery(query).setParameter("person", person).getResultList();
 
@@ -89,18 +99,21 @@ public class LeaseDAOImpl implements LeaseDAO {
 
     @Override
     public List getAllLeases(Date from, Date until) {
-        if (from == null) throw new IllegalArgumentException("Wrong input for date from");
-        if (until == null) throw new IllegalArgumentException("Wrong input for date until");
+        if (from == null) {
+            throw new IllegalArgumentException("Wrong input for date from");
+        }
+        if (until == null) {
+            throw new IllegalArgumentException("Wrong input for date until");
+        }
 
         String query = "SELECT k FROM Lease k WHERE k.dateOfLease BETWEEN :from AND :until";
-        
+
         List<Lease> leases = em.createQuery(query, Lease.class).
                 setParameter("from", from).setParameter("until", until)
                 .getResultList();
 
         return leases;
     }
-    
 
     @Override
     public Lease getLeaseByID(Integer ID) {
@@ -110,6 +123,14 @@ public class LeaseDAOImpl implements LeaseDAO {
                 .setParameter("leaseID", ID).getResultList().get(0);
 
         return lease;
+    }
+
+    @Override
+    public List<Lease> findAllLeases(){
+    String sql = "SELECT l FROM Lease l";
+        List<Lease> leases = em.createQuery(sql,Lease.class).getResultList();
+
+        return leases;
     }
 
 }

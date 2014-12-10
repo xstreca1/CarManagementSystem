@@ -208,6 +208,14 @@ public class Lease implements Serializable {
         this.leaseId = leaseId;
     }
 
+    public ReturnedStatus getReturnedStatus() {
+        return returnedStatus;
+    }
+
+    public TravelReason getTravelReason() {
+        return travelReason;
+    }
+
     //----------------constructors-----------------------
     public Lease() {
     }
