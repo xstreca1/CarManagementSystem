@@ -25,30 +25,32 @@
                 <th>id</th>
                 <th><fmt:message key="lease.distance"/></th>
                 <th><fmt:message key="lease.dateOfLease"/></th>
-                <th><fmt:message key="lease.dateOfReturn"/></th>
-                <th><fmt:message key="lease.isClosed"/></th>
-                <th><fmt:message key="lease.returnedStatus"/></th>
                 <th><fmt:message key="lease.travelReason"/></th>
+                <th><fmt:message key="lease.isClosed"/></th>
+                <th><fmt:message key="lease.dateOfReturn"/></th>                
+                <th><fmt:message key="lease.returnedStatus"/></th>
+                
                 <th></th>
             </tr>
-            <c:forEach items="${leases}" var="car">
+            <c:forEach items="${leases}" var="lease">
                 <tr>
-                    <td>${lease.id}</td>
+                    <td>${lease.leaseId}</td>                    
                     <td><c:out value="${lease.distance}"/></td>
                     <td><c:out value="${lease.dateOfLease}"/></td>
-                    <td><c:out value="${lease.dateOfReturn}"/></td>
-                    <td><c:out value="${lease.isClosed}"/></td>
-                    <td><fmt:message key="lease.returnedStatus.${lease.returnedStatus}"/></td>
                     <td><fmt:message key="lease.travelReason.${lease.travelReason}"/></td>
+                    <td><c:out value="${lease.isClosed}"/></td>
+                    <td><c:out value="${lease.dateOfReturn}"/></td>                    
+                    <td><fmt:message key="lease.returnedStatus.${lease.returnedStatus}"/></td>
+                    
           
 
                     <td>
-                        <form method="get" action="${pageContext.request.contextPath}/lease/update/${lease.id}">
+                        <form method="get" action="${pageContext.request.contextPath}/lease/update/${lease.leaseId}">
                             <input type="submit" value="<fmt:message key='lease.list.edit'/>">
                         </form>
                     </td>
                     <td>
-                        <form method="post" action="${pageContext.request.contextPath}/lease/delete/${lease.id}">
+                        <form method="post" action="${pageContext.request.contextPath}/lease/delete/${lease.leaseId}">
                             <input type="submit" value="<fmt:message key='lease.list.delete'/>">
                         </form>
                     </td>

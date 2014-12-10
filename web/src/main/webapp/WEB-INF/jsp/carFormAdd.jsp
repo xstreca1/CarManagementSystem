@@ -40,7 +40,7 @@
         <td><form:input path="typeName"/></td>
         <td><form:errors path="typeName" cssClass="error"/></td>
     </tr>
-    <tr>
+    <%-- <tr>
         <th><form:label path="enginePower"><fmt:message key="car.enginePower"/></form:label></th>
         <td><form:input path="enginePower"/></td>
         <td><form:errors path="enginePower" cssClass="error"/></td>
@@ -59,7 +59,7 @@
         <th><form:label path="VIN"><fmt:message key="car.VIN"/></form:label></th>
         <td><form:input path="VIN"/></td>
         <td><form:errors path="VIN" cssClass="error"/></td>
-    </tr>
+    </tr>--%>
     <tr>
         <th><form:label path="numberOfSeats"><fmt:message key="car.numberOfSeats"/></form:label></th>
         <td><form:input path="numberOfSeats"/></td>
