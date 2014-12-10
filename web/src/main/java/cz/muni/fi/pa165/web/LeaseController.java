@@ -11,7 +11,9 @@ import cz.muni.fi.pa165.service.service.CarServiceInterface;
 import cz.muni.fi.pa165.service.service.LeaseServiceInterface;
 import cz.muni.fi.pa165.service.service.PersonServices;
 import cz.muni.fi.pa165.service.service.ServiceCheckInterface;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
@@ -49,8 +51,12 @@ public class LeaseController {
     }
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
-    public String leaseHome() {
-        return "leasesLastAdded";
+    public String leaseHome(ModelMap model) {               
+        
+        List<LeaseDTO> leases = leaseService.findAllLeases();
+        model.addAttribute("leases", leases);
+
+        return "leaseListLeases";
     }
 
     @RequestMapping(value = "/delete/{id}")
