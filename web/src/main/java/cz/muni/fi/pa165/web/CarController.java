@@ -6,7 +6,9 @@
 package cz.muni.fi.pa165.web;
 
 import static com.sun.corba.se.spi.presentation.rmi.StubAdapter.request;
+import cz.muni.fi.pa165.persistence.Entities.Lease;
 import cz.muni.fi.pa165.service.dto.CarDTO;
+import cz.muni.fi.pa165.service.dto.LeaseDTO;
 import cz.muni.fi.pa165.service.service.CarServiceInterface;
 import cz.muni.fi.pa165.service.service.LeaseServiceInterface;
 import cz.muni.fi.pa165.service.service.PersonServices;
@@ -77,16 +79,15 @@ public class CarController {
     }
 
     /*@RequestMapping(value = "/listCars", method = RequestMethod.GET)
-    public ModelAndView listCars(ModelMap model,
-            @RequestParam(value = "isInactive", required = false) boolean isInactive) {
+     public ModelAndView listCars(ModelMap model,
+     @RequestParam(value = "isInactive", required = false) boolean isInactive) {
 
-        List<CarDTO> cars = carService.findAllCars(isInactive);
-        model.addAttribute("cars", cars);
+     List<CarDTO> cars = carService.findAllCars(isInactive);
+     model.addAttribute("cars", cars);
 
-        //send mav to jsp page
-        return new ModelAndView("cars");
-    }*/
-
+     //send mav to jsp page
+     return new ModelAndView("cars");
+     }*/
     @RequestMapping(value = "/add", method = RequestMethod.POST)
     public String addCar(@ModelAttribute CarDTO car,
             ModelMap model) {
@@ -99,7 +100,7 @@ public class CarController {
     }
 
     @RequestMapping(value = "/delete/{id}")
-    public String deletePerson(@PathVariable Integer id, ModelMap model) {
+    public String deleteCar(@PathVariable Integer id, ModelMap model) {
 
         CarDTO car1 = carService.getCarByID(id);
         model.addAttribute("car1", car1);
@@ -138,21 +139,20 @@ public class CarController {
      return "redirect:/car/listCars";
      }*/
     /*@RequestMapping(value = "/update/{id}", method = RequestMethod.GET)
-    public String update_form(@PathVariable Integer id, ModelMap model) {
-        CarDTO car = carService.getCarByID(id);
-        model.addAttribute("car", car);
-        return "car/update";
-    }
+     public String update_form(@PathVariable Integer id, ModelMap model) {
+     CarDTO car = carService.getCarByID(id);
+     model.addAttribute("car", car);
+     return "car/update";
+     }
 
-    /*@RequestMapping(value = "/update", method = RequestMethod.POST)
-    public String updateCar(@ModelAttribute CarDTO car,
-            BindingResult result, ModelMap model, @PathVariable Integer id) {
+     /*@RequestMapping(value = "/update", method = RequestMethod.POST)
+     public String updateCar(@ModelAttribute CarDTO car,
+     BindingResult result, ModelMap model, @PathVariable Integer id) {
 
-        carService.updateCar(car, id);
+     carService.updateCar(car, id);
 
-        return "redirect:/car/listCars";
-    }*/
-
+     return "redirect:/car/listCars";
+     }*/
     @RequestMapping(value = "/update/{id}", method = RequestMethod.GET)
     public String update_form(@PathVariable Integer id, HttpServletRequest request) {
 
@@ -164,12 +164,26 @@ public class CarController {
     }
 
     @RequestMapping(value = "/edit/{id}", method = RequestMethod.POST)
-    public String editPerson(@ModelAttribute("car") CarDTO car, @PathVariable Integer id,
+    public String editCar(@ModelAttribute("car") CarDTO car, @PathVariable Integer id,
             BindingResult result, ModelMap model) {
 
         carService.updateCar(car, id);
 
         return "redirect:/car/";
 
+    }
+
+    @RequestMapping(value = "/lease/{id}", method = RequestMethod.GET)
+    public String leaseCar(@PathVariable Integer id, ModelMap model) {
+
+        List<CarDTO> cars = new ArrayList();
+        cars.add(carService.getCarByID(id));
+        model.addAttribute("cars", cars);
+
+        LeaseDTO lease = new LeaseDTO();
+        leaseService.createLease(lease);
+        model.addAttribute("lease", lease);
+        //model.addAttribute("person2", person2);
+        return "leaseCar";
     }
 }

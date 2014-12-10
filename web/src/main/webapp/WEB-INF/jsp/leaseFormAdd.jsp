@@ -22,48 +22,31 @@
         <td><form:input path="dateOfReturn"/></td>
         <td><form:errors path="dateOfReturn" cssClass="error"/></td>
     </tr>            
-    <tr>
+    <%-- <tr>
         <th><form:label path="returnedStatus"><fmt:message key="lease.returnedStatus"/></form:label></th>
         <td><form:select path="returnedStatus"/>
             <form:options items="${returnedStatus}" 
                           itemLabel="returnedStatus"
                           itemValue="returnedStatus" /></td>
         <td><form:errors path="returnedStatus" cssClass="error"/></td>
-    </tr>
+    </tr>--%>
     <tr>
         <th><form:label path="travelReason"><fmt:message key="lease.travelReason"/></form:label></th>
-        <td><form:select path="travelReason"/>
-            <form:options items="${travelReason}" 
-                          itemLabel="travelReason"
-                          itemValue="travelReason" /></td>
+        <td><form:select path="travelReason">
+                <form:option value="-"> <fmt:message key="enum.select"/></form:option>
+                <form:options items="${enumValues}" />
+            </form:select></td>
         <td><form:errors path="travelReason" cssClass="error"/></td>
     </tr>
-    <tr>
+   <%-- <tr>
         <td><form:label path="person">
         <spring:message code="lang.person" text="Person" />
     </form:label></td>
 <td><form:select path="person">
         <form:options items="${person}" itemLabel="firstName"
                       itemValue="id" />
-    </form:select></td>
+    </form:select></td>--%>
 
-</tr>
-<tr>
-    <td><form:label path="car">
-    <spring:message code="lang.car" text="Car" />
-</form:label></td>
-<td><form:select path="car">
-        <form:options items="${car}" itemLabel="firstName"
-                      itemValue="id" />
-    </form:select></td>
-
-</tr>
-<tr>
-    <td colspan="2"><button class="button" type="button"
-                            value="Add lease"
-                            <%-- onclick="javascript:validateAndSubmitAddLoanForm()"> --%>
-                            <spring:message code="lang.addLease" text="Add lease" />
-        </button></td>
 </tr>
 
 </table>

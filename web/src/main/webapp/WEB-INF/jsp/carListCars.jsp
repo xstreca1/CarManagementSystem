@@ -68,7 +68,12 @@
                         <form method="post" action="${pageContext.request.contextPath}/car/delete/${car.carID}"modelAttribute="car1">
                             <input type="submit" value="<fmt:message key='car.list.delete'/>">
                         </form>
-                    </td>                    
+                    </td>  
+                    <td>
+                        <form method="get" action="${pageContext.request.contextPath}/car/lease/${car.carID}"modelAttribute="lease">
+                            <input type="submit" value="<fmt:message key='car.list.lease'/>">
+                        </form>
+                    </td>  
                     <td>
                         <form method="post" action="${pageContext.request.contextPath}/serviceCheck/listServiceChecks/${car}">
                             <input type="submit" value="<fmt:message key='car.list.showSC'/>">

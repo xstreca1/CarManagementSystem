@@ -54,7 +54,7 @@ public class Lease implements Serializable {
     @Temporal(TemporalType.DATE)
     private Date dateOfReturn;
 
-    @Column(name = "isClosed", nullable = false)
+    @Column //(name = "isClosed", nullable = false)
     private Boolean isClosed;
 
     @Enumerated(EnumType.STRING)
@@ -121,6 +121,7 @@ public class Lease implements Serializable {
     public Person getPerson() {
         return person;
     }
+    
 
     /**
      * @return the id of lease

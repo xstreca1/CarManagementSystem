@@ -11,7 +11,7 @@ import java.util.Date;
  */
 public class LeaseDTO {
     
-    private int leaseId;
+    private Integer leaseId;
 
    private int distance;
 
@@ -29,7 +29,7 @@ public class LeaseDTO {
 
     }
 
-    public void setLeaseId(int leaseId) {
+    public void setLeaseId(Integer leaseId) {
         this.leaseId = leaseId;
     }
 
@@ -57,7 +57,7 @@ public class LeaseDTO {
         this.travelReason = travelReason;
     }
 
-    public int getLeaseId() {
+    public Integer getLeaseId() {
         return leaseId;
     }
 

@@ -32,7 +32,7 @@ public class LeaseServiceImpl implements LeaseServiceInterface {
 
     @Autowired
     private LeaseDAO leaseDAO;
-    
+
     private List<String> list = new ArrayList<String>();
 
     @PersistenceContext
@@ -51,6 +51,7 @@ public class LeaseServiceImpl implements LeaseServiceInterface {
         this.leaseDAO = leaseDAO;
     }
 
+    @Override
     public void createLease(LeaseDTO leaseDTO) {
 
         Lease leaseEntity = new Lease();
@@ -122,6 +123,7 @@ public class LeaseServiceImpl implements LeaseServiceInterface {
     }
 
     @Override
+    @Transactional
     public List<LeaseDTO> findAllLeases() {
         //create empty list
         List<String> list = new ArrayList<String>();
@@ -200,5 +202,7 @@ public class LeaseServiceImpl implements LeaseServiceInterface {
 
         return leaseDto;
     }
+
+    
 
 }
