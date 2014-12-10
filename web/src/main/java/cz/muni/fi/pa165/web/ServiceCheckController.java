@@ -53,11 +53,11 @@ public class ServiceCheckController {
     }
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
-    public String scHome() {
-        List<serviceCheckDTO> leases = leaseService.findAllLeases();
-        model.addAttribute("leases", leases);
+    public String scHome(ModelMap model) {
+        List<ServiceCheckDTO> checks = serviceCheckService.findAllChecks();
+        model.addAttribute("checks", checks);
 
-        return "leaseListLeases";
+      
         return "scListServiceChecks";
     }
 

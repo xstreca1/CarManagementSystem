@@ -167,7 +167,7 @@ public class ServiceCheckDAOImpl implements ServiceCheckDAO {
     @Override
     public List<ServiceCheck> findAllChecks(){
     
-         String sql = "SELECT l FROM Lease l";
+         String sql = "SELECT s FROM ServiceCheck s";
         List<ServiceCheck> checks = em.createQuery(sql,ServiceCheck.class).getResultList();
 
         return checks;
