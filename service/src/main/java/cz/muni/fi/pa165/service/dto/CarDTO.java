@@ -184,7 +184,7 @@ public class CarDTO {
     }
     @Override
     public String toString() {
-        return brand + ", ID =" + carID;
+        return "" + vehicleRegPlate;
     }
 
 
