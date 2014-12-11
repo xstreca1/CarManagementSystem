@@ -17,6 +17,7 @@ import cz.muni.fi.pa165.service.service.PersonServices;
 import cz.muni.fi.pa165.service.service.ServiceCheckInterface;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.HashSet;
 
@@ -236,7 +237,17 @@ public class CarController {
         
         CarDTO car = carService.getCarByID(id);       
         
-        check.setCar(car);        
+        check.setCar(car);
+        Date lastCheck = check.getLastCheck();
+        int interval = check.getServiceInterval();
+        
+        Calendar nextControl = Calendar.getInstance();
+        nextControl.setTime(lastCheck); 
+        nextControl.add(Calendar.MONTH, interval);
+        
+        Date addedMonths = nextControl.getTime();
+        
+        check.setNextCheck(addedMonths);
 
         serviceCheckService.createServiceCheck(check);
         

@@ -23,6 +23,7 @@
                 <th><fmt:message key="serviceCheck.name"/></th>
                 <th><fmt:message key="serviceCheck.serviceInterval"/></th>
                 <th><fmt:message key="serviceCheck.lastCheck"/></th>
+                <th><fmt:message key="serviceCheck.nextCheck"/></th>
                 <th><fmt:message key="serviceCheck.description"/></th>
                 <th><fmt:message key="serviceCheck.car"/></th>
                 <th></th>
@@ -33,7 +34,8 @@
                     <td>${serviceCheck.scID}</td>
                     <td><fmt:message key="serviceCheck.name.${serviceCheck.name}"/></td>
                     <td><c:out value="${serviceCheck.serviceInterval}"/></td>                    
-                    <td><c:out value="${serviceCheck.lastCheck}"/></td>                    
+                    <td><c:out value="${serviceCheck.lastCheck}"/></td> 
+                    <td><c:out value="${serviceCheck.nextCheck}"/></td> 
                     <td><c:out value="${serviceCheck.description}"/></td> 
                     <td><c:out value="${serviceCheck.car}"/></td>
                     <td>

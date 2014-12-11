@@ -52,6 +52,9 @@ public class ServiceCheck implements Serializable {
 
     @Temporal(TemporalType.DATE)
     private Date lastCheck;
+    
+    @Temporal(TemporalType.DATE)
+    private Date nextCheck;
 
     @Column(nullable = false)
     private String description;
@@ -107,6 +110,14 @@ public class ServiceCheck implements Serializable {
 
     public void setScID(int scID) {
         this.scID = scID;
+    }
+
+    public Date getNextCheck() {
+        return nextCheck;
+    }
+
+    public void setNextCheck(Date nextCheck) {
+        this.nextCheck = nextCheck;
     }
     
 
