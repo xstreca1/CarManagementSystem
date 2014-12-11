@@ -182,6 +182,11 @@ public class CarDTO {
     public void setCarID(Integer carID) {
         this.carID = carID;
     }
+    @Override
+    public String toString() {
+        return brand + ", ID =" + carID;
+    }
+
 
     @Override
     public int hashCode() {
