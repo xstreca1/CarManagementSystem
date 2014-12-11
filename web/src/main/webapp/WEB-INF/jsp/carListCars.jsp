@@ -80,7 +80,7 @@
                         </form>
                     </td>  
                     <td>
-                        <form method="post" action="${pageContext.request.contextPath}/serviceCheck/listServiceChecks/${car}">
+                        <form method="get" action="${pageContext.request.contextPath}/car/showSC/${car.carID}">
                             <input type="submit" value="<fmt:message key='car.list.showSC'/>">
                         </form>
                     </td>

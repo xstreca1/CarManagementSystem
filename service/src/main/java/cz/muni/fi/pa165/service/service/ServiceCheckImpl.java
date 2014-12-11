@@ -116,7 +116,7 @@ public class ServiceCheckImpl implements ServiceCheckInterface {
 
         List<ServiceCheck> checks = scDAO.getServiceChecksForCar(carEntity);
         for (ServiceCheck s : checks) {
-            mapper.map(s, checkDTO, "servicecheck");
+            checkDTO = mapper.map(s, ServiceCheckDTO.class);
             checkListDTO.add(checkDTO);
 
         }

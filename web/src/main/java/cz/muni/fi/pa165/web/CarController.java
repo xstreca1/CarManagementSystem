@@ -225,7 +225,7 @@ public class CarController {
         //serviceCheckService.createServiceCheck(check);
         //model.addAttribute("check", check);
         //model.addAttribute("person2", person2);
-        return "assignCheck";
+        return "scAssignCheck";
     }
     
     @RequestMapping(value = "/confirmCheck/{id}", method = RequestMethod.POST)
@@ -242,4 +242,18 @@ public class CarController {
         
         return "redirect:/serviceCheck/";
     }
+    
+    @RequestMapping(value = "/showSC/{id}", method = RequestMethod.GET)
+    public String showSC(HttpServletRequest request, @PathVariable Integer id) {
+        
+        CarDTO car = carService.getCarByID(id);
+        
+        List <ServiceCheckDTO> checks = serviceCheckService.getServiceChecksForCar(car);
+                
+        request.setAttribute("checks", checks);
+
+        return "scDisplayChecks";
+    }
+    
+   
 }
