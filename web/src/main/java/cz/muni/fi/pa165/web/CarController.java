@@ -18,8 +18,10 @@ import cz.muni.fi.pa165.service.service.ServiceCheckInterface;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashSet;
 
 import java.util.List;
+import java.util.Set;
 import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
@@ -231,6 +233,10 @@ public class CarController {
             ModelMap model) {
 
         model.addAttribute("check", check);
+        
+        CarDTO car = carService.getCarByID(id);       
+        
+        check.setCar(car);        
 
         serviceCheckService.createServiceCheck(check);
         
