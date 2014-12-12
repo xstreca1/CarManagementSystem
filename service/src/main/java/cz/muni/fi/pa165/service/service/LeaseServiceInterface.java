@@ -69,6 +69,9 @@ public interface LeaseServiceInterface {
     void deleteLease(LeaseDTO leaseDTO);
     
     List <LeaseDTO> findAllLeases();
+    
+    public void updateLease(LeaseDTO leaseDto, Integer ID);
+    
 
    //public void createLease();
     

@@ -2,6 +2,7 @@ package cz.muni.fi.pa165.persistence.DAO;
 
 import cz.muni.fi.pa165.persistence.Entities.Car;
 import cz.muni.fi.pa165.persistence.Entities.Lease;
+import cz.muni.fi.pa165.persistence.Entities.Lease.ReturnedStatus;
 import cz.muni.fi.pa165.persistence.Entities.Person;
 import java.util.Date;
 import java.util.List;
@@ -57,20 +58,22 @@ public class LeaseDAOImpl implements LeaseDAO {
         }
 
         int distance = lease.getDistance();
-        Date dateOfLease = lease.getDateOfLease();
-        Date dateOfReturn = lease.getDateOfReturn();
+        //Date dateOfLease = lease.getDateOfLease();
+        //Date dateOfReturn = lease.getDateOfReturn();
         Boolean isClosed = lease.getIsClosed();
-        Car car = lease.getCar();
-        Person person = lease.getPerson();
+       //Car car = lease.getCar();
+        //Person person = lease.getPerson();
+        ReturnedStatus status = lease.getReturnedStatus();
 
         Lease lease1 = (Lease) em.find(Lease.class, leaseId);
 
         lease1.setDistance(distance);
-        lease1.setDateOfLease(dateOfLease);
-        lease1.setDateOfReturn(dateOfReturn);
+       //lease1.setDateOfLease(dateOfLease);
+       //lease1.setDateOfReturn(dateOfReturn);
         lease1.setIsClosed(isClosed);
-        lease1.setCar(car);
-        lease1.setPerson(person);
+       //lease1.setCar(car);
+       //lease1.setPerson(person);
+        lease1.setReturnedStatus(status);
     }
 
     @Override
