@@ -59,7 +59,7 @@
                         </form>
                     </td>
                     <td>
-                        <form method="post" action="${pageContext.request.contextPath}/lease/getTravelStatistics/${person}">
+                        <form method="get" action="${pageContext.request.contextPath}/person/statistics/${person.id}">
                             <input type="submit" value="<fmt:message key='person.list.getTravelStatsForPerson'/>">
                         </form>
                     </td>
