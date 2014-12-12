@@ -5,6 +5,7 @@
  */
 package cz.muni.fi.pa165.web;
 
+import cz.muni.fi.pa165.service.dto.CarDTO;
 import cz.muni.fi.pa165.service.dto.LeaseDTO;
 import cz.muni.fi.pa165.service.dto.PersonDTO;
 import cz.muni.fi.pa165.service.service.CarServiceInterface;
@@ -136,9 +137,19 @@ public class LeaseController {
     @RequestMapping(value = "/confirmReturn/{id}", method = RequestMethod.POST)
     public String returnCar(@ModelAttribute("lease") LeaseDTO lease, @PathVariable Integer id,
             BindingResult result, ModelMap model) {
-
+        
+     
         lease.setIsClosed(true);
         leaseService.updateLease(lease, id);
+        LeaseDTO updatedLease = leaseService.getLeaseByID(id);
+        CarDTO car = updatedLease.getCar();
+        car.setAvailibility(true);
+        Integer carId = car.getCarID();
+        int originalMileage = car.getMileage();
+        int newMileage = lease.getDistance();
+        int actualMileage = originalMileage + newMileage;
+        car.setMileage(actualMileage);
+        carService.updateCar(car, carId);
 
         return "redirect:/lease/";
 
