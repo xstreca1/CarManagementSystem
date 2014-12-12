@@ -212,6 +212,8 @@ public class CarController {
         model.addAttribute("lease", lease);
         CarDTO car = carService.getCarByID(id);
         lease.setCar(car);
+        car.setAvailibility(false);
+        carService.updateCar(car, id);
 
         leaseService.createLease(lease);
 
