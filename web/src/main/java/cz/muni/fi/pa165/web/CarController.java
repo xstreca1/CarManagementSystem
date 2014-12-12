@@ -190,9 +190,9 @@ public class CarController {
         cars.add(carService.getCarByID(id));
         model.addAttribute("cars", cars);
 
-        LeaseDTO lease = new LeaseDTO();
-        leaseService.createLease(lease);
-        model.addAttribute("lease", lease);
+       // LeaseDTO lease = new LeaseDTO();
+        // leaseService.createLease(lease);
+        model.addAttribute("lease", new LeaseDTO());
         //model.addAttribute("person2", person2);
         return "leaseCar";
     }
@@ -202,6 +202,10 @@ public class CarController {
             ModelMap model) {
 
         model.addAttribute("lease", lease);
+        
+        CarDTO car = carService.getCarByID(id);
+        
+        lease.setCar(car);
 
         leaseService.createLease(lease);
         

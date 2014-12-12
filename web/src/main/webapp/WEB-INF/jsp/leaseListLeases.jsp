@@ -23,6 +23,7 @@
         <table class="basic">
             <tr>
                 <th>id</th>
+                <th><fmt:message key="lease.car"/></th>
                 <th><fmt:message key="lease.distance"/></th>
                 <th><fmt:message key="lease.dateOfLease"/></th>
                 <th><fmt:message key="lease.travelReason"/></th>
@@ -34,7 +35,8 @@
             </tr>
             <c:forEach items="${leases}" var="lease">
                 <tr>
-                    <td>${lease.leaseId}</td>                    
+                    <td>${lease.leaseId}</td>  
+                    <td><c:out value="${lease.car}"/></td>
                     <td><c:out value="${lease.distance}"/></td>
                     <td><c:out value="${lease.dateOfLease}"/></td>
                     <td><fmt:message key="lease.travelReason.${lease.travelReason}"/></td>
@@ -49,12 +51,7 @@
                             <input type="submit" value="<fmt:message key='lease.list.edit'/>">
                         </form>
                     </td>
-                    <td>
-                        <form method="post" action="${pageContext.request.contextPath}/lease/delete/${lease.leaseId}">
-                            <input type="submit" value="<fmt:message key='lease.list.delete'/>">
-                        </form>
-                    </td>
-
+                    
                 </tr>
             </c:forEach>
         </table>

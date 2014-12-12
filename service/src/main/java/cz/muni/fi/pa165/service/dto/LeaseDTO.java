@@ -27,7 +27,7 @@ public class LeaseDTO {
     private Lease.TravelReason travelReason;
     
      @ManyToOne
-    private Car car;
+    private CarDTO car;
 
     @ManyToOne
     private Person person;
@@ -92,11 +92,11 @@ public class LeaseDTO {
         return travelReason;
     }
 
-    public Car getCar() {
+    public CarDTO getCar() {
         return car;
     }
 
-    public void setCar(Car car) {
+    public void setCar(CarDTO car) {
         this.car = car;
     }
 
