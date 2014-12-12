@@ -15,11 +15,11 @@
             </form:select></td>
         <td><form:errors path="person" cssClass="error"/></td>
     </tr>
-    <tr>
+    <%--<tr>
         <th><form:label path="distance"><fmt:message key="lease.distance"/></form:label></th>
         <td><form:input path="distance"/></td>
         <td><form:errors path="distance" cssClass="error"/></td>
-    </tr>
+    </tr>--%>
     <tr>
         <th><form:label path="dateOfLease"><fmt:message key="lease.dateOfLease"/></form:label></th>
         <td><form:input path="dateOfLease"/></td>

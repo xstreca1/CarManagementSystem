@@ -50,7 +50,7 @@ public class Person implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
-    @Column(nullable = false)
+    @Column //(nullable = false)
     private String identificationNumber;
 
     @Column(nullable = false)
