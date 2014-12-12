@@ -116,7 +116,7 @@ public class ServiceCheckController {
     }
 
     @RequestMapping(value = "/perform/{id}", method = RequestMethod.GET)
-    public String addCheck(@PathVariable Integer id, ModelMap model) {
+    public String perform(@PathVariable Integer id, ModelMap model) {
 
         ServiceCheckDTO check = serviceCheckService.getCheckByID(id);
 
@@ -144,5 +144,36 @@ public class ServiceCheckController {
         serviceCheckService.updateCheck(check, id);
 
         return "redirect:/serviceCheck/";
+    }
+    
+    @RequestMapping(value = "/performFromCar/{id}", method = RequestMethod.GET)
+    public String performFromCarView(@PathVariable Integer id, ModelMap model) {
+
+        ServiceCheckDTO check = serviceCheckService.getCheckByID(id);
+
+        // Create calendar and get currnet date
+        Calendar calendar = Calendar.getInstance();
+        Date currentDate = calendar.getTime();
+
+        // set current Date as Date of Last control
+        check.setLastCheck(currentDate);
+
+        //find out interval of check
+        int interval = check.getServiceInterval();
+        //add value of interval to currnet date
+
+        Calendar nextControl = Calendar.getInstance();
+        nextControl.setTime(currentDate);
+        nextControl.add(Calendar.MONTH, interval);
+
+        // get date with added interval
+        Date addedMonths = nextControl.getTime();
+        
+        // set new date of next control        
+        check.setNextCheck(addedMonths);
+        
+        serviceCheckService.updateCheck(check, id);
+
+        return "redirect:/car/";
     }
 }
