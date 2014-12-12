@@ -79,5 +79,7 @@ public interface ServiceCheckDAO {
     public void updateInterval(int interval, Integer scID);
     
     public List<ServiceCheck> findAllChecks();
+    
+    public ServiceCheck getCheckByID(Integer scID);
 
 }

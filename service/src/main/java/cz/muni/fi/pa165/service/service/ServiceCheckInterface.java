@@ -54,6 +54,7 @@ public interface ServiceCheckInterface {
     List<ServiceCheckDTO> getServiceChecksForCar(CarDTO carDTO);
     
     public List<ServiceCheckDTO> findAllChecks();
-    
+    public ServiceCheckDTO getCheckByID(Integer id);
+    public void updateCheck(ServiceCheckDTO scDto, Integer scID);
     
 }

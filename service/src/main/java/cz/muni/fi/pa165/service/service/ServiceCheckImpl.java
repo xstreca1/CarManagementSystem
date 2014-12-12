@@ -39,7 +39,7 @@ public class ServiceCheckImpl implements ServiceCheckInterface {
     //this.scDAO = scDAO;
     //}
     public void createServiceCheck(ServiceCheckDTO checkDTO) {
-   
+
         //create empty entity
         ServiceCheck checkEntity = new ServiceCheck();
 
@@ -58,7 +58,7 @@ public class ServiceCheckImpl implements ServiceCheckInterface {
     }
 
     public int getDaysToNextServiceCheck(ServiceCheckDTO checkDTO) {
- 
+
         //create empty entity
         ServiceCheck checkEntity = new ServiceCheck();
 
@@ -78,7 +78,7 @@ public class ServiceCheckImpl implements ServiceCheckInterface {
     }
 
     public void setCheckInterval(List<Car> carList, ServiceCheck.ServiceCheckName scName, int serviceInterval) {
-  
+
         // create new list to store service checks with same name
         // start transaction
         List<ServiceCheck> checkList = scDAO.getServiceCheckByName(scName);
@@ -100,7 +100,7 @@ public class ServiceCheckImpl implements ServiceCheckInterface {
 
         //create empty entity
         Car carEntity = new Car();
-        
+
         ServiceCheckDTO checkDTO = new ServiceCheckDTO();
 
         //create empty list
@@ -124,7 +124,7 @@ public class ServiceCheckImpl implements ServiceCheckInterface {
         return checkListDTO;
 
     }
-    
+
     @Override
     public List<ServiceCheckDTO> findAllChecks() {
         //create empty list
@@ -148,8 +148,37 @@ public class ServiceCheckImpl implements ServiceCheckInterface {
         return checksDTO;
     }
 
-   
-
     
+    public ServiceCheckDTO getCheckByID(Integer Id) {
+
+        ServiceCheck scEntity = new ServiceCheck();
+        ServiceCheckDTO scDto = new ServiceCheckDTO();
+
+        List<String> list = new ArrayList<String>();
+
+        list.add("dozerMapping.xml");
+
+        scEntity = scDAO.getCheckByID(Id);
+
+        Mapper mapper = new DozerBeanMapper(list);
+
+        mapper.map(scEntity, scDto, "servicecheck");
+
+        return scDto;
+    }
+    public void updateCheck(ServiceCheckDTO scDto, Integer scID) {
+        
+        ServiceCheck scEntity = new ServiceCheck();
+        
+        List<String> list = new ArrayList<String>();
+// Add the mapping configuration
+        list.add("dozerMapping.xml");
+// Add to DozerMapper
+        Mapper mapper = new DozerBeanMapper(list);
+        
+        mapper.map(scDto, scEntity, "servicecheck");
+        scDAO.updateServiceCheck(scEntity, scID);
+    
+    }
 
 }

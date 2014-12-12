@@ -69,6 +69,7 @@ public class ServiceCheckDAOImpl implements ServiceCheckDAO {
         Date newLastCheck = serviceCheck.getLastCheck(); //nope
         String newDescription = serviceCheck.getDescription();
         Car newCar = serviceCheck.getCar();//no
+        Date newNextCheck=serviceCheck.getNextCheck();
 
         // replace actual values with new values
         serviceCheck2.setName(newName);
@@ -76,6 +77,7 @@ public class ServiceCheckDAOImpl implements ServiceCheckDAO {
         serviceCheck2.setLastCheck(newLastCheck);
         serviceCheck2.setDescription(newDescription);
         serviceCheck2.setCar(newCar);
+        serviceCheck2.setNextCheck(newNextCheck);
 
     }
 
@@ -171,6 +173,17 @@ public class ServiceCheckDAOImpl implements ServiceCheckDAO {
         List<ServiceCheck> checks = em.createQuery(sql,ServiceCheck.class).getResultList();
 
         return checks;
+    }
+    
+     @Override
+    public ServiceCheck getCheckByID(Integer scID) {
+
+        //actual query
+        String sql = "SELECT s FROM ServiceCheck s WHERE s.scID=:id";
+        ServiceCheck check = em.createQuery(sql, ServiceCheck.class)
+                .setParameter("id", scID).getResultList().get(0);
+
+        return check;
     }
 
 }
