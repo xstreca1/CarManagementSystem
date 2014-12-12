@@ -11,14 +11,17 @@ import cz.muni.fi.pa165.service.service.CarServiceInterface;
 import cz.muni.fi.pa165.service.service.LeaseServiceInterface;
 import cz.muni.fi.pa165.service.service.PersonServices;
 import cz.muni.fi.pa165.service.service.ServiceCheckInterface;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.List;
+import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -57,6 +60,12 @@ public class LeaseController {
         model.addAttribute("leases", leases);
 
         return "leaseListLeases";
+    }
+    @ModelAttribute("lease")
+    public LeaseDTO getLease() {
+        LeaseDTO lease = new LeaseDTO();
+
+        return lease;
     }
 
     @RequestMapping(value = "/delete/{id}")
@@ -113,6 +122,26 @@ public class LeaseController {
         leaseService.createLease(lease);
 
         return "redirect:list";
+    }
+    
+    @RequestMapping(value = "/return/{id}", method = RequestMethod.GET)
+    public String return_form(@PathVariable Integer id, HttpServletRequest request) {
+
+        List<LeaseDTO> leases = new ArrayList();
+        leases.add(leaseService.getLeaseByID(id));
+        request.setAttribute("leases", leases);        
+        return "leaseReturn";
+    }
+
+    @RequestMapping(value = "/confirmReturn/{id}", method = RequestMethod.POST)
+    public String returnCar(@ModelAttribute("lease") LeaseDTO lease, @PathVariable Integer id,
+            BindingResult result, ModelMap model) {
+
+        lease.setIsClosed(true);
+        leaseService.updateLease(lease, id);
+
+        return "redirect:/lease/";
+
     }
 
 }
