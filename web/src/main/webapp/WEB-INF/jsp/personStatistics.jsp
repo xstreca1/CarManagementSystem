@@ -13,7 +13,7 @@
 
 
 <!-- title of the page -->
-<fmt:message var="title" key="lease.list.title"/>
+<fmt:message var="title" key="lease.list.stats"/>
 <my:layout title="${title}">
     
     <jsp:attribute name="body">

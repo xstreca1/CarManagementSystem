@@ -11,7 +11,7 @@
 <%@ taglib prefix="s" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
-<fmt:message var="title" key="car.add.title"/>
+<fmt:message var="title" key="car.edit.title"/>
 <my:layout title="${title}">
     <jsp:attribute name="body">
 
