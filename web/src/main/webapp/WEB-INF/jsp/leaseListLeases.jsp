@@ -46,9 +46,18 @@
                     <td><c:out value="${lease.isClosed}"/></td>                                       
                     <td><fmt:message key="lease.returnedStatus.${lease.returnedStatus}"/></td>              
                     <td>
-                        <form method="get" action="${pageContext.request.contextPath}/lease/return/${lease.leaseId}">
-                            <input type="submit" value="<fmt:message key='lease.list.edit'/>">
-                        </form>
+                        <c:choose>
+                            <c:when test="${lease.isClosed}">
+                                <form method="get" action="${pageContext.request.contextPath}/lease/return/${lease.leaseId}">
+                                    <input type="submit" disabled="disabled" value="<fmt:message key='lease.list.edit'/>">
+                                </form>
+                            </c:when>
+                            <c:otherwise>
+                                <form method="get" action="${pageContext.request.contextPath}/lease/return/${lease.leaseId}">
+                                    <input type="submit" value="<fmt:message key='lease.list.edit'/>">
+                                </form>
+                            </c:otherwise>
+                        </c:choose>
                     </td>
 
                 </tr>
