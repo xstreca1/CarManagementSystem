@@ -98,7 +98,7 @@ public class LeaseServiceImpl implements LeaseServiceInterface {
 
         List<Lease> leaseList = leaseDAO.getLeasesByPerson(personEntity);;
         for (Lease l : leaseList) {
-            mapper.map(l, leaseDTO, "lease");
+            leaseDTO = mapper.map(l, LeaseDTO.class);
             leaseListDTO.add(leaseDTO);
         }
 
