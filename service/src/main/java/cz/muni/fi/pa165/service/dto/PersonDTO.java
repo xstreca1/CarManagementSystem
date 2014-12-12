@@ -145,5 +145,9 @@ public class PersonDTO {
     public void setSalary(int salary) {
         this.salary = salary;
     }
+    @Override
+    public String toString() {
+        return "" + name + "," + employmentStatus + ",ID=" + id;
+    }
 
 }

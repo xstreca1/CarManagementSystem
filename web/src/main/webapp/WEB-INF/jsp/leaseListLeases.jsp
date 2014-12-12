@@ -24,6 +24,7 @@
             <tr>
                 <th>id</th>
                 <th><fmt:message key="lease.car"/></th>
+                <th><fmt:message key="lease.person"/></th>
                 <th><fmt:message key="lease.distance"/></th>
                 <th><fmt:message key="lease.dateOfLease"/></th>
                 <th><fmt:message key="lease.travelReason"/></th>
@@ -37,6 +38,7 @@
                 <tr>
                     <td>${lease.leaseId}</td>  
                     <td><c:out value="${lease.car}"/></td>
+                    <td><c:out value="${lease.person}"/></td>
                     <td><c:out value="${lease.distance}"/></td>
                     <td><c:out value="${lease.dateOfLease}"/></td>
                     <td><fmt:message key="lease.travelReason.${lease.travelReason}"/></td>

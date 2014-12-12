@@ -10,11 +10,13 @@ import cz.muni.fi.pa165.persistence.Entities.Car;
 import cz.muni.fi.pa165.persistence.Entities.Lease;
 import cz.muni.fi.pa165.service.dto.CarDTO;
 import cz.muni.fi.pa165.service.dto.LeaseDTO;
+import cz.muni.fi.pa165.service.dto.PersonDTO;
 import cz.muni.fi.pa165.service.dto.ServiceCheckDTO;
 import cz.muni.fi.pa165.service.service.CarServiceInterface;
 import cz.muni.fi.pa165.service.service.LeaseServiceInterface;
 import cz.muni.fi.pa165.service.service.PersonServices;
 import cz.muni.fi.pa165.service.service.ServiceCheckInterface;
+import java.beans.PropertyEditorSupport;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -31,6 +33,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.ServletRequestDataBinder;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -190,27 +194,30 @@ public class CarController {
         cars.add(carService.getCarByID(id));
         model.addAttribute("cars", cars);
 
-       // LeaseDTO lease = new LeaseDTO();
+        // get people from DB a nd save it to model "people" to be able to choose in form from them
+        List<PersonDTO> people = personService.findAllPeople(true);
+        model.addAttribute("people", people);
+
+        // LeaseDTO lease = new LeaseDTO();
         // leaseService.createLease(lease);
         model.addAttribute("lease", new LeaseDTO());
         //model.addAttribute("person2", person2);
         return "leaseCar";
     }
-    
+
     @RequestMapping(value = "/confirmLease/{id}", method = RequestMethod.POST)
-    public String confirmLeaseCar(@PathVariable Integer id,@ModelAttribute("lease") LeaseDTO lease,
+    public String confirmLeaseCar(@PathVariable Integer id, @Validated @ModelAttribute("lease") LeaseDTO lease,
             ModelMap model) {
 
         model.addAttribute("lease", lease);
-        
         CarDTO car = carService.getCarByID(id);
-        
         lease.setCar(car);
 
         leaseService.createLease(lease);
-        
+
         return "redirect:/lease/";
     }
+
     @InitBinder
     public void initBinder(WebDataBinder binder) {
         SimpleDateFormat sdf = new SimpleDateFormat("MM-dd-yyyy");
@@ -218,13 +225,14 @@ public class CarController {
         sdf.getInstance();
         binder.registerCustomEditor(Date.class, new CustomDateEditor(sdf, true));
     }
+
     @RequestMapping(value = "/check/{id}", method = RequestMethod.GET)
     public String addCheck(@PathVariable Integer id, ModelMap model) {
 
         List<CarDTO> cars = new ArrayList();
         cars.add(carService.getCarByID(id));
         model.addAttribute("cars", cars);
-        
+
         model.addAttribute("check", new ServiceCheckDTO());
 
         //ServiceCheckDTO check = new ServiceCheckDTO();
@@ -233,43 +241,53 @@ public class CarController {
         //model.addAttribute("person2", person2);
         return "scAssignCheck";
     }
-    
+
     @RequestMapping(value = "/confirmCheck/{id}", method = RequestMethod.POST)
-    public String confirmCheck(@PathVariable Integer id,@ModelAttribute("check") ServiceCheckDTO check,
+    public String confirmCheck(@PathVariable Integer id, @ModelAttribute("check") ServiceCheckDTO check,
             ModelMap model) {
 
         model.addAttribute("check", check);
-        
-        CarDTO car = carService.getCarByID(id);       
-        
+
+        CarDTO car = carService.getCarByID(id);
+
         check.setCar(car);
         Date lastCheck = check.getLastCheck();
         int interval = check.getServiceInterval();
-        
+
         Calendar nextControl = Calendar.getInstance();
-        nextControl.setTime(lastCheck); 
+        nextControl.setTime(lastCheck);
         nextControl.add(Calendar.MONTH, interval);
-        
+
         Date addedMonths = nextControl.getTime();
-        
+
         check.setNextCheck(addedMonths);
 
         serviceCheckService.createServiceCheck(check);
-        
+
         return "redirect:/serviceCheck/";
     }
-    
+
     @RequestMapping(value = "/showSC/{id}", method = RequestMethod.GET)
     public String showSC(HttpServletRequest request, @PathVariable Integer id) {
-        
+
         CarDTO car = carService.getCarByID(id);
-        
-        List <ServiceCheckDTO> checks = serviceCheckService.getServiceChecksForCar(car);
-                
+
+        List<ServiceCheckDTO> checks = serviceCheckService.getServiceChecksForCar(car);
+
         request.setAttribute("checks", checks);
 
         return "scDisplayChecks";
     }
-    
-   
+
+    @InitBinder
+    protected void initBinder2(HttpServletRequest request, ServletRequestDataBinder binder) throws Exception {
+        binder.registerCustomEditor(PersonDTO.class, "person", new PropertyEditorSupport() {
+            @Override
+            public void setAsText(String text) {
+                PersonDTO person = personService.getPersonByID(Integer.parseInt(text));
+                setValue(person);
+            }
+        });
+    }
+
 }

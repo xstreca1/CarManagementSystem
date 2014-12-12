@@ -8,6 +8,14 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <table>
     <tr>
+        <th><form:label path="person"><fmt:message key="lease.person"/></form:label></th>
+        <td><form:select path="person">
+                <form:option value="-"> <fmt:message key="enum.select"/></form:option>
+                <form:options items="${people}" itemValue="id" itemLabel="id" />
+            </form:select></td>
+        <td><form:errors path="person" cssClass="error"/></td>
+    </tr>
+    <tr>
         <th><form:label path="distance"><fmt:message key="lease.distance"/></form:label></th>
         <td><form:input path="distance"/></td>
         <td><form:errors path="distance" cssClass="error"/></td>

@@ -30,7 +30,7 @@ public class LeaseDTO {
     private CarDTO car;
 
     @ManyToOne
-    private Person person;
+    private PersonDTO person;
     
      public LeaseDTO() {
 
@@ -100,11 +100,11 @@ public class LeaseDTO {
         this.car = car;
     }
 
-    public Person getPerson() {
+    public PersonDTO getPerson() {
         return person;
     }
 
-    public void setPerson(Person person) {
+    public void setPerson(PersonDTO person) {
         this.person = person;
     }
     
