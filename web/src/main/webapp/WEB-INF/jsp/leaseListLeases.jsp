@@ -27,9 +27,9 @@
                 <th><fmt:message key="lease.person"/></th>
                 <th><fmt:message key="lease.distance"/></th>
                 <th><fmt:message key="lease.dateOfLease"/></th>
+                 <th><fmt:message key="lease.dateOfReturn"/></th>  
                 <th><fmt:message key="lease.travelReason"/></th>
-                <th><fmt:message key="lease.isClosed"/></th>
-                <th><fmt:message key="lease.dateOfReturn"/></th>                
+                <th><fmt:message key="lease.isClosed"/></th>                             
                 <th><fmt:message key="lease.returnedStatus"/></th>
                 
                 <th></th>
@@ -41,9 +41,11 @@
                     <td><c:out value="${lease.person}"/></td>
                     <td><c:out value="${lease.distance}"/></td>
                     <td><c:out value="${lease.dateOfLease}"/></td>
+                    <td><c:out value="${lease.dateOfReturn}"/></td> 
                     <td><fmt:message key="lease.travelReason.${lease.travelReason}"/></td>
+                    
                     <td><c:out value="${lease.isClosed}"/></td>
-                    <td><c:out value="${lease.dateOfReturn}"/></td>                    
+                                       
                     <td><fmt:message key="lease.returnedStatus.${lease.returnedStatus}"/></td>
                     
           
