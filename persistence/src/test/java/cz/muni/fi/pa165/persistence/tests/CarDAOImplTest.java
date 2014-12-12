@@ -142,7 +142,7 @@ public class CarDAOImplTest {
         em.getTransaction().begin();
         Car updatedCar = em.find(Car.class, car1.getId());
         Assert.assertEquals(carForUpdate.getMileage(), updatedCar.getMileage());
-        Assert.assertEquals(carForUpdate.isAvailibility(), updatedCar.isAvailibility());
+        Assert.assertEquals(carForUpdate.getAvailibility(), updatedCar.getAvailibility());
         Assert.assertEquals(carForUpdate.getIsActive(), updatedCar.getIsActive());
         em.getTransaction().commit();
 

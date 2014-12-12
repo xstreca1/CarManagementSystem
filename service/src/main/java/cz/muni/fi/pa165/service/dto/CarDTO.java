@@ -17,15 +17,7 @@ public class CarDTO {
     
     private boolean availibility;
 
-    private Boolean isActive;
-
-    public boolean getAvailibility() {
-        return availibility;
-    }
-
-    public void setAvailibility() {
-        this.availibility = availibility;
-    }
+    private Boolean isActive;    
 
     private String vehicleRegPlate;
 
@@ -185,6 +177,13 @@ public class CarDTO {
     @Override
     public String toString() {
         return "" + vehicleRegPlate;
+    }
+    public boolean getAvailibility() {
+        return availibility;
+    }
+
+    public void setAvailibility(boolean availibility) {
+        this.availibility = availibility;
     }
 
 

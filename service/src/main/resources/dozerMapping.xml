@@ -114,6 +114,10 @@
             <a>numberOfSeats</a>
             <b>numberOfSeats</b>
         </field>
+        <field>
+            <a>availibility</a>
+            <b>availibility</b>
+        </field>
     </mapping>
     <mapping map-id="servicecheck">
         <class-a>cz.muni.fi.pa165.persistence.Entities.ServiceCheck</class-a>

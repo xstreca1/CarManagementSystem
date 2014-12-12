@@ -67,6 +67,11 @@ public class Car implements Serializable {
     @Column(nullable = false)
     private Boolean isActive;
 
+    private float engineDisplacement;
+
+    @Column
+    private boolean availibility;
+
     @Column(nullable = false)
     private String vehicleRegPlate;
 
@@ -173,7 +178,7 @@ public class Car implements Serializable {
     public float getGasConsumption() {
         return gasConsumption;
     }
-    
+
     public void setGasConsumption(float gasConsumption) {
         this.gasConsumption = gasConsumption;
     }
@@ -210,15 +215,13 @@ public class Car implements Serializable {
         this.engineDisplacement = engineDisplacement;
     }
 
-    public boolean isAvailibility() {
+    public boolean getAvailibility() {
         return availibility;
     }
 
     public void setAvailibility(boolean availibility) {
         this.availibility = availibility;
     }
-    private float engineDisplacement;
-    private boolean availibility;
 
     public Integer getId() {
         return carID;
@@ -271,7 +274,6 @@ public class Car implements Serializable {
     public void setServiceCheck(List<ServiceCheck> serviceCheck) {
         this.serviceCheck = serviceCheck;
     }
-    
 
     public Boolean getIsActive() {
         return isActive;
@@ -284,10 +286,8 @@ public class Car implements Serializable {
     public void setCarID(Integer carID) {
         this.carID = carID;
     }
-    
 
     //----------------------constructors---------------------
-
     public Car() {
 
     }
