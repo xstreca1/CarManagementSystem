@@ -50,9 +50,9 @@
                     <td><c:out value="${car.mileage}"/></td>
                     <td><fmt:message key="car.color.${car.color}"/></td>
                     <td><fmt:message key="car.bodystyle.${car.bodystyle}"/></td>
-                   <%-- <td><c:out value="${car.enginePower}"/></td>                    
-                    <td><c:out value="${car.gasConsumption}"/></td>   
-                    <td><fmt:message key="car.transmission.${car.transmission}"/></td>--%>
+                    <%-- <td><c:out value="${car.enginePower}"/></td>                    
+                     <td><c:out value="${car.gasConsumption}"/></td>   
+                     <td><fmt:message key="car.transmission.${car.transmission}"/></td>--%>
                     <td><fmt:message key="car.category.${car.category}"/></td>
                     <%--<td><c:out value="${car.VIN}"/></td> --%>
                     <td><c:out value="${car.emissionstandard}"/></td> 
@@ -70,9 +70,19 @@
                         </form>
                     </td>  
                     <td>
-                        <form method="get" action="${pageContext.request.contextPath}/car/lease/${car.carID}"modelAttribute="lease">
-                            <input type="submit" value="<fmt:message key='car.list.lease'/>">
-                        </form>
+                        <c:choose>
+                            <c:when test="${car.availibility == false}">
+                                <form method="get" action="${pageContext.request.contextPath}/car/lease/${car.carID}"modelAttribute="lease">
+                                    
+                                    <input type="submit" disabled="disabled" value="<fmt:message key='car.list.lease'/>">
+                                </form>
+                            </c:when>
+                            <c:otherwise>
+                                <form method="get" action="${pageContext.request.contextPath}/car/lease/${car.carID}"modelAttribute="lease">
+                                    <input type="submit" value="<fmt:message key='car.list.lease'/>">
+                                </form>
+                            </c:otherwise>
+                        </c:choose>
                     </td>
                     <td>
                         <form method="get" action="${pageContext.request.contextPath}/car/check/${car.carID}"modelAttribute="check">
