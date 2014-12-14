@@ -15,21 +15,10 @@ import java.util.Objects;
  */
 public class ReceiveCarMessage implements Serializable{
     
-    boolean success;
     
     String message;
     
     CarDTO object;
-
-    public boolean isSuccess()
-    {
-        return success;
-    }
-
-    public void setSuccess(boolean success)
-    {
-        this.success = success;
-    }
 
     public String getMessage()
     {

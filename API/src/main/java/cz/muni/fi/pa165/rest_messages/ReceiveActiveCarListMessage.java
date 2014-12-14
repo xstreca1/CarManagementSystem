@@ -16,21 +16,11 @@ import java.util.Objects;
  */
 public class ReceiveActiveCarListMessage implements Serializable{
     
-    boolean success;
     
     String message;
     
     List<CarDTO> list;
 
-    public boolean isSuccess()
-    {
-        return success;
-    }
-
-    public void setSuccess(boolean success)
-    {
-        this.success = success;
-    }
 
     public String getMessage()
     {
