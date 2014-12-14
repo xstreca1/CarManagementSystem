@@ -141,6 +141,7 @@
         <module>service</module>
         <module>web</module>
         <module>API</module>
+        <module>mavenproject1/rest_client</module>
     </modules>
     
     <name>CarManagementSystem</name>
