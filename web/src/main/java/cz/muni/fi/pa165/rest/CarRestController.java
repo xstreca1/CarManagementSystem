@@ -5,6 +5,7 @@
  */
 package cz.muni.fi.pa165.rest;
 
+import cz.muni.fi.pa165.rest_messages.ReceiveActiveCarListMessage;
 import cz.muni.fi.pa165.rest_messages.ReceiveCarMessage;
 import cz.muni.fi.pa165.service.dto.CarDTO;
 import cz.muni.fi.pa165.service.service.CarServiceInterface;
