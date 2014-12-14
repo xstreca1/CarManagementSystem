@@ -7,19 +7,20 @@ package cz.muni.fi.pa165.rest_messages;
 
 import cz.muni.fi.pa165.service.dto.CarDTO;
 import java.io.Serializable;
+import java.util.List;
 import java.util.Objects;
 
 /**
  *
  * @author jozefpuchly
  */
-public class ReceiveCarMessage implements Serializable{
+public class ReceiveActiveCarListMessage implements Serializable{
     
     boolean success;
     
     String message;
     
-    CarDTO object;
+    List<CarDTO> list;
 
     public boolean isSuccess()
     {
@@ -41,20 +42,20 @@ public class ReceiveCarMessage implements Serializable{
         this.message = message;
     }
 
-    public CarDTO getObject()
+    public List<CarDTO> getList()
     {
-        return object;
+        return list;
     }
-    
-    public void setObject(CarDTO object)
+
+    public void setList(List<CarDTO> list)
     {
-        this.object = object;
+        this.list = list;
     }
 
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 47 * hash + Objects.hashCode(this.object);
+        int hash = 5;
+        hash = 89 * hash + Objects.hashCode(this.list);
         return hash;
     }
 
@@ -66,13 +67,13 @@ public class ReceiveCarMessage implements Serializable{
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final ReceiveCarMessage other = (ReceiveCarMessage) obj;
-        if (!Objects.equals(this.object, other.object)) {
+        final ReceiveActiveCarListMessage other = (ReceiveActiveCarListMessage) obj;
+        if (!Objects.equals(this.list, other.list)) {
             return false;
         }
         return true;
     }
-    
+
     
     
 }
