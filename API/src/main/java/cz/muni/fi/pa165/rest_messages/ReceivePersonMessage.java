@@ -6,6 +6,7 @@
 package cz.muni.fi.pa165.rest_messages;
 
 import cz.muni.fi.pa165.service.dto.PersonDTO;
+import java.util.Objects;
 
 /**
  *
@@ -36,5 +37,29 @@ public class ReceivePersonMessage {
     {
         this.object = object;
     }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 97 * hash + Objects.hashCode(this.object);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final ReceivePersonMessage other = (ReceivePersonMessage) obj;
+        if (!Objects.equals(this.object, other.object)) {
+            return false;
+        }
+        return true;
+    }
+    
+    
     
 }
