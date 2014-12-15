@@ -127,9 +127,10 @@ public class PersonRestController {
         ReceivePersonMessage result = new ReceivePersonMessage();
 
         try {
-            //needs to be edited to return PersonDTO
-            //PersonDTO newPerson = service.createPerson(person);
-            //result.setObject(newPerson);
+           
+            PersonDTO newPerson = service.createPerson(person);
+            result.setObject(newPerson);
+            result.setSuccess(true);
         } catch (Exception ex) {
             result.setMessage(ex.getMessage());
             result.setObject(null);
