@@ -17,6 +17,8 @@ public class ReceivePersonMessage {
     String message;
     
     PersonDTO object;
+    
+    boolean success;
 
     public String getMessage()
     {
@@ -37,6 +39,16 @@ public class ReceivePersonMessage {
     {
         this.object = object;
     }
+
+    public boolean isSuccess() {
+        return success;
+    }
+
+    public void setSuccess(boolean success) {
+        this.success = success;
+    }
+    
+    
 
     @Override
     public int hashCode() {

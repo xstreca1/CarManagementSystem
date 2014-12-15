@@ -17,6 +17,8 @@ import java.util.Objects;
 public class ReceiveActivePeopleListMessage {
 
     String message;
+    
+    boolean success;
 
     List<PersonDTO> list;
 
@@ -35,6 +37,16 @@ public class ReceiveActivePeopleListMessage {
     public void setList(List<PersonDTO> list) {
         this.list = list;
     }
+
+    public boolean isSuccess() {
+        return success;
+    }
+
+    public void setSuccess(boolean success) {
+        this.success = success;
+    }
+    
+    
 
     @Override
     public int hashCode() {

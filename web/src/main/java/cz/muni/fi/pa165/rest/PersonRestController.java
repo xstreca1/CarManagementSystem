@@ -35,9 +35,11 @@ public class PersonRestController {
         try {
             person = service.getPersonByID(id);
             result.setObject(person);
+            result.setSuccess(true);
         } catch (Exception ex) {
             result.setMessage(ex.getMessage());
             result.setObject(null);
+            result.setSuccess(false);
         }
 
         return result;
@@ -51,9 +53,11 @@ public class PersonRestController {
         try {
             List<PersonDTO> list = service.getPeopleByName(name);
             result.setList(list);
+            result.setSuccess(true);
         } catch (Exception ex) {
             result.setMessage(ex.getMessage());
             result.setList(null);
+            result.setSuccess(false);
         }
 
         return result;
@@ -66,9 +70,11 @@ public class PersonRestController {
         try {
             List<PersonDTO> list = service.findAllPeople(true);
             result.setList(list);
+            result.setSuccess(true);
         } catch (Exception ex) {
             result.setMessage(ex.getMessage());
             result.setList(null);
+            result.setSuccess(false);
         }
 
         return result;
@@ -84,10 +90,12 @@ public class PersonRestController {
             Integer id = person.getId();
             service.editPerson(person, id);
             result.setObject(person);
+            result.setSuccess(true);
 
         } catch (Exception ex) {
             result.setMessage(ex.getMessage());
             result.setObject(null);
+            result.setSuccess(false);
         }
 
         return result;
@@ -125,6 +133,7 @@ public class PersonRestController {
         } catch (Exception ex) {
             result.setMessage(ex.getMessage());
             result.setObject(null);
+            result.setSuccess(false);
         }
 
         return result;
