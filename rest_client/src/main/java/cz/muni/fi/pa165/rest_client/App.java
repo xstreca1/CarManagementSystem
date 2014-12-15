@@ -35,7 +35,7 @@ public class App {
         
 
 
-        if (entityArg.equals("branch")) {
+        if (entityArg.equals("person")) {
             // test if first entity argument is correct
             new PersonClient(args);
 
