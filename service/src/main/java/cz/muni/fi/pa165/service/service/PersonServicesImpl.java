@@ -45,7 +45,7 @@ public class PersonServicesImpl implements PersonServices {
         //check if not null
         this.personDAO = personDAO;
     }
-    public boolean createPerson(PersonDTO personDTO) {
+    public PersonDTO createPerson(PersonDTO personDTO) {
         
         
         //create empty entity
@@ -63,7 +63,7 @@ public class PersonServicesImpl implements PersonServices {
         // save to database using some implementation od DAO
         personDAO.insertPerson(personEntity);
 
-        return true;
+        return personDTO;
     }
 
     public boolean editPerson(PersonDTO personDTO, Integer personID) {

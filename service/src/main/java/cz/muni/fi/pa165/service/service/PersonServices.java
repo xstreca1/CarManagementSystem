@@ -22,7 +22,7 @@ public interface PersonServices {
      * @param all the mandatory attributes for person
      * @return true if no error occurs
      */
-    boolean createPerson(PersonDTO PersonDto);
+    PersonDTO createPerson(PersonDTO PersonDto);
     
     /**
      * return all leases (travel stats) for selected person
