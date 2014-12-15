@@ -62,6 +62,6 @@ public class ReceiveCarMessage implements Serializable{
         return true;
     }
     
-    
+    public 
     
 }

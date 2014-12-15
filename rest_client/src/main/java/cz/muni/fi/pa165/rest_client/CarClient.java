@@ -1,14 +1,11 @@
 /*
- carID isActive vehicleRegPlate yearOfManufacture mileage brand typeName
- color bodystyle enginePower gasConsumption transmission category VIN
- emissionstandard numberOfSeats
-
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
 package cz.muni.fi.pa165.rest_client;
 
+import cz.muni.fi.pa165.persistence.Entities.Car;
 import cz.muni.fi.pa165.rest_messages.ReceiveActiveCarListMessage;
 import cz.muni.fi.pa165.rest_messages.ReceiveCarMessage;
 import cz.muni.fi.pa165.service.dto.CarDTO;
@@ -111,17 +108,17 @@ public class CarClient {
         car.setBrand(args[3]);
         car.setTypeName(args[4]);
         car.setVIN(args[5]);
-        car.setYearOfManufacture(args[6]);
-        car.setColor(args[7]);
-        car.setMileage(args[8]);
-        car.setBodystyle(args[9]);
-        car.setEnginePower(args[10]);
-        car.setGasConsumption(args[11]);
-        car.setTransmission(args[12]);
-        car.setEmissionstandard(args[13]);
-        car.setNumberOfSeats(args[14]);
-        car.setCategory(args[15]);
-        car.setIsActive(args[16]);
+        car.setYearOfManufacture(Integer.parseInt(args[6]));
+        car.setColor(Car.Color.valueOf(args[7]));
+        car.setMileage(Integer.parseInt(args[8]));
+        car.setBodystyle(Car.bodyStyle.valueOf(args[9]));
+        car.setEnginePower(Integer.parseInt(args[10]));
+        car.setGasConsumption(Float.parseFloat(args[11]));
+        car.setTransmission(Boolean.parseBoolean(args[12]));
+        car.setEmissionstandard(Car.emissionStandard.valueOf(args[13]));
+        car.setNumberOfSeats(Integer.parseInt(args[14]));
+        car.setCategory(Car.Category.valueOf(args[15]));
+        car.setIsActive(Boolean.parseBoolean(args[16]));
 
         RestTemplate restTemplate = new RestTemplate();
         ReceiveCarMessage result = restTemplate.postForObject(CREATE_CAR, car, ReceiveCarMessage.class);
@@ -158,7 +155,7 @@ public class CarClient {
         ReceiveCarMessage result = restTemplate.getForObject(String.format(GET_CAR, id), ReceiveCarMessage.class);
 
         CarDTO car = result.getObject();
-        System.out.println("Car with id " + args[2] + " is car " + car.getType() + " " + car.getModel() + " with registration number " + car.getRegistrationNumber() + " and color " + car.getColor());
+        System.out.println("Car with id " + args[2] + " is car " + car.getBrand()+ " " + car.getTypeName()+ " with registration number " + car.getVehicleRegPlate());
     }
 
     /**
@@ -171,19 +168,16 @@ public class CarClient {
      */
     private void handleUpdateOperation(String[] args) {
         if (args.length < 9) {
-            String requiredArgs = "<id> <newRegistrationNumber> <newType> <newModel> <newVin> <newFuel> <newColor>";
+            String requiredArgs = "<id> <mileage> <availability> <isActive>";
             Messages.badNumberOfArgsMessage(args.length, UPDATE_OPERATION, requiredArgs);
             System.exit(1);
         }
 
         CarDTO car = new CarDTO();
-        car.setId(Integer.parseInt(args[2]));
-        car.setRegistrationNumber(args[3]);
-        car.setType(args[4]);
-        car.setModel(args[5]);
-        car.setVin(args[6]);
-        car.setFuel(args[7]);
-        car.setColor(args[8]);
+        car.setCarID(Integer.parseInt(args[2]));
+        car.setMileage(Integer.parseInt(args[3]));
+        car.setAvailibility(Boolean.parseBoolean(args[4]));
+        car.setIsActive(Boolean.parseBoolean(args[5]));
 
         RestTemplate restTemplate = new RestTemplate();
         ReceiveCarMessage result = restTemplate.postForObject(UPDATE_CAR, car, ReceiveCarMessage.class);

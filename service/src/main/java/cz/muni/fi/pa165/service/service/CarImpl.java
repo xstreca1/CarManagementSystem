@@ -11,9 +11,6 @@ import javax.persistence.PersistenceContext;
 import org.dozer.DozerBeanMapper;
 import org.dozer.Mapper;
 import javax.transaction.Transactional;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
-import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 
