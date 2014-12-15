@@ -19,6 +19,8 @@ public class ReceiveCarMessage implements Serializable{
     String message;
     
     CarDTO object;
+    
+    boolean success;
 
     public String getMessage()
     {
@@ -39,6 +41,16 @@ public class ReceiveCarMessage implements Serializable{
     {
         this.object = object;
     }
+
+    public boolean isSuccess() {
+        return success;
+    }
+
+    public void setSuccess(boolean success) {
+        this.success = success;
+    }
+    
+    
 
     @Override
     public int hashCode() {
@@ -62,6 +74,6 @@ public class ReceiveCarMessage implements Serializable{
         return true;
     }
     
-    public 
+    
     
 }

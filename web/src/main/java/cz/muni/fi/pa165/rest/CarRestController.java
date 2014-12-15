@@ -27,6 +27,7 @@ public class CarRestController {
    @Autowired
    CarServiceInterface service; 
    
+   
     @RequestMapping("/get")
     public ReceiveCarMessage getCarById(@RequestParam(required = true) int id)
     {
@@ -37,11 +38,13 @@ public class CarRestController {
         {
             car = service.getCarByID(id);
             result.setObject(car);
+            result.setSuccess(true);
         }
         catch(Exception ex)
         {
             result.setMessage(ex.getMessage());
             result.setObject(null);
+            result.setSuccess(false);
         }
         
         return result;
@@ -56,6 +59,7 @@ public class CarRestController {
         {
             List<CarDTO> list = service.findAllCars(true);
             result.setList(list);
+            result.setSuccess(true);
         }
         catch(Exception ex)
         {
@@ -77,12 +81,14 @@ public class CarRestController {
             Integer id = car.getCarID();
             service.updateCar(car, id);
             result.setObject(car);
+            result.setSuccess(true);
             
         }
         catch(Exception ex)
         {
             result.setMessage(ex.getMessage());
             result.setObject(null);
+            result.setSuccess(false);
         }
         
         return result;
@@ -97,11 +103,13 @@ public class CarRestController {
         {
             service.deleteCar(car);
             result.setObject(car);
+            result.setSuccess(true);
         }
         catch(Exception ex)
         {
             result.setMessage(ex.getMessage());
             result.setObject(null);
+            result.setSuccess(false);
         }
         
         return result;
@@ -116,11 +124,13 @@ public class CarRestController {
         {
             CarDTO newCar = service.createCar(car);
             result.setObject(newCar);
+            result.setSuccess(true);
         }
         catch(Exception ex)
         {
             result.setMessage(ex.getMessage());
             result.setObject(null);
+            result.setSuccess(false);
         }
         
         return result;

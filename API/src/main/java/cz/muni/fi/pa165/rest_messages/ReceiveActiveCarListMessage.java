@@ -19,6 +19,8 @@ public class ReceiveActiveCarListMessage implements Serializable{
     
     String message;
     
+    boolean success;
+    
     List<CarDTO> list;
 
 
@@ -41,6 +43,16 @@ public class ReceiveActiveCarListMessage implements Serializable{
     {
         this.list = list;
     }
+
+    public boolean isSuccess() {
+        return success;
+    }
+
+    public void setSuccess(boolean success) {
+        this.success = success;
+    }
+    
+    
 
     @Override
     public int hashCode() {
