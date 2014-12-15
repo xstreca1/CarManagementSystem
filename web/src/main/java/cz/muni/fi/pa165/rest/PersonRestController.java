@@ -74,6 +74,7 @@ public class PersonRestController {
         return result;
     }
 
+    //have to be clarified if the ID can be passed that way
     @RequestMapping("/update")
     public ReceivePersonMessage updateCar(@RequestBody PersonDTO person) {
 
