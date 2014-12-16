@@ -90,11 +90,15 @@ public class PersonController {
      }*/
     @RequestMapping(value = "/add", method = RequestMethod.POST)
     public String addPerson(@ModelAttribute("person") @Valid PersonDTO person,
-            BindingResult result, ModelMap model) {
+            BindingResult result, ModelMap model, HttpServletRequest request) {
 
         if (result.hasErrors()) {
+            
+            List<PersonDTO> people = personService.findAllPeople(true);
+            request.setAttribute("people", people);            
             return "personListPeople";
         } else {
+
             personService.createPerson(person);
 
             return "redirect:/person/";
@@ -131,10 +135,6 @@ public class PersonController {
         return "redirect:/person/";
     }
 
-    @InitBinder
-    public void initBinder(WebDataBinder binder) {
-        binder.registerCustomEditor(String.class, new StringTrimmerEditor(true));
-    }
     /*@RequestMapping(value = "/update", method = RequestMethod.POST)
      public String updatePerson(@ModelAttribute("person") PersonDTO person,
      BindingResult result, ModelMap model, @PathVariable Integer id) {
@@ -163,5 +163,4 @@ public class PersonController {
 
      return new ModelAndView("getPeopleByName");
      }*/
-
 }

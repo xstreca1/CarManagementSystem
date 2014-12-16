@@ -23,6 +23,7 @@ public class PersonDTO {
     private Integer id;
     
     @NotEmpty
+    @Pattern(regexp = "[A-Za-z ]*")
     //@Pattern(regexp= "//^[A-Za-z]+$/")
     private String name;
 
