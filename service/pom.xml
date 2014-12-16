@@ -81,6 +81,18 @@
             <artifactId>persistence</artifactId>
             <version>${project.version}</version>
         </dependency>
+        <dependency>
+            <groupId>javax.validation</groupId>
+            <artifactId>validation-api</artifactId>
+            <version>1.0.0.GA</version>
+            <type>jar</type>
+        </dependency>
+        <!-- Hibernate Validator -->
+    <dependency>
+        <groupId>org.hibernate</groupId>
+        <artifactId>hibernate-validator</artifactId>
+        <version>4.2.0.Final</version>
+    </dependency>
     </dependencies>
     <name>service</name>
     <!--repositories>
