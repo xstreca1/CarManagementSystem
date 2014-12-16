@@ -78,7 +78,7 @@ public class Person implements Serializable {
     private String nationality;
 
     @Column(nullable = false)
-    private int salary;
+    private Integer salary;
 
     //--------------relationships------------------------
     @OneToMany(mappedBy = "person")
@@ -137,11 +137,11 @@ public class Person implements Serializable {
         this.nationality = nationality;
     }
 
-    public int getSalary() {
+    public Integer getSalary() {
         return salary;
     }
 
-    public void setSalary(int salary) {
+    public void setSalary(Integer salary) {
         this.salary = salary;
     }
 

@@ -22,9 +22,8 @@ public class PersonDTO {
 
     private Integer id;
     
-    @NotEmpty
-    @Pattern(regexp = "[A-Za-z ]*")
-    //@Pattern(regexp= "//^[A-Za-z]+$/")
+    @NotEmpty // can not be empty
+    @Pattern(regexp = "[A-Za-z ]*") // can contain only letters and spaces   
     private String name;
 
     private Boolean isActive;
@@ -42,16 +41,17 @@ public class PersonDTO {
 
     private String nationality;
 
-    
-    @Digits(integer = 6, fraction = 0)  
-    private int salary;
+    //@Pattern(regexp = "[0-9]*") // can contain only numbers 0-9
+    @NotNull
+    @Digits(integer = 6, fraction = 0) // maximal 6 digits
+    private Integer salary;
     
     private String IdentificationNumber;
 
     public PersonDTO(Integer id, String name, Boolean isActive,
             Person.EmploymentStatus employmentStatus, Date dateOfBirth,
             String position, Person.Sex sex, //Address address,
-            String nationality, int salary, String identificationNumber) {
+            String nationality, Integer salary, String identificationNumber) {
 
         this.id = id;
         this.name = name;
@@ -151,11 +151,11 @@ public class PersonDTO {
         this.nationality = nationality;
     }
 
-    public int getSalary() {
+    public Integer getSalary() {
         return salary;
     }
 
-    public void setSalary(int salary) {
+    public void setSalary(Integer salary) {
         this.salary = salary;
     }
     @Override
