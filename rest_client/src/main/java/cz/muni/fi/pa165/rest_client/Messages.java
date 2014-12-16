@@ -17,10 +17,20 @@ public class Messages {
 
                 "commands for <car> are: \n" +
                 "\tfindAll                                                                       print out all cars\n" +
-                "\tadd <regNumber> <type> <model> <vin> <fuel> <color>                           add new car\n" +
-                "\tupdate <id> <newRegNumber> <newType> <newModel> <newVin> <newFuel> <newColor> update car by given id\n" +
+                "\tadd <vehicleRegPlate> <brand> <typeName> <VIN> <yearOfManufacture> "
+                    + "<color> <mileage> <bodystyle> <enginePower> <gasConsumption> <transmission> "
+                    + "<emissionstandard> <numberOfSeats> <category> <isActive>                           add new car\n" +
+                "\tupdate <id> <mileage> <availability> <isActive>                               update car by given id\n" +
                 "\tdelete <id>                                                                   delete car by given id\n" +
-                "\tfindbyid <id>                                                                 find car by id\n");
+                "\tfindbyid <id>                                                                 find car by id\n" +
+        
+                "commands for <person> are: \n" +
+                "\tfindAll                                                                       print out all people\n" +
+                "\tadd <name> <isActive> <employmentStatus> <dateOfBirth> <position> <sex> <nationality> <salary> <IdentificationNumber>                           add new person\n" +
+                "\tupdate <id> <name> <position> <nationality> <salary> <employmentStatus> <isActive> update person by given id\n" +
+                "\tdelete <id>                                                                   delete person by given id\n" +
+                "\tfindbyname <id>                                                                  delete person by given id\n" +
+                "\tfindbyid <id>");
     }
 
     /**
