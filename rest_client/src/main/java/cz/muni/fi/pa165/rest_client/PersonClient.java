@@ -102,7 +102,7 @@ public class PersonClient {
         person.setIsActive(Boolean.valueOf(args[3]));
         person.setEmploymentStatus(Person.EmploymentStatus.valueOf(args[4]));
         //convert date to string?
-        person.setDateOfBirth(args[5]);
+        //person.setDateOfBirth(args[5]);
         person.setPosition(args[6]);
         person.setSex(Person.Sex.valueOf(args[7]));
         person.setNationality(args[8]);

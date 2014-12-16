@@ -20,7 +20,7 @@ public class App {
     
         try {
         
-            new URL("http://localhost:8080/pa165/").openConnection().connect();
+            new URL("http://localhost:8080/pa165").openConnection().connect();
 
         
         if (args.length == 0) {
