@@ -11,7 +11,7 @@
     <tr>
         <th><form:label path="name"><fmt:message key="person.name"/></form:label></th>
         <td><form:input path="name"/></td>
-        <td><form:errors path="name" cssClass="error"/></td>
+        <td><font color="red"> <form:errors path="name"></form:errors></font></td>
     </tr>
     <tr>
         <th><form:label path="sex"><fmt:message key="person.sex"/></form:label></th>

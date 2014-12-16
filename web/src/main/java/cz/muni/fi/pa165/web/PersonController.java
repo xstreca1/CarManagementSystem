@@ -36,6 +36,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.beans.propertyeditors.StringTrimmerEditor;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.InitBinder;
 
 /**
  *
@@ -77,22 +80,25 @@ public class PersonController {
     }
 
     /*@RequestMapping(value = "/listPeople", method = RequestMethod.GET)
-    public ModelAndView listPeople(ModelMap model,
-            @RequestParam(value = "isInactive", required = false) boolean isInactive) {
+     public ModelAndView listPeople(ModelMap model,
+     @RequestParam(value = "isInactive", required = false) boolean isInactive) {
 
-        List<PersonDTO> people = personService.findAllPeople(isInactive);
-        model.addAttribute("people", people);
+     List<PersonDTO> people = personService.findAllPeople(isInactive);
+     model.addAttribute("people", people);
 
-        return new ModelAndView("listPeople");
-    }*/
-
+     return new ModelAndView("listPeople");
+     }*/
     @RequestMapping(value = "/add", method = RequestMethod.POST)
-    public String addPerson(@ModelAttribute("person") PersonDTO person,
+    public String addPerson(@ModelAttribute("person") @Valid PersonDTO person,
             BindingResult result, ModelMap model) {
 
-        personService.createPerson(person);
+        if (result.hasErrors()) {
+            return "personListPeople";
+        } else {
+            personService.createPerson(person);
 
-        return "redirect:/person/";
+            return "redirect:/person/";
+        }
     }
 
     @RequestMapping(value = "/delete/{id}")
@@ -108,7 +114,7 @@ public class PersonController {
 
     @RequestMapping(value = "/update/{id}", method = RequestMethod.GET)
     public String update_form(@PathVariable Integer id, HttpServletRequest request) {
-        
+
         List<PersonDTO> people = new ArrayList();
         people.add(personService.getPersonByID(id));
         request.setAttribute("people", people);
@@ -117,42 +123,45 @@ public class PersonController {
     }
 
     @RequestMapping(value = "/edit/{id}", method = RequestMethod.POST)
-    public String editPerson(@ModelAttribute("person") PersonDTO person,@PathVariable Integer id,
+    public String editPerson(@ModelAttribute("person") PersonDTO person, @PathVariable Integer id,
             BindingResult result, ModelMap model) {
 
-        
         personService.editPerson(person, id);
-        
 
         return "redirect:/person/";
     }
-    /*@RequestMapping(value = "/update", method = RequestMethod.POST)
-    public String updatePerson(@ModelAttribute("person") PersonDTO person,
-            BindingResult result, ModelMap model, @PathVariable Integer id) {
 
-        if (result.hasErrors()) {
-            for (ObjectError ge : result.getGlobalErrors()) {
-
-            }
-            for (FieldError fe : result.getFieldErrors()) {
-
-            }
-            return person.getId() == null ? "person/list" : "person/edit";
-        }
-
-        personService.editPerson(person, id);
-
-        return "redirect:/person/listPeople";
+    @InitBinder
+    public void initBinder(WebDataBinder binder) {
+        binder.registerCustomEditor(String.class, new StringTrimmerEditor(true));
     }
+    /*@RequestMapping(value = "/update", method = RequestMethod.POST)
+     public String updatePerson(@ModelAttribute("person") PersonDTO person,
+     BindingResult result, ModelMap model, @PathVariable Integer id) {
 
-    @RequestMapping(value = "/listPeopleByName", method = RequestMethod.GET)
-    public ModelAndView listPeopleByName(ModelMap model,
-            @RequestParam("name") String name) {
+     if (result.hasErrors()) {
+     for (ObjectError ge : result.getGlobalErrors()) {
 
-        List<PersonDTO> namedPersonNew = personService.getPeopleByName(name);
-        model.addAttribute("getPeopleByName", namedPersonNew);
+     }
+     for (FieldError fe : result.getFieldErrors()) {
 
-        return new ModelAndView("getPeopleByName");
-    }*/
+     }
+     return person.getId() == null ? "person/list" : "person/edit";
+     }
+
+     personService.editPerson(person, id);
+
+     return "redirect:/person/listPeople";
+     }
+
+     @RequestMapping(value = "/listPeopleByName", method = RequestMethod.GET)
+     public ModelAndView listPeopleByName(ModelMap model,
+     @RequestParam("name") String name) {
+
+     List<PersonDTO> namedPersonNew = personService.getPeopleByName(name);
+     model.addAttribute("getPeopleByName", namedPersonNew);
+
+     return new ModelAndView("getPeopleByName");
+     }*/
 
 }
