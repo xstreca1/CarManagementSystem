@@ -21,6 +21,7 @@ public class PersonClient {
     private static final String UPDATE_OPERATION = "update";
     private static final String DELETE_OPERATION = "delete";
     private static final String FIND_BY_ID_OPERATION = "findbyid";
+    private static final String FIND_BY_NAME_OPERATION = "findbyname";
 
     private static final String CREATE_PERSON = "http://localhost:8080/pa165/rest/person/add";
     private static final String GET_PERSON = "http://localhost:8080/pa165/rest/person/get?id=%d";
@@ -60,12 +61,40 @@ public class PersonClient {
             case FIND_BY_ID_OPERATION:
                 handleFindById(args);
                 break;
+                
+            case FIND_BY_NAME_OPERATION:
+                handleFindByName(args);
+                break;
 
             default:
                 Messages.unknownOperationMessage(operation);
                 System.exit(1);
         }
+        
+    }
 
+    private void handleFindAllOperation() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    private void handleAddOperation(String[] args) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    private void handleUpdateOperation(String[] args) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    private void handleDeleteOperation(String[] args) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    private void handleFindById(String[] args) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    private void handleFindByName(String[] args) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }
