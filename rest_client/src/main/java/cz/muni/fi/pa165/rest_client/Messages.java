@@ -45,7 +45,7 @@ public class Messages {
     }
 
     public static void badFirstArgumentMessage() {
-        System.out.println("first argument has to be <branch> or <car>");
+        System.out.println("first argument has to be <person> or <car>");
     }
     
     public static void serverError(String message) {
