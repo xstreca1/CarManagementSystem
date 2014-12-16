@@ -7,6 +7,13 @@ import cz.muni.fi.pa165.persistence.Entities.Address;
 import cz.muni.fi.pa165.persistence.Entities.Person;
 import java.util.Date;
 
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Digits;
+import org.hibernate.validator.constraints.NotEmpty;
+
+
+
 /**
  *
  * @author jrumanov
@@ -14,7 +21,9 @@ import java.util.Date;
 public class PersonDTO {
 
     private Integer id;
-
+    
+    @NotEmpty
+    //@Pattern(regexp= "//^[A-Za-z]+$/")
     private String name;
 
     private Boolean isActive;
@@ -25,12 +34,15 @@ public class PersonDTO {
 
     private String position;
 
+    
     private Person.Sex sex;
 
     //private Address address;
 
     private String nationality;
 
+    
+    @Digits(integer = 6, fraction = 0)  
     private int salary;
     
     private String IdentificationNumber;
