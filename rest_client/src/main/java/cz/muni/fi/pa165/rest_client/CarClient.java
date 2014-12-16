@@ -87,14 +87,16 @@ public class CarClient {
 
     /**
      * handles create car operation console command is: car create
-     * <registrationNumber> <type> <model> <vin> <fuel> <color>
+     * [vehicleRegPlate] [brand] [typeName] [VIN] [yearOfManufacture] 
+     * [color] [mileage] [bodystyle] [enginePower] [gasConsumption] [transmission]
+     * [emissionstandard] [numberOfSeats] [category] [isActive]
      *
      * @param args command line arguments args[0] args[1] args[2] args[3]
-     * args[4] args[5] args[6] args[7] car create registrationNumber type model
-     * vin fuel color
+     * args[4] args[5] args[6] args[7] args[8] args[9] args[10] args[11] args[12] args[13]
+     * 
      */
     private void handleAddOperation(String args[]) {
-        if (args.length < 8) {
+        if (args.length < 14) {
             String requiredArgs = "<vehicleRegPlate> <brand> <typeName> <VIN> <yearOfManufacture> "
                     + "<color> <mileage> <bodystyle> <enginePower> <gasConsumption> <transmission> "
                     + "<emissionstandard> <numberOfSeats> <category> <isActive>";
@@ -102,7 +104,6 @@ public class CarClient {
             System.exit(1);
         }
         
-        //should be converted somehow to string
         CarDTO car = new CarDTO();
         car.setVehicleRegPlate(args[2]);
         car.setBrand(args[3]);
@@ -123,7 +124,6 @@ public class CarClient {
         RestTemplate restTemplate = new RestTemplate();
         ReceiveCarMessage result = restTemplate.postForObject(CREATE_CAR, car, ReceiveCarMessage.class);
 
-        //this method is missing in RecieveCarMessage - please fix it jpuchly
         if (result.isSuccess()) {
             System.out.println("Car with RegistrationNumber: '" + args[2] + "', type: '" + args[3] + "', model: '" + args[4] + "', vin: '" + args[5] + "' was created");
             return;
@@ -159,15 +159,15 @@ public class CarClient {
     }
 
     /**
-     * handles update carration console command is: car update <id>
-     * <registrationNumber> <type> <model> <vin> <fuel> <color>
+     * handles update carration console command is: car update [carID]
+     * [mileage] [availability] [isActive]
      *
      * @param args command line arguments args[0] args[1] args[2] args[3]
      * args[4] args[5] args[6] args[7] args[8] car create id registrationNumber
      * type model vin fuel color
      */
     private void handleUpdateOperation(String[] args) {
-        if (args.length < 9) {
+        if (args.length < 4) {
             String requiredArgs = "<id> <mileage> <availability> <isActive>";
             Messages.badNumberOfArgsMessage(args.length, UPDATE_OPERATION, requiredArgs);
             System.exit(1);
