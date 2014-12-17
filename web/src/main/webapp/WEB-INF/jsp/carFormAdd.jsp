@@ -17,12 +17,12 @@
         <tr>
             <th><form:label path="typeName"><fmt:message key="car.typeName"/></form:label></th>
         <td><form:input path="typeName"/></td>
-        <td><form:errors path="typeName" cssClass="error"/></td>
+        <td><font color="red"> <form:errors path="typeName"></form:errors></font></td>
     </tr>
     <tr>
         <th><form:label path="brand"><fmt:message key="car.brand"/></form:label></th>
         <td><form:input path="brand"/></td>
-        <td><form:errors path="brand" cssClass="error"/></td>
+        <td><font color="red"> <form:errors path="brand"></form:errors></font></td>
     </tr>
     <tr>
         <th><form:label path="yearOfManufacture"><fmt:message key="car.yearOfManufacture"/></form:label></th>

@@ -16,10 +16,10 @@ import org.hibernate.validator.constraints.NotEmpty;
 public class CarDTO {
 
     private Integer carID;
-    
+
     private boolean availibility;
 
-    private Boolean isActive;    
+    private Boolean isActive;
 
     @NotEmpty // can not be empty
     @Pattern(regexp = "[A-Z0-9 ]*") // can contain only upper case letters and numbers 0-9  
@@ -29,8 +29,12 @@ public class CarDTO {
 
     private int mileage;
 
+    @NotEmpty // can not be empty
+    @Pattern(regexp = "[A-Za-z0-9 ]*") // can contain only upper case letters and numbers 0-9     
     private String brand;
-
+    
+    @NotEmpty // can not be empty
+    @Pattern(regexp = "[A-Za-z0-9 ]*") // can contain only upper case letters and numbers 0-9    
     private String typeName;
 
     private Car.Color color;
@@ -178,10 +182,12 @@ public class CarDTO {
     public void setCarID(Integer carID) {
         this.carID = carID;
     }
+
     @Override
     public String toString() {
         return "" + vehicleRegPlate;
     }
+
     public boolean getAvailibility() {
         return availibility;
     }
@@ -189,7 +195,6 @@ public class CarDTO {
     public void setAvailibility(boolean availibility) {
         this.availibility = availibility;
     }
-
 
     @Override
     public int hashCode() {
