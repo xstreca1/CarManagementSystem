@@ -12,8 +12,8 @@
     <tr>
         <th><form:label path="name"><fmt:message key="person.name"/></form:label></th>
         <td><form:input path="name"/></td>
-        <td><form:errors path="name" cssClass="error"/></td>
-    </tr>
+        <td><font color="red"> <form:errors path="name"></form:errors></font></td>
+        </tr>
     <%-- <tr>
         <th><form:label path="dateOfBirth"><fmt:message key="person.dateOfBirth"/></form:label></th>
         <td><form:input path="dateOfBirth"/></td>
@@ -22,31 +22,31 @@
     <tr>
         <th><form:label path="position"><fmt:message key="person.position"/></form:label></th>
         <td><form:input path="position"/></td>
-        <td><form:errors path="position" cssClass="error"/></td>
-    </tr>
-    <tr>
-        <th><form:label path="nationality"><fmt:message key="person.nationality"/></form:label></th>
+        <td><font color="red"> <form:errors path="position"></form:errors></font></td>
+        </tr>
+        <tr>
+            <th><form:label path="nationality"><fmt:message key="person.nationality"/></form:label></th>
         <td><form:input path="nationality"/></td>
-        <td><form:errors path="nationality" cssClass="error"/></td>
-    </tr>
-    <tr>
-        <th><form:label path="salary"><fmt:message key="person.salary"/></form:label></th>
+        <td><font color="red"> <form:errors path="nationality"></form:errors></font></td>
+        </tr>
+        <tr>
+            <th><form:label path="salary"><fmt:message key="person.salary"/></form:label></th>
         <td><form:input path="salary"/></td>
-        <td><form:errors path="salary" cssClass="error"/></td>
-    </tr>            
-    <tr>
-        <th><form:label path="employmentStatus"><fmt:message key="person.employmentStatus"/></form:label></th>
+        <td><font color="red"> <form:errors path="salary"></form:errors></font></td>
+        </tr>            
+        <tr>
+            <th><form:label path="employmentStatus"><fmt:message key="person.employmentStatus"/></form:label></th>
         <td><form:select path="employmentStatus">
-                <form:option value="-"> <fmt:message key="enum.select"/></form:option>
+
                 <form:options items="${enumValues}" />
             </form:select></td>
         <td><form:errors path="employmentStatus" cssClass="error"/></td>
     </tr>
-    
+
     <tr>
         <th><form:label path="isActive"><fmt:message key="person.isActive"/></form:label></th>
         <td><form:checkbox path="isActive"/></td>
         <td><form:errors path="isActive" cssClass="error"/></td>
     </tr>
-    
+
 </table>
