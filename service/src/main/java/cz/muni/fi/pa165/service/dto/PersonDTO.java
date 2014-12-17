@@ -28,6 +28,7 @@ public class PersonDTO {
 
     private Boolean isActive;
 
+   
     private Person.EmploymentStatus employmentStatus;
 
     private Date dateOfBirth;
@@ -36,7 +37,7 @@ public class PersonDTO {
     @Pattern(regexp = "[A-Za-z ]*") // can contain only letters and spaces   
     private String position;
 
-    
+   
     private Person.Sex sex;
 
     //private Address address;
