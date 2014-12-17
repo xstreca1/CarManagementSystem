@@ -22,13 +22,13 @@
     <tr>
         <th><form:label path="dateOfLease"><fmt:message key="lease.dateOfLease"/></form:label></th>
         <td><form:input path="dateOfLease"/></td>
-        <td><form:errors path="dateOfLease" cssClass="error"/></td>
+        <td><font color="red"> <form:errors path="dateOfLease"></form:errors></font></td>
     </tr>
     <tr>
         <th><form:label path="dateOfReturn"><fmt:message key="lease.dateOfReturn"/></form:label></th>
 
             <td><form:input path="dateOfReturn"/></td>
-        <td><form:errors path="dateOfReturn" cssClass="error"/></td>
+        <td><font color="red"> <form:errors path="dateOfReturn"></form:errors></font></td>
     </tr>            
     <%-- <tr>
         <th><form:label path="returnedStatus"><fmt:message key="lease.returnedStatus"/></form:label></th>
@@ -43,7 +43,7 @@
         <td><form:select path="travelReason">                
                 <form:options items="${enumValues}" />
             </form:select></td>
-        <td><form:errors path="travelReason" cssClass="error"/></td>
+        <td><font color="red"> <form:errors path="travelReason"></form:errors></font></td>
     </tr>
     <%-- <tr>
          <td><form:label path="person">
