@@ -25,16 +25,16 @@ public class CarDTO {
     @Pattern(regexp = "[A-Z0-9 ]*") // can contain only upper case letters and numbers 0-9  
     private String vehicleRegPlate;
 
-    private int yearOfManufacture;
+    private Integer yearOfManufacture;
 
-    private int mileage;
+    private Integer mileage;
 
     @NotEmpty // can not be empty
-    @Pattern(regexp = "[A-Za-z0-9 ]*") // can contain only upper case letters and numbers 0-9     
+    @Pattern(regexp = "[A-Za-z0-9 ]*") // can contain only letters and numbers 0-9     
     private String brand;
     
     @NotEmpty // can not be empty
-    @Pattern(regexp = "[A-Za-z0-9 ]*") // can contain only upper case letters and numbers 0-9    
+    @Pattern(regexp = "[A-Za-z0-9 ]*") // can contain only letters and numbers 0-9    
     private String typeName;
 
     private Car.Color color;
@@ -53,7 +53,7 @@ public class CarDTO {
 
     private Car.emissionStandard emissionstandard;
 
-    private int numberOfSeats;
+    private Integer numberOfSeats;
 
     public Boolean getIsActive() {
         return isActive;
@@ -71,19 +71,19 @@ public class CarDTO {
         this.vehicleRegPlate = vehicleRegPlate;
     }
 
-    public int getYearOfManufacture() {
+    public Integer getYearOfManufacture() {
         return yearOfManufacture;
     }
 
-    public void setYearOfManufacture(int yearOfManufacture) {
+    public void setYearOfManufacture(Integer yearOfManufacture) {
         this.yearOfManufacture = yearOfManufacture;
     }
 
-    public int getMileage() {
+    public Integer getMileage() {
         return mileage;
     }
 
-    public void setMileage(int mileage) {
+    public void setMileage(Integer mileage) {
         this.mileage = mileage;
     }
 
@@ -167,11 +167,11 @@ public class CarDTO {
         this.emissionstandard = emissionstandard;
     }
 
-    public int getNumberOfSeats() {
+    public Integer getNumberOfSeats() {
         return numberOfSeats;
     }
 
-    public void setNumberOfSeats(int numberOfSeats) {
+    public void setNumberOfSeats(Integer numberOfSeats) {
         this.numberOfSeats = numberOfSeats;
     }
 
