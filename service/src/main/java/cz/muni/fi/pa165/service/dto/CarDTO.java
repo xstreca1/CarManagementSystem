@@ -6,6 +6,8 @@
 package cz.muni.fi.pa165.service.dto;
 
 import cz.muni.fi.pa165.persistence.Entities.Car;
+import javax.validation.constraints.Pattern;
+import org.hibernate.validator.constraints.NotEmpty;
 
 /**
  *
@@ -19,6 +21,8 @@ public class CarDTO {
 
     private Boolean isActive;    
 
+    @NotEmpty // can not be empty
+    @Pattern(regexp = "[A-Z0-9 ]*") // can contain only upper case letters and numbers 0-9  
     private String vehicleRegPlate;
 
     private int yearOfManufacture;

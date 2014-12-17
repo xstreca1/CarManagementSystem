@@ -12,7 +12,7 @@
     <tr>
         <th><form:label path="vehicleRegPlate"><fmt:message key="car.vehicleRegPlate"/></form:label></th>
         <td><form:input path="vehicleRegPlate"/></td>
-        <td><form:errors path="vehicleRegPlate" cssClass="error"/></td>
+        <td><font color="red"> <form:errors path="vehicleRegPlate"></form:errors></font></td>
     </tr>
      <tr>
         <th><form:label path="typeName"><fmt:message key="car.typeName"/></form:label></th>
