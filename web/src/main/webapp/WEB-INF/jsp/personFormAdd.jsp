@@ -34,7 +34,7 @@
     <tr>
         <th><form:label path="position"><fmt:message key="person.position"/></form:label></th>
         <td><form:input path="position"/></td>
-        <td><form:errors path="position" cssClass="error"/></td>
+        <td><font color="red"> <form:errors path="position"></form:errors></font></td>
     </tr>
     <tr>
         <th><form:label path="employmentStatus"><fmt:message key="person.employmentStatus"/></form:label></th>

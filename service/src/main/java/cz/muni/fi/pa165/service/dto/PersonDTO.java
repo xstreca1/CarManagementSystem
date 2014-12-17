@@ -32,6 +32,8 @@ public class PersonDTO {
 
     private Date dateOfBirth;
 
+    @NotEmpty // can not be empty
+    @Pattern(regexp = "[A-Za-z ]*") // can contain only letters and spaces   
     private String position;
 
     
