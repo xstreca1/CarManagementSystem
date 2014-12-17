@@ -12,7 +12,7 @@
     <tr>
         <th><form:label path="mileage"><fmt:message key="car.mileage"/></form:label></th>
         <td><form:input path="mileage"/></td>
-        <td><form:errors path="mileage" cssClass="error"/></td>
+        <td><font color="red"> <form:errors path="mileage"></form:errors></font></td>
     </tr>
     
     <tr>
