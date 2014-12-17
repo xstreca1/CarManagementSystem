@@ -47,8 +47,8 @@
     
     <tr>
         <th><form:label path="salary"><fmt:message key="person.salary"/></form:label></th>
-        <td><form:input path="salary"/></td>
-        <td><form:errors path="salary" cssClass="error"/></td>
+        <td><form:input path="salary" maxlength="10"/></td>        
+        <td><font color="red"> <form:errors path="salary"></form:errors></font></td>
     </tr>            
     
     
