@@ -23,8 +23,8 @@
     </tr>
     <tr>
         <th><form:label path="nationality"><fmt:message key="person.nationality"/></form:label></th>
-        <td><form:input path="nationality"/></td>
-        <td><form:errors path="nationality" cssClass="error"/></td>
+        <td><form:input path="nationality" maxlength="2"/></td>
+        <td><font color="red"> <form:errors path="nationality"></form:errors></font></td>
     </tr>
     <%-- <tr>
         <th><form:label path="dateOfBirth"><fmt:message key="person.dateOfBirth"/></form:label></th>
