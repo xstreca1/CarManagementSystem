@@ -7,6 +7,7 @@ package cz.muni.fi.pa165.web;
 
 import static com.sun.corba.se.spi.presentation.rmi.StubAdapter.request;
 import cz.muni.fi.pa165.persistence.Entities.Person;
+import cz.muni.fi.pa165.service.dto.LeaseDTO;
 import cz.muni.fi.pa165.service.dto.PersonDTO;
 import cz.muni.fi.pa165.service.service.CarServiceInterface;
 import cz.muni.fi.pa165.service.service.LeaseServiceInterface;
@@ -133,6 +134,16 @@ public class PersonController {
         personService.editPerson(person, id);
 
         return "redirect:/person/";
+    }
+    
+    @RequestMapping(value = "/statistics/{id}", method = RequestMethod.GET)
+    public String getStatistics(ModelMap model,@PathVariable Integer id) {               
+        
+        PersonDTO person = personService.getPersonByID(id);
+        List<LeaseDTO> leases = leaseService.getLeaseByPerson(person);
+        model.addAttribute("leases", leases);
+
+        return "personStatistics";
     }
 
     /*@RequestMapping(value = "/update", method = RequestMethod.POST)
