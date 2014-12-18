@@ -54,19 +54,19 @@
                     <td><c:out value="${car.emissionstandard}"/></td> 
                     <td><fmt:message key="car.isActive.${car.isActive}"/></td>
                     <td><fmt:message key="car.availibility.${car.availibility}"/></td>
-                        
-                    <td>
+                </tr>    
+                <tr>
                     <form:form method="post" action="${pageContext.request.contextPath}/car/confirmLease/${car.carID}" modelAttribute="lease">
-                            
-                            <fieldset><legend><fmt:message key="lease.add.add"/></legend>
-                                <%@include file="leaseFormAdd.jsp"%>
-                                <input type="submit" value="<fmt:message key='lease.edit.save'/>">
-                            </fieldset>
-                        </form:form>
-                    </td>
-                </tr>
-            </c:forEach>
-        </table>
 
-    </jsp:attribute>
+                    <fieldset><legend><fmt:message key="lease.add.add"/></legend>
+                        <%@include file="leaseFormAdd.jsp"%>
+                        <input type="submit" align="center" class="btn black" value="<fmt:message key='lease.edit.save'/>">
+                    </fieldset>
+                </form:form>
+            </tr>
+
+        </c:forEach>
+    </table>
+
+</jsp:attribute>
 </my:layout>
