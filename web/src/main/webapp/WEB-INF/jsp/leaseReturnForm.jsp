@@ -7,7 +7,7 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<table>
+<table id="add">
     <tr>
         <th><form:label path="distance"><fmt:message key="lease.distance"/></form:label></th>
         <td><form:input path="distance"/></td>
