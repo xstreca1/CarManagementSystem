@@ -22,7 +22,7 @@
                 <th><fmt:message key="car.brand"/></th>
                 <th><fmt:message key="car.typeName"/></th>
                 <th><fmt:message key="car.yearOfManufacture"/></th>
-                <th><fmt:message key="car.mileage"/></th>
+                <th id="markup"><fmt:message key="car.mileage"/></th>
                 <th><fmt:message key="car.color"/></th>
                 <th><fmt:message key="car.bodystyle"/></th>
                 <th><fmt:message key="car.enginePower"/></th>
@@ -31,10 +31,8 @@
                 <th><fmt:message key="car.category"/></th>
                 <th><fmt:message key="car.VIN"/></th>
                 <th><fmt:message key="car.emissionstandard"/></th>
-                <th><fmt:message key="car.isActive"/></th>
-                <th><fmt:message key="car.availibility"/></th>
-                <th></th>
-                <th></th>
+                <th id="markup"><fmt:message key="car.isActive"/></th>
+                <th id="markup"><fmt:message key="car.availibility"/></th>
             </tr>
             <c:forEach items="${cars}" var="car">
                 <tr>
@@ -54,18 +52,18 @@
                     <td><c:out value="${car.emissionstandard}"/></td> 
                     <td><fmt:message key="car.isActive.${car.isActive}"/></td>
                     <td><fmt:message key="car.availibility.${car.availibility}"/></td>
-
-                    <td>
+ </tr>
+                    <tr>
                         <form:form method="post" action="${pageContext.request.contextPath}/car/edit/${car.carID}" modelAttribute="car">
                             
                             <fieldset><legend><fmt:message key="car.add.add"/></legend>
                                 <%@include file="carFormEdit.jsp"%>
-                                <input type="submit" value="<fmt:message key='car.add.save'/>">
+                                <input align="center" class="btn black" type="submit" value="<fmt:message key='car.add.save'/>">
                             </fieldset>
                         </form:form>
-                    </td>
-                    <
-                </tr>
+                    </tr>
+                    
+               
             </c:forEach>
         </table>
 
