@@ -25,8 +25,7 @@
                 <th><fmt:message key="serviceCheck.lastCheck"/></th>
                 <th><fmt:message key="serviceCheck.description"/></th>
                 <th><fmt:message key="serviceCheck.car"/></th>
-                <th></th>
-                <th></th>
+
             </tr>
             <c:forEach items="${checks}" var="serviceCheck">
                 <tr>
@@ -36,7 +35,7 @@
                     <td><c:out value="${serviceCheck.lastCheck}"/></td>                    
                     <td><c:out value="${serviceCheck.description}"/></td> 
                     <td><c:out value="${serviceCheck.car}"/></td>
-                    <td>
+                    <td style="background:white;">
                         <form method="get" action="${pageContext.request.contextPath}/serviceCheck/performFromCar/${serviceCheck.scID}">
                             <input type="submit" value="<fmt:message key='serviceCheck.list.edit'/>">
                         </form>
