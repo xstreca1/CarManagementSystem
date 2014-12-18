@@ -199,3 +199,16 @@ table#add input{
 #markup{
     background: rgb(135, 211, 124); 
 }
+
+/* .squaredFour */
+input[type=checkbox] {
+width:20px;
+height:20px;
+}
+
+select{
+    font-family: 'Open Sans', sans-serif; 
+    font-size: 1em/*36/*/; 
+    font-weight: lighter;
+    height:30px;
+}
