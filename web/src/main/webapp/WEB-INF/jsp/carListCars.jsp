@@ -58,7 +58,7 @@
                     <td><fmt:message key="car.availibility.${car.availibility}"/></td>
                 </tr>
 
-                <tr class="carsEdit" height="30">
+                <tr class="carsEdit" height="30" style="background:white;">
                     <td colspan="12"><ul><li>
                                 <form method="get" action="${pageContext.request.contextPath}/car/update/${car.carID}">
                                     <input type="submit" class="btn black" value="<fmt:message key='car.list.edit'/>">
