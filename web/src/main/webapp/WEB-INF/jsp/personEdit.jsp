@@ -29,9 +29,6 @@
                 <th><fmt:message key="person.position"/></th>
                 <th><fmt:message key="person.salary"/></th>
                 <th><fmt:message key="person.isActive"/></th>
-
-                <th></th>
-                <th></th>
             </tr>
 
             <c:forEach items="${people}" var="person">
@@ -47,17 +44,18 @@
                 <td><c:out value="${person.position}"/></td>
                 <td><c:out value="${person.salary}"/></td>
                 <td><fmt:message key="person.isActive.${person.isActive}"/></td>
-                <td>
-                    <form:form method="post" action="${pageContext.request.contextPath}/person/edit/${person.id}" modelAttribute="person">
-                        <fieldset><legend><fmt:message key="person.add.add"/></legend>
-                            <%@include file="personEditForm.jsp"%>
-                            <input type="submit" class="btn black" value="<fmt:message key='person.add.save'/>">
-                        </fieldset>
-                    </form:form>
-                </td>
-            </c:forEach>
-        </table>
+            </tr>
+            <tr>
+                <form:form method="post" action="${pageContext.request.contextPath}/person/edit/${person.id}" modelAttribute="person">
+                <fieldset><legend><fmt:message key="person.add.add"/></legend>
+                    <%@include file="personEditForm.jsp"%>
+                    <input type="submit" class="btn black" value="<fmt:message key='person.add.save'/>">
+                </fieldset>
+            </form:form>
+        </tr>
+    </c:forEach>
+</table>
 
 
-    </jsp:attribute>
+</jsp:attribute>
 </my:layout>
