@@ -32,7 +32,7 @@
                 <th><fmt:message key="lease.isClosed"/></th>                             
                 <th><fmt:message key="lease.returnedStatus"/></th>
 
-                <th></th>
+
             </tr>
             <c:forEach items="${leases}" var="lease">
                 <tr>
@@ -45,7 +45,7 @@
                     <td><c:out value="${lease.distance}"/></td>
                     <td><c:out value="${lease.isClosed}"/></td>                                       
                     <td><fmt:message key="lease.returnedStatus.${lease.returnedStatus}"/></td>              
-                    <td>
+                    <td style="background:white;">
                         <c:choose>
                             <c:when test="${lease.isClosed}">
                                 <form method="get" action="${pageContext.request.contextPath}/lease/return/${lease.leaseId}">
