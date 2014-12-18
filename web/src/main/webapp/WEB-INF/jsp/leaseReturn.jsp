@@ -19,13 +19,13 @@
                 <th>id</th>
                 <th><fmt:message key="lease.car"/></th>
                 <th><fmt:message key="lease.person"/></th>
-                <th><fmt:message key="lease.distance"/></th>
+                <th id="markup"><fmt:message key="lease.distance"/></th>
                 <th><fmt:message key="lease.dateOfLease"/></th>
-                 <th><fmt:message key="lease.dateOfReturn"/></th>  
+                <th><fmt:message key="lease.dateOfReturn"/></th>  
                 <th><fmt:message key="lease.travelReason"/></th>
                 <th><fmt:message key="lease.isClosed"/></th>                             
-                <th><fmt:message key="lease.returnedStatus"/></th>
-                
+                <th id="markup"><fmt:message key="lease.returnedStatus"/></th>
+
                 <th></th>
             </tr>
             <c:forEach items="${leases}" var="lease">
@@ -37,23 +37,23 @@
                     <td><c:out value="${lease.dateOfLease}"/></td>
                     <td><c:out value="${lease.dateOfReturn}"/></td> 
                     <td><fmt:message key="lease.travelReason.${lease.travelReason}"/></td>
-                    
-                    <td><c:out value="${lease.isClosed}"/></td>
-                                       
-                    <td><fmt:message key="lease.returnedStatus.${lease.returnedStatus}"/></td>                            
 
-                    <<td>
-                        <form:form method="post" action="${pageContext.request.contextPath}/lease/confirmReturn/${lease.leaseId}" modelAttribute="lease">
-                            
-                            <fieldset><legend><fmt:message key="car.add.add"/></legend>
-                                <%@include file="leaseReturnForm.jsp"%>
-                                <input type="submit" value="<fmt:message key='car.add.save'/>">
-                            </fieldset>
-                        </form:form>
-                    </td>
-                    
+                    <td><c:out value="${lease.isClosed}"/></td>
+
+                    <td><fmt:message key="lease.returnedStatus.${lease.returnedStatus}"/></td>                            
                 </tr>
-            </c:forEach>
-        </table>    
-    </jsp:attribute>
+                <tr>
+                    <form:form method="post" action="${pageContext.request.contextPath}/lease/confirmReturn/${lease.leaseId}" modelAttribute="lease">
+
+                    <fieldset><legend><fmt:message key="car.add.add"/></legend>
+                        <%@include file="leaseReturnForm.jsp"%>
+                        <input type="submit" class="btn black" value="<fmt:message key='car.add.save'/>">
+                    </fieldset>
+                </form:form>
+            </td>
+
+        </tr>
+    </c:forEach>
+</table>    
+</jsp:attribute>
 </my:layout>
