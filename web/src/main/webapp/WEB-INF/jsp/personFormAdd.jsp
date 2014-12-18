@@ -12,9 +12,14 @@
         <th><form:label path="name"><fmt:message key="person.name"/></form:label></th>
         <td><form:input path="name"/></td>
         <td><font color="red"> <form:errors path="name"></form:errors></font></td>
-        </tr>
-        <tr>
-            <th><form:label path="sex"><fmt:message key="person.sex"/></form:label></th>
+    </tr>
+    <tr>
+        <th><form:label path="IdentificationNumber"><fmt:message key="person.identificationNumber"/></form:label></th>
+        <td><form:input path="IdentificationNumber"/></td>
+        <td><font color="red"> <form:errors path="IdentificationNumber"></form:errors></font></td>
+    </tr>
+    <tr>
+        <th><form:label path="sex"><fmt:message key="person.sex"/></form:label></th>
         <td><form:select path="sex">
                 <form:options items="${enumValues}" />
             </form:select></td>
