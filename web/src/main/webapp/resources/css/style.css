@@ -27,6 +27,9 @@ h2{
     text-align: center;
     text-transform: uppercase;
 }
+table{
+    padding:10px 20px 20px 20px;
+}
 
 @media (min-width: 800px) {
     /*hlavicka*/
