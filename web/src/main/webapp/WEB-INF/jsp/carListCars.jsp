@@ -58,44 +58,45 @@
                     <td><fmt:message key="car.availibility.${car.availibility}"/></td>
                 </tr>
 
-                <tr>
-                    <td>
-                        <form method="get" action="${pageContext.request.contextPath}/car/update/${car.carID}">
-                            <input type="submit" value="<fmt:message key='car.list.edit'/>">
-                        </form>
-                    </td>
-
-
-                    <td>
-                        <form method="post" action="${pageContext.request.contextPath}/car/delete/${car.carID}"modelAttribute="car1">
-                            <input type="submit" value="<fmt:message key='car.list.delete'/>">
-                        </form>
-                    </td>  
-                    <td>
-                        <c:choose>
-                            <c:when test="${car.availibility == false}">
-                                <form method="get" action="${pageContext.request.contextPath}/car/lease/${car.carID}"modelAttribute="lease">
-
-                                    <input type="submit" disabled="disabled" value="<fmt:message key='car.list.lease'/>">
+                <tr class="carsEdit" height="30">
+                    <td colspan="12"><ul><li>
+                                <form method="get" action="${pageContext.request.contextPath}/car/update/${car.carID}">
+                                    <input type="submit" class="btn black" value="<fmt:message key='car.list.edit'/>">
                                 </form>
-                            </c:when>
-                            <c:otherwise>
-                                <form method="get" action="${pageContext.request.contextPath}/car/lease/${car.carID}"modelAttribute="lease">
-                                    <input type="submit" value="<fmt:message key='car.list.lease'/>">
+                            </li>
+
+
+                            <li>
+                                <form method="post" action="${pageContext.request.contextPath}/car/delete/${car.carID}"modelAttribute="car1">
+                                    <input type="submit" class="btn black" value="<fmt:message key='car.list.delete'/>">
                                 </form>
-                            </c:otherwise>
-                        </c:choose>
-                    </td>
-                    <td>
-                        <form method="get" action="${pageContext.request.contextPath}/car/check/${car.carID}"modelAttribute="check">
-                            <input type="submit" value="<fmt:message key='car.list.check'/>">
-                        </form>
-                    </td>  
-                    <td>
-                        <form method="get" action="${pageContext.request.contextPath}/car/showSC/${car.carID}">
-                            <input type="submit" value="<fmt:message key='car.list.showSC'/>">
-                        </form>
-                    </td>
+                            </li>  
+                            <li>
+                                <c:choose>
+                                    <c:when test="${car.availibility == false}">
+                                        <form method="get" action="${pageContext.request.contextPath}/car/lease/${car.carID}"modelAttribute="lease">
+
+                                            <input type="submit" class="btn black" disabled="disabled" value="<fmt:message key='car.list.lease'/>">
+                                        </form>
+                                    </c:when>
+                                    <c:otherwise>
+                                        <form method="get" action="${pageContext.request.contextPath}/car/lease/${car.carID}"modelAttribute="lease">
+                                            <input type="submit"  class="btn black" value="<fmt:message key='car.list.lease'/>">
+                                        </form>
+                                    </c:otherwise>
+                                </c:choose>
+                            </li>
+                            <li>
+                                <form method="get" action="${pageContext.request.contextPath}/car/check/${car.carID}"modelAttribute="check">
+                                    <input type="submit" class="btn black" value="<fmt:message key='car.list.check'/>">
+                                </form>
+                            </li>  
+                            <li>
+                                <form method="get" action="${pageContext.request.contextPath}/car/showSC/${car.carID}">
+                                    <input type="submit" class="btn black" value="<fmt:message key='car.list.showSC'/>">
+                                </form>
+                            </li>
+                    </td></ul>
                 </tr>
                 <!--add getDaysToNextSC-->
                 <!--sem este getLeasesByCar alebo tak nejak bude pomenovana ta metoda-->

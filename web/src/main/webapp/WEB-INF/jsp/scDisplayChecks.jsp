@@ -35,7 +35,7 @@
                     <td><c:out value="${serviceCheck.car}"/></td>
                     <td style="background:white;">
                         <form method="get" action="${pageContext.request.contextPath}/serviceCheck/performFromCar/${serviceCheck.scID}">
-                            <input type="submit" value="<fmt:message key='serviceCheck.list.edit'/>">
+                            <input class="btn black" type="submit" value="<fmt:message key='serviceCheck.list.edit'/>">
                         </form>
                     </td>                  
 

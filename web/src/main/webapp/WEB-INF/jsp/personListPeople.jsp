@@ -46,17 +46,17 @@
 
                     <td style="background:white;">
                         <form method="get" action="${pageContext.request.contextPath}/person/update/${person.id}" modelAttribute="person">
-                            <input type="submit" value="<fmt:message key='person.list.edit'/>">
+                            <input class="btn black" type="submit" value="<fmt:message key='person.list.edit'/>">
                         </form>
                     </td>
                     <td style="background:white;">
                         <form method="post" action="${pageContext.request.contextPath}/person/delete/${person.id}"modelAttribute="person1">
-                            <input type="submit" value="<fmt:message key='person.list.delete'/>">
+                            <input class="btn black" type="submit" value="<fmt:message key='person.list.delete'/>">
                         </form>
                     </td>
                     <td style="background:white;">
                         <form method="get" action="${pageContext.request.contextPath}/person/statistics/${person.id}">
-                            <input type="submit" value="<fmt:message key='person.list.getTravelStatsForPerson'/>">
+                            <input class="btn black" type="submit" value="<fmt:message key='person.list.getTravelStatsForPerson'/>">
                         </form>
                     </td>
 
