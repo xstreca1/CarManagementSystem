@@ -11,15 +11,16 @@
           http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
           http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.0.xsd
           http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc-3.0.xsd">
+   
     <context:annotation-config />
+    
+    
     
     <!-- add bean for EMF -->
     <!-- Beans for DAO Interface Implementations-->
     <bean id="entityManagerFactory"
-          class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+              class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
         <property name="persistenceUnitName" value="carManagementSystem-unit" />
-<!--          p:dataSource-ref="dataSource">-->
-        <!--property name="persistenceUnitName" value="carManagementSystem-unit" /-->
         <property name="dataSource" ref="dataSource" />
     </bean>
     
@@ -27,49 +28,26 @@
               class="org.springframework.jdbc.datasource.DriverManagerDataSource">
         <property name="driverClassName" value="org.apache.derby.jdbc.ClientDriver" />
         <property name="url"
-                          value="jdbc:derby://localhost:1527/pa165" />
+                      value="jdbc:derby://localhost:1527/pa165" />
         <property name="username" value="pa165" />
         <property name="password" value="pa165" />
     </bean>
     
     <bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager"
-          p:entityManagerFactory-ref="entityManagerFactory" />
+              p:entityManagerFactory-ref="entityManagerFactory" />
     
     <bean class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor" />
     
-    <bean id="personDAO" class="cz.muni.fi.pa165.persistence.DAO.PersonDAOImpl">     
-    </bean>
-    
-    <bean id="carDAO" class="cz.muni.fi.pa165.persistence.DAO.CarDAOImpl">     
-    </bean>
-    
-    <bean id="leaseDAO" class="cz.muni.fi.pa165.persistence.DAO.LeaseDAOImpl">     
-    </bean>
-    
-    <bean id="serviceCheckDAO" class="cz.muni.fi.pa165.persistence.DAO.ServiceCheckDAOImpl">     
-    </bean>
+    <bean id="personDAO" class="cz.muni.fi.pa165.persistence.DAO.PersonDAOImpl"/>     
+    <bean id="carDAO" class="cz.muni.fi.pa165.persistence.DAO.CarDAOImpl"/>     
+    <bean id="leaseDAO" class="cz.muni.fi.pa165.persistence.DAO.LeaseDAOImpl"/>     
+    <bean id="serviceCheckDAO" class="cz.muni.fi.pa165.persistence.DAO.ServiceCheckDAOImpl"/>     
     
     <!-- Beans for service layer classes-->       
-     
-    <bean id="personService" class="cz.muni.fi.pa165.service.service.PersonServicesImpl">
-        <!--property name="personDAO">
-            <ref bean="personDAO"/>  
-        </property-->
-    </bean>
-    
-    <bean id="carService" class="cz.muni.fi.pa165.service.service.CarImpl">
-        
-    </bean>
-    
-    <bean id="leaseService" class="cz.muni.fi.pa165.service.service.LeaseServiceImpl">
-        
-    </bean>
-    
-    <bean id="ServiceCheckService" class="cz.muni.fi.pa165.service.service.ServiceCheckImpl">
-        <!--property name="scDAO">
-            <ref bean="serviceCheckDAO"/>
-        </property-->        
-    </bean> 
+    <bean id="personService" class="cz.muni.fi.pa165.service.service.PersonServicesImpl"/>
+    <bean id="carService" class="cz.muni.fi.pa165.service.service.CarImpl"/>
+    <bean id="leaseService" class="cz.muni.fi.pa165.service.service.LeaseServiceImpl"/>
+    <bean id="ServiceCheckService" class="cz.muni.fi.pa165.service.service.ServiceCheckImpl"/>
     
     <tx:annotation-driven />
  
