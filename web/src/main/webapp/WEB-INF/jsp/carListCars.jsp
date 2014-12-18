@@ -11,6 +11,7 @@
 <%@ taglib prefix="s" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
+
 <!-- title of the page -->
 <fmt:message var="title" key="car.list.title"/>
 <my:layout title="${title}">
@@ -37,8 +38,7 @@
                 <th><fmt:message key="car.emissionstandard"/></th>
                 <th><fmt:message key="car.isActive"/></th>
                 <th><fmt:message key="car.availibility"/></th>
-                <th></th>
-                <th></th>
+
             </tr>
             <c:forEach items="${cars}" var="car">
                 <tr>
@@ -58,12 +58,16 @@
                     <td><c:out value="${car.emissionstandard}"/></td> 
                     <td><fmt:message key="car.isActive.${car.isActive}"/></td>
                     <td><fmt:message key="car.availibility.${car.availibility}"/></td>
+                </tr>
 
+                <tr>
                     <td>
                         <form method="get" action="${pageContext.request.contextPath}/car/update/${car.carID}">
                             <input type="submit" value="<fmt:message key='car.list.edit'/>">
                         </form>
                     </td>
+
+
                     <td>
                         <form method="post" action="${pageContext.request.contextPath}/car/delete/${car.carID}"modelAttribute="car1">
                             <input type="submit" value="<fmt:message key='car.list.delete'/>">
@@ -73,7 +77,7 @@
                         <c:choose>
                             <c:when test="${car.availibility == false}">
                                 <form method="get" action="${pageContext.request.contextPath}/car/lease/${car.carID}"modelAttribute="lease">
-                                    
+
                                     <input type="submit" disabled="disabled" value="<fmt:message key='car.list.lease'/>">
                                 </form>
                             </c:when>
@@ -94,17 +98,19 @@
                             <input type="submit" value="<fmt:message key='car.list.showSC'/>">
                         </form>
                     </td>
-                    <!--add getDaysToNextSC-->
-                    <!--sem este getLeasesByCar alebo tak nejak bude pomenovana ta metoda-->
                 </tr>
-            </c:forEach>
-        </table>
-        <!-- add?-->
-        <form:form method="post" action="${pageContext.request.contextPath}/car/add" modelAttribute="car">
-            <fieldset><legend><fmt:message key="car.list.newCar"/></legend>
-                <%@include file="carFormAdd.jsp"%>
-                <input type="submit" value="<fmt:message key='car.list.createCar'/>">
-            </fieldset>
-        </form:form>
-    </jsp:attribute>
+                <!--add getDaysToNextSC-->
+                <!--sem este getLeasesByCar alebo tak nejak bude pomenovana ta metoda-->
+            </tr>
+        </c:forEach>
+    </table>
+
+    <!-- add?-->
+    <form:form method="post" action="${pageContext.request.contextPath}/car/add" modelAttribute="car">
+        <fieldset><legend><fmt:message key="car.list.newCar"/></legend>
+            <%@include file="carFormAdd.jsp"%>
+            <input align="center" class="btn black" style="margin-top:20px;" type="submit" value="<fmt:message key='car.list.createCar'/>">
+        </fieldset>
+    </form:form>
+</jsp:attribute>
 </my:layout>
