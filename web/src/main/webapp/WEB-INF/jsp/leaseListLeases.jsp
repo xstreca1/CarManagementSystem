@@ -47,7 +47,7 @@
                         <c:choose>
                             <c:when test="${lease.isClosed}">
                                 <form method="get" action="${pageContext.request.contextPath}/lease/return/${lease.leaseId}">
-                                    <input class="btn black" type="submit" disabled="disabled" value="<fmt:message key='lease.list.edit'/>">
+                                    <input class="btn blackOff" type="submit" disabled="disabled" value="<fmt:message key='lease.list.edit'/>">
                                 </form>
                             </c:when>
                             <c:otherwise>

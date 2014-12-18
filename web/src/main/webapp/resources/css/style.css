@@ -133,6 +133,8 @@ nav a:hover {
     margin:0 auto;
 }
 .btn:hover {cursor: pointer;}
+.blackOff {cursor: auto;color:white; background:#bdc3c7;border: 0;}
+.blackOff:hover {cursor: auto;color:white; background:#bdc3c7;border: 0;}
 .black {color:white; border: 0;}
 .black:hover {background-color: #33485d; color: #fff;}
 .main{padding: 10px 10px 10px 10px;color:white; border: 0;margin:20px auto 20px;width:250px;}
