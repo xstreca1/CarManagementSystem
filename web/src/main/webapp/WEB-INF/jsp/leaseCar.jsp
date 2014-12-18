@@ -56,7 +56,7 @@
                 <tr>
                     <form:form method="post" action="${pageContext.request.contextPath}/car/confirmLease/${car.carID}" modelAttribute="lease">
 
-                    <fieldset><legend><fmt:message key="lease.add.add"/></legend>
+                    <fieldset><legend  align="center"><fmt:message key="lease.add.add"/></legend>
                         <%@include file="leaseFormAdd.jsp"%>
                         <input type="submit" align="center" class="btn main" value="<fmt:message key='lease.edit.save'/>">
                     </fieldset>
