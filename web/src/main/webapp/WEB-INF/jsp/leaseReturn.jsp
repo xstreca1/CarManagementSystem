@@ -25,8 +25,6 @@
                 <th><fmt:message key="lease.travelReason"/></th>
                 <th><fmt:message key="lease.isClosed"/></th>                             
                 <th id="markup"><fmt:message key="lease.returnedStatus"/></th>
-
-                <th></th>
             </tr>
             <c:forEach items="${leases}" var="lease">
                 <tr>
