@@ -33,8 +33,6 @@
                 <th><fmt:message key="car.emissionstandard"/></th>
                 <th><fmt:message key="car.isActive"/></th>
                 <th><fmt:message key="car.availibility"/></th>
-                <th></th>
-                <th></th>
             </tr>
             <c:forEach items="${cars}" var="car">
                 <tr>
@@ -54,19 +52,20 @@
                     <td><c:out value="${car.emissionstandard}"/></td> 
                     <td><fmt:message key="car.isActive.${car.isActive}"/></td>
                     <td><fmt:message key="car.availibility.${car.availibility}"/></td>
-                        
-                    <td>
+                     </tr>    
+                    <tr>
                     <form:form method="post" action="${pageContext.request.contextPath}/car/confirmCheck/${car.carID}" modelAttribute="check">
                             
                             <fieldset><legend><fmt:message key="lease.add.add"/></legend>
                                 <%@include file="scFormAdd.jsp"%>
-                                <input type="submit" value="<fmt:message key='lease.edit.save'/>">
+                                <input type="submit" align="center" class="btn black" value="<fmt:message key='lease.edit.save'/>">
                             </fieldset>
                         </form:form>
-                    </td>
-                </tr>
+                    </tr>
+               
             </c:forEach>
         </table>
+        <br>
 
     </jsp:attribute>
 </my:layout>
