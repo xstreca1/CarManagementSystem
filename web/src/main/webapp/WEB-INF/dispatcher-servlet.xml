@@ -19,7 +19,7 @@
     package containing controllers
     -->
     <context:component-scan
-        base-package="cz.muni.fi.pa165.web"/>
+        base-package="cz.muni.fi.pa165.web, cz.muni.fi.pa165.rest"/>
     
     <mvc:annotation-driven/>
     
