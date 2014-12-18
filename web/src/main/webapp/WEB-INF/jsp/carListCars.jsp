@@ -76,7 +76,7 @@
                                     <c:when test="${car.availibility == false}">
                                         <form method="get" action="${pageContext.request.contextPath}/car/lease/${car.carID}"modelAttribute="lease">
 
-                                            <input type="submit" class="btn black" disabled="disabled" value="<fmt:message key='car.list.lease'/>">
+                                            <input type="submit" class="btn blackOff" disabled="disabled" value="<fmt:message key='car.list.lease'/>">
                                         </form>
                                     </c:when>
                                     <c:otherwise>
