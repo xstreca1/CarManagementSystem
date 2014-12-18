@@ -18,8 +18,6 @@
 
     <jsp:attribute name="body">
 
-        <p><fmt:message key="car.list.allCars"/></p>
-
         <table class="basic">
             <tr>
                 <th>id</th>
