@@ -33,8 +33,6 @@
                 <th><fmt:message key="car.emissionstandard"/></th>
                 <th><fmt:message key="car.isActive"/></th>
                 <th><fmt:message key="car.availibility"/></th>
-                <th></th>
-                <th></th>
             </tr>
             <c:forEach items="${cars}" var="car">
                 <tr>
