@@ -15,16 +15,18 @@ public class CarDTO {
 
     private Integer carID;
 
+    private boolean availibility;
+
     private Boolean isActive;
 
     private String vehicleRegPlate;
 
-    private int yearOfManufacture;
+    private Integer yearOfManufacture;
 
-    private int mileage;
-
+    private Integer mileage;
+  
     private String brand;
-
+       
     private String typeName;
 
     private Car.Color color;
@@ -43,7 +45,7 @@ public class CarDTO {
 
     private Car.emissionStandard emissionstandard;
 
-    private int numberOfSeats;
+    private Integer numberOfSeats;
 
     public Boolean getIsActive() {
         return isActive;
@@ -61,19 +63,19 @@ public class CarDTO {
         this.vehicleRegPlate = vehicleRegPlate;
     }
 
-    public int getYearOfManufacture() {
+    public Integer getYearOfManufacture() {
         return yearOfManufacture;
     }
 
-    public void setYearOfManufacture(int yearOfManufacture) {
+    public void setYearOfManufacture(Integer yearOfManufacture) {
         this.yearOfManufacture = yearOfManufacture;
     }
 
-    public int getMileage() {
+    public Integer getMileage() {
         return mileage;
     }
 
-    public void setMileage(int mileage) {
+    public void setMileage(Integer mileage) {
         this.mileage = mileage;
     }
 
@@ -157,11 +159,11 @@ public class CarDTO {
         this.emissionstandard = emissionstandard;
     }
 
-    public int getNumberOfSeats() {
+    public Integer getNumberOfSeats() {
         return numberOfSeats;
     }
 
-    public void setNumberOfSeats(int numberOfSeats) {
+    public void setNumberOfSeats(Integer numberOfSeats) {
         this.numberOfSeats = numberOfSeats;
     }
 
@@ -174,12 +176,25 @@ public class CarDTO {
     }
 
     @Override
+    public String toString() {
+        return carID + ", " + vehicleRegPlate + ", " + brand + ", " + typeName + ", " + mileage + ", " + color + ", " + numberOfSeats;
+    }
+
+    public boolean getAvailibility() {
+        return availibility;
+    }
+
+    public void setAvailibility(boolean availibility) {
+        this.availibility = availibility;
+    }
+
+    @Override
     public int hashCode() {
         int hash = 7;
         hash = 17 * hash + (this.isActive != null ? this.isActive.hashCode() : 0);
         hash = 17 * hash + (this.vehicleRegPlate != null ? this.vehicleRegPlate.hashCode() : 0);
-        hash = 17 * hash + this.yearOfManufacture;
-        hash = 17 * hash + this.mileage;
+        hash = 17 * hash + (this.yearOfManufacture != null? this.yearOfManufacture.hashCode() : 0);
+        hash = 17 * hash + (this.mileage != null ? this.mileage.hashCode() : 0);
         hash = 17 * hash + (this.brand != null ? this.brand.hashCode() : 0);
         hash = 17 * hash + (this.typeName != null ? this.typeName.hashCode() : 0);
         hash = 17 * hash + (this.color != null ? this.color.hashCode() : 0);
@@ -190,7 +205,7 @@ public class CarDTO {
         hash = 17 * hash + (this.category != null ? this.category.hashCode() : 0);
         hash = 17 * hash + (this.VIN != null ? this.VIN.hashCode() : 0);
         hash = 17 * hash + (this.emissionstandard != null ? this.emissionstandard.hashCode() : 0);
-        hash = 17 * hash + this.numberOfSeats;
+        hash = 17 * hash + (this.numberOfSeats != null ? this.numberOfSeats.hashCode() : 0);
         return hash;
     }
 

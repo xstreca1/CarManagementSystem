@@ -193,7 +193,8 @@ public class CarDTO {
 
     @Override
     public String toString() {
-        return "" + vehicleRegPlate;
+        return carID + ", " + vehicleRegPlate + ", " + brand + ", " + typeName + 
+                ", " + mileage + ", " + color + ", " + numberOfSeats;
     }
 
     public boolean getAvailibility() {
