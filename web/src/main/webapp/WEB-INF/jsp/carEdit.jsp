@@ -58,7 +58,7 @@
                             
                             <fieldset><legend><fmt:message key="car.add.add"/></legend>
                                 <%@include file="carFormEdit.jsp"%>
-                                <input align="center" class="btn black" type="submit" value="<fmt:message key='car.add.save'/>">
+                                <input align="center" class="btn main" type="submit" value="<fmt:message key='car.add.save'/>">
                             </fieldset>
                         </form:form>
                     </tr>

@@ -108,7 +108,7 @@
     <form:form method="post" action="${pageContext.request.contextPath}/car/add" modelAttribute="car">
         <fieldset><legend><fmt:message key="car.list.newCar"/></legend>
             <%@include file="carFormAdd.jsp"%>
-            <input align="center" class="btn black" style="margin-top:20px;" type="submit" value="<fmt:message key='car.list.createCar'/>">
+            <input align="center" class="btn main" style="margin-top:20px;" type="submit" value="<fmt:message key='car.list.createCar'/>">
         </fieldset>
     </form:form>
 </jsp:attribute>

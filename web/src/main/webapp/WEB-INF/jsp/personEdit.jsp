@@ -49,7 +49,7 @@
                 <form:form method="post" action="${pageContext.request.contextPath}/person/edit/${person.id}" modelAttribute="person">
                 <fieldset><legend><fmt:message key="person.add.add"/></legend>
                     <%@include file="personEditForm.jsp"%>
-                    <input type="submit" class="btn black" value="<fmt:message key='person.add.save'/>">
+                    <input type="submit" class="btn main" value="<fmt:message key='person.add.save'/>">
                 </fieldset>
             </form:form>
         </tr>

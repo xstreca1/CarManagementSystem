@@ -58,7 +58,7 @@
 
                     <fieldset><legend><fmt:message key="lease.add.add"/></legend>
                         <%@include file="leaseFormAdd.jsp"%>
-                        <input type="submit" align="center" class="btn black" value="<fmt:message key='lease.edit.save'/>">
+                        <input type="submit" align="center" class="btn main" value="<fmt:message key='lease.edit.save'/>">
                     </fieldset>
                 </form:form>
             </tr>

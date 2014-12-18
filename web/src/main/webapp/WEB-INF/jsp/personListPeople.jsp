@@ -67,7 +67,7 @@
         <form:form method="post" action="${pageContext.request.contextPath}/person/add" modelAttribute="person">
             <fieldset><legend><fmt:message key="person.list.newperson"/></legend>
                 <%@include file="personFormAdd.jsp"%>
-                <input type="submit" class="btn black" value="<fmt:message key='person.list.addPerson'/>">
+                <input type="submit" class="btn main" value="<fmt:message key='person.list.addPerson'/>">
             </fieldset>
         </form:form>
     </jsp:attribute>

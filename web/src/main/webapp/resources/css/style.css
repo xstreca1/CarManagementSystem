@@ -31,29 +31,15 @@ table{
     padding:10px 20px 20px 20px;
 }
 
-@media (min-width: 800px) {
+
     /*hlavicka*/
     header{
+        min-width:1100px;
         margin:0;
         padding:0;
         height:6.25em;
         background:#2c3e50;
     }
-}
-@media (max-width: 900px) {
-    /*hlavicka*/
-    header{
-        height:12.5em;
-        background:#2c3e50;
-    }
-}
-@media (max-width: 570px) {
-    /*hlavicka*/
-    header{
-        height:18.75em;
-        background:#2c3e50;
-    }
-}
 
 /*menu*/
 nav{
@@ -149,6 +135,8 @@ nav a:hover {
 .btn:hover {cursor: pointer;}
 .black {color:white; border: 0;}
 .black:hover {background-color: #33485d; color: #fff;}
+.main{padding: 10px 10px 10px 10px;color:white; border: 0;margin:20px auto 20px;width:250px;}
+.main:hover{background-color: #33485d; color: #fff;}
 
 /*table styling*/
 table{ 
