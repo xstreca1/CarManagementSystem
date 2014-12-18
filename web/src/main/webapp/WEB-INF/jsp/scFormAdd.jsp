@@ -24,7 +24,7 @@
     </tr>
     <tr>
         <th id="markup"><form:label path="lastCheck"><fmt:message key="serviceCheck.lastCheck"/></form:label></th>
-        <td><form:input path="lastCheck"/></td>
+        <td><form:input id="lastCheck" path="lastCheck"/></td>
         <td><form:errors path="lastCheck" cssClass="error"/></td>
     </tr>
     <tr>
@@ -32,6 +32,11 @@
         <td><form:textarea path="description"/></td>
         <td><form:errors path="description" cssClass="error"/></td>
     </tr>
-    
+
 
 </table>
+<script>
+    $(function () {
+        $("#lastCheck").datepicker({dateFormat: 'mm-dd-yy'}).val();     
+    });
+</script>
