@@ -20,7 +20,7 @@
         <jsp:invoke fragment="head"/>
     </head>
     <body>
-        <h1><c:out value="${title}"/></h1>
+        
 
         <header>
             <nav>  
@@ -53,7 +53,9 @@
                 </ul>
             </nav> 
         </header>
-
+                        
+        <h1><c:out value="${title}"/></h1>
+                        
         <div id="content">
             <c:if test="${not empty message}">
                 <div class="message"><c:out value="${message}"/></div>
