@@ -23,6 +23,8 @@
     
     <mvc:annotation-driven/>
     
+    
+    
     <mvc:view-controller path="/" view-name="index"/>
     
     <mvc:resources mapping="/resources/**" location="/resources/" />

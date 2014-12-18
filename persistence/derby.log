@@ -1,13 +1,13 @@
 ----------------------------------------------------------------
-Mon Dec 08 16:31:19 CET 2014:
-Booting Derby version The Apache Software Foundation - Apache Derby - 10.11.1.1 - (1616546): instance a816c00e-014a-2a86-b8b2-000000742638 
-on database directory memory:D:\Skola\MGR\JAVA\Projekt_New_Clone\CarManagementSystem\persistence\testdb with class loader sun.misc.Launcher$AppClassLoader@422ede 
-Loaded from file:/C:/Users/Mato/.m2/repository/org/apache/derby/derby/10.11.1.1/derby-10.11.1.1.jar
+Wed Dec 17 11:00:46 CET 2014:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.11.1.1 - (1616546): instance a816c00e-014a-57b1-4ec4-000003d36338 
+on database directory memory:E:\FI MUNI\Jaro 2014\JAVA PROSINEC\CarManagementSystem\CarManagementSystem\persistence\testdb with class loader sun.misc.Launcher$AppClassLoader@6bc7c054 
+Loaded from file:/C:/Users/Petr/.m2/repository/org/apache/derby/derby/10.11.1.1/derby-10.11.1.1.jar
 java.vendor=Oracle Corporation
-java.runtime.version=1.7.0_25-b16
-user.dir=D:\Skola\MGR\JAVA\Projekt_New_Clone\CarManagementSystem\persistence
-os.name=Windows 8
-os.arch=x86
-os.version=6.2
+java.runtime.version=1.8.0_20-b26
+user.dir=E:\FI MUNI\Jaro 2014\JAVA PROSINEC\CarManagementSystem\CarManagementSystem\persistence
+os.name=Windows 7
+os.arch=amd64
+os.version=6.1
 derby.system.home=null
 Database Class Loader started - derby.database.classpath=''

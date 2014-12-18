@@ -7,6 +7,7 @@ package cz.muni.fi.pa165.web;
 
 import static com.sun.corba.se.spi.presentation.rmi.StubAdapter.request;
 import cz.muni.fi.pa165.persistence.Entities.Person;
+import cz.muni.fi.pa165.service.dto.LeaseDTO;
 import cz.muni.fi.pa165.service.dto.PersonDTO;
 import cz.muni.fi.pa165.service.service.CarServiceInterface;
 import cz.muni.fi.pa165.service.service.LeaseServiceInterface;
@@ -93,9 +94,9 @@ public class PersonController {
             BindingResult result, ModelMap model, HttpServletRequest request) {
 
         if (result.hasErrors()) {
-            
+
             List<PersonDTO> people = personService.findAllPeople(true);
-            request.setAttribute("people", people);            
+            request.setAttribute("people", people);
             return "personListPeople";
         } else {
 
@@ -123,16 +124,35 @@ public class PersonController {
         people.add(personService.getPersonByID(id));
         request.setAttribute("people", people);
         //model.addAttribute("person2", person2);
-        return "personAdd";
+        return "personEdit";
     }
 
     @RequestMapping(value = "/edit/{id}", method = RequestMethod.POST)
-    public String editPerson(@ModelAttribute("person") PersonDTO person, @PathVariable Integer id,
-            BindingResult result, ModelMap model) {
+    public String editPerson(@PathVariable Integer id, @ModelAttribute("person") @Valid PersonDTO person,
+            BindingResult result, ModelMap model, HttpServletRequest request) {
 
-        personService.editPerson(person, id);
+        if (result.hasErrors()) {
+            List<PersonDTO> people = new ArrayList();
+            people.add(personService.getPersonByID(id));
+            request.setAttribute("people", people);
+            //model.addAttribute("person2", person2);
+            return "personEdit";
 
-        return "redirect:/person/";
+        } else {
+            personService.editPerson(person, id);
+
+            return "redirect:/person/";
+        }
+    }
+
+    @RequestMapping(value = "/statistics/{id}", method = RequestMethod.GET)
+    public String getStatistics(ModelMap model, @PathVariable Integer id) {
+
+        PersonDTO person = personService.getPersonByID(id);
+        List<LeaseDTO> leases = leaseService.getLeaseByPerson(person);
+        model.addAttribute("leases", leases);
+
+        return "personStatistics";
     }
 
     /*@RequestMapping(value = "/update", method = RequestMethod.POST)

@@ -13,11 +13,13 @@ import cz.muni.fi.pa165.service.service.PersonServices;
 import cz.muni.fi.pa165.service.service.ServiceCheckInterface;
 import static java.lang.Math.log;
 import java.util.Calendar;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 import static javax.swing.text.StyleConstants.ModelAttribute;
 import javax.validation.Valid;
+import org.hibernate.metamodel.relational.Database;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Controller;
@@ -57,6 +59,8 @@ public class ServiceCheckController {
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String scHome(ModelMap model) {
         List<ServiceCheckDTO> checks = serviceCheckService.findAllChecks();
+
+        Collections.sort(checks, new DateComparator());
         model.addAttribute("checks", checks);
 
         return "scListServiceChecks";
@@ -137,15 +141,15 @@ public class ServiceCheckController {
 
         // get date with added interval
         Date addedMonths = nextControl.getTime();
-        
+
         // set new date of next control        
         check.setNextCheck(addedMonths);
-        
+
         serviceCheckService.updateCheck(check, id);
 
         return "redirect:/serviceCheck/";
     }
-    
+
     @RequestMapping(value = "/performFromCar/{id}", method = RequestMethod.GET)
     public String performFromCarView(@PathVariable Integer id, ModelMap model) {
 
@@ -168,14 +172,13 @@ public class ServiceCheckController {
 
         // get date with added interval
         Date addedMonths = nextControl.getTime();
-        
+
         // set new date of next control        
         check.setNextCheck(addedMonths);
-        
+
         serviceCheckService.updateCheck(check, id);
 
         return "redirect:/car/";
     }
-    
-    
+
 }

@@ -28,17 +28,22 @@ public class PersonDTO {
 
     private Boolean isActive;
 
+   
     private Person.EmploymentStatus employmentStatus;
 
     private Date dateOfBirth;
 
+    @NotEmpty // can not be empty
+    @Pattern(regexp = "[A-Za-z ]*") // can contain only letters and spaces   
     private String position;
 
-    
+   
     private Person.Sex sex;
 
     //private Address address;
 
+    @NotEmpty // can not be empty
+    @Pattern(regexp = "[A-Z]*")
     private String nationality;
 
     //@Pattern(regexp = "[0-9]*") // can contain only numbers 0-9

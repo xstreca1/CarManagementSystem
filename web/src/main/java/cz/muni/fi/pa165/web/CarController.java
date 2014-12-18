@@ -26,6 +26,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.dao.DataAccessException;
@@ -103,14 +104,21 @@ public class CarController {
      return new ModelAndView("cars");
      }*/
     @RequestMapping(value = "/add", method = RequestMethod.POST)
-    public String addCar(@ModelAttribute CarDTO car,
-            ModelMap model) {
+    public String addCar(@ModelAttribute("car") @Valid CarDTO car,
+            BindingResult result, ModelMap model, HttpServletRequest request) {
 
-        model.addAttribute("car", new CarDTO());
+        if (result.hasErrors()) {
 
-        carService.createCar(car);
+            List<CarDTO> cars = carService.findAllCars(true);
+            request.setAttribute("cars", cars);
 
-        return "redirect:/car/";
+            return "carListCars";
+
+        } else {
+
+            carService.createCar(car);
+            return "redirect:/car/";
+        }
     }
 
     @RequestMapping(value = "/delete/{id}")
@@ -178,12 +186,21 @@ public class CarController {
     }
 
     @RequestMapping(value = "/edit/{id}", method = RequestMethod.POST)
-    public String editCar(@ModelAttribute("car") CarDTO car, @PathVariable Integer id,
-            BindingResult result, ModelMap model) {
+    public String editCar(@PathVariable Integer id, @ModelAttribute("car") @Valid CarDTO car,
+            BindingResult result, ModelMap model, HttpServletRequest request) {
 
-        carService.updateCar(car, id);
+        if (result.hasErrors()) {
 
-        return "redirect:/car/";
+            List<CarDTO> cars = new ArrayList();
+            cars.add(carService.getCarByID(id));
+            request.setAttribute("cars", cars);
+            //model.addAttribute("person2", person2);
+            return "carEdit";
+
+        } else {
+            carService.updateCar(car, id);
+            return "redirect:/car/";
+        }
 
     }
 
