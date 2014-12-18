@@ -6,9 +6,9 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<table>
+<table id="add">
     <tr>
-        <th><form:label path="person"><fmt:message key="lease.person"/></form:label></th>
+        <th id="markup"><form:label path="person"><fmt:message key="lease.person"/></form:label></th>
         <td><form:select path="person">
                 <form:option value="-"> <fmt:message key="enum.select"/></form:option>
                 <form:options items="${people}" itemValue="id" itemLabel="id" />
@@ -21,12 +21,12 @@
         <td><form:errors path="distance" cssClass="error"/></td>
     </tr>--%>
     <tr>
-        <th><form:label path="dateOfLease"><fmt:message key="lease.dateOfLease"/></form:label></th>
+        <th id="markup"><form:label path="dateOfLease"><fmt:message key="lease.dateOfLease"/></form:label></th>
         <td><form:input path="dateOfLease"/></td>
         <td><form:errors path="dateOfLease" cssClass="error"/></td>
     </tr>
     <tr>
-        <th><form:label path="dateOfReturn"><fmt:message key="lease.dateOfReturn"/></form:label></th>
+        <th id="markup"><form:label path="dateOfReturn"><fmt:message key="lease.dateOfReturn"/></form:label></th>
         
         <td><form:input path="dateOfReturn"/></td>
         <td><form:errors path="dateOfReturn" cssClass="error"/></td>
@@ -40,7 +40,7 @@
         <td><form:errors path="returnedStatus" cssClass="error"/></td>
     </tr>--%>
     <tr>
-        <th><form:label path="travelReason"><fmt:message key="lease.travelReason"/></form:label></th>
+        <th id="markup"><form:label path="travelReason"><fmt:message key="lease.travelReason"/></form:label></th>
         <td><form:select path="travelReason">
                 <form:option value="-"> <fmt:message key="enum.select"/></form:option>
                 <form:options items="${enumValues}" />
