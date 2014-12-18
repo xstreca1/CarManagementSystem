@@ -31,8 +31,6 @@
                 <th><fmt:message key="person.salary"/></th>
                 <th><fmt:message key="person.isActive"/></th>
 
-                <th></th>
-                <th></th>
             </tr>
             <c:forEach items="${people}" var="person">
                 <tr>
@@ -48,17 +46,17 @@
                     <td><c:out value="${person.salary}"/></td>
                     <td><fmt:message key="person.isActive.${person.isActive}"/></td>
 
-                    <td>
+                    <td style="background:white;">
                         <form method="get" action="${pageContext.request.contextPath}/person/update/${person.id}" modelAttribute="person">
                             <input type="submit" value="<fmt:message key='person.list.edit'/>">
                         </form>
                     </td>
-                    <td>
+                    <td style="background:white;">
                         <form method="post" action="${pageContext.request.contextPath}/person/delete/${person.id}"modelAttribute="person1">
                             <input type="submit" value="<fmt:message key='person.list.delete'/>">
                         </form>
                     </td>
-                    <td>
+                    <td style="background:white;">
                         <form method="get" action="${pageContext.request.contextPath}/person/statistics/${person.id}">
                             <input type="submit" value="<fmt:message key='person.list.getTravelStatsForPerson'/>">
                         </form>
@@ -71,7 +69,7 @@
         <form:form method="post" action="${pageContext.request.contextPath}/person/add" modelAttribute="person">
             <fieldset><legend><fmt:message key="person.list.newperson"/></legend>
                 <%@include file="personFormAdd.jsp"%>
-                <input type="submit" value="<fmt:message key='person.list.addPerson'/>">
+                <input type="submit" class="btn black" value="<fmt:message key='person.list.addPerson'/>">
             </fieldset>
         </form:form>
     </jsp:attribute>
