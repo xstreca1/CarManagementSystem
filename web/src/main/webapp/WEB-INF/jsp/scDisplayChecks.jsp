@@ -15,8 +15,6 @@
 <my:layout title="${title}">
     <jsp:attribute name="body">
 
-        <p><fmt:message key="serviceCheck.list.car"/></p>
-
         <table class="basic">
             <tr>
                 <th>id</th>
