@@ -29,6 +29,7 @@ public class ServiceCheckDTO {
     private Date lastCheck;
     private String description;
     private CarDTO car;
+    private Date nextCheck;
 
     public ServiceCheckDTO(ServiceCheck.ServiceCheckName name, int serviceInterval, Date lastCheck, String description, CarDTO car) {
         this.name = name;
@@ -81,6 +82,15 @@ public class ServiceCheckDTO {
     public void setCar(CarDTO car) {
         this.car = car;
     }
+
+    public Date getNextCheck() {
+        return nextCheck;
+    }
+
+    public void setNextCheck(Date nextCheck) {
+        this.nextCheck = nextCheck;
+    }
+    
 
     @Override
     public int hashCode() {
