@@ -168,15 +168,22 @@ public class CarDAOImplTest {
         assertEquals(1, cars.size());
     }
 
-    /*
+    @Test
+    // test if it is possible to get person from DB using getPersonById()
+    public void testGetById() {
+        // try if bad input results in Exception
+        try {
+            testedObject.getCarByID(null);
+            fail("wrong input allowed!");
+        } catch (IndexOutOfBoundsException e) {
+        }
 
-     @Test
-     public void testGetCarByCategory(int Category) {
-         
-     }
-     @Test
-     public void testGetCarByBodyStyle(Car.bodyStyle bs) {
+        // get person using getPersonById method
+        Car car = testedObject.getCarByID(car1.getId());
+        // pers should be not null
+        assertNotNull(car);
+        // person and person1 should be the same
+        assertEquals(car1, car);
 
-     }
-     */
+    }
 }
