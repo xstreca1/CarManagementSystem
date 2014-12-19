@@ -99,6 +99,8 @@ public class LeaseDAOImplTest {
         lease.setIsClosed(true);
         lease.setCar(car1);
         lease.setPerson(person);
+        lease.setReturnedStatus(Lease.ReturnedStatus.OK);
+        lease.setTravelReason(Lease.TravelReason.PERSONAL);
 
         lease2 = new Lease();
         lease2.setDistance(car1.getMileage());
@@ -225,6 +227,25 @@ public class LeaseDAOImplTest {
         List<Lease> leases = dao.getAllLeases(date1, date4);
         em.getTransaction().commit();
         assertEquals(2, leases.size());
+    }
+    
+     @Test
+    // test if it is possible to get car from DB using getPersonById()
+    public void testGetById() {
+        // try if bad input results in Exception
+        try {
+            dao.getLeaseByID(null);
+            fail("wrong input allowed!");
+        } catch (IndexOutOfBoundsException e) {
+        }
+
+        // get person using getPersonById method
+        Lease leas = dao.getLeaseByID(lease.getId());
+        // pers should be not null
+        assertNotNull(leas);
+        // person and person1 should be the same
+        assertEquals(lease, leas);
+
     }
 
 }

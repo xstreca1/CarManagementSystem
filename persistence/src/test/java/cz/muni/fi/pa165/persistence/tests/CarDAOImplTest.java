@@ -169,7 +169,7 @@ public class CarDAOImplTest {
     }
 
     @Test
-    // test if it is possible to get person from DB using getPersonById()
+    // test if it is possible to get car from DB using getPersonById()
     public void testGetById() {
         // try if bad input results in Exception
         try {
