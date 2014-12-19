@@ -60,7 +60,7 @@ public class Messages {
     }
     
     public static void serverError(String message) {
-        System.out.println("Error occured while processing your request: " + message.toString());
+        System.out.println("Error occured while processing your request: " + message);
     }
     
 }

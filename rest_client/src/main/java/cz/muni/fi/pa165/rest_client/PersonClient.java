@@ -102,7 +102,7 @@ public class PersonClient {
     private void handleAddOperation(String[] args) {
         if (args.length < 10) {
             String requiredArgs = "<name> <IdentificationNumber> <sex> <nationality>"
-                    + "<position> <employmentStatus> <salary> <isActive> ";
+                    + "<position> <employmentStatus> <salary> <isActive>";
             Messages.badNumberOfArgsMessage(args.length, ADD_OPERATION, requiredArgs);
             System.exit(1);
         }
@@ -147,7 +147,7 @@ public class PersonClient {
         person.setName(args[2]);
         person.setPosition(args[3]);
         person.setNationality(args[4]);
-        person.setSalary(Integer.parseInt(args[5]));
+        person.setSalary(Integer.valueOf(args[5]));
         person.setEmploymentStatus(Person.EmploymentStatus.valueOf(args[6]));
         person.setIsActive(Boolean.valueOf(args[7]));
 

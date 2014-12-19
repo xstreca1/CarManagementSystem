@@ -116,12 +116,12 @@ public class CarClient {
         car.setYearOfManufacture(Integer.parseInt(args[6]));
         car.setBodystyle(Car.bodyStyle.valueOf(args[7]));
         car.setNumberOfSeats(Integer.parseInt(args[8]));
-        car.setMileage(Integer.parseInt(args[9]));
+        car.setMileage(Integer.valueOf(args[9]));
         car.setColor(Car.Color.valueOf(args[10]));
         car.setCategory(Car.Category.valueOf(args[11]));
         car.setEmissionstandard(Car.emissionStandard.valueOf(args[12]));
-        car.setAvailibility(Boolean.parseBoolean(args[13]));
-        car.setIsActive(Boolean.parseBoolean(args[14]));
+        car.setAvailibility(Boolean.valueOf(args[13]));
+        car.setIsActive(Boolean.valueOf(args[14]));
 
         RestTemplate restTemplate = new RestTemplate();
         ReceiveCarMessage result = restTemplate.postForObject(CREATE_CAR, car, ReceiveCarMessage.class);
@@ -177,10 +177,10 @@ public class CarClient {
         }
 
         CarDTO car = new CarDTO();
-        car.setCarID(Integer.parseInt(args[2]));
-        car.setMileage(Integer.parseInt(args[3]));
-        car.setAvailibility(Boolean.parseBoolean(args[4]));
-        car.setIsActive(Boolean.parseBoolean(args[5]));
+        car.setCarID(Integer.valueOf(args[2]));
+        car.setMileage(Integer.valueOf(args[3]));
+        car.setAvailibility(Boolean.valueOf(args[4]));
+        car.setIsActive(Boolean.valueOf(args[5]));
 
         RestTemplate restTemplate = new RestTemplate();
         ReceiveCarMessage result = restTemplate.postForObject(UPDATE_CAR, car, ReceiveCarMessage.class);

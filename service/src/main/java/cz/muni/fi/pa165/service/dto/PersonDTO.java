@@ -139,6 +139,7 @@ public class PersonDTO {
     public void setSalary(Integer salary) {
         this.salary = salary;
     }
+    
     @Override
     public String toString() {
         return "" + name + "," + employmentStatus + ",ID=" + id;
