@@ -62,12 +62,10 @@ public class LeaseDAOImplTest {
         car1.setVIN("AJGSKA1234FX");
         car1.setVehicleRegPlate("ZC-111BA");
         car1.setYearOfManufacture(2014);
-        car1.setEngineDisplacement((float) 3.6);
-        car1.setEnginePower(202);
-        car1.setGasConsumption((float) 10.3);
+       
         car1.setMileage(55000);
         car1.setNumberOfSeats(4);
-        car1.setTransmission(true);
+       
         car1.setIsActive(true);
 
         car2 = new Car();
@@ -77,18 +75,16 @@ public class LeaseDAOImplTest {
         car2.setVIN("AJGSKA1234GF");
         car2.setVehicleRegPlate("TN-112CA");
         car2.setYearOfManufacture(1996);
-        car2.setEngineDisplacement((float) 1.4);
-        car2.setEnginePower(66);
-        car2.setGasConsumption((float) 7.3);
+        
         car2.setMileage(56000);
         car2.setNumberOfSeats(4);
-        car2.setTransmission(true);
+        
         car2.setIsActive(true);
 
         //create person
         person = new Person();
         person.setName("JOHN");
-       // person.setAddress(new Address());
+      
         person.setPosition("HR");
         person.setNationality("US");
         person.setSalary(25_000);

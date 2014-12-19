@@ -53,12 +53,10 @@ public class ServiceCheckImplTest {
         car1.setVIN("AJGSKA1234FF");
         car1.setVehicleRegPlate("TN-112BA");
         car1.setYearOfManufacture(1996);
-        car1.setEngineDisplacement((float) 1.4);
-        car1.setEnginePower(66);
-        car1.setGasConsumption((float) 7.3);
+      
         car1.setMileage(55000);
         car1.setNumberOfSeats(5);
-        car1.setTransmission(true);
+       
         car1.setIsActive(true);
 
         car2 = new Car();
@@ -68,12 +66,10 @@ public class ServiceCheckImplTest {
         car2.setVIN("AAASSS111222");
         car2.setVehicleRegPlate("PD-112BA");
         car2.setYearOfManufacture(1996);
-        car2.setEngineDisplacement((float) 1.4);
-        car2.setEnginePower(66);
-        car2.setGasConsumption((float) 7.3);
+        
         car2.setMileage(55000);
         car2.setNumberOfSeats(5);
-        car2.setTransmission(true);
+        
         car2.setIsActive(true);
 
         car3 = new Car();
@@ -83,12 +79,10 @@ public class ServiceCheckImplTest {
         car3.setVIN("BBBSSS111222");
         car3.setVehicleRegPlate("BA-112BA");
         car3.setYearOfManufacture(1996);
-        car3.setEngineDisplacement((float) 1.4);
-        car3.setEnginePower(66);
-        car3.setGasConsumption((float) 7.3);
+       
         car3.setMileage(55000);
         car3.setNumberOfSeats(5);
-        car3.setTransmission(true);
+        
         car3.setIsActive(true);
 
         em.persist(car1);

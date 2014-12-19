@@ -24,10 +24,7 @@
                 <th><fmt:message key="car.yearOfManufacture"/></th>
                 <th><fmt:message key="car.mileage"/></th>
                 <th><fmt:message key="car.color"/></th>
-                <th><fmt:message key="car.bodystyle"/></th>
-                <th><fmt:message key="car.enginePower"/></th>
-                <th><fmt:message key="car.gasConsumption"/></th>
-                <th><fmt:message key="car.transmission"/></th>
+                <th><fmt:message key="car.bodystyle"/></th>                           
                 <th><fmt:message key="car.category"/></th>
                 <th><fmt:message key="car.VIN"/></th>
                 <th><fmt:message key="car.emissionstandard"/></th>
@@ -43,10 +40,7 @@
                     <td><c:out value="${car.yearOfManufacture}"/></td>
                     <td><c:out value="${car.mileage}"/></td>
                     <td><fmt:message key="car.color.${car.color}"/></td>
-                    <td><fmt:message key="car.bodystyle.${car.bodystyle}"/></td>
-                    <td><c:out value="${car.enginePower}"/></td>                    
-                    <td><c:out value="${car.gasConsumption}"/></td>   
-                    <td><fmt:message key="car.transmission.${car.transmission}"/></td>
+                    <td><fmt:message key="car.bodystyle.${car.bodystyle}"/></td>                    
                     <td><fmt:message key="car.category.${car.category}"/></td>
                     <td><c:out value="${car.VIN}"/></td> 
                     <td><c:out value="${car.emissionstandard}"/></td> 

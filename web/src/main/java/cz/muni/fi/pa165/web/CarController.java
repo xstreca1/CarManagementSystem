@@ -189,7 +189,7 @@ public class CarController {
     public String editCar(@PathVariable Integer id, @ModelAttribute("car") @Valid CarDTO car,
             BindingResult result, ModelMap model, HttpServletRequest request) {
 
-        if (result.hasErrors()) {
+        /*if (result.hasErrors()) {
 
             List<CarDTO> cars = new ArrayList();
             cars.add(carService.getCarByID(id));
@@ -197,10 +197,10 @@ public class CarController {
             //model.addAttribute("person2", person2);
             return "carEdit";
 
-        } else {
+        } else {*/
             carService.updateCar(car, id);
             return "redirect:/car/";
-        }
+        
 
     }
 

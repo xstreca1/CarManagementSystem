@@ -86,7 +86,7 @@
             <a>bodystyle</a>
             <b>bodystyle</b>
         </field>
-        <field>
+        <!--<field>
             <a>enginePower</a>
             <b>enginePower</b>
         </field>
@@ -97,7 +97,7 @@
         <field>
             <a>transmission</a>
             <b>transmission</b>
-        </field>
+        </field>-->
         <field>
             <a>category</a>
             <b>category</b>

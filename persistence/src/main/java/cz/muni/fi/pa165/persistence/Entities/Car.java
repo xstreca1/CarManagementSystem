@@ -67,7 +67,7 @@ public class Car implements Serializable {
     @Column(nullable = false)
     private Boolean isActive;
 
-    private float engineDisplacement;
+    //private float engineDisplacement;
 
     @Column
     private boolean availibility;
@@ -92,16 +92,7 @@ public class Car implements Serializable {
     private Color color;
 
     @Enumerated(EnumType.STRING)
-    private bodyStyle bodystyle;
-
-    @Column //(nullable = false)
-    private int enginePower;
-
-    @Column //(nullable = false)
-    private float gasConsumption;
-
-    @Column //(nullable = false)
-    private boolean transmission;
+    private bodyStyle bodystyle;   
 
     @Enumerated(EnumType.STRING)
     private Category category;
@@ -167,30 +158,7 @@ public class Car implements Serializable {
         this.typeName = typeName;
     }
 
-    public int getEnginePower() {
-        return enginePower;
-    }
-
-    public void setEnginePower(int enginePower) {
-        this.enginePower = enginePower;
-    }
-
-    public float getGasConsumption() {
-        return gasConsumption;
-    }
-
-    public void setGasConsumption(float gasConsumption) {
-        this.gasConsumption = gasConsumption;
-    }
-
-    public boolean isTransmission() {
-        return transmission;
-    }
-
-    public void setTransmission(boolean transmission) {
-        this.transmission = transmission;
-    }
-
+   
     public String getVIN() {
         return VIN;
     }
@@ -206,15 +174,7 @@ public class Car implements Serializable {
     public void setNumberOfSeats(int numberOfSeats) {
         this.numberOfSeats = numberOfSeats;
     }
-
-    public float getEngineDisplacement() {
-        return engineDisplacement;
-    }
-
-    public void setEngineDisplacement(float engineDisplacement) {
-        this.engineDisplacement = engineDisplacement;
-    }
-
+    
     public boolean getAvailibility() {
         return availibility;
     }
