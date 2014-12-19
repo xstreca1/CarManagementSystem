@@ -5,7 +5,6 @@ package cz.muni.fi.pa165.service.dto;
 
 
 import cz.muni.fi.pa165.persistence.Entities.Person;
-import java.util.Date;
 
 /**
  *
@@ -14,36 +13,34 @@ import java.util.Date;
 public class PersonDTO {
 
     private Integer id;
-
+    
     private String name;
 
     private Boolean isActive;
-
+   
     private Person.EmploymentStatus employmentStatus;
-
+  
     private String position;
-
+   
     private Person.Sex sex;
-    
+
     private String nationality;
 
-    private int salary;
+    private Integer salary;
     
     private String IdentificationNumber;
 
     public PersonDTO(Integer id, String name, Boolean isActive,
             Person.EmploymentStatus employmentStatus,
-            String position, Person.Sex sex,
-            String nationality, int salary, String identificationNumber) {
+            String position, Person.Sex sex, 
+            String nationality, Integer salary, String identificationNumber) {
 
         this.id = id;
         this.name = name;
         this.isActive = isActive;
-        this.employmentStatus = employmentStatus;
-        
+        this.employmentStatus = employmentStatus;        
         this.position = position;
-        this.sex = sex;
-       
+        this.sex = sex;       
         this.nationality = nationality;
         this.salary = salary;
         this.IdentificationNumber = identificationNumber;
@@ -110,7 +107,6 @@ public class PersonDTO {
         this.sex = sex;
     }
 
-    
     public String getNationality() {
         return nationality;
     }
@@ -119,12 +115,17 @@ public class PersonDTO {
         this.nationality = nationality;
     }
 
-    public int getSalary() {
+    public Integer getSalary() {
         return salary;
     }
 
-    public void setSalary(int salary) {
+    public void setSalary(Integer salary) {
         this.salary = salary;
+    }
+    
+    @Override
+    public String toString() {
+        return "" + name + "," + employmentStatus + ",ID=" + id;
     }
 
 }
