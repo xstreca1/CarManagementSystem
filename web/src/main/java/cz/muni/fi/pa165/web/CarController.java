@@ -93,16 +93,6 @@ public class CarController {
         return "carListCars";
     }
 
-    /*@RequestMapping(value = "/listCars", method = RequestMethod.GET)
-     public ModelAndView listCars(ModelMap model,
-     @RequestParam(value = "isInactive", required = false) boolean isInactive) {
-
-     List<CarDTO> cars = carService.findAllCars(isInactive);
-     model.addAttribute("cars", cars);
-
-     //send mav to jsp page
-     return new ModelAndView("cars");
-     }*/
     @RequestMapping(value = "/add", method = RequestMethod.POST)
     public String addCar(@ModelAttribute("car") @Valid CarDTO car,
             BindingResult result, ModelMap model, HttpServletRequest request) {
@@ -132,49 +122,6 @@ public class CarController {
         return "redirect:/car/";
     }
 
-//    @RequestMapping(method = RequestMethod.POST)
-//    public String home() {
-//        return "index";
-//    }
-
-    /*@RequestMapping(value = "/delete/{id}")
-     public String deleteCar(@PathVariable String id, ModelMap model) {
-     boolean deleted = false;
-     String errorMsg = null;
-     CarDTO car = new CarDTO();
-     try {
-     Integer carID = Integer.valueOf(id);
-
-     car = carService.getCarByID(carID);
-     carService.deleteCar(car);
-     deleted = true;
-     } catch (DataAccessException | NumberFormatException | NullPointerException e) {
-
-     deleted = false;
-     errorMsg = e.getMessage();
-     }
-
-     model.addAttribute("deleteStatus", deleted);
-     if (errorMsg != null) {
-     model.addAttribute("errorMessage", errorMsg);
-     }
-     return "redirect:/car/listCars";
-     }*/
-    /*@RequestMapping(value = "/update/{id}", method = RequestMethod.GET)
-     public String update_form(@PathVariable Integer id, ModelMap model) {
-     CarDTO car = carService.getCarByID(id);
-     model.addAttribute("car", car);
-     return "car/update";
-     }
-
-     /*@RequestMapping(value = "/update", method = RequestMethod.POST)
-     public String updateCar(@ModelAttribute CarDTO car,
-     BindingResult result, ModelMap model, @PathVariable Integer id) {
-
-     carService.updateCar(car, id);
-
-     return "redirect:/car/listCars";
-     }*/
     @RequestMapping(value = "/update/{id}", method = RequestMethod.GET)
     public String update_form(@PathVariable Integer id, HttpServletRequest request) {
 
@@ -189,15 +136,6 @@ public class CarController {
     public String editCar(@PathVariable Integer id, @ModelAttribute("car") @Valid CarDTO car,
             BindingResult result, ModelMap model, HttpServletRequest request) {
 
-        /*if (result.hasErrors()) {
-
-            List<CarDTO> cars = new ArrayList();
-            cars.add(carService.getCarByID(id));
-            request.setAttribute("cars", cars);
-            //model.addAttribute("person2", person2);
-            return "carEdit";
-
-        } else {*/
             carService.updateCar(car, id);
             return "redirect:/car/";
         
@@ -254,10 +192,6 @@ public class CarController {
 
         model.addAttribute("check", new ServiceCheckDTO());
 
-        //ServiceCheckDTO check = new ServiceCheckDTO();
-        //serviceCheckService.createServiceCheck(check);
-        //model.addAttribute("check", check);
-        //model.addAttribute("person2", person2);
         return "scAssignCheck";
     }
 
