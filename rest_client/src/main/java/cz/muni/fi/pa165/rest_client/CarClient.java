@@ -88,7 +88,7 @@ public class CarClient {
     /**
      * handles create car operation 
      * console command is: 
-     * car create [vehicleRegPlate] [brand] [typeName] [VIN] [yearOfManufacture] [bodystyle]
+     * car add [vehicleRegPlate] [brand] [typeName] [VIN] [yearOfManufacture] [bodystyle]
      * [numberOfSeats] [mileage] [color] [category] [emissionstandard]
      * [availibility] [isActive]
      *
@@ -167,7 +167,7 @@ public class CarClient {
      *
      * @param args command line arguments args[0] args[1] args[2] args[3]
      * args[4] args[5] 
-     * car create id mileage availability isActive
+     * car update id mileage availability isActive
      */
     private void handleUpdateOperation(String[] args) {
         if (args.length < 6) {
