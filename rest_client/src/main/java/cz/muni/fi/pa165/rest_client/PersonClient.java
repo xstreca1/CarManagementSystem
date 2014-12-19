@@ -31,7 +31,7 @@ public class PersonClient {
 
     private static final String CREATE_PERSON = "http://localhost:8080/pa165/rest/person/add";
     private static final String GET_PERSON = "http://localhost:8080/pa165/rest/person/get?id=%d";
-    private static final String GET_PERSON_NAME = "http://localhost:8080/pa165/rest/person/get?id=%s";
+    private static final String GET_PERSON_NAME = "http://localhost:8080/pa165/rest/person/getByName?name=%s";
     private static final String UPDATE_PERSON = "http://localhost:8080/pa165/rest/person/update";
     private static final String DELETE_PERSON = "http://localhost:8080/pa165/rest/person/delete";
     private static final String GET_ALL_PEOPLE = "http://localhost:8080/pa165/rest/person/getAll";

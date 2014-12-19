@@ -50,6 +50,10 @@ public class PersonRestController {
         PersonDTO person;
         ReceiveActivePeopleListMessage result = new ReceiveActivePeopleListMessage();
 
+        //substituing "_" for " "
+        String parsed = name.replace("_", " ");
+        name = parsed;
+        
         try {
             List<PersonDTO> list = service.getPeopleByName(name);
             result.setList(list);
