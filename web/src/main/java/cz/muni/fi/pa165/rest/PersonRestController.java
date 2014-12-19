@@ -103,11 +103,11 @@ public class PersonRestController {
 
     @RequestMapping("/delete")
     public ReceivePersonMessage deletePerson(@RequestBody PersonDTO person) {
-        /*ReceivePersonMessage result = new ReceivePersonMessage();
+        ReceivePersonMessage result = new ReceivePersonMessage();
         
          try
          {
-         service.(person);
+         person.setIsActive(false);
          result.setObject(person);
          }
          catch(Exception ex)
@@ -116,10 +116,7 @@ public class PersonRestController {
          result.setObject(null);
          }
         
-         return result;*/
-
-        //!!!! missing delete method in service layer - ask xstreca1
-        return null;
+         return result;
     }
 
     @RequestMapping("/add")
