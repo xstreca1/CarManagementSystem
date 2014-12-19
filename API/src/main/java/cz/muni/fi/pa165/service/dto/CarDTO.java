@@ -33,12 +33,6 @@ public class CarDTO {
 
     private Car.bodyStyle bodystyle;
 
-    private int enginePower;
-
-    private float gasConsumption;
-
-    private boolean transmission;
-
     private Car.Category category;
 
     private String VIN;
@@ -110,31 +104,7 @@ public class CarDTO {
     public void setBodystyle(Car.bodyStyle bodystyle) {
         this.bodystyle = bodystyle;
     }
-
-    public int getEnginePower() {
-        return enginePower;
-    }
-
-    public void setEnginePower(int enginePower) {
-        this.enginePower = enginePower;
-    }
-
-    public float getGasConsumption() {
-        return gasConsumption;
-    }
-
-    public void setGasConsumption(float gasConsumption) {
-        this.gasConsumption = gasConsumption;
-    }
-
-    public boolean isTransmission() {
-        return transmission;
-    }
-
-    public void setTransmission(boolean transmission) {
-        this.transmission = transmission;
-    }
-
+    
     public Car.Category getCategory() {
         return category;
     }
@@ -199,9 +169,7 @@ public class CarDTO {
         hash = 17 * hash + (this.typeName != null ? this.typeName.hashCode() : 0);
         hash = 17 * hash + (this.color != null ? this.color.hashCode() : 0);
         hash = 17 * hash + (this.bodystyle != null ? this.bodystyle.hashCode() : 0);
-        hash = 17 * hash + this.enginePower;
-        hash = 17 * hash + Float.floatToIntBits(this.gasConsumption);
-        hash = 17 * hash + (this.transmission ? 1 : 0);
+        
         hash = 17 * hash + (this.category != null ? this.category.hashCode() : 0);
         hash = 17 * hash + (this.VIN != null ? this.VIN.hashCode() : 0);
         hash = 17 * hash + (this.emissionstandard != null ? this.emissionstandard.hashCode() : 0);
@@ -242,15 +210,7 @@ public class CarDTO {
         if (this.bodystyle != other.bodystyle) {
             return false;
         }
-        if (this.enginePower != other.enginePower) {
-            return false;
-        }
-        if (Float.floatToIntBits(this.gasConsumption) != Float.floatToIntBits(other.gasConsumption)) {
-            return false;
-        }
-        if (this.transmission != other.transmission) {
-            return false;
-        }
+    
         if (this.category != other.category) {
             return false;
         }

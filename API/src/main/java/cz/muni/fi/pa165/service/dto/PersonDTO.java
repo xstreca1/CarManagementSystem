@@ -3,7 +3,7 @@
  */
 package cz.muni.fi.pa165.service.dto;
 
-import cz.muni.fi.pa165.persistence.Entities.Address;
+
 import cz.muni.fi.pa165.persistence.Entities.Person;
 import java.util.Date;
 
@@ -21,14 +21,10 @@ public class PersonDTO {
 
     private Person.EmploymentStatus employmentStatus;
 
-    private Date dateOfBirth;
-
     private String position;
 
     private Person.Sex sex;
-
-    private Address address;
-
+    
     private String nationality;
 
     private int salary;
@@ -36,18 +32,18 @@ public class PersonDTO {
     private String IdentificationNumber;
 
     public PersonDTO(Integer id, String name, Boolean isActive,
-            Person.EmploymentStatus employmentStatus, Date dateOfBirth,
-            String position, Person.Sex sex, Address address,
+            Person.EmploymentStatus employmentStatus,
+            String position, Person.Sex sex,
             String nationality, int salary, String identificationNumber) {
 
         this.id = id;
         this.name = name;
         this.isActive = isActive;
         this.employmentStatus = employmentStatus;
-        this.dateOfBirth = dateOfBirth;
+        
         this.position = position;
         this.sex = sex;
-        this.address = address;
+       
         this.nationality = nationality;
         this.salary = salary;
         this.IdentificationNumber = identificationNumber;
@@ -98,14 +94,6 @@ public class PersonDTO {
         this.employmentStatus = employmentStatus;
     }
 
-    public Date getDateOfBirth() {
-        return dateOfBirth;
-    }
-
-    public void setDateOfBirth(Date dateOfBirth) {
-        this.dateOfBirth = dateOfBirth;
-    }
-
     public String getPosition() {
         return position;
     }
@@ -122,14 +110,7 @@ public class PersonDTO {
         this.sex = sex;
     }
 
-    public Address getAddress() {
-        return address;
-    }
-
-    public void setAddress(Address address) {
-        this.address = address;
-    }
-
+    
     public String getNationality() {
         return nationality;
     }
