@@ -35,6 +35,16 @@ commands for [car] are:
 - "delete <id>"    delete car by given id (by deactivating it - it still remains in Database)
 - "findbyid <id>" find car by id
 
+------
+ENUMS:
+------
+[color] = [BLACK, WHITE, BLUE, GREEN]
+[body Style] = [SEDAN, HATCHBACK, CABRIOLET, SUV]
+[category] = [A, B, C, D]
+[emissionstandard] = [EU3, EU4, EU5, EU6]
+
+
+
 commands for [person] are:
  
 "findAll" print out all people
@@ -43,6 +53,12 @@ commands for [person] are:
 - "delete <id>" delete person by given id
 - "findbyname <id>" find person by given id
 - "findbyid <id>" find people by given name
+
+------
+ENUMS
+------
+[employmentStatus] = [CEO, MANAGER, SENIOR, JUNIOR, INTERN, JOZO]
+[sex] = [MALE, FEMALE, OTHER]
 
 ========================================================================
 
