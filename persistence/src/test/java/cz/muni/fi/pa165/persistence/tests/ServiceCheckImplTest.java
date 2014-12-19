@@ -241,5 +241,24 @@ public class ServiceCheckImplTest {
         int checks = list.size();
         assertEquals(checks, 1);
     }
+    
+    @Test
+    // test if it is possible to get car from DB using getPersonById()
+    public void testGetById() {
+        // try if bad input results in Exception
+        try {
+            dao.getCheckByID(null);
+            fail("wrong input allowed!");
+        } catch (IndexOutOfBoundsException e) {
+        }
+
+        // get person using getPersonById method
+        ServiceCheck sc = dao.getCheckByID(check1.getScID());
+        // pers should be not null
+        assertNotNull(sc);
+        // person and person1 should be the same
+        assertEquals(check1, sc);
+
+    }
 
 }

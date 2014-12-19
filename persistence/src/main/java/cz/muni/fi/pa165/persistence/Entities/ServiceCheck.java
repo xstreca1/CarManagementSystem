@@ -7,6 +7,7 @@ package cz.muni.fi.pa165.persistence.Entities;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -64,7 +65,7 @@ public class ServiceCheck implements Serializable {
     private Car car;
 
     //------------getters and setters--------------------
-    public int getScID() {
+    public Integer getScID() {
         return scID;
     }
 
@@ -108,7 +109,7 @@ public class ServiceCheck implements Serializable {
         this.car = car;
     }
 
-    public void setScID(int scID) {
+    public void setScID(Integer scID) {
         this.scID = scID;
     }
 
@@ -129,18 +130,22 @@ public class ServiceCheck implements Serializable {
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (int) scID;
+        hash += (Integer) scID;
         return hash;
     }
 
     @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Lease)) {
+     public boolean equals(Object object) {
+        if (!(object instanceof ServiceCheck)) {
             return false;
         }
         ServiceCheck other = (ServiceCheck) object;
-        return this.scID == other.scID;
+        if ((this.scID == null && other.scID != null)
+                || (this.scID != null
+                && !this.scID.equals(other.scID))) {
+            return false;
+        }
+        return true;
     }
 
     @Override
