@@ -16,8 +16,7 @@
 
     <tr>
         <th><form:label path="returnedStatus"><fmt:message key="lease.returnedStatus"/></form:label></th>
-        <td><form:select path="returnedStatus">
-                <form:option value="-"> <fmt:message key="enum.select"/></form:option>
+        <td><form:select path="returnedStatus">               
                 <form:options items="${enumValues}" />
             </form:select></td>
         <td><form:errors path="returnedStatus" cssClass="error"/></td>

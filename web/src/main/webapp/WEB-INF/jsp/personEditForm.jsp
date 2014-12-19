@@ -33,7 +33,6 @@
         <tr>
             <th><form:label path="employmentStatus"><fmt:message key="person.employmentStatus"/></form:label></th>
         <td><form:select path="employmentStatus">
-
                 <form:options items="${enumValues}" />
             </form:select></td>
         <td><form:errors path="employmentStatus" cssClass="error"/></td>

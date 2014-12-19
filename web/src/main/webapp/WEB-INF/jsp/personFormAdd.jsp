@@ -55,10 +55,5 @@
         <td><form:checkbox path="isActive"/></td>
         <td><form:errors path="isActive" cssClass="error"/></td>
     </tr>
-    <%-- <tr>
-        <th><form:label path="identificationNumber"><fmt:message key="person.identificationNumber"/></form:label></th>
-        <td><form:input path="identificationNumber"/></td>
-        <td><form:errors path="identificationNumber" cssClass="error"/></td>
-    </tr>--%>
-
+    
 </table>

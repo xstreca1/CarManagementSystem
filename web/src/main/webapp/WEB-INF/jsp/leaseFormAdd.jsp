@@ -30,8 +30,7 @@
     
     <tr>
         <th id="markup"><form:label path="travelReason"><fmt:message key="lease.travelReason"/></form:label></th>
-        <td><form:select path="travelReason">
-               
+        <td><form:select path="travelReason">               
                 <form:options items="${enumValues}" />
             </form:select></td>
         <td><form:errors path="travelReason" cssClass="error"/></td>

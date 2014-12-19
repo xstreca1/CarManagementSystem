@@ -19,11 +19,9 @@
             <tr>
                 <th>id</th>
                 <th><fmt:message key="person.name"/></th>
-                <th><fmt:message key="person.identificationNumber"/></th>
-              
+                <th><fmt:message key="person.identificationNumber"/></th>              
                 <th><fmt:message key="person.nationality"/></th>
-                <th><fmt:message key="person.sex"/></th>
-                
+                <th><fmt:message key="person.sex"/></th>                
                 <th><fmt:message key="person.employmentStatus"/></th>
                 <th><fmt:message key="person.position"/></th>
                 <th><fmt:message key="person.salary"/></th>
@@ -34,16 +32,14 @@
                 <tr>
                     <td>${person.id}</td>
                     <td><c:out value="${person.name}"/></td>
-                    <td><c:out value="${person.identificationNumber}"/></td>
-                    
+                    <td><c:out value="${person.identificationNumber}"/></td>                    
                     <td><c:out value="${person.nationality}"/></td>
-                    <td><fmt:message key="person.sex.${person.sex}"/></td>
-                 
+                    <td><fmt:message key="person.sex.${person.sex}"/></td>                 
                     <td><fmt:message key="person.employmentStatus.${person.employmentStatus}"/></td>
                     <td><c:out value="${person.position}"/></td>
                     <td><c:out value="${person.salary}"/></td>
                     <td><fmt:message key="person.isActive.${person.isActive}"/></td>
-
+                    
                     <td style="background:white;">
                         <form method="get" action="${pageContext.request.contextPath}/person/update/${person.id}" modelAttribute="person">
                             <input class="btn black" type="submit" value="<fmt:message key='person.list.edit'/>">

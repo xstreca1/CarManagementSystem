@@ -23,8 +23,7 @@
         <table class="basic">
             <tr>
                 <th>id</th>
-                <th><fmt:message key="lease.car"/></th>
-                
+                <th><fmt:message key="lease.car"/></th>                
                 <th><fmt:message key="lease.distance"/></th>
                 <th><fmt:message key="lease.dateOfLease"/></th>
                  <th><fmt:message key="lease.dateOfReturn"/></th>  
@@ -42,10 +41,8 @@
                     <td><c:out value="${lease.distance}"/></td>
                     <td><c:out value="${lease.dateOfLease}"/></td>
                     <td><c:out value="${lease.dateOfReturn}"/></td> 
-                    <td><fmt:message key="lease.travelReason.${lease.travelReason}"/></td>
-                    
-                    <td><c:out value="${lease.isClosed}"/></td>
-                                       
+                    <td><fmt:message key="lease.travelReason.${lease.travelReason}"/></td>                    
+                    <td><c:out value="${lease.isClosed}"/></td>                                       
                     <td><fmt:message key="lease.returnedStatus.${lease.returnedStatus}"/></td>                
                               
                 </tr>

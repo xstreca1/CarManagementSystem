@@ -87,13 +87,11 @@
                         </form>
                     </td>
                 </tr>
-                <!--add getDaysToNextSC-->
-                <!--sem este getLeasesByCar alebo tak nejak bude pomenovana ta metoda-->
-            </tr>
+              </tr>
         </c:forEach>
     </table>
 
-    <!-- add?-->
+   
     <form:form method="post" action="${pageContext.request.contextPath}/car/add" modelAttribute="car">
         <fieldset><legend align="center"><fmt:message key="car.list.newCar"/></legend>
             <%@include file="carFormAdd.jsp"%>
