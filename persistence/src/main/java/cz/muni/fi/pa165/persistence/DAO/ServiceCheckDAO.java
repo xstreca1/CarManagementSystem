@@ -33,26 +33,9 @@ public interface ServiceCheckDAO {
      * 
      * @param scID - ID of serviceCheck to be updated with new values
      */
-    public void updateServiceCheck(ServiceCheck serviceCheck, Integer scID);
+    public void updateServiceCheck(ServiceCheck serviceCheck, Integer scID); 
 
-    /**
-     * Method used to delete instance of ServiceCheck class from database
-     * according to its ID
-     *
-     * @param scID
-     * 
-     */
-    public void deleteServiceCheck(Integer scID);
-
-    /**
-     * Method used to get number of days remaining to next service check
-     * according to its ID
-     *
-     * @param scID
-     * @return number of days
-     */
-    public int getDaysToNext(Integer scID);
-
+   
     /**
      * Method used to get all service checks assigned to some car
      *
@@ -69,14 +52,7 @@ public interface ServiceCheckDAO {
      */
     
     public List<ServiceCheck> getServiceCheckByName(ServiceCheckName name);
-    
-    /**
-     * method to update service interval of some serviceCheck
-     * 
-     * @param interval - new value of interval
-     * @param scID  - ID of serviceCheck to be updated
-     */
-    public void updateInterval(int interval, Integer scID);
+       
     
     public List<ServiceCheck> findAllChecks();
     

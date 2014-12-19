@@ -9,15 +9,9 @@ import cz.muni.fi.pa165.service.service.ServiceCheckImpl;
 import cz.muni.fi.pa165.service.service.ServiceCheckInterface;
 import java.util.ArrayList;
 import java.util.List;
-import org.junit.After;
+
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertNotNull;
+
 import static org.junit.Assert.assertNotNull;
 import org.junit.Before;
 import org.junit.Test;
@@ -26,7 +20,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Matchers;
 import org.mockito.Mock;
 import org.mockito.Mockito;
-import org.mockito.MockitoAnnotations;
+
 import org.mockito.invocation.InvocationOnMock;
 import org.mockito.runners.MockitoJUnitRunner;
 import org.mockito.stubbing.Answer;
@@ -67,15 +61,6 @@ public class ServiceCheckImplTest {
             }
         });
         
-        Mockito.when(mockCheckDAO.getDaysToNext(Matchers.any(Integer.class)))
-                .thenAnswer(new Answer<Integer>() {
-            @Override
-            public Integer answer(InvocationOnMock inv) throws Throwable {
-                Object[] args = inv.getArguments();
-                return (Integer) args[0];
-            }
-        });
-        
         List<ServiceCheck> allChecks = new ArrayList<>();
 		allChecks.add(serviceCheck);
 		allChecks.add(serviceCheck);
@@ -97,22 +82,8 @@ public class ServiceCheckImplTest {
                 
 		assertEquals(true, true);
         
-    }
+    }    
     
-    @Test
-    public void testGetDaysToNextServiceCheck(){
-        
-        serviceCheckImpl.getDaysToNextServiceCheck(serviceCheckDTO);
-        
-        assertNotNull(serviceCheckDTO);
-        
-        assertEquals(true, true);
-    }
-    
-   /** @Test
-    public void testSetCheckInterval(){
-    }
-    **/
     @Test
     public void testGetServiceChecksForCar(){
         

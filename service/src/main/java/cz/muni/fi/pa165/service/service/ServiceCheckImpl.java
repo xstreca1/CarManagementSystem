@@ -1,6 +1,6 @@
 package cz.muni.fi.pa165.service.service;
 
-import cz.muni.fi.pa165.persistence.DAO.PersonDAO;
+
 import cz.muni.fi.pa165.persistence.DAO.ServiceCheckDAO;
 import cz.muni.fi.pa165.persistence.Entities.Car;
 import cz.muni.fi.pa165.persistence.Entities.ServiceCheck;
@@ -14,8 +14,6 @@ import javax.transaction.Transactional;
 import org.dozer.DozerBeanMapper;
 import org.dozer.Mapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Service;
 
 /**
@@ -55,46 +53,7 @@ public class ServiceCheckImpl implements ServiceCheckInterface {
         // save to database using some implementation od DAO
         scDAO.createServiceCheck(checkEntity);
 
-    }
-
-    public int getDaysToNextServiceCheck(ServiceCheckDTO checkDTO) {
-
-        //create empty entity
-        ServiceCheck checkEntity = new ServiceCheck();
-
-        //create empty list
-        List<String> list = new ArrayList<String>();
-
-        // map DTO object on Entity
-        list.add("dozerMapping.xml");
-        Mapper mapper = new DozerBeanMapper(list);
-
-        mapper.map(checkDTO, checkEntity, "servicecheck");
-
-        int daysToNext = scDAO.getDaysToNext(checkEntity.getScID());
-
-        return daysToNext;
-
-    }
-
-    public void setCheckInterval(List<Car> carList, ServiceCheck.ServiceCheckName scName, int serviceInterval) {
-
-        // create new list to store service checks with same name
-        // start transaction
-        List<ServiceCheck> checkList = scDAO.getServiceCheckByName(scName);
-
-        // Set new serviceInterval for every serviceCheck, which is assigned to some car from list
-        for (ServiceCheck sc : checkList) {
-
-            Car car = sc.getCar();
-            if (carList.contains(car)) {
-                scDAO.updateInterval(serviceInterval, sc.getScID());
-
-            }
-
-        }
-
-    }
+    }     
 
     public List<ServiceCheckDTO> getServiceChecksForCar(CarDTO carDTO) {
 

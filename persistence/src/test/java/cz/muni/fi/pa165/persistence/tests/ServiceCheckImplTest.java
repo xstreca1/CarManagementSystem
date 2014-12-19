@@ -147,7 +147,7 @@ public class ServiceCheckImplTest {
 
     }
 
-    @Test //PASS
+    @Test 
     public void isInDB() {
         em.getTransaction().begin();
         List<ServiceCheck> s = em.createQuery("SELECT s FROM ServiceCheck s", ServiceCheck.class).getResultList();
@@ -156,7 +156,7 @@ public class ServiceCheckImplTest {
         
     }
 
-    @Test // PASS
+    @Test
     public void testAddServiceCheck() {
 
         try {
@@ -210,25 +210,8 @@ public class ServiceCheckImplTest {
        
     }
 
-    @Test // PASS
-    public void testServiceCheckDelete() {
-        try {
-            dao.deleteServiceCheck(null);
-            fail("wrong input allowed!");
-        } catch (IllegalArgumentException e) {
-        }
-        // delete service check
-        dao.deleteServiceCheck(check2.getScID());
-        // service check should be deleted
-        em.getTransaction().begin();
-        Assert.assertFalse(em.contains(check2));
-        em.getTransaction().commit();
-     
-
-       
-    }
-
-    @Test // OK, just testing if list is not empty and if it contains exactly one check
+    
+    @Test //just testing if list is not empty and if it contains exactly one check
     public void testGetCheckForCar() {
         try {
             dao.getServiceChecksForCar(null);
