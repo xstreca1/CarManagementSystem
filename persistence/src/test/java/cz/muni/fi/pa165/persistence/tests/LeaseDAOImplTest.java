@@ -187,14 +187,14 @@ public class LeaseDAOImplTest {
     /**
      * Test of deleteLease method, of class LeaseDAOImpl.
      */
-    @Test
+   /* @Test
     public void testDeleteLease() {
         Integer id = lease.getLeaseId();
         dao.deleteLease(lease.getLeaseId());
         em.getTransaction().begin();
         Assert.assertFalse(em.contains(lease));
         em.getTransaction().commit();
-    }
+    }*/
 
     /**
      * Test of getLeasesByPerson method, of class LeaseDAOImpl.
@@ -207,28 +207,6 @@ public class LeaseDAOImplTest {
         assertEquals(1, leasesByPerson.size());
     }
 
-    /**
-     * Test of getLeasesById method, of class LeaseDAOImpl.
-     */
-   /* @Test
-    public void testGetLeaseByID() {
-        em.getTransaction().begin();
-        Lease leaseByID = dao.getLeaseByID(lease.getId());
-        em.getTransaction().commit();
-        assertEquals(lease, leaseByID);
-    }*/
-
-    /**
-     * Test of getAllLeases method, of class LeaseDAOImpl.
-     */
-    @Test
-    public void testGetAllLeases() {
-        em.getTransaction().begin();
-        List<Lease> leases = dao.getAllLeases(date1, date4);
-        em.getTransaction().commit();
-        assertEquals(2, leases.size());
-    }
-    
      @Test
     // test if it is possible to get car from DB using getPersonById()
     public void testGetById() {

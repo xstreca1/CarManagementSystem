@@ -1,6 +1,6 @@
 package cz.muni.fi.pa165.Tests;
 
-import cz.muni.fi.pa165.persistence.DAO.LeaseDAO;
+
 import cz.muni.fi.pa165.persistence.DAO.LeaseDAOImpl;
 import cz.muni.fi.pa165.persistence.Entities.Lease;
 import cz.muni.fi.pa165.persistence.Entities.Person;
@@ -9,18 +9,9 @@ import cz.muni.fi.pa165.service.dto.PersonDTO;
 import cz.muni.fi.pa165.service.service.LeaseServiceImpl;
 import java.util.ArrayList;
 import java.util.List;
+
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertNotNull;
+
 import static org.junit.Assert.assertNotNull;
 import org.junit.Before;
 import org.junit.Test;
@@ -73,17 +64,7 @@ public class LeaseServiceImplTest {
 
 					                                  }
                 });
-        Mockito.when(mockLeaseDao.deleteLease(Matchers.any(Integer.class)))
-				.thenAnswer(new Answer<Lease>() {
-					@Override
-					public Lease answer(InvocationOnMock inv)
-							throws Throwable {
-						Object[] args = inv.getArguments();
-						return (Lease) args[0];
-
-					}
-				});
-        
+    
         List<Lease> allLeases = new ArrayList<>();
 		allLeases.add(lease);
 		allLeases.add(lease);
@@ -101,16 +82,7 @@ public class LeaseServiceImplTest {
                 
 		assertEquals(true, true);
     }
-    
-  //  @Test
-    public void testDeleteLease() {
-        
-        service.deleteLease(leaseDto);
-        
-        verify(mockLeaseDao).deleteLease(lease.getId());
-        
-    }
-    
+  
     @Test
     public void getLeasesByPerson() {
         

@@ -6,7 +6,6 @@ import cz.muni.fi.pa165.persistence.Entities.Lease.ReturnedStatus;
 import cz.muni.fi.pa165.persistence.Entities.Person;
 import cz.muni.fi.pa165.service.dto.LeaseDTO;
 import cz.muni.fi.pa165.service.dto.PersonDTO;
-import cz.muni.fi.pa165.service.service.LeaseServiceInterface;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -16,8 +15,6 @@ import javax.transaction.Transactional;
 import org.dozer.DozerBeanMapper;
 import org.dozer.Mapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
@@ -105,23 +102,6 @@ public class LeaseServiceImpl implements LeaseServiceInterface {
         return leaseListDTO;
     }
 
-    public List<LeaseDTO> getAllLeases(Date from, Date to) {
-        if (from == null) {
-            throw new NullPointerException("Date from is null");
-        }
-        if (to == null) {
-            throw new NullPointerException("Date to is null");
-        }
-
-        List<Lease> allLeases = leaseDAO.getAllLeases(from, to);
-        Mapper mapper = new DozerBeanMapper(list);
-        List<LeaseDTO> leasesDTO = new ArrayList(allLeases.size());
-        for (Lease lease : allLeases) {
-            leasesDTO.add(mapper.map(lease, LeaseDTO.class));
-        }
-        return leasesDTO;
-    }
-
     @Override
     @Transactional
     public List<LeaseDTO> findAllLeases() {
@@ -144,46 +124,7 @@ public class LeaseServiceImpl implements LeaseServiceInterface {
         }
 
         return leasesDTO;
-    }
-
-    public void deleteLease(LeaseDTO leaseDto) {
-
-        Lease leaseEntity = new Lease();
-
-        List<String> list = new ArrayList<String>();
-// Add the mapping configuration
-        list.add("dozerMapping.xml");
-// Add to DozerMapper
-        Mapper mapper = new DozerBeanMapper(list);
-
-        mapper.map(leaseDto, leaseEntity, "lease");
-        leaseDAO.deleteLease(leaseEntity.getId());
-
-    }
-
-    public List<LeaseDTO> getTravelStatistics(PersonDTO person, Date from, Date to) {
-        if (person == null) {
-            throw new NullPointerException("person is null");
-        }
-        if (from == null) {
-            throw new NullPointerException("Date from is null");
-        }
-        if (to == null) {
-            throw new NullPointerException("Date to is null");
-        }
-
-        List<Lease> allLeases = leaseDAO.getAllLeases(from, to);
-        List<LeaseDTO> leasesByPersonDTO = new ArrayList();
-        Mapper mapper = new DozerBeanMapper(list);
-        for (Lease lease : allLeases) {
-            if ((lease.getPerson()).equals(person)) {
-                leasesByPersonDTO.add(mapper.map(lease, LeaseDTO.class));
-            }
-        }
-
-        return leasesByPersonDTO;
-    }
-
+    }    
     @Override
     public LeaseDTO getLeaseByID(Integer id) {
 
@@ -216,6 +157,8 @@ public class LeaseServiceImpl implements LeaseServiceInterface {
         mapper.map(leaseDto, leaseEntity, "lease");
         leaseDAO.updateLease(leaseEntity, ID);
     }
+
+    
 
     
 

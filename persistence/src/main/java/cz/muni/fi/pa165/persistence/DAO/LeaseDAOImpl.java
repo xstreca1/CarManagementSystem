@@ -58,34 +58,18 @@ public class LeaseDAOImpl implements LeaseDAO {
         }
 
         int distance = lease.getDistance();
-        //Date dateOfLease = lease.getDateOfLease();
-        //Date dateOfReturn = lease.getDateOfReturn();
+       
         Boolean isClosed = lease.getIsClosed();
-       //Car car = lease.getCar();
-        //Person person = lease.getPerson();
+      
         ReturnedStatus status = lease.getReturnedStatus();
 
         Lease lease1 = (Lease) em.find(Lease.class, leaseId);
 
         lease1.setDistance(distance);
-       //lease1.setDateOfLease(dateOfLease);
-       //lease1.setDateOfReturn(dateOfReturn);
+       
         lease1.setIsClosed(isClosed);
-       //lease1.setCar(car);
-       //lease1.setPerson(person);
+      
         lease1.setReturnedStatus(status);
-    }
-
-    @Override
-    public Lease deleteLease(int leaseId) {
-        if (leaseId < 0) {
-            throw new IllegalArgumentException("Wrong input for id");
-        }
-
-        Lease lease = (Lease) em.find(Lease.class, leaseId);
-        em.remove(lease);
-
-        return lease;
     }
 
     @Override
@@ -96,24 +80,6 @@ public class LeaseDAOImpl implements LeaseDAO {
 
         String query = "SELECT k FROM Lease k WHERE k.person= :person";//TODO
         List<Lease> leases = em.createQuery(query).setParameter("person", person).getResultList();
-
-        return leases;
-    }
-
-    @Override
-    public List getAllLeases(Date from, Date until) {
-        if (from == null) {
-            throw new IllegalArgumentException("Wrong input for date from");
-        }
-        if (until == null) {
-            throw new IllegalArgumentException("Wrong input for date until");
-        }
-
-        String query = "SELECT k FROM Lease k WHERE k.dateOfLease BETWEEN :from AND :until";
-
-        List<Lease> leases = em.createQuery(query, Lease.class).
-                setParameter("from", from).setParameter("until", until)
-                .getResultList();
 
         return leases;
     }

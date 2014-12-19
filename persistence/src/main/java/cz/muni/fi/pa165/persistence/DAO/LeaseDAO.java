@@ -2,7 +2,6 @@ package cz.muni.fi.pa165.persistence.DAO;
 
 import cz.muni.fi.pa165.persistence.Entities.Lease;
 import cz.muni.fi.pa165.persistence.Entities.Person;
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -29,15 +28,7 @@ public interface LeaseDAO {
      */
     public void updateLease(Lease lease, int leaseId);
     
-    /**
-     * Delete lease
-     * <p>
-     * It delete the lease by the given id
-     * 
-     * @param leaseId id of lease to be deleted
-     */
-    public Lease deleteLease(int leaseId);
-    
+  
     /**
      * Shows list of leases for person
      * <p>
@@ -50,17 +41,7 @@ public interface LeaseDAO {
      */
     public List getLeasesByPerson(Person person);
     
-    /**
-     * Shows all leases of a certain period
-     * <p>
-     * It shows all leases for all employees from the certain date to the 
-     * certain date.
-     * 
-     * @param from date from the leases should be showed
-     * @param until date upon the leases should be showed
-     * @return list of leases
-     */
-    public List getAllLeases(Date from, Date until);    
+    
     
     public Lease getLeaseByID(Integer ID);
     

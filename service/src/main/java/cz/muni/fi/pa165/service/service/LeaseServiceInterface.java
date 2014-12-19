@@ -37,42 +37,18 @@ public interface LeaseServiceInterface {
      */
     List<LeaseDTO> getLeaseByPerson(PersonDTO personDto);
     
-    /**
-     * Returns all leases in the period
-     * 
-     * @param from date from I want to display leases
-     * @param to date to which I want to displaz leases
-     * @return list of leases in that period
-     */
-    List<LeaseDTO> getAllLeases(Date from, Date to);
-    
+        
     /**
      * Gives a lease with given id
      * 
      * @param id id of lease
-     * @return listlease with given id
-     */
-    
-    
-    /**
-     * Method displays leases of the person in certain period
-     * 
-     * @param person person to show
-     * @param from date from which it will be showed
-     * @param to date to it will be showed
-     * @return list of leases
-     */
-    List<LeaseDTO> getTravelStatistics(PersonDTO person, Date from, Date to);
-    
+     * @return listlease with given id  
+     */    
     LeaseDTO getLeaseByID(Integer id);
-    
-    void deleteLease(LeaseDTO leaseDTO);
-    
+        
     List <LeaseDTO> findAllLeases();
     
     public void updateLease(LeaseDTO leaseDto, Integer ID);
     
-
-   //public void createLease();
     
 }
