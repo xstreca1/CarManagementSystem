@@ -67,8 +67,6 @@ public class Car implements Serializable {
     @Column(nullable = false)
     private Boolean isActive;
 
-    //private float engineDisplacement;
-
     @Column
     private boolean availibility;
 
