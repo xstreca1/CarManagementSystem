@@ -84,6 +84,8 @@ person - list all people in the DB
 person - add new person
 - mvn exec:java -Dexec.args="person add Jaroslav_Cimrman EC444555 MALE SK programmer INTERN 14000 TRUE"
 
+#before inserting in the DB the "_" character is replaced by " "
+
 car
 - mvn exec:java -Dexec.args="car findbyid 1" - in case it exists
 
