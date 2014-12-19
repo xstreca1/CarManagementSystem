@@ -14,11 +14,7 @@
         <td><form:input path="name"/></td>
         <td><font color="red"> <form:errors path="name"></form:errors></font></td>
         </tr>
-    <%-- <tr>
-        <th><form:label path="dateOfBirth"><fmt:message key="person.dateOfBirth"/></form:label></th>
-        <td><form:input path="dateOfBirth"/></td>
-        <td><form:errors path="dateOfBirth" cssClass="error"/></td>
-    </tr>--%>
+    
     <tr>
         <th><form:label path="position"><fmt:message key="person.position"/></form:label></th>
         <td><form:input path="position"/></td>

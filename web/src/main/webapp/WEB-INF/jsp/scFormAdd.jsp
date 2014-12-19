@@ -12,7 +12,7 @@
     <tr>
         <th id="markup"><form:label path="name"><fmt:message key="serviceCheck.name"/></form:label></th>
         <<td><form:select path="name">
-                <form:option value="-"> <fmt:message key="enum.select"/></form:option>
+                
                 <form:options items="${enumValues}" />
             </form:select></td>
         <td><form:errors path="name" cssClass="error"/></td>

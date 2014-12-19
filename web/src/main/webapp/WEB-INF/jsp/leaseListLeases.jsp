@@ -62,12 +62,6 @@
             </c:forEach>
         </table>
 
-        <%-- 
-           <form:form method="post" action="${pageContext.request.contextPath}/lease/update" modelAttribute="lease">
-               <fieldset><legend><fmt:message key="lease.list.newLease"/></legend>
-                   <%@include file="leaseForm2.jsp"%>
-                   <input type="submit" value="<fmt:message key='lease.list.createLease'/>">
-               </fieldset>
-           </form:form> --%>
+        
     </jsp:attribute>
 </my:layout>

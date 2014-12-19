@@ -10,16 +10,12 @@
     <tr>
         <th id="markup"><form:label path="person"><fmt:message key="lease.person"/></form:label></th>
         <td><form:select path="person">
-                <form:option value="-"> <fmt:message key="enum.select"/></form:option>
+               
                 <form:options items="${people}" itemValue="id" itemLabel="id" />
             </form:select></td>
         <td><form:errors path="person" cssClass="error"/></td>
     </tr>
-    <%--<tr>
-        <th><form:label path="distance"><fmt:message key="lease.distance"/></form:label></th>
-        <td><form:input path="distance"/></td>
-        <td><form:errors path="distance" cssClass="error"/></td>
-    </tr>--%>
+   
     <tr>
         <th id="markup"><form:label path="dateOfLease"><fmt:message key="lease.dateOfLease"/></form:label></th>
         <td><form:input id="dateOfLease" path="dateOfLease"/></td>
@@ -31,31 +27,16 @@
             <td><form:input id="dateOfReturn" path="dateOfReturn"/></td>
         <td><form:errors path="dateOfReturn" cssClass="error"/></td>
     </tr>            
-    <%-- <tr>
-        <th><form:label path="returnedStatus"><fmt:message key="lease.returnedStatus"/></form:label></th>
-        <td><form:select path="returnedStatus"/>
-            <form:options items="${returnedStatus}" 
-                          itemLabel="returnedStatus"
-                          itemValue="returnedStatus" /></td>
-        <td><form:errors path="returnedStatus" cssClass="error"/></td>
-    </tr>--%>
+    
     <tr>
         <th id="markup"><form:label path="travelReason"><fmt:message key="lease.travelReason"/></form:label></th>
         <td><form:select path="travelReason">
-                <form:option value="-"> <fmt:message key="enum.select"/></form:option>
+               
                 <form:options items="${enumValues}" />
             </form:select></td>
         <td><form:errors path="travelReason" cssClass="error"/></td>
     </tr>
-    <%-- <tr>
-         <td><form:label path="person">
-         <spring:message code="lang.person" text="Person" />
-     </form:label></td>
- <td><form:select path="person">
-         <form:options items="${person}" itemLabel="firstName"
-                       itemValue="id" />
-     </form:select></td>--%>
-
+    
 </tr>
 
 </table>
