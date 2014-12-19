@@ -66,7 +66,7 @@ commands for [person] are:
 - "update [id] [name] [position] [nationality] [salary] [employmentStatus] [isActive]" update person by given id
 - "delete [id]" delete person by given id
 - "findbyid [id]" find person by given id
-- "findbyname [id]" find people by given name
+- "findbyname [name]" find people by given name
 
 ENUMS
 
