@@ -42,10 +42,10 @@ entities: person, car
 commands for [car] are: 
 
 - "findAll"  print out all cars
-- "add <vehicleRegPlate> <brand> <typeName> <VIN> <yearOfManufacture> <bodystyle> <numberOfSeats> <mileage> <color> <category> <emissionStandard> <availability> <isActive>" add new car
-- "update <id> <mileage> <availability> <isActive>"  update car by given id
-- "delete <id>"    delete car by given id (by deactivating it - it still remains in Database)
-- "findbyid <id>" find car by id
+- "add [vehicleRegPlate] [brand] [typeName] [VIN] [yearOfManufacture] [bodystyle] [numberOfSeats] [mileage] [color] [category] [emissionStandard] [availability] [isActive]" add new car
+- "update [id] [mileage] [availability] [isActive]"  update car by given id
+- "delete [id]"    delete car by given id (by deactivating it - it still remains in Database)
+- "findbyid [id]" find car by id
 
 ENUMS:
 
@@ -62,11 +62,11 @@ ENUMS:
 commands for [person] are:
  
 - "findAll" print out all people
-- "add <name> <IdentificationNumber> <sex> <nationality> <position>  <employmentStatus> <salary> <isActive>" add new person
-- "update <id> <name> <position> <nationality> <salary> <employmentStatus> <isActive>" update person by given id
-- "delete <id>" delete person by given id
-- "findbyid <id>" find person by given id
-- "findbyname <id>" find people by given name
+- "add [name] [IdentificationNumber] [sex] [nationality] [position]  [employmentStatus] [salary] [isActive]" add new person
+- "update [id] [name] [position] [nationality] [salary] [employmentStatus] [isActive]" update person by given id
+- "delete [id]" delete person by given id
+- "findbyid [id]" find person by given id
+- "findbyname [id]" find people by given name
 
 ENUMS
 
