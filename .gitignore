@@ -1,6 +1,8 @@
 /target/
 /CMSPersistenceLayer/target/
 /persistence/target/
+*.jar
+*.class
 *.log
 /service/target/
 /web/target/
