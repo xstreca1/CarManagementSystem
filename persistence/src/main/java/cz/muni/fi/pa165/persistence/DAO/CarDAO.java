@@ -19,16 +19,10 @@ public interface CarDAO {
     
     public void updateCar(Car car, Integer carID);
     
-    //public Car deleteCar(Integer carID);
-    
     public List listAllAvailableCars();
     
     public List getCarByCategory(int Category);
-    
-   // public List getCarBySeats(int seats);
-    
-   // public List getCarByBodyStyle(bodyStyle bs);
-    
+      
     public Car getCarByID (Integer carID);
     
     public List listAllCars(boolean alsoInactive);

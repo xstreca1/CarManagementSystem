@@ -34,7 +34,7 @@ public interface PersonDAO {
      *
      * @param personID string ID of a person (f.e. ID "number")
      */
-    Person deletePerson(Integer PersonID);
+    //Person deletePerson(Integer PersonID);
 
     /**
      * returns person by his/her ID, there is always only one person returned
@@ -58,7 +58,7 @@ public interface PersonDAO {
      *
      * @return list of all people
      */
-    List<Person> getAllPeople();
+   // List<Person> getAllPeople();
     
     List<Person> findAllPeople(Boolean isActive);
 }

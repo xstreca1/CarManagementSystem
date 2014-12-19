@@ -46,18 +46,15 @@ public class PersonDAOImplTest {
 
         //create simple person        
         person = new Person();
-        person.setName("JOHN");
-       // person.setAddress(new Address());
+        person.setName("JOHN");       
         person.setPosition("HR");
         person.setNationality("US");
         person.setSalary(25_000);
         person.setIsActive(true);
         person.setIdentificationNumber("EA123456");
 
-        //create people with same name
         person2 = new Person();
-        person2.setName("JOE");
-        //person2.setAddress(new Address());
+        person2.setName("JOE");        
         person2.setPosition("Marketing");
         person2.setNationality("US");
         person2.setSalary(30_000);
@@ -66,7 +63,6 @@ public class PersonDAOImplTest {
 
         person3 = new Person();
         person3.setName("JOE");
-        //person3.setAddress(new Address());
         person3.setPosition("Support");
         person3.setNationality("US");
         person3.setSalary(33_000);
@@ -75,7 +71,6 @@ public class PersonDAOImplTest {
 
         person4 = new Person();
         person4.setName("JOE");
-        //person4.setAddress(new Address());
         person4.setPosition("QA");
         person4.setNationality("US");
         person4.setSalary(38_000);
@@ -97,7 +92,6 @@ public class PersonDAOImplTest {
         //create person which is not persisted in database to test insertPerson method
         toInsert = new Person();
         toInsert.setName("TEST");
-        //toInsert.setAddress(new Address());
         toInsert.setPosition("Developer");
         toInsert.setNationality("US");
         toInsert.setSalary(45_000);
@@ -106,7 +100,6 @@ public class PersonDAOImplTest {
 
         toUpdate = new Person();
         toUpdate.setName("UPDATE");
-    //    toUpdate.setAddress(new Address());
         toUpdate.setPosition("Developer");
         toUpdate.setNationality("CZ");
         toUpdate.setSalary(46_000);
@@ -124,7 +117,7 @@ public class PersonDAOImplTest {
 
     }
 
-    @Test // PASS
+    @Test 
     // test if entities created in setUp() method are persisted in database
     public void arePersisted() {
 
@@ -135,7 +128,7 @@ public class PersonDAOImplTest {
 
     }
 
-    @Test // PASS
+    @Test
     // test if it is possible to persist person using method insertPerson()
     public void testInsertPerson() {
         // try if bad input results in IllegalArgument Exception
@@ -156,7 +149,7 @@ public class PersonDAOImplTest {
 
     }
 
-    @Test//FAIL
+    @Test
     // test if it is possible to get person from DB using getPersonById()
     public void testGetPersonById() {
         // try if bad input results in Exception
@@ -175,34 +168,7 @@ public class PersonDAOImplTest {
 
     }
 
-    @Test//FAIL
-    // tests if person can be deleted using method deletePerson()
-    public void testDeletePerson() {
-        // try if bad input results in Exception
-        /**
-         * try{ dao.deletePerson(null); fail("wrong input allowed!"); }
-         * catch(IndexOutOfBoundsException e){}
-         */
-
-        // delete person
-        dao.deletePerson(person4.getId());
-        // person shoul be deleted
-        em.getTransaction().begin();
-        Assert.assertFalse(em.contains(person4));
-        em.getTransaction().commit();
-
-    }
-
-    @Test//FAIL
-    // tests if all people can be retrieved from database using metho getAllpeople()
-    public void testGetAllPeople() {
-
-        List<Person> people = dao.getAllPeople();
-        assertEquals(people.size(), 4);
-
-    }
-
-    @Test//FAIL
+    @Test
     public void testUpdatePerson() {
         // try if bad input results in Exception
         try {
@@ -235,7 +201,7 @@ public class PersonDAOImplTest {
 
     }
 
-    @Test//FAIL
+    @Test
     public void testGetPeopleByName() {
         // try if bad input results in Exception
         try {

@@ -66,19 +66,6 @@ public class CarDAOImpl implements CarDAO {
 
     }
 
-    /*@Override
-    public Car deleteCar(Integer carID) {
-        if (carID == null) {
-            throw new IllegalArgumentException("unset argument carID'");
-        }
-
-        Car car = em.find(Car.class, carID);
-
-        em.remove(car);
-        
-        return car;
-    }*/
-
     @Override
     public List listAllAvailableCars() {
 
@@ -111,28 +98,6 @@ public class CarDAOImpl implements CarDAO {
         return cars;
     }
 
-   /* @Override
-    public List getCarBySeats(int seats) {
-
-        // get all cars that have the chosen number of seats. save them to list
-        String query = "SELECT c FROM Car c where numberOfSeats=:carNumberOfSeats";
-        List<Car> cars = em.createQuery(query, Car.class).
-                setParameter("carNumberOfSeats", seats).getResultList();
-
-        return cars;
-    }
-
-    @Override
-    public List getCarByBodyStyle(Car.bodyStyle bs) {
-
-        // get all cars that have the chosen body style. save them to list
-        String query = "SELECT c FROM Car c where c.bodyStyle=:carBodyStyle";
-        List<Car> cars = em.createQuery(query, Car.class).
-                setParameter("carBodyStyle", bs).getResultList();
-
-        return cars;
-    }*/
-    
     @Override
     public Car getCarByID(Integer CarID) {
 

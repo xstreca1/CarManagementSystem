@@ -139,28 +139,12 @@ public class CarDAOImplTest {
 
     }
 
-   /* @Test
-    public void testDeleteCar() {
-        Integer id = car2.getCarID();
-        testedObject.deleteCar(car2.getCarID());
-        em.getTransaction().begin();
-        Assert.assertFalse(em.contains(car2));
-        em.getTransaction().commit();
-
-    }*/
-
     @Test
     public void testListAllAvailableCars() {
         List<Car> cars = testedObject.listAllAvailableCars();
         assertEquals(1, cars.size());
     }
 
-    /*@Test
-    public void testGetCarBySeats() {
-        List<Car> carsBySeats = testedObject.getCarBySeats(5);
-        assertEquals(1, carsBySeats.size());
-    }*/
-    
     @Test
     public void listAllCars() {
         List<Car> cars = testedObject.listAllCars(true);

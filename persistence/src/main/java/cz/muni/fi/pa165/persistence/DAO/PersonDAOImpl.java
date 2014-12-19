@@ -6,7 +6,6 @@ package cz.muni.fi.pa165.persistence.DAO;
 
 import cz.muni.fi.pa165.persistence.Entities.Person;
 import cz.muni.fi.pa165.persistence.Entities.Person.EmploymentStatus;
-import java.util.Date;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -74,19 +73,6 @@ public class PersonDAOImpl implements PersonDAO {
     }
 
     @Override
-    public Person deletePerson(Integer personID) {
-        
-        //person is retrieved
-        Person person = em.find(Person.class, personID);
-        
-        //person is removed from Database (TODO - cascading delete?)
-        em.remove(person);
-        
-        return person;
-        //can also be done by em.executeQuery(DELETE_QUERY).executeUpdate();
-    }
-
-    @Override
     public Person getPersonByID(Integer personID) {
 
         //actual query
@@ -112,16 +98,6 @@ public class PersonDAOImpl implements PersonDAO {
         return people;
     }
 
-    @Override
-    public List<Person> getAllPeople() {
-
-        //actual query
-        String sql = "SELECT p FROM Person p";
-        List<Person> people = em.createQuery(sql,Person.class).getResultList();
-
-        return people;
-    }
-    
     @Override
     public List<Person> findAllPeople(Boolean alsoInactive) {
 
