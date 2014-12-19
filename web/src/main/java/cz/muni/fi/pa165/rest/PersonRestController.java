@@ -104,19 +104,17 @@ public class PersonRestController {
     @RequestMapping("/delete")
     public ReceivePersonMessage deletePerson(@RequestBody PersonDTO person) {
         ReceivePersonMessage result = new ReceivePersonMessage();
-        
-         try
-         {
-         person.setIsActive(false);
-         result.setObject(person);
-         }
-         catch(Exception ex)
-         {
-         result.setMessage(ex.getMessage());
-         result.setObject(null);
-         }
-        
-         return result;
+
+        try {
+            person.setIsActive(false);
+            service.editPerson(person, person.getId());
+            result.setObject(person);
+        } catch (Exception ex) {
+            result.setMessage(ex.getMessage());
+            result.setObject(null);
+        }
+
+        return result;
     }
 
     @RequestMapping("/add")
@@ -124,7 +122,7 @@ public class PersonRestController {
         ReceivePersonMessage result = new ReceivePersonMessage();
 
         try {
-           
+
             PersonDTO newPerson = service.createPerson(person);
             result.setObject(newPerson);
             result.setSuccess(true);
