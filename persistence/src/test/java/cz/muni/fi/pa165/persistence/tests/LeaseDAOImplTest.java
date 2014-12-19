@@ -5,7 +5,7 @@
  */
 package cz.muni.fi.pa165.persistence.tests;
 
-import cz.muni.fi.pa165.persistence.Entities.Address;
+
 import cz.muni.fi.pa165.persistence.Entities.Car;
 import cz.muni.fi.pa165.persistence.Entities.Lease;
 import cz.muni.fi.pa165.persistence.Entities.Person;

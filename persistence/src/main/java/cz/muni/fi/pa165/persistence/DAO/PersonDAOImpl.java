@@ -3,7 +3,7 @@
  */
 package cz.muni.fi.pa165.persistence.DAO;
 
-import cz.muni.fi.pa165.persistence.Entities.Address;
+
 import cz.muni.fi.pa165.persistence.Entities.Person;
 import cz.muni.fi.pa165.persistence.Entities.Person.EmploymentStatus;
 import java.util.Date;
@@ -53,7 +53,7 @@ public class PersonDAOImpl implements PersonDAO {
         //get all updatable attributes from the updated person entity instance
         //lease and sex could not be updated
         //Address address = updatedPerson.getAddress();
-        Date dateOfBirth = updatedPerson.getDateOfBirth();
+        //Date dateOfBirth = updatedPerson.getDateOfBirth();
         EmploymentStatus empStat = updatedPerson.getEmploymentStatus();
         String name = updatedPerson.getName();
         String nationality = updatedPerson.getNationality();

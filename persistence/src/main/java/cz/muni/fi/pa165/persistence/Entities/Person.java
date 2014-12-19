@@ -62,17 +62,11 @@ public class Person implements Serializable {
     @Enumerated(EnumType.STRING)
     private EmploymentStatus employmentStatus;
 
-    @Temporal(TemporalType.DATE)
-    private Date dateOfBirth;
-
     @Column(nullable = false)
     private String position;
 
     @Enumerated(EnumType.STRING)
-    private Sex sex;
-
-    /*@Embedded
-    private Address address;*/
+    private Sex sex;    
 
     @Column(nullable = false)
     private String nationality;
@@ -105,29 +99,13 @@ public class Person implements Serializable {
         this.name = name;
     }
 
-    public Date getDateOfBirth() {
-        return dateOfBirth;
-    }
-
-    public void setDateOfBirth(Date dateOfBirth) {
-        this.dateOfBirth = dateOfBirth;
-    }
-
     public String getPosition() {
         return position;
     }
 
     public void setPosition(String position) {
         this.position = position;
-    }
-
-    /*public Address getAddress() {
-        return address;
-    }*/
-
-    /*public void setAddress(Address address) {
-        this.address = address;
-    }*/
+    }    
 
     public String getNationality() {
         return nationality;

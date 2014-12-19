@@ -24,11 +24,7 @@
         <field>
             <a>employmentStatus</a>
             <b>employmentStatus</b>
-        </field>
-        <field>
-            <a>dateOfBirth</a>
-            <b>dateOfBirth</b>
-        </field>
+        </field>       
         <field>
             <a>position</a>
             <b>position</b>
