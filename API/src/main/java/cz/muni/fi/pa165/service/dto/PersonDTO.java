@@ -13,13 +13,13 @@ import cz.muni.fi.pa165.persistence.Entities.Person;
 public class PersonDTO {
 
     private Integer id;
-    
+  
     private String name;
 
     private Boolean isActive;
    
     private Person.EmploymentStatus employmentStatus;
-  
+
     private String position;
    
     private Person.Sex sex;

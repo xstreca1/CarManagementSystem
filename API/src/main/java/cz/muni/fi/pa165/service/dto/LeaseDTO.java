@@ -4,6 +4,7 @@ import cz.muni.fi.pa165.persistence.Entities.Car;
 import cz.muni.fi.pa165.persistence.Entities.Lease;
 import cz.muni.fi.pa165.persistence.Entities.Person;
 import java.util.Date;
+import javax.persistence.ManyToOne;
 
 /**
  *
@@ -11,7 +12,7 @@ import java.util.Date;
  */
 public class LeaseDTO {
     
-    private int leaseId;
+    private Integer leaseId;
 
    private int distance;
 
@@ -25,11 +26,17 @@ public class LeaseDTO {
 
     private Lease.TravelReason travelReason;
     
+     @ManyToOne
+    private CarDTO car;
+
+    @ManyToOne
+    private PersonDTO person;
+    
      public LeaseDTO() {
 
     }
 
-    public void setLeaseId(int leaseId) {
+    public void setLeaseId(Integer leaseId) {
         this.leaseId = leaseId;
     }
 
@@ -57,7 +64,7 @@ public class LeaseDTO {
         this.travelReason = travelReason;
     }
 
-    public int getLeaseId() {
+    public Integer getLeaseId() {
         return leaseId;
     }
 
@@ -84,6 +91,24 @@ public class LeaseDTO {
     public Lease.TravelReason getTravelReason() {
         return travelReason;
     }
+
+    public CarDTO getCar() {
+        return car;
+    }
+
+    public void setCar(CarDTO car) {
+        this.car = car;
+    }
+
+    public PersonDTO getPerson() {
+        return person;
+    }
+
+    public void setPerson(PersonDTO person) {
+        this.person = person;
+    }
+    
+    
     
     @Override
     public int hashCode() {

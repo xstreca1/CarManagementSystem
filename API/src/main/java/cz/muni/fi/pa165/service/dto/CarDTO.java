@@ -24,9 +24,9 @@ public class CarDTO {
     private Integer yearOfManufacture;
 
     private Integer mileage;
-  
+   
     private String brand;
-       
+  
     private String typeName;
 
     private Car.Color color;
@@ -103,8 +103,8 @@ public class CarDTO {
 
     public void setBodystyle(Car.bodyStyle bodystyle) {
         this.bodystyle = bodystyle;
-    }
-    
+    }  
+
     public Car.Category getCategory() {
         return category;
     }
@@ -147,7 +147,8 @@ public class CarDTO {
 
     @Override
     public String toString() {
-        return carID + ", " + vehicleRegPlate + ", " + brand + ", " + typeName + ", " + mileage + ", " + color + ", " + numberOfSeats;
+        return carID + ", " + vehicleRegPlate + ", " + brand + ", " + typeName + 
+                ", " + mileage + ", " + color + ", " + numberOfSeats;
     }
 
     public boolean getAvailibility() {
@@ -168,8 +169,7 @@ public class CarDTO {
         hash = 17 * hash + (this.brand != null ? this.brand.hashCode() : 0);
         hash = 17 * hash + (this.typeName != null ? this.typeName.hashCode() : 0);
         hash = 17 * hash + (this.color != null ? this.color.hashCode() : 0);
-        hash = 17 * hash + (this.bodystyle != null ? this.bodystyle.hashCode() : 0);
-        
+        hash = 17 * hash + (this.bodystyle != null ? this.bodystyle.hashCode() : 0);       
         hash = 17 * hash + (this.category != null ? this.category.hashCode() : 0);
         hash = 17 * hash + (this.VIN != null ? this.VIN.hashCode() : 0);
         hash = 17 * hash + (this.emissionstandard != null ? this.emissionstandard.hashCode() : 0);
@@ -209,8 +209,7 @@ public class CarDTO {
         }
         if (this.bodystyle != other.bodystyle) {
             return false;
-        }
-    
+        }      
         if (this.category != other.category) {
             return false;
         }
