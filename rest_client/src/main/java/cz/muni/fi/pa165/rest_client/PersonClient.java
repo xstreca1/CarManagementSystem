@@ -56,7 +56,6 @@ public class PersonClient {
                 break;
 
             case UPDATE_OPERATION:
-                // update <id> <newRegistrationNumber> <newType> <newModel> <newVin> <newFuel> <newColor>
                 handleUpdateOperation(args);
                 break;
 
@@ -64,7 +63,6 @@ public class PersonClient {
                 handleDeleteOperation(args);
                 break;
 
-            // find <id>
             case FIND_BY_ID_OPERATION:
                 handleFindById(args);
                 break;
