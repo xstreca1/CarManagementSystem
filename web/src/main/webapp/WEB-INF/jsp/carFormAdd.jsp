@@ -29,27 +29,11 @@
         <td><form:input path="yearOfManufacture" maxlength="4"/></td>
         <td><font color="red"> <form:errors path="yearOfManufacture"></form:errors></font></td>
     </tr>
-
-    <%-- <tr>
-        <th><form:label path="enginePower"><fmt:message key="car.enginePower"/></form:label></th>
-        <td><form:input path="enginePower"/></td>
-        <td><form:errors path="enginePower" cssClass="error"/></td>
-    </tr>
-    <tr>
-        <th><form:label path="gasConsumption"><fmt:message key="car.gasConsumption"/></form:label></th>
-        <td><form:input path="gasConsumption"/></td>
-        <td><form:errors path="gasConsumption" cssClass="error"/></td>
-    </tr>
-    <tr>
-        <th><form:label path="transmission"><fmt:message key="car.transmission"/></form:label></th>
-        <td><form:checkbox path="transmission"/></td>
-        <td><form:errors path="transmission" cssClass="error"/></td>
-    </tr>
     <tr>
         <th><form:label path="VIN"><fmt:message key="car.VIN"/></form:label></th>
         <td><form:input path="VIN"/></td>
         <td><form:errors path="VIN" cssClass="error"/></td>
-    </tr>--%>
+    </tr>>
     <tr>
         <th><form:label path="bodystyle"><fmt:message key="car.bodystyle"/></form:label></th>
         <td><form:select path="bodystyle">                

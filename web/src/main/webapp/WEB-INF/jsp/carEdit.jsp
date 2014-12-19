@@ -25,11 +25,8 @@
                 <th id="markup"><fmt:message key="car.mileage"/></th>
                 <th><fmt:message key="car.color"/></th>
                 <th><fmt:message key="car.bodystyle"/></th>
-                <%--th><fmt:message key="car.enginePower"/></th--%>
-                <%--th><fmt:message key="car.gasConsumption"/></th--%>
-                <%--th><fmt:message key="car.transmission"/></th--%>
                 <th><fmt:message key="car.category"/></th>
-                <%--th><fmt:message key="car.VIN"/></th--%>
+                <th><fmt:message key="car.VIN"/></th>
                 <th><fmt:message key="car.emissionstandard"/></th>
                 <th id="markup"><fmt:message key="car.isActive"/></th>
                 <th id="markup"><fmt:message key="car.availibility"/></th>
@@ -44,28 +41,23 @@
                     <td><c:out value="${car.mileage}"/></td>
                     <td><fmt:message key="car.color.${car.color}"/></td>
                     <td><fmt:message key="car.bodystyle.${car.bodystyle}"/></td>
-                    <%--td><c:out value="${car.enginePower}"/></td--%>                    
-                    <%--td><c:out value="${car.gasConsumption}"/></td--%>   
-                    <%--td><fmt:message key="car.transmission.${car.transmission}"/></td--%>
                     <td><fmt:message key="car.category.${car.category}"/></td>
-                    <%--td><c:out value="${car.VIN}"/></td--%> 
+                    <td><c:out value="${car.VIN}"/></td> 
                     <td><c:out value="${car.emissionstandard}"/></td> 
                     <td><fmt:message key="car.isActive.${car.isActive}"/></td>
                     <td><fmt:message key="car.availibility.${car.availibility}"/></td>
- </tr>
-                    <tr>
-                        <form:form method="post" action="${pageContext.request.contextPath}/car/edit/${car.carID}" modelAttribute="car">
-                            
-                            <fieldset><legend align="center"><fmt:message key="car.add.add"/></legend>
-                                <%@include file="carFormEdit.jsp"%>
-                                <input align="center" class="btn main" type="submit" value="<fmt:message key='car.add.save'/>">
-                            </fieldset>
-                        </form:form>
-                    </tr>
-                    
-               
-            </c:forEach>
-        </table>
+                </tr>
+                <tr>
+                    <form:form method="post" action="${pageContext.request.contextPath}/car/edit/${car.carID}" modelAttribute="car">
 
-    </jsp:attribute>
+                    <fieldset><legend align="center"><fmt:message key="car.add.add"/></legend>
+                        <%@include file="carFormEdit.jsp"%>
+                        <input align="center" class="btn main" type="submit" value="<fmt:message key='car.add.save'/>">
+                    </fieldset>
+                </form:form>
+            </tr>
+        </c:forEach>
+    </table>
+
+</jsp:attribute>
 </my:layout>
