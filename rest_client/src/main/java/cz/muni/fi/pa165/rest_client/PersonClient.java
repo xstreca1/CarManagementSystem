@@ -108,7 +108,9 @@ public class PersonClient {
         }
 
         PersonDTO person = new PersonDTO();
-        person.setName(args[2]);
+        String input = args[2];
+        String parsed = input.replace("_", " ");
+        person.setName(parsed);
         person.setIdentificationNumber(args[3]);
         person.setSex(Person.Sex.valueOf(args[4]));
         person.setNationality(args[5]);
@@ -228,8 +230,7 @@ public class PersonClient {
     }
 
     /**
-     * find person by name 
-     * command is: person findbyname [name]
+     * find person by name command is: person findbyname [name]
      *
      * @param args person
      */
