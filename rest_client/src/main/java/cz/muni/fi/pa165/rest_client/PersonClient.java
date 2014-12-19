@@ -139,27 +139,30 @@ public class PersonClient {
      * nationality salary employmentStatus isActive
      */
     private void handleUpdateOperation(String[] args) {
-        if (args.length < 8) {
-            String requiredArgs = "<id> <name> <position> <nationality> <salary> <employmentStatus> <isActive>";
+        if (args.length < 9) {
+            String requiredArgs = "[id] [name] [position] [nationality] [salary] [employmentStatus] [isActive]";
             Messages.badNumberOfArgsMessage(args.length, UPDATE_OPERATION, requiredArgs);
             System.exit(1);
         }
 
         PersonDTO person = new PersonDTO();
-        person.setName(args[2]);
-        person.setPosition(args[3]);
-        person.setNationality(args[4]);
-        person.setSalary(Integer.valueOf(args[5]));
-        person.setEmploymentStatus(Person.EmploymentStatus.valueOf(args[6]));
-        person.setIsActive(Boolean.valueOf(args[7]));
+        person.setId(Integer.valueOf(args[2]));
+        String input = args[3];
+        String parsed = input.replace("_", " ");
+        person.setName(parsed);
+        person.setPosition(args[4]);
+        person.setNationality(args[5]);
+        person.setSalary(Integer.valueOf(args[6]));
+        person.setEmploymentStatus(Person.EmploymentStatus.valueOf(args[7]));
+        person.setIsActive(Boolean.valueOf(args[8]));
 
         RestTemplate restTemplate = new RestTemplate();
         ReceivePersonMessage result = restTemplate.postForObject(UPDATE_PERSON, person, ReceivePersonMessage.class);
 
         if (result.isSuccess()) {
-            System.out.println("Person with id: '" + args[1] + "' was updated");
+            System.out.println("Person with id: '" + args[2] + "' was updated");
         } else {
-            System.out.println("Person with this ID does not exist");
+            System.out.println("Person with ID " + args[2] + " does not exist");
         }
     }
 
