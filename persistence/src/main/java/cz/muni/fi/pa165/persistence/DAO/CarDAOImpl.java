@@ -66,7 +66,7 @@ public class CarDAOImpl implements CarDAO {
 
     }
 
-    @Override
+    /*@Override
     public Car deleteCar(Integer carID) {
         if (carID == null) {
             throw new IllegalArgumentException("unset argument carID'");
@@ -77,7 +77,7 @@ public class CarDAOImpl implements CarDAO {
         em.remove(car);
         
         return car;
-    }
+    }*/
 
     @Override
     public List listAllAvailableCars() {
@@ -111,7 +111,7 @@ public class CarDAOImpl implements CarDAO {
         return cars;
     }
 
-    @Override
+   /* @Override
     public List getCarBySeats(int seats) {
 
         // get all cars that have the chosen number of seats. save them to list
@@ -131,7 +131,7 @@ public class CarDAOImpl implements CarDAO {
                 setParameter("carBodyStyle", bs).getResultList();
 
         return cars;
-    }
+    }*/
     
     @Override
     public Car getCarByID(Integer CarID) {

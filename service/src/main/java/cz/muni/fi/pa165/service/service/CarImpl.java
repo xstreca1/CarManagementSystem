@@ -93,7 +93,7 @@ public class CarImpl implements CarServiceInterface {
         return n;
     }
 
-    public void deleteCar(CarDTO carDto) {
+    /*public void deleteCar(CarDTO carDto) {
         
         Car carEntity = new Car();
         
@@ -106,7 +106,7 @@ public class CarImpl implements CarServiceInterface {
         mapper.map(carDto, carEntity, "car");
         carDAO.deleteCar(carDto.getCarID());
      
-    }
+    }*/
     
     public CarDTO getCarByID(Integer id) {
         

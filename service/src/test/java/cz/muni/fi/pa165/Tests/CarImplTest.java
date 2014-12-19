@@ -55,7 +55,7 @@ public class CarImplTest {
 
 					                                  }
                 });
-        Mockito.when(mockCarDao.deleteCar(Matchers.any(Integer.class)))
+      /*  Mockito.when(mockCarDao.deleteCar(Matchers.any(Integer.class)))
 				.thenAnswer(new Answer<Integer>() {
 					@Override
 					public Integer answer(InvocationOnMock inv)
@@ -64,7 +64,7 @@ public class CarImplTest {
 						return (Integer) args[0];
 
 					}
-				});
+				});*/
         List<Car> allCars = new ArrayList<>();
 		allCars.add(car);
 		allCars.add(car);
@@ -85,13 +85,13 @@ public class CarImplTest {
     }
     
   //  @Test
-    public void testDeleteCar() {
+    /*public void testDeleteCar() {
         
         service.deleteCar(carDto);
         
         verify(mockCarDao).deleteCar(car.getCarID());
         
-    }
+    }*/
     
     @Test
     public void findAllCars() {

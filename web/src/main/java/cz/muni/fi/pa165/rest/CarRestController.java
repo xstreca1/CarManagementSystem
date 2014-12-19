@@ -99,19 +99,15 @@ public class CarRestController {
     {
         ReceiveCarMessage result = new ReceiveCarMessage();
         
-        try
-        {
-            service.deleteCar(car);
+        try {
+            car.setIsActive(false);
+            service.updateCar(car, car.getCarID());
             result.setObject(car);
-            result.setSuccess(true);
-        }
-        catch(Exception ex)
-        {
+        } catch (Exception ex) {
             result.setMessage(ex.getMessage());
             result.setObject(null);
-            result.setSuccess(false);
         }
-        
+
         return result;
     }
     
