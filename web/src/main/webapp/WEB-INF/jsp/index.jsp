@@ -17,44 +17,88 @@
     <jsp:attribute name="body">
         <section class="sekce">
             <h1><fmt:message key="layout.menu.sections"/></h1>
-            <ul>
-                <li>
-                    <div id="wrapper">
-                        <a href="lease/">
-                            <div class="slideContainer">
-                                <img class="slideIcon" src="<c:url value="/resources/img/spravaPujcek.png" />"/>
+            <c:choose>
+                <c:when test="">
+                    <ul>
+                        <li>
+                            <div id="wrapper">
+                                <a href="lease/">
+                                    <div class="slideContainer">
+                                        <img class="slideIcon" src="<c:url value="/resources/img/spravaPujcek.png" />"/>
+                                    </div>
+                                </a>
                             </div>
-                        </a>
-                    </div>
-                </li>
-                <li>
-                    <div id="wrapper">
-                        <a href="car/">
-                            <div class="slideContainer">
-                                <img class="slideIcon" src="<c:url value="/resources/img/spravaVozu.png" />"/>
+                        </li>
+                        <li>
+                            <div id="wrapper">
+                                <a href="car/">
+                                    <div class="slideContainer">
+                                        <img class="slideIcon" src="<c:url value="/resources/img/spravaVozu.png" />"/>
+                                    </div>
+                                </a>
                             </div>
-                        </a>
-                    </div>
-                </li>
-                <li>
-                    <div id="wrapper">
-                        <a href="person/">
-                            <div class="slideContainer">
-                                <img class="slideIcon" src="<c:url value="/resources/img/zamestnanci.png" />"/>
+                        </li>
+                        <li>
+                            <div id="wrapper">
+                                <a href="person/">
+                                    <div class="slideContainer">
+                                        <img class="slideIcon" src="<c:url value="/resources/img/zamestnanci.png" />"/>
+                                    </div>
+                                </a>
                             </div>
-                        </a>
-                    </div>
-                </li>
-                <li>
-                    <div id="wrapper">
-                        <a href="serviceCheck/">
-                            <div class="slideContainer">
-                                <img class="slideIcon" src="<c:url value="/resources/img/servis.png" />"/>
+                        </li>
+                        <li>
+                            <div id="wrapper">
+                                <a href="serviceCheck/">
+                                    <div class="slideContainer">
+                                        <img class="slideIcon" src="<c:url value="/resources/img/servis.png" />"/>
+                                    </div>
+                                </a>
                             </div>
-                        </a>
-                    </div>
-                </li>  
-            </ul>
+                        </li>  
+                    </ul>
+                </c:when>
+                <c:otherwise>
+                    <ul>
+                        <li>
+                            <div id="wrapper">
+                                <a href="lease/">
+                                    <div class="slideContainer">
+                                        <img class="slideIcon" src="<c:url value="/resources/img/spravaPujcekEng.png" />"/>
+                                    </div>
+                                </a>
+                            </div>
+                        </li>
+                        <li>
+                            <div id="wrapper">
+                                <a href="car/">
+                                    <div class="slideContainer">
+                                        <img class="slideIcon" src="<c:url value="/resources/img/spravaVozuEng.png" />"/>
+                                    </div>
+                                </a>
+                            </div>
+                        </li>
+                        <li>
+                            <div id="wrapper">
+                                <a href="person/">
+                                    <div class="slideContainer">
+                                        <img class="slideIcon" src="<c:url value="/resources/img/zamestnanciEng.png" />"/>
+                                    </div>
+                                </a>
+                            </div>
+                        </li>
+                        <li>
+                            <div id="wrapper">
+                                <a href="serviceCheck/">
+                                    <div class="slideContainer">
+                                        <img class="slideIcon" src="<c:url value="/resources/img/servis.png" />"/>
+                                    </div>
+                                </a>
+                            </div>
+                        </li>  
+                    </ul>
+                </c:otherwise>
+            </c:choose>
         </section>
     </jsp:attribute>
 </my:layout>
