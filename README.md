@@ -65,8 +65,8 @@ commands for [person] are:
 - "add <name> <IdentificationNumber> <sex> <nationality> <position>  <employmentStatus> <salary> <isActive>" add new person
 - "update <id> <name> <position> <nationality> <salary> <employmentStatus> <isActive>" update person by given id
 - "delete <id>" delete person by given id
-- "findbyname <id>" find person by given id
-- "findbyid <id>" find people by given name
+- "findbyid <id>" find person by given id
+- "findbyname <id>" find people by given name
 
 ENUMS
 
