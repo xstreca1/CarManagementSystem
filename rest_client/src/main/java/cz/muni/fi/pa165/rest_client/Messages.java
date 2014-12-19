@@ -12,25 +12,26 @@ package cz.muni.fi.pa165.rest_client;
 public class Messages {
     
     public static void printHelp() {
-        System.out.println("usage: rest-client <entity> [commands]\n\n" +
-                "objects are: person, car\n\n" +
+        System.out.println("usage: <entity> [command] [attributes]\n\n" +
+                
+                "entities you can handle: person, car\n\n" +
 
-                "commands for <car> are: \n" +
-                "\tfindAll                                                                       print out all cars\n" +
-                "\tadd <vehicleRegPlate> <brand> <typeName> <VIN> <yearOfManufacture> "
-                    + "<color> <mileage> <bodystyle> <enginePower> <gasConsumption> <transmission> "
-                    + "<emissionstandard> <numberOfSeats> <category> <isActive>                           add new car\n" +
-                "\tupdate <id> <mileage> <availability> <isActive>                               update car by given id\n" +
-                "\tdelete <id>                                                                   delete car by given id\n" +
-                "\tfindbyid <id>                                                                 find car by id\n" +
+                "For <car> : \n\n" +
+                "\t\'findAll\' print all cars\n" +
+                "\t\'add <vehicleRegPlate> <brand> <typeName> <VIN> <yearOfManufacture> "
+                + "<bodystyle> <numberOfSeats> <mileage> <color> <category> "
+                + "<emissionStandard> <availability> <isActive>\' add new car\n" +
+                "\t\'update <id>\' <mileage> <availability> <isActive> update car by given id\n" +
+                "\t\'delete <id>\' delete car by given id\n" +
+                "\t\'findbyid <id>\' find car by id\n" +
         
-                "commands for <person> are: \n" +
-                "\tfindAll                                                                       print out all people\n" +
-                "\tadd <name> <isActive> <employmentStatus> <dateOfBirth> <position> <sex> <nationality> <salary> <IdentificationNumber>                           add new person\n" +
-                "\tupdate <id> <name> <position> <nationality> <salary> <employmentStatus> <isActive> update person by given id\n" +
-                "\tdelete <id>                                                                   delete person by given id\n" +
-                "\tfindbyname <id>                                                                  delete person by given id\n" +
-                "\tfindbyid <id>");
+                "For <person> : \n\n" +
+                "\t\'findAll\' print out all people\n" +
+                "\t\'add <name> <IdentificationNumber> <sex> <nationality> <position>  <employmentStatus> <salary> <isActive>\' add new person\n" +
+                "\t\'update <id>\' <name> <position> <nationality> <salary> <employmentStatus> <isActive>\' update person by given id\n" +
+                "\t\'delete <id>\' delete person by given id\n" +
+                "\t\'findbyname <id>\' find person by given id\n" +
+                "\t\'findbyid <id>\' find person by given name\n");
     }
 
     /**
