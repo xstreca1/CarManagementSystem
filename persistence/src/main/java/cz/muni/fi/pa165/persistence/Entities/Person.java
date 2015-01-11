@@ -4,6 +4,9 @@
 package cz.muni.fi.pa165.persistence.Entities;
 
 import java.io.Serializable;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.security.SecureRandom;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.Column;
@@ -73,6 +76,15 @@ public class Person implements Serializable {
 
     @Column(nullable = false)
     private Integer salary;
+    
+    @Column
+    private String username;
+    
+    @Column
+    private String password;
+    
+    @Column
+    private Boolean isAdmin;
 
     //--------------relationships------------------------
     @OneToMany(mappedBy = "person")
@@ -82,6 +94,33 @@ public class Person implements Serializable {
     public Integer getId() {
         return id;
     }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public Boolean getIsAdmin() {
+        return isAdmin;
+    }
+
+    public void setIsAdmin(Boolean isAdmin) {
+        this.isAdmin = isAdmin;
+    }
+    
+    
+
+    public void setPassword(String password) {
+        this.password = get_SHA_384_SecurePassword(password, "fucek");
+    }
+    
 
     public String getIdentificationNumber() {
         return identificationNumber;
@@ -190,6 +229,36 @@ public class Person implements Serializable {
     @Override
     public String toString() {
         return "cz.muni.fi.pa165.carmanagementsystem.Person[ id=" + id + " ]";
+    }
+    
+    private static String get_SHA_384_SecurePassword(String passwordToHash, String salt)
+    {
+        String generatedPassword = null;
+        try {
+            MessageDigest md = MessageDigest.getInstance("SHA-384");
+            md.update(salt.getBytes());
+            byte[] bytes = md.digest(passwordToHash.getBytes());
+            StringBuilder sb = new StringBuilder();
+            for(int i=0; i< bytes.length ;i++)
+            {
+                sb.append(Integer.toString((bytes[i] & 0xff) + 0x100, 16).substring(1));
+            }
+            generatedPassword = sb.toString();
+        }
+        catch (NoSuchAlgorithmException e)
+        {
+            e.printStackTrace();
+        }
+        return generatedPassword;
+    }
+     
+    //Add salt
+    private static String getSalt() throws NoSuchAlgorithmException
+    {
+        SecureRandom sr = SecureRandom.getInstance("SHA1PRNG");
+        byte[] salt = new byte[16];
+        sr.nextBytes(salt);
+        return salt.toString();
     }
 
 }
