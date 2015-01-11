@@ -107,7 +107,7 @@ public class PersonDTO {
     
 
     public void setPassword(String password) {
-        this.password = password;
+        this.password = get_SHA_384_SecurePassword(password, "fucek");
     }
 
     public Integer getId() {
