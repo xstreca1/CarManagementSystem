@@ -5,6 +5,9 @@ package cz.muni.fi.pa165.service.dto;
 
 
 import cz.muni.fi.pa165.persistence.Entities.Person;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.security.SecureRandom;
 import java.util.Date;
 
 import javax.validation.constraints.NotNull;
@@ -45,12 +48,23 @@ public class PersonDTO {
     @Digits(integer = 6, fraction = 0) // maximal 6 digits
     private Integer salary;
     
+    @NotEmpty
+    private String username;
+    
+    @NotEmpty
+    private String password;
+    
+    private Boolean isAdmin;
+
+    
+    
     private String IdentificationNumber;
 
     public PersonDTO(Integer id, String name, Boolean isActive,
             Person.EmploymentStatus employmentStatus,
             String position, Person.Sex sex, 
-            String nationality, Integer salary, String identificationNumber) {
+            String nationality, Integer salary, String identificationNumber,
+            String username, String password, Boolean isAdmin) {
 
         this.id = id;
         this.name = name;
@@ -61,11 +75,39 @@ public class PersonDTO {
         this.nationality = nationality;
         this.salary = salary;
         this.IdentificationNumber = identificationNumber;
+        this.username = username;
+        this.password = get_SHA_384_SecurePassword(password, "fucek");
+        this.isAdmin = isAdmin;
 
     }
 
     public PersonDTO() {
         
+    }
+    
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public Boolean getIsAdmin() {
+        return isAdmin;
+    }
+
+    public void setIsAdmin(Boolean isAdmin) {
+        this.isAdmin = isAdmin;
+    }
+    
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public Integer getId() {
@@ -144,5 +186,35 @@ public class PersonDTO {
     public String toString() {
         return "" + name + "," + employmentStatus + ",ID=" + id;
     }
-
+    
+    private static String get_SHA_384_SecurePassword(String passwordToHash, String salt)
+    {
+        String generatedPassword = null;
+        try {
+            MessageDigest md = MessageDigest.getInstance("SHA-384");
+            md.update(salt.getBytes());
+            byte[] bytes = md.digest(passwordToHash.getBytes());
+            StringBuilder sb = new StringBuilder();
+            for(int i=0; i< bytes.length ;i++)
+            {
+                sb.append(Integer.toString((bytes[i] & 0xff) + 0x100, 16).substring(1));
+            }
+            generatedPassword = sb.toString();
+        }
+        catch (NoSuchAlgorithmException e)
+        {
+            e.printStackTrace();
+        }
+        return generatedPassword;
+    }
+     
+    //Add salt
+    private static String getSalt() throws NoSuchAlgorithmException
+    {
+        SecureRandom sr = SecureRandom.getInstance("SHA1PRNG");
+        byte[] salt = new byte[16];
+        sr.nextBytes(salt);
+        return salt.toString();
+    }
 }
+
