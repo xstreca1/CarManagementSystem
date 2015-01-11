@@ -20,6 +20,8 @@
             <tr>
                 <th>id</th>
                 <th><fmt:message key="person.name"/></th>
+                <th><fmt:message key="person.username"/></th>
+                <th><fmt:message key="person.isAdmin"/></th>
                 <th><fmt:message key="person.identificationNumber"/></th>                   
                 <th><fmt:message key="person.nationality"/></th>
                 <th><fmt:message key="person.sex"/></th>                    
@@ -33,6 +35,8 @@
 
                 <td>${person.id}</td>
                 <td><c:out value="${person.name}"/></td>
+                <td><c:out value="${person.username}"/></td>
+                <td><fmt:message key="person.isAdmin.${person.isAdmin}"/></td>
                 <td><c:out value="${person.identificationNumber}"/></td>               
                 <td><c:out value="${person.nationality}"/></td>
                 <td><fmt:message key="person.sex.${person.sex}"/></td>                

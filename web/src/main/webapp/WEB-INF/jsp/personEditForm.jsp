@@ -10,13 +10,27 @@
 
 <table>
     <tr>
+        <th><form:label path="isAdmin"><fmt:message key="person.isAdmin"/></form:label></th>
+        <td><form:checkbox path="isAdmin"/></td>
+        <td><form:errors path="isAdmin" cssClass="error"/></td>
+    </tr>
+    <tr>
         <th><form:label path="name"><fmt:message key="person.name"/></form:label></th>
         <td><form:input path="name"/></td>
         <td><font color="red"> <form:errors path="name"></form:errors></font></td>
         </tr>
-    
-    <tr>
-        <th><form:label path="position"><fmt:message key="person.position"/></form:label></th>
+        <tr>        
+            <th><form:label path="username"><fmt:message key="person.username"/></form:label></th>
+        <td><form:input path="username" maxlength="10"/></td>
+        <td><font color="red"> <form:errors path="username"></form:errors></font></td>
+        </tr>
+        <tr>
+            <th><form:label path="password"><fmt:message key="person.password"/></form:label></th>
+        <td><form:input path="password"/></td>
+        <td><font color="red"> <form:errors path="password"></form:errors></font></td>
+        </tr>
+        <tr>
+            <th><form:label path="position"><fmt:message key="person.position"/></form:label></th>
         <td><form:input path="position"/></td>
         <td><font color="red"> <form:errors path="position"></form:errors></font></td>
         </tr>
