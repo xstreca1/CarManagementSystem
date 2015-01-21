@@ -33,6 +33,18 @@
             <a>sex</a>
             <b>sex</b>
         </field>
+        <field>
+            <a>username</a>
+            <b>username</b>
+        </field>
+        <field>
+            <a>password</a>
+            <b>password</b>
+        </field>
+        <field>
+            <a>isAdmin</a>
+            <b>isAdmin</b>
+        </field>
        
         <field>
             <a>nationality</a>
