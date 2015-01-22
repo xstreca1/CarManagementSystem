@@ -23,7 +23,7 @@ public class LoginController {
 
         String name = principal.getName();
         model.addAttribute("username", name);
-        return "mainPage";
+        return "index";
 
     }
 
