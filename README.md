@@ -10,7 +10,7 @@
 
 	d) change directory to web module [cd ../CarManagementSystem/web]
 
-	e) run the web server using tomcat7 [mvn tomcat7:run]
+	e) run the web server using tomcat7 [mvn tomcat7:run -DskipTests]
 
 
 
