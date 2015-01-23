@@ -31,9 +31,9 @@
         <logout logout-success-url="/" />
         <!--when URL fragment /main is accessed, security interceptor will be invoked 
         and can be accessed by a user having 'ROLE_ADMIN' authorization-->
-        <security:intercept-url pattern="/main*" access="ROLE_ADMIN" />
+        <intercept-url pattern="/main*" access="ROLE_ADMIN" />
         <!-- custom login page is mentioned using login-page attribute -->
-        <security:form-login login-page="/loginPage" default-target-url="/main"
+        <form-login login-page="/loginPage" default-target-url="/main"
                              authentication-failure-url="/loginError"/>
     </http>
 
