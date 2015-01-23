@@ -1,34 +1,56 @@
 <?xml version="1.0" encoding="UTF-8" ?>
  
-<beans xmlns="http://www.springframework.org/schema/beans"
-       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
-       xmlns:security="http://www.springframework.org/schema/security"
+<beans:beans xmlns="http://www.springframework.org/schema/security"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+             xmlns:beans="http://www.springframework.org/schema/beans"
  
-       xsi:schemaLocation="http://www.springframework.org/schema/beans 
+             xsi:schemaLocation="http://www.springframework.org/schema/beans 
                            http://www.springframework.org/schema/beans/spring-beans-3.0.xsd 
                            http://www.springframework.org/schema/context 
                            http://www.springframework.org/schema/context/spring-context-3.0.xsd
                            http://www.springframework.org/schema/security
                            http://www.springframework.org/schema/security/spring-security-3.2.xsd">
  
+    
+    <http pattern="/css/**" security="none"/>
+    <http pattern="/img/**" security="none"/>
+    <http pattern="/rest/**" create-session="stateless">
+        <access-denied-handler error-page="/403" />
+        <intercept-url pattern='/**' access='ROLE_REST' />
+        <http-basic />
+    </http>
+    
     <!-- configuring spring security-->
-    <security:http auto-config="true">
+    <http auto-config="true" use-expressions="true">
+        <access-denied-handler error-page="/403" />
+        <!--TODO dorobit pristupove prava na jednotlive lomitka-->
+        <intercept-url pattern="/" access="permitAll()"/>
+        <intercept-url pattern="/**" access="hasAnyRole('ROLE_USER, ROLE_ADMIN')" />
+        <!--TODO skontrolovat ci mam pri lomitku skutocne takto riesene login -->
+        <form-login login-page='/login' username-parameter="username" password-parameter="password" login-processing-url="/j_spring_security_check" authentication-failure-url="/login?error" default-target-url="/" />
+        <logout logout-success-url="/" />
         <!--when URL fragment /main is accessed, security interceptor will be invoked 
         and can be accessed by a user having 'ROLE_ADMIN' authorization-->
         <security:intercept-url pattern="/main*" access="ROLE_ADMIN" />
         <!-- custom login page is mentioned using login-page attribute -->
         <security:form-login login-page="/loginPage" default-target-url="/main"
-                     authentication-failure-url="/loginError"/>
-    </security:http>
+                             authentication-failure-url="/loginError"/>
+    </http>
 
     <!-- -->
-    <security:authentication-manager>
-        <security:authentication-provider>
+    <authentication-manager>
+        <authentication-provider>
             <!-- Specify the authentication and authorization credentials for valid users -->
-            <security:user-service>
-                <security:user name="admin" password="admin" authorities="ROLE_ADMIN" />
-            </security:user-service>
-        </security:authentication-provider>
-    </security:authentication-manager>
+            <user-service  id="userDetailsService">
+                <user name="admin" password="admin" authorities="ROLE_ADMIN" />
+                <user name="rest" password="rest" authorities="ROLE_REST" />
+            </user-service>
+        </authentication-provider>
+        <authentication-provider>
+            <jdbc-user-service data-source-ref="dataSource"
+                               users-by-username-query="SELECT username, password, true FROM PERSON WHERE username = ?"
+                               authorities-by-username-query="SELECT username, CASE WHEN(isAdmin = TRUE) THEN 'ROLE_ADMIN' ELSE 'ROLE_USER' END as authority FROM PERSON WHERE username = ?" />
+        </authentication-provider>
+    </authentication-manager>
  
-</beans>
+</beans:beans>
