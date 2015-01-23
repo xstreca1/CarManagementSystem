@@ -4,15 +4,18 @@
     Author     : jrumanov
 --%>
 
+
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <html>
     <head>
-        <title>Custom Login Page</title>
+        <title><fmt:message key="index.login"/></title>
     </head>
     <body onload='document.loginForm.j_username.focus();'>
-        <h3>Custom Login Page</h3>
+        <h3><fmt:message key="index.login"/></h3>
 
         <%
 
@@ -27,20 +30,19 @@
 
             <table>
                 <tr>
-                    <td>User:</td>
+                    <td><fmt:message key="index.login.username"/></td>
                     <td><input type='text' name='j_username' value=''>
                     </td>
                 </tr>
                 <tr>
-                    <td>Password:</td>
+                    <td><fmt:message key="index.login.password"/></td>
                     <td><input type='password' name='j_password' />
                     </td>
                 </tr>
                 <tr>
-                    <td><input name="submit" type="submit"
-                               value="submit" />
+                    <td><input name="submit" type="submit" value=<fmt:message key="index.login.submit"/>
                     </td>
-                    <td><input name="reset" type="reset" />
+                    <td><input name="reset" type="reset" value=<fmt:message key="index.login.reset"/>
                     </td>
                 </tr>
             </table>
