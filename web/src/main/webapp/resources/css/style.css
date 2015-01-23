@@ -32,14 +32,14 @@ table{
 }
 
 
-    /*hlavicka*/
-    header{
-        min-width:1100px;
-        margin:0;
-        padding:0;
-        height:6.25em;
-        background:#2c3e50;
-    }
+/*hlavicka*/
+header{
+    min-width:1100px;
+    margin:0;
+    padding:0;
+    height:6.25em;
+    background:#2c3e50;
+}
 
 /*menu*/
 nav{
@@ -147,7 +147,7 @@ table{
 th, td {
     border: 0px;
     padding: 8px;
-    
+
 }
 td{
     font-family: 'Open Sans', sans-serif; 
@@ -223,4 +223,77 @@ select{
     padding:0 2px 0 0;
     display: inline-block;
     list-style-type: none;
+}
+
+/* LOGIN */
+#bodyLogin{
+    font-family: 'Open Sans', sans-serif; 
+    font-size: 100%; /* 16px */ 
+    font-weight: 300;
+    margin: 0px;
+    padding: 0px;
+    text-align: center;
+    background: #41bbec;  
+    color: white;
+}
+#login-space {
+    position: absolute;
+    background: #edeff1;
+    padding:20px 20px 20px 20px;
+    top: 50%;
+    left: 50%;
+    margin: -200px 0 0 -200px;
+    border-radius: 10px;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+
+}
+#login-space table {
+    background: #edeff1;
+    border:none; 
+}
+#login-space tr td{
+    color:black;
+    font-size: 1.4em;
+}
+#greyBack{
+    background: #edeff1; 
+}
+#login-space input {
+    background: white;
+    font-size: 16px;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 300;
+    display: block;
+    width: 314px;
+    padding: 12px;
+    color: black;
+    border: 0px;
+    margin: auto;
+    border-radius: 5px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    font-size: 17px;
+    transition: all 0.3s ease;
+}
+
+#login-space input.submit {
+    background:#41bbec;
+    padding:10px 10px 10px 10px;
+    cursor: pointer;
+    display: block;
+    width: 338px;
+    padding: 12px;
+    cursor: pointer;
+    color: #fff;
+    border: 0px;
+    margin: auto;
+    border-radius: 5px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    font-size: 0.9em;
+    transition: all 0.3s ease;
+}
+#login-space input.submit:hover {
+    background-color: #25252b; color: #fff;
 }

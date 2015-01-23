@@ -25,28 +25,36 @@
             }
         %>
 
-        <form name='loginForm' action="<c:url value='j_spring_security_check' />"
-              method='POST'>
+        <section id="login-space">
+            <form name='loginForm' action="<c:url value='j_spring_security_check' />"
+                  method='POST'>
 
-            <table>
-                <tr>
-                    <td><fmt:message key="index.login.username"/></td>
-                    <td><input type='text' name='j_username' value=''>
-                    </td>
-                </tr>
-                <tr>
-                    <td><fmt:message key="index.login.password"/></td>
-                    <td><input type='password' name='j_password' />
-                    </td>
-                </tr>
-                <tr>
-                    <td><input name="submit" type="submit" value=<fmt:message key="index.login.submit"/>
-                    </td>
-                    <td><input name="reset" type="reset" value=<fmt:message key="index.login.reset"/>
-                    </td>
-                </tr>
-            </table>
+                <table>
+                    <tr>
+                        <td id="greyBack"><fmt:message key="index.login.username"/></td>
+                    </tr>
+                    <tr>
+                        <td><input type='text' name='j_username' value=''>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td id="greyBack"><fmt:message key="index.login.password"/></td>
+                    </tr>
+                    <tr>
+                        <td><input type='password' name='j_password' />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td id="greyBack"><input name="submit" type="submit" value=<fmt:message key="index.login.submit"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><input name="reset" type="reset" value=<fmt:message key="index.login.reset"/>
+                        </td>
+                    </tr>
+                </table>
 
-        </form>
+            </form>
+        </section>
     </body>
 </html>
