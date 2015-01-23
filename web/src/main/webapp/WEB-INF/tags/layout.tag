@@ -27,7 +27,7 @@
             <nav>  
                 <ul>
                     <li>
-                        <a href="${pageContext.request.contextPath}/">
+                        <a href="${pageContext.request.contextPath}/main">
                             <fmt:message key="layout.menu.home"/>
                         </a>
                     </li>
