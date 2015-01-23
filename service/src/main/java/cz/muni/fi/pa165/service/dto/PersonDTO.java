@@ -109,7 +109,8 @@ public class PersonDTO {
     public void setPassword(String password) {
         
         if(password != null) {
-        this.password = get_SHA_384_SecurePassword(password, "fucek");
+  //      this.password = get_SHA_384_SecurePassword(password, "fucek");
+            this.password = password;
         }
         else 
             System.out.println("password must not be null");

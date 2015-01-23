@@ -118,7 +118,8 @@ public class Person implements Serializable {
     
 
     public void setPassword(String password) {
-        this.password = get_SHA_384_SecurePassword(password, "fucek");
+     //   this.password = get_SHA_384_SecurePassword(password, "fucek");
+        this.password = password;
     }
     
 
