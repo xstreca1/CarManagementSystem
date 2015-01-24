@@ -52,6 +52,7 @@ public class PersonDAOImplTest {
         person.setSalary(25_000);
         person.setIsActive(true);
         person.setIdentificationNumber("EA123456");
+        person.setUsername("jaro");
 
         person2 = new Person();
         person2.setName("JOE");        
@@ -60,6 +61,7 @@ public class PersonDAOImplTest {
         person2.setSalary(30_000);
         person2.setIsActive(true);
         person2.setIdentificationNumber("EA212143");
+        person2.setUsername("martin");
 
         person3 = new Person();
         person3.setName("JOE");
@@ -68,6 +70,7 @@ public class PersonDAOImplTest {
         person3.setSalary(33_000);
         person3.setIsActive(true);
         person3.setIdentificationNumber("EA142234");
+        person3.setUsername("stano");
 
         person4 = new Person();
         person4.setName("JOE");
@@ -76,6 +79,7 @@ public class PersonDAOImplTest {
         person4.setSalary(38_000);
         person4.setIsActive(true);
         person4.setIdentificationNumber("EA654321");
+        person4.setUsername("chruno");
 
         em.getTransaction().begin();
 
