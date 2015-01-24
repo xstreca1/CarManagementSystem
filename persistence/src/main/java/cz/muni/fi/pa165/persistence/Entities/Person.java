@@ -77,7 +77,7 @@ public class Person implements Serializable {
     @Column(nullable = false)
     private Integer salary;
     
-    @Column(unique = true)
+    @Column
     private String username;
     
     @Column
