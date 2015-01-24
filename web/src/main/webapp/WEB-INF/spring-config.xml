@@ -17,6 +17,11 @@ http://www.springframework.org/schema/security/spring-security-3.2.xsd">
         <security:form-login login-page="/loginPage" default-target-url="/main"
                      authentication-failure-url="/loginError"/>
     </security:http>
+      <security:http pattern="/rest/**" create-session="stateless">
+        <access-denied-handler error-page="/403" />
+        <intercept-url pattern='/**' access='ROLE_REST' />
+        <http-basic />
+    </security:http>
     <!-- -->
     <security:authentication-manager>
         <security:authentication-provider>
