@@ -64,5 +64,7 @@ public interface PersonServices {
     List<PersonDTO> getPeopleByName(String name);
     
     PersonDTO getPersonByID(Integer id);
+    
+    public PersonDTO getPersonByUsername(String username);
 
 }

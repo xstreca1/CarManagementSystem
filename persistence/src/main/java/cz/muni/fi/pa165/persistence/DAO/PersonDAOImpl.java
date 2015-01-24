@@ -82,6 +82,17 @@ public class PersonDAOImpl implements PersonDAO {
 
         return person;
     }
+    
+    @Override
+    public Person getPersonByUsername(String username) {
+
+        //actual query
+        String sql = "SELECT p FROM Person p WHERE p.username=:username";
+        Person person = em.createQuery(sql, Person.class)
+                .setParameter("username", username).getResultList().get(0);
+
+        return person;
+    }
 
     @Override
     public List<Person> getPeopleByName(String name) {

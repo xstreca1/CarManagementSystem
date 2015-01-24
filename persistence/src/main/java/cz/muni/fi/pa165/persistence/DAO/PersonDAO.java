@@ -51,6 +51,9 @@ public interface PersonDAO {
      * @param name name of a person searched for
      * @return list of people, with desired name
      */
+    
+    Person getPersonByUsername(String username);
+    
     List<Person> getPeopleByName(String name);
 
     /**
