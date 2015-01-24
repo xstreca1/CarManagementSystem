@@ -31,6 +31,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.dao.DataAccessException;
 import org.springframework.security.access.annotation.Secured;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestWrapper;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -172,17 +174,21 @@ public class CarController {
 
         String url = null;
         model.addAttribute("lease", lease);
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        String name = user.getUsername();
+        PersonDTO person = personService.getPersonByUsername(name);        
         CarDTO car = carService.getCarByID(id);
         lease.setCar(car);
+        lease.setPerson(person);
         car.setAvailibility(false);
         carService.updateCar(car, id);
 
         leaseService.createLease(lease);
-        
-        if(request.isUserInRole("ROLE_ADMIN")){
-        url = "redirect:/lease/";
-        }else{
-        url = "redirect:/main/";
+
+        if (request.isUserInRole("ROLE_ADMIN")) {
+            url = "redirect:/lease/";
+        } else {
+            url = "redirect:/main/";
         }
 
         return url;

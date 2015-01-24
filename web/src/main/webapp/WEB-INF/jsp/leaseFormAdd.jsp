@@ -7,15 +7,14 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <table id="add">
-    <tr>
+   <%-- <tr>
         <th id="markup"><form:label path="person"><fmt:message key="lease.person"/></form:label></th>
         <td><form:select path="person">
                
                 <form:options items="${people}" itemValue="id" itemLabel="id" />
             </form:select></td>
         <td><form:errors path="person" cssClass="error"/></td>
-    </tr>
-   
+    </tr>--%>   
     <tr>
         <th id="markup"><form:label path="dateOfLease"><fmt:message key="lease.dateOfLease"/></form:label></th>
         <td><form:input id="dateOfLease" path="dateOfLease"/></td>
