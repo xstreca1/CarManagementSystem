@@ -30,9 +30,11 @@ public class LoginController {
     public String printWelcome(ModelMap model, Principal principal, HttpServletRequest request) {
 
         String name = principal.getName();
-        model.addAttribute("username", name);        
+        model.addAttribute("username", name);   
+        
         List<CarDTO> cars = carService.findAllCars(true);
-        request.setAttribute("cars", cars);
+        request.setAttribute("cars", cars);        
+        
         return "index";
 
     }

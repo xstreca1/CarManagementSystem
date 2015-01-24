@@ -24,39 +24,74 @@
     </head>
     <body>
         <header>
-            <nav>  
-                <ul>
-                    <li>
-                        <a href="${pageContext.request.contextPath}/main">
-                            <fmt:message key="layout.menu.home"/>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="${pageContext.request.contextPath}/lease/">
-                            <fmt:message key="layout.menu.lease"/>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="${pageContext.request.contextPath}/car/">
-                            <fmt:message key="layout.menu.car"/>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="${pageContext.request.contextPath}/person/">
-                            <fmt:message key="layout.menu.person"/>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="${pageContext.request.contextPath}/serviceCheck/">
-                            <fmt:message key="layout.menu.serviceCheck"/>
-                        </a>
-                    </li>
-                </ul>
-            </nav> 
+            <c:choose>
+                <c:when test="${pageContext.request.isUserInRole('ROLE_ADMIN')}">
+                    <nav>  
+                        <ul>
+                            <li>
+                                <a href="${pageContext.request.contextPath}/main">
+                                    <fmt:message key="layout.menu.home"/>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="${pageContext.request.contextPath}/lease/">
+                                    <fmt:message key="layout.menu.lease"/>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="${pageContext.request.contextPath}/car/">
+                                    <fmt:message key="layout.menu.car"/>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="${pageContext.request.contextPath}/person/">
+                                    <fmt:message key="layout.menu.person"/>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="${pageContext.request.contextPath}/serviceCheck/">
+                                    <fmt:message key="layout.menu.serviceCheck"/>
+                                </a>
+                            </li>                            
+                            <li>
+                                <a href="${pageContext.request.contextPath}/stats/">
+                                    <fmt:message key="layout.menu.statistics"/>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="${pageContext.request.contextPath}/logout/">
+                                    <fmt:message key="layout.menu.logout"/>
+                                </a>
+                            </li>                          
+                        </ul>                       
+                    </nav> 
+                </c:when >
+                <c:otherwise>
+                    <nav>  
+                        <ul>
+                            <li>
+                                <a href="${pageContext.request.contextPath}/main">
+                                    <fmt:message key="layout.menu.home"/>
+                                </a>
+                            </li>                   
+                            <li>
+                                <a href="${pageContext.request.contextPath}/stats/">
+                                    <fmt:message key="layout.menu.statistics"/>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="${pageContext.request.contextPath}/logout/">
+                                    <fmt:message key="layout.menu.logout"/>
+                                </a>
+                            </li>                                                        
+                        </ul>                        
+                    </nav> 
+                </c:otherwise>
+            </c:choose>
         </header>
-                        
+
         <h1><c:out value="${title}"/></h1>
-                        
+
         <div id="content">
             <c:if test="${not empty message}">
                 <div class="message"><c:out value="${message}"/></div>
