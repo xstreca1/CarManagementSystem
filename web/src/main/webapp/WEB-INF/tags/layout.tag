@@ -75,7 +75,7 @@
                                 </a>
                             </li>                   
                             <li>
-                                <a href="${pageContext.request.contextPath}/stats/">
+                                <a href="${pageContext.request.contextPath}/mytravels/">
                                     <fmt:message key="layout.menu.statistics"/>
                                 </a>
                             </li>
@@ -89,6 +89,13 @@
                 </c:otherwise>
             </c:choose>
         </header>
+        <div align="left">
+            <font size="6">
+            <b>
+                <%=request.getRemoteUser()%>
+            </b>
+            </font>
+        </div>
 
         <h1><c:out value="${title}"/></h1>
 
