@@ -12,8 +12,10 @@ package cz.muni.fi.pa165.web;
 import cz.muni.fi.pa165.persistence.Entities.Car.Category;
 import cz.muni.fi.pa165.persistence.Entities.Person.EmploymentStatus;
 import cz.muni.fi.pa165.service.dto.CarDTO;
+import cz.muni.fi.pa165.service.dto.LeaseDTO;
 import cz.muni.fi.pa165.service.dto.PersonDTO;
 import cz.muni.fi.pa165.service.service.CarServiceInterface;
+import cz.muni.fi.pa165.service.service.LeaseServiceInterface;
 import cz.muni.fi.pa165.service.service.PersonServices;
 import java.security.Principal;
 import java.util.ArrayList;
@@ -34,6 +36,8 @@ public class LoginController {
     CarServiceInterface carService;
     @Autowired
     PersonServices personService;
+    @Autowired
+    LeaseServiceInterface leaseService;
 
     @RequestMapping(value = "/main", method = RequestMethod.GET)
     public String printWelcome(ModelMap model, Principal principal, HttpServletRequest request) {
@@ -98,5 +102,18 @@ public class LoginController {
     public String logout(ModelMap model) {
         return "logout";
     }
+    
+     @RequestMapping(value = "/mytravels", method = RequestMethod.GET)
+    public String travels (ModelMap model) {
+        
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        String userName = user.getUsername();
+        PersonDTO person = personService.getPersonByUsername(userName);
+        List<LeaseDTO> leases = leaseService.getLeaseByPerson(person);
+        model.addAttribute("leases", leases);
+
+        return "personStatistics";
+    }
+    
 
 }
