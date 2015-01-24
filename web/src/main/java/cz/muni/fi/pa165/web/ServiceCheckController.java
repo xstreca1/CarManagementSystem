@@ -18,6 +18,7 @@ import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -50,6 +51,7 @@ public class ServiceCheckController {
         this.personService = personService;
     }
 
+    @Secured("ROLE_ADMIN")
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String scHome(ModelMap model) {
         List<ServiceCheckDTO> checks = serviceCheckService.findAllChecks();
@@ -60,6 +62,7 @@ public class ServiceCheckController {
         return "scListServiceChecks";
     }
 
+    @Secured("ROLE_ADMIN")
     @RequestMapping(value = "/perform/{id}", method = RequestMethod.GET)
     public String perform(@PathVariable Integer id, ModelMap model) {
 
@@ -91,6 +94,7 @@ public class ServiceCheckController {
         return "redirect:/serviceCheck/";
     }
 
+    @Secured("ROLE_ADMIN")
     @RequestMapping(value = "/performFromCar/{id}", method = RequestMethod.GET)
     public String performFromCarView(@PathVariable Integer id, ModelMap model) {
 

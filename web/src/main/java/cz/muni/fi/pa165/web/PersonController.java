@@ -23,6 +23,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
@@ -57,6 +58,7 @@ public class PersonController {
         this.personService = personService;
     }
 
+    @Secured("ROLE_ADMIN")
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String carsHome(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         List<PersonDTO> people = personService.findAllPeople(true);
@@ -72,6 +74,7 @@ public class PersonController {
         return person;
     }
 
+    @Secured("ROLE_ADMIN")
     @RequestMapping(value = "/add", method = RequestMethod.POST)
     public String addPerson(@ModelAttribute("person") @Valid PersonDTO person,
             BindingResult result, ModelMap model, HttpServletRequest request) {
@@ -89,6 +92,7 @@ public class PersonController {
         }
     }
 
+    @Secured("ROLE_ADMIN")
     @RequestMapping(value = "/delete/{id}")
     public String deletePerson(@PathVariable Integer id, ModelMap model) {
 
@@ -100,6 +104,7 @@ public class PersonController {
         return "redirect:/person/";
     }
 
+    @Secured("ROLE_ADMIN")
     @RequestMapping(value = "/update/{id}", method = RequestMethod.GET)
     public String update_form(@PathVariable Integer id, HttpServletRequest request) {
 
@@ -110,6 +115,7 @@ public class PersonController {
         return "personEdit";
     }
 
+    @Secured("ROLE_ADMIN")
     @RequestMapping(value = "/edit/{id}", method = RequestMethod.POST)
     public String editPerson(@PathVariable Integer id, @ModelAttribute("person") @Valid PersonDTO person,
             BindingResult result, ModelMap model, HttpServletRequest request) {
@@ -128,6 +134,7 @@ public class PersonController {
         }
     }
 
+    @Secured("ROLE_ADMIN")
     @RequestMapping(value = "/statistics/{id}", method = RequestMethod.GET)
     public String getStatistics(ModelMap model, @PathVariable Integer id) {
 

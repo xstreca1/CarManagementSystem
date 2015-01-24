@@ -30,6 +30,7 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.dao.DataAccessException;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
@@ -93,6 +94,7 @@ public class CarController {
         return "carListCars";
     }
 
+    @Secured("ROLE_ADMIN")
     @RequestMapping(value = "/add", method = RequestMethod.POST)
     public String addCar(@ModelAttribute("car") @Valid CarDTO car,
             BindingResult result, ModelMap model, HttpServletRequest request) {
@@ -111,6 +113,7 @@ public class CarController {
         }
     }
 
+    @Secured("ROLE_ADMIN")
     @RequestMapping(value = "/delete/{id}")
     public String deleteCar(@PathVariable Integer id, ModelMap model) {
 
@@ -122,6 +125,7 @@ public class CarController {
         return "redirect:/car/";
     }
 
+    @Secured("ROLE_ADMIN")
     @RequestMapping(value = "/update/{id}", method = RequestMethod.GET)
     public String update_form(@PathVariable Integer id, HttpServletRequest request) {
 
@@ -132,6 +136,7 @@ public class CarController {
         return "carEdit";
     }
 
+    @Secured("ROLE_ADMIN")
     @RequestMapping(value = "/edit/{id}", method = RequestMethod.POST)
     public String editCar(@PathVariable Integer id, @ModelAttribute("car") @Valid CarDTO car,
             BindingResult result, ModelMap model, HttpServletRequest request) {
@@ -160,6 +165,7 @@ public class CarController {
         return "leaseCar";
     }
 
+    
     @RequestMapping(value = "/confirmLease/{id}", method = RequestMethod.POST)
     public String confirmLeaseCar(@PathVariable Integer id, @Validated @ModelAttribute("lease") LeaseDTO lease,
             ModelMap model) {
@@ -183,6 +189,7 @@ public class CarController {
         binder.registerCustomEditor(Date.class, new CustomDateEditor(sdf, true));
     }
 
+    @Secured("ROLE_ADMIN")
     @RequestMapping(value = "/check/{id}", method = RequestMethod.GET)
     public String addCheck(@PathVariable Integer id, ModelMap model) {
 
@@ -195,6 +202,7 @@ public class CarController {
         return "scAssignCheck";
     }
 
+    @Secured("ROLE_ADMIN")
     @RequestMapping(value = "/confirmCheck/{id}", method = RequestMethod.POST)
     public String confirmCheck(@PathVariable Integer id, @ModelAttribute("check") ServiceCheckDTO check,
             ModelMap model) {
