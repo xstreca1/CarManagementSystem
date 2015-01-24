@@ -53,11 +53,20 @@
                                     <fmt:message key="layout.menu.serviceCheck"/>
                                 </a>
                             </li>                            
-                            <li>
-                                <a href="${pageContext.request.contextPath}/stats/">
-                                    <fmt:message key="layout.menu.statistics"/>
-                                </a>
-                            </li>
+
+                            <c:choose>
+                                <c:when test="${principal.username == admin}">
+                                    
+                                </c:when >
+                                <c:otherwise>
+                                    <li>
+                                        <a href="${pageContext.request.contextPath}/mytravels/">
+                                            <fmt:message key="layout.menu.statistics"/>
+                                        </a>
+                                    </li>
+
+                                </c:otherwise>
+                            </c:choose>
                             <li>
                                 <a href="${pageContext.request.contextPath}/logout/">
                                     <fmt:message key="layout.menu.logout"/>
