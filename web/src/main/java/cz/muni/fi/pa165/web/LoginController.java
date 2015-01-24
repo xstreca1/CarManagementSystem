@@ -33,6 +33,7 @@ public class LoginController {
         model.addAttribute("username", name);   
         
         List<CarDTO> cars = carService.findAllCars(true);
+        
         request.setAttribute("cars", cars);        
         
         return "index";

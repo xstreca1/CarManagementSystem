@@ -31,6 +31,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.dao.DataAccessException;
 import org.springframework.security.access.annotation.Secured;
+import org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestWrapper;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
@@ -141,9 +142,8 @@ public class CarController {
     public String editCar(@PathVariable Integer id, @ModelAttribute("car") @Valid CarDTO car,
             BindingResult result, ModelMap model, HttpServletRequest request) {
 
-            carService.updateCar(car, id);
-            return "redirect:/car/";
-        
+        carService.updateCar(car, id);
+        return "redirect:/car/";
 
     }
 
@@ -162,14 +162,15 @@ public class CarController {
         // leaseService.createLease(lease);
         model.addAttribute("lease", new LeaseDTO());
         //model.addAttribute("person2", person2);
+
         return "leaseCar";
     }
 
-    
     @RequestMapping(value = "/confirmLease/{id}", method = RequestMethod.POST)
     public String confirmLeaseCar(@PathVariable Integer id, @Validated @ModelAttribute("lease") LeaseDTO lease,
-            ModelMap model) {
+            ModelMap model, HttpServletRequest request) {
 
+        String url = null;
         model.addAttribute("lease", lease);
         CarDTO car = carService.getCarByID(id);
         lease.setCar(car);
@@ -177,8 +178,14 @@ public class CarController {
         carService.updateCar(car, id);
 
         leaseService.createLease(lease);
+        
+        if(request.isUserInRole("ROLE_ADMIN")){
+        url = "redirect:/lease/";
+        }else{
+        url = "redirect:/main/";
+        }
 
-        return "redirect:/lease/";
+        return url;
     }
 
     @InitBinder
