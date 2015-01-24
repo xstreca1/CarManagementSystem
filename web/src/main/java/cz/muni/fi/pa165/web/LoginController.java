@@ -93,5 +93,10 @@ public class LoginController {
         return "loginPage";
 
     }
+    
+    @RequestMapping(value = "/logout", method = RequestMethod.GET)
+    public String logout(ModelMap model) {
+        return "logout";
+    }
 
 }
