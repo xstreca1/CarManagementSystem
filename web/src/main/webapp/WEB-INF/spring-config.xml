@@ -24,6 +24,8 @@ http://www.springframework.org/schema/security/spring-security-3.2.xsd">
             <!-- Specify the authentication and authorization credentials for valid users -->
             <security:user-service>
                 <security:user name="admin" password="admin" authorities="ROLE_ADMIN" />
+                <security:user name="rest" password="rest"
+                      authorities="ROLE_REST" />
             </security:user-service>
         </security:authentication-provider>
         <security:authentication-provider>
