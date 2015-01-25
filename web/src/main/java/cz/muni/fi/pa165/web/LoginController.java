@@ -48,35 +48,42 @@ public class LoginController {
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         String userName = user.getUsername();
         System.out.println(userName);
-        
-        List<CarDTO> cars = new ArrayList<>();       
-        
-        if(!"admin".equals(userName)){
-        PersonDTO loggedUser = personService.getPersonByUsername(userName);
-        EmploymentStatus status = loggedUser.getEmploymentStatus();
-        String category = null;
-        switch(status){
+
+        List<CarDTO> cars = new ArrayList<>();
+
+        if (!"admin".equals(userName)) {
+
+            /*String category = null;
+             switch(status){
             
-            case CEO:  category="A";            
-            case MANAGER: category="A";
-            case SENIOR: category="A";
-            case JUNIOR: category="B";
-            case INTERN: category="C";
-            case JOZO: category="D";
+             case CEO:  category="A";            
+             case MANAGER: category="A";
+             case SENIOR: category="A";
+             case JUNIOR: category="B";
+             case INTERN: category="C";
+             case JOZO: category="D";
+             }
+             */
+            List<CarDTO> allCars = carService.findAllCars(true);
+            for (CarDTO car : allCars) {
+                Category cat = car.getCategory();
+                PersonDTO loggedUser = personService.getPersonByUsername(userName);
+                EmploymentStatus status = loggedUser.getEmploymentStatus();
+                if (status.equals(EmploymentStatus.CEO) || status.equals(EmploymentStatus.MANAGER) || status.equals(EmploymentStatus.SENIOR)) {
+                    cars.add(car);
+                }
+                if (status.equals(EmploymentStatus.JUNIOR) && !Category.A.equals(cat)) {
+                    cars.add(car);
+                }
+                if (status.equals(EmploymentStatus.INTERN) && (!Category.A.equals(cat) && !Category.B.equals(cat))) {
+                    cars.add(car);
+                }
+                if (status.equals(EmploymentStatus.JOZO) && cat == Category.D) {
+                    cars.add(car);
+                }
+
+            }
         }
-        
-        
-        List<CarDTO> allCars = carService.findAllCars(true);
-        for (CarDTO car: allCars){
-           Category cat = car.getCategory();
-        if (category == "A"){cars.add(car);}
-        if (category == "B" && cat != Category.A){cars.add(car);}
-        if (category == "C" && (cat != Category.A || cat != Category.B)){cars.add(car);}
-        if (category == "D" && cat == Category.D){cars.add(car);}
-        
-        }
-        }
-        
 
         request.setAttribute("cars", cars);
 
@@ -97,15 +104,15 @@ public class LoginController {
         return "loginPage";
 
     }
-    
+
     @RequestMapping(value = "/logout", method = RequestMethod.GET)
     public String logout(ModelMap model) {
         return "logout";
     }
-    
-     @RequestMapping(value = "/mytravels", method = RequestMethod.GET)
-    public String travels (ModelMap model) {
-        
+
+    @RequestMapping(value = "/mytravels", method = RequestMethod.GET)
+    public String travels(ModelMap model) {
+
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         String userName = user.getUsername();
         PersonDTO person = personService.getPersonByUsername(userName);
@@ -114,6 +121,5 @@ public class LoginController {
 
         return "personStatistics";
     }
-    
 
 }
