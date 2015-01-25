@@ -43,7 +43,17 @@
                                 <td><c:out value="${car.brand}"/></td>
                                 <td><c:out value="${car.typeName}"/></td>
                                 <td><c:out value="${car.yearOfManufacture}"/></td>
-                                <td><c:out value="${car.mileage}"/></td>
+
+                                <c:choose>
+                                    <c:when test="${car.mileage >= 200000}">
+
+                                       <td> <font color="red"><c:out value="${car.mileage}"/></font></td>
+
+                                    </c:when>
+                                    <c:otherwise>
+                                        <td><c:out value="${car.mileage}"/></td>
+                                    </c:otherwise>
+                                </c:choose>
                                 <td><fmt:message key="car.color.${car.color}"/></td>
                                 <td><fmt:message key="car.bodystyle.${car.bodystyle}"/></td>
                                 <td><fmt:message key="car.category.${car.category}"/></td>
@@ -52,7 +62,7 @@
                                 <td><fmt:message key="car.isActive.${car.isActive}"/></td>
                                 <td><fmt:message key="car.availibility.${car.availibility}"/></td>
 
-                                
+
                                 <td style="background:white;padding:0;margin:0;">
                                     <c:choose>
                                         <c:when test="${car.availibility == false || car.mileage >= 200000}">

@@ -42,7 +42,16 @@
                     <td><c:out value="${car.brand}"/></td>
                     <td><c:out value="${car.typeName}"/></td>
                     <td><c:out value="${car.yearOfManufacture}"/></td>
-                    <td><c:out value="${car.mileage}"/></td>
+                    <c:choose>
+                        <c:when test="${car.mileage >= 200000}">
+
+                            <td> <font color="red"><c:out value="${car.mileage}"/></font></td>
+
+                        </c:when>
+                        <c:otherwise>
+                            <td><c:out value="${car.mileage}"/></td>
+                        </c:otherwise>
+                    </c:choose>
                     <td><fmt:message key="car.color.${car.color}"/></td>
                     <td><fmt:message key="car.bodystyle.${car.bodystyle}"/></td>
                     <td><fmt:message key="car.category.${car.category}"/></td>
@@ -87,11 +96,11 @@
                         </form>
                     </td>
                 </tr>
-              </tr>
+            </tr>
         </c:forEach>
     </table>
 
-   
+
     <form:form method="post" action="${pageContext.request.contextPath}/car/add" modelAttribute="car">
         <fieldset><legend align="center"><fmt:message key="car.list.newCar"/></legend>
             <%@include file="carFormAdd.jsp"%>
