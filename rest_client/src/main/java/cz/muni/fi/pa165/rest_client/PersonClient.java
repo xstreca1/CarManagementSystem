@@ -93,16 +93,17 @@ public class PersonClient {
     /**
      * handles add person operation console command is: person add [name]
      * [IdentificationNumber] [sex] [nationality] [position] [employmentStatus]
-     * [salary] [isActive]
+     * [salary] [isActive] [username] [password] [isAdmin]
      *
      * @param args command line arguments args[0] args[1] args[2] args[3]
-     * args[4] args[5] args[6] args[7] args[8] args[9]
+     * args[4] args[5] args[6] args[7] args[8] args[9] args[10] args[11] args[12]
      *
      */
     private void handleAddOperation(String[] args) {
         if (args.length < 10) {
             String requiredArgs = "<name> <IdentificationNumber> <sex> <nationality>"
-                    + "<position> <employmentStatus> <salary> <isActive>";
+                    + "<position> <employmentStatus> <salary> <isActive> <username> "
+                    + "<password> <isAdmin>";
             Messages.badNumberOfArgsMessage(args.length, ADD_OPERATION, requiredArgs);
             System.exit(1);
         }
@@ -118,6 +119,9 @@ public class PersonClient {
         person.setEmploymentStatus(Person.EmploymentStatus.valueOf(args[7]));
         person.setSalary(Integer.parseInt(args[8]));
         person.setIsActive(Boolean.valueOf(args[9]));
+        person.setUsername(parsed);
+        person.setPassword(parsed);
+        person.setIsAdmin(Boolean.valueOf(args[12]));
 
         RestTemplate restTemplate = new RestTemplate();
         ReceivePersonMessage result = restTemplate.postForObject(CREATE_PERSON, person, ReceivePersonMessage.class);
