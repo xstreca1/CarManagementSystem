@@ -26,9 +26,39 @@ public class PersonDTO {
 
     private String nationality;
 
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public Boolean getIsAdmin() {
+        return isAdmin;
+    }
+
+    public void setIsAdmin(Boolean isAdmin) {
+        this.isAdmin = isAdmin;
+    }
+
     private Integer salary;
     
     private String IdentificationNumber;
+    
+    private String username;
+    
+    private String password;
+    
+    private Boolean isAdmin;
 
     public PersonDTO(Integer id, String name, Boolean isActive,
             Person.EmploymentStatus employmentStatus,
