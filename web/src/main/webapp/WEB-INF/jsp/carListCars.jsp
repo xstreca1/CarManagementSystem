@@ -63,7 +63,7 @@
                     </td>  
                     <td style="background:white;padding:0;margin:0;">
                         <c:choose>
-                            <c:when test="${car.availibility == false || principal.username == admin}">
+                            <c:when test="${car.availibility == false || principal.username == admin || car.mileage >= 200000}">
                                 <form method="get" action="${pageContext.request.contextPath}/car/lease/${car.carID}"modelAttribute="lease">
 
                                     <input type="submit" class="btn blackOff" disabled="disabled" value="<fmt:message key='car.list.lease'/>">
