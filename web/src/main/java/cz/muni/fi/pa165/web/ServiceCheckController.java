@@ -51,6 +51,7 @@ public class ServiceCheckController {
         this.personService = personService;
     }
 
+    // List of SC
     @Secured("ROLE_ADMIN")
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String scHome(ModelMap model) {
@@ -62,6 +63,7 @@ public class ServiceCheckController {
         return "scListServiceChecks";
     }
 
+    // Performing SC - last check is set to actual date, next check is calculated ad lastcheck + interval
     @Secured("ROLE_ADMIN")
     @RequestMapping(value = "/perform/{id}", method = RequestMethod.GET)
     public String perform(@PathVariable Integer id, ModelMap model) {
@@ -94,6 +96,7 @@ public class ServiceCheckController {
         return "redirect:/serviceCheck/";
     }
 
+    //Performing SC from cars view (Cars - display SC - Perform)
     @Secured("ROLE_ADMIN")
     @RequestMapping(value = "/performFromCar/{id}", method = RequestMethod.GET)
     public String performFromCarView(@PathVariable Integer id, ModelMap model) {

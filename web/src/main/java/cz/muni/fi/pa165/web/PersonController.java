@@ -58,6 +58,7 @@ public class PersonController {
         this.personService = personService;
     }
 
+    //Controlelr displaying table of all users
     @Secured("ROLE_ADMIN")
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String carsHome(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -74,6 +75,7 @@ public class PersonController {
         return person;
     }
 
+    // Add person form
     @Secured("ROLE_ADMIN")
     @RequestMapping(value = "/add", method = RequestMethod.POST)
     public String addPerson(@ModelAttribute("person") @Valid PersonDTO person,
@@ -92,6 +94,7 @@ public class PersonController {
         }
     }
 
+    // delete person 
     @Secured("ROLE_ADMIN")
     @RequestMapping(value = "/delete/{id}")
     public String deletePerson(@PathVariable Integer id, ModelMap model) {
@@ -104,6 +107,7 @@ public class PersonController {
         return "redirect:/person/";
     }
 
+    // Update person form
     @Secured("ROLE_ADMIN")
     @RequestMapping(value = "/update/{id}", method = RequestMethod.GET)
     public String update_form(@PathVariable Integer id, HttpServletRequest request) {
@@ -115,6 +119,8 @@ public class PersonController {
         return "personEdit";
     }
 
+    
+    // confirm update button
     @Secured("ROLE_ADMIN")
     @RequestMapping(value = "/edit/{id}", method = RequestMethod.POST)
     public String editPerson(@PathVariable Integer id, @ModelAttribute("person") @Valid PersonDTO person,
@@ -134,6 +140,7 @@ public class PersonController {
         }
     }
 
+    // Statistisc for user
     @Secured("ROLE_ADMIN")
     @RequestMapping(value = "/statistics/{id}", method = RequestMethod.GET)
     public String getStatistics(ModelMap model, @PathVariable Integer id) {

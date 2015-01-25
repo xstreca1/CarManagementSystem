@@ -39,6 +39,7 @@ public class LoginController {
     @Autowired
     LeaseServiceInterface leaseService;
 
+    // Controller for main page
     @RequestMapping(value = "/main", method = RequestMethod.GET)
     public String printWelcome(ModelMap model, Principal principal, HttpServletRequest request) {
 
@@ -51,19 +52,9 @@ public class LoginController {
 
         List<CarDTO> cars = new ArrayList<>();
 
+       // if logged user is not hardcoded admin, find out availible cars for logged employees status
         if (!"admin".equals(userName)) {
-
-            /*String category = null;
-             switch(status){
-            
-             case CEO:  category="A";            
-             case MANAGER: category="A";
-             case SENIOR: category="A";
-             case JUNIOR: category="B";
-             case INTERN: category="C";
-             case JOZO: category="D";
-             }
-             */
+          
             List<CarDTO> allCars = carService.findAllCars(true);
             for (CarDTO car : allCars) {
                 Category cat = car.getCategory();
@@ -91,6 +82,7 @@ public class LoginController {
 
     }
 
+    // Login page controller
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     public String login(ModelMap model) {
 
@@ -98,6 +90,7 @@ public class LoginController {
 
     }
 
+    // Login page controller
     @RequestMapping(value = "/loginError", method = RequestMethod.GET)
     public String loginError(ModelMap model) {
         model.addAttribute("error", "true");
@@ -105,11 +98,13 @@ public class LoginController {
 
     }
 
+    // Logout controlelr
     @RequestMapping(value = "/logout", method = RequestMethod.GET)
     public String logout(ModelMap model) {
         return "logout";
     }
 
+    // Controller fo displaying travel stats for logged user
     @RequestMapping(value = "/mytravels", method = RequestMethod.GET)
     public String travels(ModelMap model) {
 
