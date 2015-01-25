@@ -13,8 +13,9 @@
 <html>
     <head>
         <title><fmt:message key="index.login"/></title>
+        <link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/style.css" />"/>
     </head>
-    <body onload='document.loginForm.j_username.focus();'>
+    <body onload='document.loginForm.j_username.focus();' id="bodyLogin">
         <h3><fmt:message key="index.login"/></h3>
 
         <%
@@ -45,11 +46,11 @@
                         </td>
                     </tr>
                     <tr>
-                        <td id="greyBack"><input name="submit" type="submit" value=<fmt:message key="index.login.submit"/>
+                        <td id="greyBack"><input class="submit" name="submit" type="submit" value=<fmt:message key="index.login.submit"/>
                         </td>
                     </tr>
                     <tr>
-                        <td><input name="reset" type="reset" value=<fmt:message key="index.login.reset"/>
+                        <td><input class="submit" name="reset" type="reset" value=<fmt:message key="index.login.reset"/>
                         </td>
                     </tr>
                 </table>
