@@ -68,6 +68,7 @@ public class LeaseController {
         return lease;
     }
    
+    // Controller displaying form to return car
     @RequestMapping(value = "/return/{id}", method = RequestMethod.GET)
     public String return_form(@PathVariable Integer id, HttpServletRequest request) {
 
@@ -77,6 +78,7 @@ public class LeaseController {
         return "leaseReturn";
     }
 
+     // Controller for submit button fo car return
     @RequestMapping(value = "/confirmReturn/{id}", method = RequestMethod.POST)
     public String returnCar(@ModelAttribute("lease") LeaseDTO lease, @PathVariable Integer id,
             BindingResult result, ModelMap model) {

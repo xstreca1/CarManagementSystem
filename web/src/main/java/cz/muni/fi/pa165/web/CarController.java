@@ -89,6 +89,9 @@ public class CarController {
         return car;
     }
 
+   
+    // Controller fo cars/
+    // displays list of cars
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String carsHome(HttpServletRequest request) {
         List<CarDTO> cars = carService.findAllCars(true);
@@ -97,6 +100,7 @@ public class CarController {
         return "carListCars";
     }
 
+    // Controller for adding car
     @Secured("ROLE_ADMIN")
     @RequestMapping(value = "/add", method = RequestMethod.POST)
     public String addCar(@ModelAttribute("car") @Valid CarDTO car,
@@ -116,6 +120,7 @@ public class CarController {
         }
     }
 
+     // Controller for deleting car - deactivates car according its ID
     @Secured("ROLE_ADMIN")
     @RequestMapping(value = "/delete/{id}")
     public String deleteCar(@PathVariable Integer id, ModelMap model) {
@@ -128,17 +133,18 @@ public class CarController {
         return "redirect:/car/";
     }
 
+     // Controller for uodating car - displays form for editing
     @Secured("ROLE_ADMIN")
     @RequestMapping(value = "/update/{id}", method = RequestMethod.GET)
     public String update_form(@PathVariable Integer id, HttpServletRequest request) {
 
         List<CarDTO> cars = new ArrayList();
         cars.add(carService.getCarByID(id));
-        request.setAttribute("cars", cars);
-        //model.addAttribute("person2", person2);
+        request.setAttribute("cars", cars);        
         return "carEdit";
     }
 
+    // Controller for button submitting car update
     @Secured("ROLE_ADMIN")
     @RequestMapping(value = "/edit/{id}", method = RequestMethod.POST)
     public String editCar(@PathVariable Integer id, @ModelAttribute("car") @Valid CarDTO car,
@@ -149,6 +155,7 @@ public class CarController {
 
     }
 
+    // Controller for leasing car - displays form for lease
     @RequestMapping(value = "/lease/{id}", method = RequestMethod.GET)
     public String leaseCar(@PathVariable Integer id, ModelMap model) {
 
@@ -160,14 +167,12 @@ public class CarController {
         List<PersonDTO> people = personService.findAllPeople(true);
         model.addAttribute("people", people);
 
-        // LeaseDTO lease = new LeaseDTO();
-        // leaseService.createLease(lease);
         model.addAttribute("lease", new LeaseDTO());
-        //model.addAttribute("person2", person2);
-
+      
         return "leaseCar";
     }
 
+    // Controller for button submitting car lease
     @RequestMapping(value = "/confirmLease/{id}", method = RequestMethod.POST)
     public String confirmLeaseCar(@PathVariable Integer id, @Validated @ModelAttribute("lease") LeaseDTO lease,
             ModelMap model, HttpServletRequest request) {
@@ -202,6 +207,7 @@ public class CarController {
         binder.registerCustomEditor(Date.class, new CustomDateEditor(sdf, true));
     }
 
+    // Controller for assigning SC - displays form
     @Secured("ROLE_ADMIN")
     @RequestMapping(value = "/check/{id}", method = RequestMethod.GET)
     public String addCheck(@PathVariable Integer id, ModelMap model) {
@@ -215,6 +221,7 @@ public class CarController {
         return "scAssignCheck";
     }
 
+    // Controller for assigning SC - confirm button
     @Secured("ROLE_ADMIN")
     @RequestMapping(value = "/confirmCheck/{id}", method = RequestMethod.POST)
     public String confirmCheck(@PathVariable Integer id, @ModelAttribute("check") ServiceCheckDTO check,
@@ -241,6 +248,7 @@ public class CarController {
         return "redirect:/serviceCheck/";
     }
 
+    // Controller for displying assignet SC
     @RequestMapping(value = "/showSC/{id}", method = RequestMethod.GET)
     public String showSC(HttpServletRequest request, @PathVariable Integer id) {
 

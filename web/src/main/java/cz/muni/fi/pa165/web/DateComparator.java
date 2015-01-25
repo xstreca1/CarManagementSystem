@@ -13,6 +13,7 @@ import java.util.Comparator;
  *
  * @author Mato
  */
+// Comparator fo SC dates to be able to sort them
 public class DateComparator implements Comparator<ServiceCheckDTO> {
     @Override
     public int compare(ServiceCheckDTO s1, ServiceCheckDTO s2) {
