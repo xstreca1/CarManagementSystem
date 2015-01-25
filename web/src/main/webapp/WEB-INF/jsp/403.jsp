@@ -15,7 +15,8 @@
     <!-- Page Content -->
     <div class="container">
 
-        <div class="row">
+        <div class="row" style="text-align: center;font-family: 'Open Sans', sans-serif;
+             margin:40px;padding:20px;background: #edeff1;">
             <div class="col-lg-12 text-center">
                 <h1><fmt:message key="403.general"/></h1>
                 <p class="lead"><fmt:message key="403.error"/></p>
