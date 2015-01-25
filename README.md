@@ -62,7 +62,7 @@ ENUMS:
 commands for [person] are:
  
 - "findAll" print out all people
-- "add [name] [IdentificationNumber] [sex] [nationality] [position]  [employmentStatus] [salary] [isActive]" add new person
+- "add [name] [IdentificationNumber] [sex] [nationality] [position]  [employmentStatus] [salary] [isActive] [userName] [password] [isAdmin]" add new person
 - "update [id] [name] [position] [nationality] [salary] [employmentStatus] [isActive]" update person by given id
 - "delete [id]" delete person by given id
 - "findbyid [id]" find person by given id
@@ -82,7 +82,7 @@ person - list all people in the DB
 - mvn exec:java -Dexec.args="person findAll"
 
 person - add new person
-- mvn exec:java -Dexec.args="person add Jaroslav_Cimrman EC444555 MALE SK programmer INTERN 14000 TRUE"
+- mvn exec:java -Dexec.args="person add Jaroslav_Cimrman EC444555 MALE SK programmer INTERN 14000 TRUE jarda 123 FALSE"
 
 -- before inserting in the DB the "_" character is replaced by " "
 
